@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Lead Quality Research Report - March 17, 2026</title>
+<style>
+  :root {
+    --primary: #1a365d;
+    --secondary: #2d5f9a;
+    --accent: #e67e22;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --muted: #6c757d;
+    --border: #dee2e6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 0;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .subtitle { font-size: 16px; opacity: 0.85; }
+  .header .date { font-size: 14px; opacity: 0.7; margin-top: 8px; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px; }
+  .toc {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  .toc h2 { font-size: 18px; margin-bottom: 12px; color: var(--primary); }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--secondary); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .executive-summary {
+    background: linear-gradient(135deg, #fff9e6, #fff3cd);
+    border: 2px solid var(--warning);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .executive-summary h2 {
+    color: var(--primary);
+    font-size: 22px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .takeaway {
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 0 4px 4px 0;
+  }
+  .takeaway strong { color: var(--primary); }
+  .takeaway .source { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  section {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 28px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+  }
+  section h2 {
+    color: var(--primary);
+    font-size: 20px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+  }
+  h3 {
+    color: var(--secondary);
+    font-size: 16px;
+    margin: 20px 0 10px 0;
+  }
+  h4 {
+    color: var(--text);
+    font-size: 14px;
+    margin: 14px 0 8px 0;
+    font-weight: 600;
+  }
+  p { margin-bottom: 12px; }
+  ul, ol { padding-left: 20px; margin-bottom: 12px; }
+  li { margin-bottom: 6px; }
+  .highlight-box {
+    background: #eef6ff;
+    border: 1px solid #b3d4fc;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .warning-box {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .danger-box {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .success-box {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) { background: #f8f9fa; }
+  .neg-kw-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .neg-kw-card {
+    background: #f8f9fa;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .neg-kw-card h4 {
+    color: var(--danger);
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .neg-kw-card code {
+    display: block;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  code {
+    background: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .priority-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .priority-now { background: #e74c3c; color: white; }
+  .priority-month { background: #f39c12; color: white; }
+  .priority-quarter { background: #3498db; color: white; }
+  .priority-future { background: #95a5a6; color: white; }
+  .action-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .action-item:last-child { border-bottom: none; }
+  .action-number {
+    background: var(--primary);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .sources-section { font-size: 13px; }
+  .sources-section h3 { margin-top: 16px; }
+  .sources-section a { color: var(--secondary); }
+  .sources-section ul { list-style: none; padding-left: 0; }
+  .sources-section li { padding: 3px 0; }
+  .crm-note {
+    background: #f0e6ff;
+    border: 1px solid #d4b3ff;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin: 8px 0;
+  }
+  @media (max-width: 600px) {
+    .neg-kw-grid { grid-template-columns: 1fr; }
+    .container { padding: 12px; }
+    section { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Google Ads Lead Quality Research Report</h1>
+  <div class="subtitle">For Explore Industries Pool Dealer Accounts</div>
+  <div class="date">Compiled: March 17, 2026 -- 30+ sources analyzed</div>
+</div>
+
+<div class="container">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#summary">Executive Summary: Top 10 Actionable Takeaways</a></li>
+    <li><a href="#fundamentals">Lead Quality Optimization Fundamentals</a></li>
+    <li><a href="#negatives">Negative Keywords -- The Biggest Quick Win</a></li>
+    <li><a href="#forms">Form-Based Conversion Optimization</a></li>
+    <li><a href="#audiences">Audience Targeting for High-Ticket Pool Buyers</a></li>
+    <li><a href="#structure">Campaign Structure for Lead Quality</a></li>
+    <li><a href="#pmax">Performance Max for Pool Dealer Lead Gen</a></li>
+    <li><a href="#landing">Landing Page Strategies That Affect Lead Quality</a></li>
+    <li><a href="#search-terms">Search Terms Analysis -- What Patterns Indicate</a></li>
+    <li><a href="#scheduling">Ad Scheduling and Dayparting</a></li>
+    <li><a href="#additional">Additional Strategies</a></li>
+    <li><a href="#ecl">Enhanced Conversions for Leads (Future)</a></li>
+    <li><a href="#benchmarks">Pool Industry Benchmarks</a></li>
+    <li><a href="#action-plan">Prioritized Action Plan</a></li>
+    <li><a href="#sources">Sources</a></li>
+  </ol>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="executive-summary" id="summary">
+  <h2>Top 10 Most Actionable Takeaways</h2>
+
+  <div class="takeaway">
+    <strong>1. Put pricing on landing pages and in ad copy.</strong> "Starting at $40,000+" or "Pools from $45K-$100K" self-selects serious buyers and repels tire-kickers. A remodeling agency reported this as the single biggest lead quality filter for high-ticket services.
+    <div class="source">Source: leads4build.com</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>2. Use multi-step qualifying forms instead of simple contact forms.</strong> Step 1: name/email. Step 2: qualifying questions (budget range, timeline, property type). Step 3: project details. Users who complete Step 1 are psychologically committed to finish. You still capture partial data if they drop off.
+    <div class="source">Sources: growform.co, leadgenapp.io, searchengineland.com</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>3. Set minimum call duration to 60+ seconds before counting as a conversion.</strong> This stops Google's algorithm from optimizing toward hangups, wrong numbers, and job seekers. Every dealer account should have this.
+    <div class="source">Sources: searchengineland.com, Google Ads Help</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>4. Implement Conversion Value Rules by location.</strong> If certain metro areas produce higher-quality leads, assign higher conversion values to those areas. Smart Bidding will bid more aggressively for those leads. Works WITHOUT CRM integration.
+    <div class="source">Sources: optmyzr.com, Google Ads Help</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>5. Disable Search Partners on all Search campaigns.</strong> 67% of contractors reported declining lead quality from partner sites. Site-level reporting is now available -- check it and turn it off.
+    <div class="source">Sources: searchenginejournal.com, Google Ads community</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>6. Build a master negative keyword list of 500+ terms.</strong> Apply across all 32 dealer accounts. Pool-specific negatives: DIY, above ground, inflatable, kiddie, jobs, hiring, cheap, free, Intex, Bestway, pool noodle, pool float. Review search terms weekly.
+    <div class="source">Sources: poolmarketingpros.com, groas.ai, negator.io</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>7. Layer household income targeting.</strong> Exclude or bid -50% on "Lower 50%" income tier. Increase bids 20-40% for Top 10-30%. Inferred data -- not perfect, but directionally useful for $50K+ purchases.
+    <div class="source">Sources: wordstream.com, digitalposition.com, paidmediapros.com</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>8. Run RLSA with 30-50% bid increases.</strong> Previous site visitors who search again convert 2-5x better than cold traffic. For a $50K+ pool purchase, the research cycle is long -- people who come back are serious.
+    <div class="source">Sources: klientboost.com, lineardesign.com, wordstream.com</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>9. Use ad scheduling to concentrate budget on high-converting hours.</strong> Monday-Thursday, 8am-4pm drives 88% of leads with 38% lower CPL. Weekends cost 51% more per lead.
+    <div class="source">Source: whatconverts.com, outsourcesem.com</div>
+  </div>
+
+  <div class="takeaway">
+    <strong>10. Add audience signals: Homeowners + In-Market Home Renovation + Recently Moved.</strong> Layer as observation audiences on Search campaigns. Once data shows better conversion rates, increase bid adjustments.
+    <div class="source">Sources: Google Ads Help, company119.com, searchengineland.com</div>
+  </div>
+</div>
+
+<!-- SECTION 1: FUNDAMENTALS -->
+<section id="fundamentals">
+  <h2>Section 1: Lead Quality Optimization Fundamentals</h2>
+
+  <h3>The Core Problem</h3>
+  <p>When your only conversion point is a form submission, Google's algorithm optimizes for <em>more form submissions</em> -- not <em>better</em> ones. Experts call this the <strong>"feedback loop of doom"</strong>: the algorithm learns to find cheap, easy form fills (tire-kickers, comparison shoppers, students researching) rather than serious buyers.</p>
+  <p class="source" style="font-size:12px;color:var(--muted);">Source: Search Engine Journal, "Performance Max for Lead Generation: Advanced Strategies and Pitfalls" (2025)</p>
+
+  <h3>The Hierarchy of Solutions (Most to Least Impactful)</h3>
+  <table>
+    <tr><th>#</th><th>Strategy</th><th>Impact</th><th>CRM Required?</th></tr>
+    <tr><td>1</td><td>Offline Conversion Tracking</td><td>Highest</td><td>Yes</td></tr>
+    <tr><td>2</td><td>Enhanced Conversions for Leads</td><td>High</td><td>Partial</td></tr>
+    <tr><td>3</td><td>Conversion Value Rules</td><td>High</td><td>No</td></tr>
+    <tr><td>4</td><td>Form Qualification</td><td>Medium-High</td><td>No</td></tr>
+    <tr><td>5</td><td>Negative Keywords</td><td>Medium-High</td><td>No</td></tr>
+    <tr><td>6</td><td>Audience Layering</td><td>Medium</td><td>No</td></tr>
+    <tr><td>7</td><td>Ad Copy Qualification</td><td>Medium</td><td>No</td></tr>
+    <tr><td>8</td><td>Ad Scheduling</td><td>Medium</td><td>No</td></tr>
+  </table>
+
+  <div class="success-box">
+    <strong>What Eli can do without CRM integration:</strong> Negative keywords, form redesign, price transparency in ads/landing pages, household income targeting, audience layering, ad scheduling, RLSA bid adjustments, disable Search Partners, minimum call duration, Conversion Value Rules by location. All work immediately.
+  </div>
+
+  <div class="crm-note">
+    <strong>Would require CRM integration (future):</strong> Offline Conversion Tracking, Enhanced Conversions for Leads, Value-Based Bidding with actual revenue data, optimizing toward "Qualified Lead" conversion actions.
+  </div>
+</section>
+
+<!-- SECTION 2: NEGATIVE KEYWORDS -->
+<section id="negatives">
+  <h2>Section 2: Negative Keywords -- The Biggest Quick Win</h2>
+
+  <div class="danger-box">
+    <strong>Fleet audit finding:</strong> 26 of 32 dealer accounts had ZERO negative keywords. This is the single largest source of waste across the fleet. Research shows comprehensive negative keyword implementation reduces wasted spend by 20-40%.
+  </div>
+
+  <h3>Master Negative Keyword List for Pool Dealer Accounts</h3>
+
+  <div class="neg-kw-grid">
+    <div class="neg-kw-card">
+      <h4>Job Seekers</h4>
+      <code>jobs, hiring, salary, careers, career, employment, apply, application, technician jobs, installer jobs, pool cleaner jobs, pool boy, lifeguard, certification, training, course, class, school, apprentice, apprenticeship</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>DIY / Informational</h4>
+      <code>how to, what is, tutorial, guide, DIY, do it yourself, instructions, steps, tips, wiki, wikipedia, youtube, video, blog, article, forum, reddit</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Above Ground / Inflatable</h4>
+      <code>above ground, aboveground, inflatable, blow up, kiddie, kiddy, kid pool, Intex, Bestway, Coleman, Summer Waves, pop up pool, portable pool, stock tank, frame pool, ring pool</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Cheap / Budget / Used</h4>
+      <code>cheap, cheapest, discount, budget, affordable, inexpensive, used, second hand, secondhand, clearance, sale, coupon, craigslist, facebook marketplace, free, freecycle</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Pool Toys / Accessories</h4>
+      <code>pool float, pool noodle, pool toy, pool game, pool party, pool supplies, pool chemicals, chlorine, pool vacuum, pool pump, pool filter, pool heater, pool cover, solar cover, pool ladder, pool light</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Wrong Service Type</h4>
+      <code>pool cleaning, pool service, pool maintenance, pool repair, pool resurfacing, vinyl liner, concrete pool, gunite, commercial pool, public pool, community pool, olympic pool, water park, wave pool, municipal</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Financing/Research</h4>
+      <code>financing calculator, loan calculator, home equity, pool financing, how much does a pool cost, pool cost calculator, pool prices, cost estimator</code>
+    </div>
+    <div class="neg-kw-card">
+      <h4>Implementation</h4>
+      <code>1. Create MCC-level shared list: "Pool Dealer Master Negatives"<br>2. Start with top 200 terms<br>3. Apply to all 32 accounts<br>4. Review search terms weekly<br>5. PMax: up to 10,000 negatives/campaign</code>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);">Sources: negator.io, groas.ai, poolmarketingpros.com, spinutech.com</p>
+</section>
+
+<!-- SECTION 3: FORMS -->
+<section id="forms">
+  <h2>Section 3: Form-Based Conversion Optimization</h2>
+
+  <h3>The Problem</h3>
+  <p>A basic Name/Email/Phone/Message form captures everyone -- including people who are "just looking," students doing research, competitors scouting, and people who can't afford a $50K pool. Every form fill teaches Google's algorithm to find more people like them.</p>
+
+  <h3>Multi-Step Form Strategy</h3>
+
+  <div class="highlight-box">
+    <h4>Step 1 -- Low Friction (Capture Contact)</h4>
+    <ul>
+      <li>Name</li>
+      <li>Email</li>
+      <li>Phone</li>
+    </ul>
+
+    <h4>Step 2 -- Qualifying (Filter Intent)</h4>
+    <ul>
+      <li>"What type of pool are you interested in?" (Fiberglass / Concrete / Not Sure)</li>
+      <li>"What is your approximate budget?" (Under $30K / $30K-$50K / $50K-$75K / $75K-$100K / $100K+)</li>
+      <li>"When are you looking to start?" (1-3 months / 3-6 months / 6-12 months / Just researching)</li>
+    </ul>
+
+    <h4>Step 3 -- Detail (Serious Buyers Only)</h4>
+    <ul>
+      <li>"Do you own your home?" (Yes / No / Renting)</li>
+      <li>"Brief description of your project" (text area)</li>
+    </ul>
+  </div>
+
+  <p><strong>Key insight:</strong> Users who complete Step 1 have invested effort and are psychologically committed -- they finish Step 3 at much higher rates than if all fields were shown at once. You still capture partial data if they drop off at Step 2.</p>
+
+  <h3>Price as a Qualifier</h3>
+  <div class="success-box">
+    <strong>In Ad Copy:</strong> Include "Starting at $45,000" or "Premium Fiberglass Pools from $40K" in headlines or descriptions.<br><br>
+    <strong>On Landing Pages:</strong> "Fiberglass pool installations typically range from $40,000 to $100,000+ depending on size, features, and site conditions."<br><br>
+    This immediately disqualifies price-shoppers looking for $5K above-ground pools. Yes, it reduces total form submissions. <em>That's the point.</em>
+  </div>
+  <p style="font-size:12px;color:var(--muted);">Sources: leads4build.com, growform.co, leadgenapp.io</p>
+</section>
+
+<!-- SECTION 4: AUDIENCES -->
+<section id="audiences">
+  <h2>Section 4: Audience Targeting for High-Ticket Pool Buyers</h2>
+
+  <h3>Household Income Targeting</h3>
+  <table>
+    <tr><th>Income Tier</th><th>Threshold</th><th>Recommended Bid Adjustment</th></tr>
+    <tr><td>Top 10%</td><td>Above $146,001</td><td>+40%</td></tr>
+    <tr><td>11-20%</td><td>$131,001 - $146,000</td><td>+30%</td></tr>
+    <tr><td>21-30%</td><td>$111,001 - $131,000</td><td>+20%</td></tr>
+    <tr><td>31-40%</td><td>-</td><td>Baseline (0%)</td></tr>
+    <tr><td>41-50%</td><td>-</td><td>-25%</td></tr>
+    <tr><td>Lower 50%</td><td>-</td><td>-50% or Exclude</td></tr>
+    <tr><td>Unknown</td><td>-</td><td>Leave at baseline</td></tr>
+  </table>
+
+  <div class="warning-box">
+    <strong>Caveat:</strong> Household income targeting is the <em>least accurate</em> of the four demographic categories -- it's always inferred from zip code-level IRS data and behavioral signals. Directionally useful for $50K+ purchases, but not precise. Also monitor Google policy changes -- housing-adjacent services may face restrictions.
+  </div>
+
+  <h3>In-Market Audiences (Add as Observation)</h3>
+  <ul>
+    <li>Home &amp; Garden > Swimming Pools &amp; Spas</li>
+    <li>Home &amp; Garden > Home Improvement</li>
+    <li>Real Estate > Residential Properties</li>
+    <li>Home &amp; Garden > Landscape Services</li>
+  </ul>
+
+  <h3>Detailed Demographics</h3>
+  <ul>
+    <li><strong>Homeowners</strong> -- Non-homeowners are unlikely pool buyers</li>
+    <li><strong>Recently Moved / Recently Purchased Home</strong> -- New homeowners frequently invest in pools within 1-2 years</li>
+  </ul>
+
+  <h3>Custom Segments (for Display/YouTube/Demand Gen)</h3>
+  <ul>
+    <li><strong>Keywords:</strong> "fiberglass pool cost," "backyard pool design," "pool builder reviews"</li>
+    <li><strong>URLs:</strong> leisurepoolsusa.com, riverpoolsandspas.com, lathampool.com, Houzz pool pages</li>
+    <li><strong>Apps:</strong> Houzz, Zillow, Realtor.com</li>
+  </ul>
+  <p style="font-size:12px;color:var(--muted);">Sources: digitalposition.com, wordstream.com, paidmediapros.com, Google Ads Help</p>
+</section>
+
+<!-- SECTION 5: CAMPAIGN STRUCTURE -->
+<section id="structure">
+  <h2>Section 5: Campaign Structure for Lead Quality</h2>
+
+  <h3>Broad Match vs. Exact/Phrase Match</h3>
+  <div class="warning-box">
+    <strong>Eli's current strategy of exact and phrase match only is correct.</strong> Broad match only works well with (a) strong conversion data feeding Smart Bidding and (b) comprehensive negative keywords. Without CRM feedback, broad match optimizes toward quantity, not quality. When/if offline conversion tracking is implemented, test broad match on one high-volume account.
+  </div>
+
+  <h3>Recommended Campaign Structure</h3>
+  <table>
+    <tr><th>Campaign</th><th>Purpose</th><th>Budget %</th><th>Bid Strategy</th></tr>
+    <tr><td><strong>Brand Protection</strong></td><td>Defend dealer/brand name</td><td>5-10%</td><td>Manual CPC</td></tr>
+    <tr><td><strong>High-Intent Pool Builder</strong></td><td>Fiberglass pool, pool builder, pool quote keywords</td><td>60-70%</td><td>Max Conv w/ tCPA (after 30+ conv)</td></tr>
+    <tr><td><strong>Brand-Specific</strong></td><td>Leisure/Aviva/Imagine/Evo + city</td><td>15-20%</td><td>Manual CPC or ECPC</td></tr>
+    <tr><td><strong>Remarketing/RLSA</strong></td><td>Recapture serious researchers</td><td>5-10%</td><td>+30-50% bid adjustment</td></tr>
+  </table>
+
+  <h3>Bid Strategy Progression</h3>
+  <ol>
+    <li><strong>Weeks 1-4:</strong> Manual CPC -- learn which keywords convert</li>
+    <li><strong>After 15+ conversions:</strong> Enhanced CPC -- slight algorithmic adjustments</li>
+    <li><strong>After 30+ conversions:</strong> Maximize Conversions -- full optimization</li>
+    <li><strong>With enough data:</strong> Maximize Conversions with tCPA target</li>
+    <li><strong>With conversion values:</strong> Maximize Conversion Value with tROAS</li>
+  </ol>
+
+  <div class="danger-box">
+    <strong>Critical rule:</strong> Never switch to Smart Bidding before 30 conversions/month per campaign. For low-volume dealer accounts, keep Manual CPC or Enhanced CPC.
+  </div>
+  <p style="font-size:12px;color:var(--muted);">Sources: leads4build.com, poolmarketingpros.com, definedigitalacademy.com</p>
+</section>
+
+<!-- SECTION 6: PMAX -->
+<section id="pmax">
+  <h2>Section 6: Performance Max for Pool Dealer Lead Gen</h2>
+
+  <h3>The Honest Assessment</h3>
+  <div class="warning-box">
+    <strong>Without offline conversion data, PMax optimizes for form fills, not qualified leads.</strong> The algorithm tends to serve ads on cheap Display/YouTube inventory rather than high-intent Search, creating a "feedback loop of doom" that finds the easiest, cheapest conversions -- which are often the lowest quality.
+  </div>
+
+  <h3>If You Use PMax, Do This:</h3>
+  <ol>
+    <li><strong>Disable URL Expansion</strong> -- prevent traffic to blog posts and About pages</li>
+    <li><strong>Add 500+ negative keywords</strong> -- use the full 10,000 capacity</li>
+    <li><strong>Exclude brand terms</strong> -- run brand Search campaigns separately</li>
+    <li><strong>Upload customer match lists</strong> -- signal what good customers look like</li>
+    <li><strong>Use "More qualified" lead form optimization</strong></li>
+    <li><strong>Monitor placement reports</strong> -- exclude gaming sites, children's apps</li>
+    <li><strong>Disable auto-generated YouTube videos</strong></li>
+    <li><strong>Run PMax alongside Search, not instead of it</strong></li>
+    <li><strong>Test your URL in Keyword Planner</strong> -- if suggested keywords don't match, PMax will struggle</li>
+  </ol>
+
+  <h3>Demand Gen as an Alternative</h3>
+  <p>Demand Gen campaigns provide more targeting control than PMax. For dealers with strong project photo libraries, Demand Gen may be a better complement to Search -- it supports lookalike audiences, offers more manual control, and is better for top-of-funnel with quality guardrails.</p>
+  <p style="font-size:12px;color:var(--muted);">Sources: searchenginejournal.com, seerinteractive.com, dmcockpit.com, boomcycle.com</p>
+</section>
+
+<!-- SECTION 7: LANDING PAGES -->
+<section id="landing">
+  <h2>Section 7: Landing Page Strategies That Affect Lead Quality</h2>
+
+  <div class="highlight-box">
+    <strong>The 2-5x Lift:</strong> Generic website pages convert at ~2%. Dedicated landing pages matched to specific ad groups convert at 5-10%+ using the same traffic.
+  </div>
+
+  <h3>Elements That Filter for Quality</h3>
+  <ul>
+    <li><strong>Price Transparency:</strong> "Fiberglass pool installations typically range from $40,000 to $100,000+"</li>
+    <li><strong>Project Gallery with Scope:</strong> "32ft Riviera | Houston, TX" -- show what $60K looks like</li>
+    <li><strong>Process Timeline:</strong> Design > Site survey > Permitting > Installation > Finishing > Handoff. Signals major project, not impulse purchase.</li>
+    <li><strong>Trust Signals:</strong> BBB rating, years in business, pools installed count, manufacturer certifications</li>
+    <li><strong>Qualifying CTA:</strong> "Schedule Your Design Consultation" instead of "Get a Free Quote" -- language signals seriousness</li>
+  </ul>
+
+  <h3>Mobile Requirements (60%+ of Searches)</h3>
+  <ul>
+    <li>Load in under 3 seconds</li>
+    <li>Tappable phone numbers</li>
+    <li>Forms limited to 3-5 visible fields</li>
+    <li>44x44px minimum button size</li>
+    <li>No blocking pop-ups</li>
+  </ul>
+  <p style="font-size:12px;color:var(--muted);">Sources: leads4build.com, poolmarketingpros.com, involve.me</p>
+</section>
+
+<!-- SECTION 8: SEARCH TERMS -->
+<section id="search-terms">
+  <h2>Section 8: Search Terms Analysis -- What Patterns Indicate</h2>
+
+  <table>
+    <tr><th>Intent Level</th><th>Search Patterns</th><th>Action</th></tr>
+    <tr>
+      <td style="color:var(--success);font-weight:700;">HIGH INTENT</td>
+      <td>"fiberglass pool builder [city]," "pool installation quote," "pool builder near me," "leisure pools dealer," "fiberglass pool cost"</td>
+      <td>Bid aggressively</td>
+    </tr>
+    <tr>
+      <td style="color:var(--warning);font-weight:700;">MEDIUM INTENT</td>
+      <td>"fiberglass vs concrete pool," "backyard pool ideas," "pool builder reviews [city]," "how much does a pool cost"</td>
+      <td>Monitor closely</td>
+    </tr>
+    <tr>
+      <td style="color:var(--danger);font-weight:700;">LOW INTENT</td>
+      <td>"how to build a pool," "pool jobs," "above ground pool," "cheap pools," "pool pictures Pinterest," "community pool near me"</td>
+      <td>Add as negatives</td>
+    </tr>
+  </table>
+  <p style="font-size:12px;color:var(--muted);">Sources: matnelsonppc.com, davidhannahmarketing.com, keywordme.io</p>
+</section>
+
+<!-- SECTION 9: SCHEDULING -->
+<section id="scheduling">
+  <h2>Section 9: Ad Scheduling and Dayparting</h2>
+
+  <table>
+    <tr><th>Time Period</th><th>% of Leads</th><th>CPL vs. Average</th></tr>
+    <tr><td>Monday-Thursday</td><td>74.4%</td><td>Baseline</td></tr>
+    <tr><td>Friday-Sunday</td><td>25.6%</td><td>+51% higher CPL</td></tr>
+    <tr><td>8am-4pm</td><td>88.4% of leads</td><td>-38% lower CPL</td></tr>
+    <tr><td>Before 8am / After 6pm</td><td>11.6% of leads</td><td>Significantly higher CPL</td></tr>
+  </table>
+
+  <h3>Recommended Schedule</h3>
+  <ul>
+    <li><strong>Full bid:</strong> Monday-Friday, 7am-7pm local time</li>
+    <li><strong>Reduce bid -25%:</strong> Saturday, 8am-5pm</li>
+    <li><strong>Reduce bid -50% or pause:</strong> Sunday, evenings after 7pm</li>
+  </ul>
+
+  <div class="highlight-box">
+    <strong>Note:</strong> With Smart Bidding (Maximize Conversions, tCPA), Google handles some time-based optimization automatically. Manual bid adjustments for time of day only work with Manual CPC or Enhanced CPC. You can still pause ads entirely during off-hours even with Smart Bidding.
+  </div>
+  <p style="font-size:12px;color:var(--muted);">Sources: whatconverts.com, outsourcesem.com</p>
+</section>
+
+<!-- SECTION 10: ADDITIONAL -->
+<section id="additional">
+  <h2>Section 10: Additional Strategies</h2>
+
+  <h3>Disable Search Partners</h3>
+  <p>Search Partners consistently produce lower-quality traffic for home services. Google now provides site-level reporting. Check performance and disable for most pool dealer accounts.</p>
+
+  <h3>Call Tracking Configuration</h3>
+  <ul>
+    <li>Set minimum call duration to <strong>60-90 seconds</strong> before counting as conversion</li>
+    <li>Consider third-party tracking (CallRail, CallTrackingMetrics) for call recording and quality scoring</li>
+    <li>Mark calls as qualified/unqualified and import back as offline conversions if possible</li>
+  </ul>
+
+  <h3>RLSA (Remarketing Lists for Search Ads)</h3>
+  <p>Pool purchases have a long research cycle. RLSA lets you bid 30-50% more when someone who already visited the dealer's site searches again. Conversion rates for returning visitors are typically 2-5x higher.</p>
+
+  <h3>Conversion Value Rules (No CRM Required)</h3>
+  <div class="success-box">
+    <strong>Underutilized feature:</strong> Go to Tools > Conversions > Value Rules. Create rules based on location, audience, or device. If Dallas leads are worth more than rural Texas leads, multiply Dallas conversions by 1.5x. Smart Bidding will automatically prioritize Dallas impressions.
+  </div>
+
+  <h3>Micro-Conversions for Low-Volume Accounts</h3>
+  <p>For dealer accounts under 30 conversions/month: track "Contact page views" or "Form start" as secondary conversions to give Smart Bidding more data points. Only include high-intent micro-conversions.</p>
+  <p style="font-size:12px;color:var(--muted);">Sources: searchenginejournal.com, klientboost.com, optmyzr.com, Google Ads Help</p>
+</section>
+
+<!-- SECTION 11: ECL -->
+<section id="ecl">
+  <h2>Section 11: Enhanced Conversions for Leads (Future Priority)</h2>
+
+  <div class="crm-note">
+    <strong>This is the #1 future priority for lead quality.</strong> Every expert and case study in this research pointed to offline conversion tracking as THE solution. The problem is it requires knowing which leads are qualified -- which means dealer feedback.
+  </div>
+
+  <h3>How It Could Work</h3>
+  <ol>
+    <li>Dealer website captures lead via form (name, email, phone)</li>
+    <li>Google captures a hashed version of the email at form submission</li>
+    <li>When a lead is later determined qualified, upload that email to Google Ads</li>
+    <li>Google matches the hashed email to the original click</li>
+    <li>Smart Bidding learns to find more leads like the qualified ones</li>
+  </ol>
+
+  <h3>A Practical Workaround</h3>
+  <ol>
+    <li>Set up Enhanced Conversions for Leads via Google Tag Manager</li>
+    <li>Ask dealers to periodically share which leads booked consultations</li>
+    <li>Upload those emails via a simple spreadsheet</li>
+    <li>Even monthly uploads provide value (Google recommends daily)</li>
+    <li>Minimum threshold: 10 offline conversions/campaign/month</li>
+  </ol>
+  <p style="font-size:12px;color:var(--muted);">Sources: measureschool.com, Google Ads Help, ppcmastery.com</p>
+</section>
+
+<!-- SECTION 12: BENCHMARKS -->
+<section id="benchmarks">
+  <h2>Section 12: Pool Industry Benchmarks</h2>
+
+  <table>
+    <tr><th>Metric</th><th>Range</th><th>Notes</th></tr>
+    <tr><td>CPC</td><td>$3 - $30</td><td>Higher in competitive metros</td></tr>
+    <tr><td>Cost Per Lead (New Construction)</td><td>$100 - $400</td><td>For new pool builds</td></tr>
+    <tr><td>Cost Per Lead (Maintenance)</td><td>$20 - $80</td><td>Lower ticket, higher volume</td></tr>
+    <tr><td>Conversion Rate</td><td>5 - 15%</td><td>Landing page dependent</td></tr>
+    <tr><td>CTR Target</td><td>3 - 8%</td><td>Below 3% = ad relevance issue</td></tr>
+    <tr><td>Quality Score Target</td><td>7/10+</td><td>Focus on landing page relevance</td></tr>
+    <tr><td>Monthly Budget (Pool Builders)</td><td>$3,000 - $7,000</td><td>Per market/dealer</td></tr>
+    <tr><td>Average ROI</td><td>$8 per $1 spent</td><td>Industry average</td></tr>
+    <tr><td>ROAS Target</td><td>4:1 minimum</td><td>For sustained campaigns</td></tr>
+  </table>
+
+  <h3>Google Ads vs. Meta Ads for Pool Leads</h3>
+  <table>
+    <tr><th>Channel</th><th>CPL</th><th>Lead Quality</th><th>Best For</th></tr>
+    <tr><td>Google Search Ads</td><td>$150 - $400</td><td>Higher buying intent</td><td>Primary lead gen</td></tr>
+    <tr><td>Meta/Facebook Ads</td><td>$20 - $80</td><td>Weaker, needs more filtering</td><td>Visual retargeting supplement</td></tr>
+    <tr><td>Google Local Service Ads</td><td>$20 - $85</td><td>Declining (67% report issues)</td><td>Supplemental only</td></tr>
+  </table>
+  <p style="font-size:12px;color:var(--muted);">Sources: poolmarketingpros.com, thepooljournals.com, localiq.com, max-conversion.com, pipelineon.com</p>
+</section>
+
+<!-- SECTION 13: ACTION PLAN -->
+<section id="action-plan">
+  <h2>Section 13: Prioritized Action Plan</h2>
+
+  <h3><span class="priority-tag priority-now">This Week</span> Immediate Impact, No Setup Required</h3>
+  <div class="action-item"><div class="action-number">1</div><div>Build and deploy the master negative keyword list across all 32 active accounts</div></div>
+  <div class="action-item"><div class="action-number">2</div><div>Set minimum call duration to 60 seconds for all accounts with call tracking</div></div>
+  <div class="action-item"><div class="action-number">3</div><div>Disable Search Partners on all Search campaigns</div></div>
+  <div class="action-item"><div class="action-number">4</div><div>Add "Unknown" and "Lower 50%" household income to observation; prepare to exclude or bid down</div></div>
+
+  <h3><span class="priority-tag priority-month">This Month</span></h3>
+  <div class="action-item"><div class="action-number">5</div><div>Add observation audiences: Homeowners, In-Market Home Improvement, Recently Moved</div></div>
+  <div class="action-item"><div class="action-number">6</div><div>Implement ad scheduling (reduce bids on weekends and off-hours)</div></div>
+  <div class="action-item"><div class="action-number">7</div><div>Set up RLSA audiences on top 10 highest-spending accounts</div></div>
+  <div class="action-item"><div class="action-number">8</div><div>Add Conversion Value Rules for highest-performing metro areas</div></div>
+  <div class="action-item"><div class="action-number">9</div><div>Audit all landing pages for price transparency and qualifying language</div></div>
+
+  <h3><span class="priority-tag priority-quarter">This Quarter</span></h3>
+  <div class="action-item"><div class="action-number">10</div><div>Work with web team to implement multi-step qualifying forms on dealer landing pages</div></div>
+  <div class="action-item"><div class="action-number">11</div><div>Test price inclusion in ad copy ("Fiberglass Pools Starting at $40K") on 3-5 accounts</div></div>
+  <div class="action-item"><div class="action-number">12</div><div>Implement Enhanced Conversions for Leads on one pilot dealer account</div></div>
+  <div class="action-item"><div class="action-number">13</div><div>Test Demand Gen campaigns for visual retargeting on 2-3 accounts with strong photo libraries</div></div>
+
+  <h3><span class="priority-tag priority-future">Future</span> Requires Dealer Cooperation</h3>
+  <div class="action-item"><div class="action-number">14</div><div>Get dealer feedback on lead quality to build offline conversion loop</div></div>
+  <div class="action-item"><div class="action-number">15</div><div>Once offline data flows, test broad match + tCPA on highest-volume account</div></div>
+  <div class="action-item"><div class="action-number">16</div><div>Evaluate AI Max once conversion signals are strong</div></div>
+</section>
+
+<!-- SOURCES -->
+<section id="sources" class="sources-section">
+  <h2>Sources</h2>
+
+  <h3>Pool Industry-Specific</h3>
+  <ul>
+    <li><a href="https://thepooljournals.com/ppc-ultimate-guide/">The Pool Journals -- Google Ads for Pool Companies: 2025 Guide</a></li>
+    <li><a href="https://www.poolmarketingpros.com/blog/how-can-pool-companies-run-profitable-google-ads-campaigns/">Pool Marketing Pros -- Profitable Google Ads Campaigns</a></li>
+    <li><a href="https://davidhannahmarketing.com/blogs/news/best-google-ads-for-pools">David Hannah Marketing -- Best Google Ads for Pools</a></li>
+    <li><a href="https://www.poolbuildermarketing.com/ppc-advertising-case-study/">Pool Builder Marketing -- PPC Case Study</a></li>
+    <li><a href="https://www.poolbuilder-marketing.com/lead-generation/local-service-ads-for-pool-companies/">Pool Builder Marketing -- LSAs for Pool Companies</a></li>
+    <li><a href="https://www.max-conversion.com/pool-builders-should-you-use-meta-ads-or-google-ads">Max Conversion -- Meta vs Google Ads for Pool Builders</a></li>
+    <li><a href="https://www.dolead.com/growth-hub/how-to-generate-quality-swimming-pool-leads">Dolead -- Quality Swimming Pool Leads</a></li>
+  </ul>
+
+  <h3>Lead Quality & Optimization</h3>
+  <ul>
+    <li><a href="https://www.searchenginejournal.com/performance-max-lead-generation-advanced-strategies-and-pitfalls/525632/">SEJ -- PMax Lead Gen: Advanced Strategies and Pitfalls</a></li>
+    <li><a href="https://searchengineland.com/boost-ppc-lead-quality-tactics-453177">Search Engine Land -- Top 5 PPC Lead Quality Tactics 2025</a></li>
+    <li><a href="https://searchengineland.com/ppc-ad-strategies-home-services-447340">Search Engine Land -- PPC Strategies for Home Services</a></li>
+    <li><a href="https://www.ppcmastery.com/blog/tpe-25-fix-bad-lead-quality-with-offline-conversion-tracking-oct">PPC Mastery -- Fix Lead Quality with OCT</a></li>
+    <li><a href="https://www.optmyzr.com/blog/value-based-bidding-guide/">Optmyzr -- Value-Based Bidding Guide</a></li>
+    <li><a href="https://leads4build.com/insights/google-ads-remodelers">Leads4Build -- Google Ads for Remodelers: $50K+ Projects</a></li>
+    <li><a href="https://leadsbridge.com/blog/google-ads-lead-quality/">LeadsBridge -- Google Ads Lead Quality 2025</a></li>
+  </ul>
+
+  <h3>Negative Keywords</h3>
+  <ul>
+    <li><a href="https://www.negator.io/post/google-ads-2025-algorithm-update-survival-guide-negative-keyword-strategies">Negator.io -- 2025 Negative Keyword Survival Guide</a></li>
+    <li><a href="https://groas.ai/post/200-negative-keywords-complete-list-and-strategic-implementation-guide">GROAS.ai -- 200 Negative Keywords Guide</a></li>
+    <li><a href="https://www.spinutech.com/digital-marketing/paid-media/how-to-leverage-google-ads-expanded-negative-keyword-limit/">Spinutech -- Expanded Negative Keyword Limits</a></li>
+  </ul>
+
+  <h3>Campaign Structure & Bidding</h3>
+  <ul>
+    <li><a href="https://www.yellowjackmedia.com/google-ads-in-2026-how-ai-max-performance-max-and-smart-bidding-are-changing-ppc-forever/">Yellow Jack Media -- AI Max & Smart Bidding 2026</a></li>
+    <li><a href="https://www.searchscientists.com/broad-match-smart-bidding-2025/">Search Scientists -- Broad Match + Smart Bidding 2025</a></li>
+    <li><a href="https://www.definedigitalacademy.com/blog/google-ads-bidding-strategies-in-2025-how-to-avoid-costly-mistakes-and-maximize-results">Define Digital -- Bidding Strategies 2025</a></li>
+  </ul>
+
+  <h3>Audience Targeting</h3>
+  <ul>
+    <li><a href="https://www.digitalposition.com/resources/blog/ppc/how-does-google-ads-determine-household-income-hhi-targeting/">Digital Position -- HHI Targeting</a></li>
+    <li><a href="https://www.wordstream.com/adwords-income-targeting">WordStream -- Income Targeting</a></li>
+    <li><a href="https://searchengineland.com/audience-targeting-google-ads-search-campaigns-463000">Search Engine Land -- Audience Targeting in Search</a></li>
+    <li><a href="https://www.company119.com/insights/home-services-google-ads/">Company 119 -- Audiences for Home Services</a></li>
+  </ul>
+
+  <h3>Performance Max & Demand Gen</h3>
+  <ul>
+    <li><a href="https://www.ovrdrv.com/insights/google-ads-in-the-ai-era-performance-max-for-high-quality-leads">Overdrive -- PMax for High-Quality Leads</a></li>
+    <li><a href="https://boomcycle.com/blog/pmax-in-2026-is-a-different-animal">Boomcycle -- PMax in 2026</a></li>
+    <li><a href="https://www.dmcockpit.com/articles/demand-gen-pmax-2026-better-lead-quality">DM Cockpit -- Demand Gen + PMax 2026</a></li>
+    <li><a href="https://www.seerinteractive.com/insights/google-performance-max-vs-demand-gen">Seer Interactive -- PMax vs Demand Gen</a></li>
+  </ul>
+
+  <h3>Benchmarks & Industry Data</h3>
+  <ul>
+    <li><a href="https://localiq.com/blog/home-services-search-advertising-benchmarks/">LocaliQ -- 2025 Home Services Benchmarks</a></li>
+    <li><a href="https://www.wordstream.com/blog/2025-google-ads-benchmarks">WordStream -- Google Ads Benchmarks 2025</a></li>
+    <li><a href="https://www.whatconverts.com/blog/how-to-learn-exactly-when-your-google-ads-should-run/">WhatConverts -- When Ads Should Run</a></li>
+  </ul>
+
+  <h3>Forms & Conversion Tracking</h3>
+  <ul>
+    <li><a href="https://www.growform.co/">Growform -- Multi Step Form Builder</a></li>
+    <li><a href="https://leadgenapp.io/multi-step-forms/">LeadGen App -- Multi Step Forms</a></li>
+    <li><a href="https://measureschool.com/enhanced-conversions-for-leads/">MeasureSchool -- Enhanced Conversions for Leads</a></li>
+    <li><a href="https://support.google.com/google-ads/answer/11459091">Google Ads Help -- Qualified Leads and Converted Leads</a></li>
+  </ul>
+
+  <h3>RLSA & Remarketing</h3>
+  <ul>
+    <li><a href="https://www.klientboost.com/google/google-rlsa/">KlientBoost -- Google RLSA Guide</a></li>
+    <li><a href="https://lineardesign.com/blog/remarketing-lists-for-search-ads/">Linear Design -- RLSA Tactical Guide</a></li>
+  </ul>
+</section>
+
+</div><!-- /container -->
+
+<div style="text-align:center;padding:24px;color:var(--muted);font-size:12px;">
+  Research compiled by Claude Code for Explore Industries -- March 17, 2026<br>
+  30+ sources analyzed across pool industry agencies, PPC practitioners, Google Ads documentation, and industry benchmarks.
+</div>
+
+</body>
+</html>

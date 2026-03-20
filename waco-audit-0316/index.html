@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Waco &mdash; Audit &amp; Campaign Rebuild | 2026-03-16</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+header{background:linear-gradient(135deg,#1B3A5C 0%,#0f2840 100%);color:#fff;padding:48px 0 40px}
+header h1{font-size:32px;font-weight:800;margin-bottom:6px}
+header .subtitle{color:rgba(255,255,255,.7);font-size:14px}
+header .brand-tag{display:inline-block;background:#E8913A;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;margin-bottom:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.metrics-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:-28px 0 32px;position:relative;z-index:2}
+.metric-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.metric-card .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#666;font-weight:600}
+.metric-card .value{font-size:22px;font-weight:800;color:#1B3A5C;margin-top:2px}
+.metric-card .value.bad{color:#E74C3C}
+.metric-card .value.warn{color:#F39C12}
+.metric-card .value.good{color:#27AE60}
+
+.score-banner{background:#fff;border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;align-items:center;gap:24px}
+.score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;flex-shrink:0}
+.score-red{background:linear-gradient(135deg,#E74C3C,#c0392b)}
+.score-yellow{background:linear-gradient(135deg,#F39C12,#d68910)}
+.score-green{background:linear-gradient(135deg,#27AE60,#1e8449)}
+
+section{background:#fff;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
+section .section-header{padding:20px 24px 16px;border-bottom:2px solid #f0f2f5}
+section .section-header h2{font-size:18px;font-weight:700;color:#1B3A5C}
+section .section-body{padding:20px 24px 24px}
+
+.toc{background:#fff;border-radius:12px;margin-bottom:20px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.toc h2{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px}
+.toc ol{padding-left:24px}
+.toc li{margin-bottom:6px;font-size:14px}
+.toc a{color:#1B3A5C;text-decoration:none;font-weight:500}
+.toc a:hover{color:#E8913A;text-decoration:underline}
+
+.finding{border-left:4px solid;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:14px;background:#fafafa}
+.finding.p1{border-color:#E74C3C;background:#fef2f2}
+.finding.p2{border-color:#F39C12;background:#fffbeb}
+.finding.p3{border-color:#3498DB;background:#eff6ff}
+.finding .priority{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.finding.p1 .priority{color:#E74C3C}
+.finding.p2 .priority{color:#F39C12}
+.finding.p3 .priority{color:#3498DB}
+.finding .title{font-weight:700;font-size:15px;margin-bottom:6px;color:#1a1a2e}
+.finding .detail{font-size:13px;color:#555;line-height:1.7}
+.finding .reasoning{font-size:12px;color:#777;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.06);font-style:italic}
+.finding .confidence{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin-top:4px}
+.conf-high{background:#dcfce7;color:#166534}
+.conf-med{background:#fef9c3;color:#854d0e}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+table th{background:#f0f2f5;padding:8px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#666}
+table td{padding:8px 12px;border-bottom:1px solid #f0f2f5}
+table tr:hover td{background:#f8f9fb}
+.pass{color:#27AE60;font-weight:600}
+.fail{color:#E74C3C;font-weight:600}
+.warn{color:#F39C12;font-weight:600}
+
+.copy-field{margin:8px 0}
+.copy-field label{display:block;font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.copy-field input,.copy-field textarea{width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-family:'Courier New',monospace;font-size:13px;background:#f8f9fb;cursor:pointer;resize:vertical}
+.copy-field input:focus,.copy-field textarea:focus{outline:2px solid #1B3A5C;border-color:#1B3A5C}
+.copy-field.bulk label{background:#27AE60;color:#fff;padding:4px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.copy-field.individual label{background:#E8913A;color:#fff;padding:4px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.char-count{font-size:11px;color:#999;margin-left:6px}
+
+.headline-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0}
+.headline-grid .h-item{background:#f8f9fb;border:1px solid #e5e7eb;border-radius:6px;padding:8px 12px;font-size:13px}
+.headline-grid .h-item .cat{font-size:10px;color:#888;font-weight:600;text-transform:uppercase}
+
+.waste-table{margin:12px 0}
+.waste-row{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px}
+.waste-row .term{flex:1;font-family:monospace}
+.waste-row .spend{font-weight:700;color:#E74C3C;min-width:70px;text-align:right}
+.waste-row .clicks{color:#666;min-width:50px;text-align:right}
+
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.04em;text-transform:uppercase}
+.tag-p1{background:#E74C3C;color:#fff}
+.tag-p2{background:#F39C12;color:#fff}
+.tag-p3{background:#3498DB;color:#fff}
+.tag-new{background:#27AE60;color:#fff}
+.tag-keep{background:#3498DB;color:#fff}
+.tag-remove{background:#E74C3C;color:#fff}
+.tag-exact{background:#8E44AD;color:#fff}
+.tag-phrase{background:#27AE60;color:#fff}
+.tag-broad{background:#E74C3C;color:#fff}
+.tag-brand{background:#E8913A;color:#fff}
+.tag-geo{background:#3498DB;color:#fff}
+.tag-benefit{background:#E74C3C;color:#fff}
+.tag-cta{background:#F39C12;color:#fff}
+.tag-product{background:#27AE60;color:#fff}
+.tag-trust{background:#8E44AD;color:#fff}
+.tag-desire{background:#E91E63;color:#fff}
+.tag-price{background:#1B3A5C;color:#fff}
+
+.warning-box{border-left:4px solid #E74C3C;background:#fef2f2;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.note-box{border-left:4px solid #F39C12;background:#fffbeb;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.success-box{border-left:4px solid #27AE60;background:#f0fdf4;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.info-box{border-left:4px solid #3498DB;background:#eff6ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+
+.checklist{padding-left:4px}
+.checklist h3{font-size:14px;font-weight:700;color:#1B3A5C;margin:16px 0 8px}
+.checklist label{display:block;font-size:13px;padding:4px 0;cursor:pointer}
+.checklist input[type="checkbox"]{margin-right:8px;cursor:pointer}
+
+.pin-note{display:inline-block;background:#E74C3C;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px}
+
+footer{text-align:center;padding:32px;color:#999;font-size:12px}
+@media print{body{background:#fff}section{break-inside:avoid;box-shadow:none;border:1px solid #ddd}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="container">
+  <div class="brand-tag">Leisure Pools</div>
+  <h1>Leisure Pools Waco &mdash; Audit &amp; Campaign Rebuild</h1>
+  <div class="subtitle">Google Ads Overnight Audit &nbsp;&middot;&nbsp; March 16, 2026 &nbsp;&middot;&nbsp; Account ID: 615-393-4758 &nbsp;&middot;&nbsp; Waco, TX (Small Metro)</div>
+</div>
+</header>
+
+<div class="container">
+
+<!-- METRICS BAR -->
+<div class="metrics-bar">
+  <div class="metric-card"><div class="label">30-Day Spend</div><div class="value">$1,566</div></div>
+  <div class="metric-card"><div class="label">Clicks</div><div class="value">280</div></div>
+  <div class="metric-card"><div class="label">CTR</div><div class="value good">10.3%</div></div>
+  <div class="metric-card"><div class="label">Conversions</div><div class="value warn">12</div></div>
+  <div class="metric-card"><div class="label">Cost/Conv</div><div class="value warn">$131</div></div>
+  <div class="metric-card"><div class="label">Conv Rate</div><div class="value warn">4.29%</div></div>
+  <div class="metric-card"><div class="label">Avg CPC</div><div class="value good">$5.59</div></div>
+  <div class="metric-card"><div class="label">Impressions</div><div class="value">2,725</div></div>
+</div>
+
+<!-- HEALTH SCORE -->
+<div class="score-banner">
+  <div class="score-circle score-yellow">48</div>
+  <div>
+    <div style="font-size:20px;font-weight:800;color:#1a1a2e">Account Health: 48/100</div>
+    <div style="font-size:13px;color:#666;margin-top:4px">
+      <strong>5 P1 Critical</strong> &nbsp;&middot;&nbsp; <strong>7 P2 Moderate</strong> &nbsp;&middot;&nbsp; <strong>4 P3 Opportunity</strong>
+    </div>
+    <div style="font-size:12px;color:#999;margin-top:4px">Performance metrics are decent for a small-metro account &mdash; 10.3% CTR and $131 cost/conv are workable. The account is held back by ad copy errors (wrong geo, typo), zero extensions, zero audience layers, and no customer assets. Fixing these should meaningfully improve Quality Score and conversion rate.</div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h2>Table of Contents</h2>
+<ol>
+  <li><a href="#s1">Audit Findings</a></li>
+  <li><a href="#s2">Current Performance Summary</a></li>
+  <li><a href="#s3">Wasted Spend Analysis</a></li>
+  <li><a href="#s4">Campaign Settings &mdash; Current vs Rebuild</a></li>
+  <li><a href="#s5">Ad Group Structure &mdash; Current Account</a></li>
+  <li><a href="#s6">Ad Group 1: Leisure Pools Waco (Brand + Installer)</a></li>
+  <li><a href="#s7">Ad Group 2: Fiberglass Pools Waco (Product + Geo)</a></li>
+  <li><a href="#s8">Ad Group 3: Pool Cost &amp; Pricing (Pricing Intent)</a></li>
+  <li><a href="#s9">Campaign Negatives</a></li>
+  <li><a href="#s10">Sitelinks</a></li>
+  <li><a href="#s11">Callouts</a></li>
+  <li><a href="#s12">Structured Snippets</a></li>
+  <li><a href="#s13">Call Extension</a></li>
+  <li><a href="#s14">Audience Segments</a></li>
+  <li><a href="#s15">Device Bid Adjustments</a></li>
+  <li><a href="#s16">Demographic Adjustments</a></li>
+  <li><a href="#s17">Pre-Launch Checklist</a></li>
+</ol>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: AUDIT FINDINGS -->
+<!-- ============================================ -->
+
+<section id="s1">
+<div class="section-header"><h2>1. Audit Findings</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:16px;font-weight:700;color:#E74C3C;margin-bottom:12px">P1 &mdash; Critical Findings</h3>
+
+<div class="finding p1">
+  <div class="priority">P1 Critical</div>
+  <div class="title">Wrong Geography Headline: "Florida Fiberglass Experts" in Waco TX Account</div>
+  <div class="detail">
+    <strong>FINDING:</strong> The Fiberglass Pools General ad group contains the headline "Florida Fiberglass Experts" &mdash; this is a Waco, TX dealer account.<br>
+    <strong>DATA:</strong> This headline is one of 15 in the Fiberglass Pools General RSA. It will serve to Waco-area searchers who will see a Florida reference, immediately destroying credibility and relevance.<br>
+    <strong>RECOMMENDATION:</strong> Remove immediately. Replace with a locally relevant headline such as "Waco Fiberglass Experts" (24 chars) or "Central TX Pool Experts" (23 chars).
+  </div>
+  <div class="reasoning">Wrong-geo headlines are the worst kind of ad copy error &mdash; they actively signal to the searcher that this ad is not for them. In a market where trust and locality matter (pool installation), a Florida reference in Texas is an instant disqualifier.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p1">
+  <div class="priority">P1 Critical</div>
+  <div class="title">Headline Typo: "Ger Your Free Estimate" &mdash; Missing "t" in "Get"</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Fiberglass Pools General RSA contains "Ger Your Free Estimate" instead of "Get Your Free Estimate".<br>
+    <strong>DATA:</strong> This typo serves to searchers and undermines professionalism. The Fiberglass Pools General ad group drove 84 clicks and 6 conversions &mdash; it is a high-traffic ad group where this typo has real visibility.<br>
+    <strong>RECOMMENDATION:</strong> Fix to "Get Your Free Estimate" (23 chars).
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p1">
+  <div class="priority">P1 Critical</div>
+  <div class="title">All 6 RSAs Have Empty Display Paths (path1 and path2 Blank)</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Every RSA across all 6 ad groups has path1="" and path2="". Zero display path usage in the entire account.<br>
+    <strong>DATA:</strong> Display paths reinforce relevance and improve CTR. Without them, the display URL shows only the root domain with no keyword context. Across 2,725 impressions, every single one showed a bare URL.<br>
+    <strong>RECOMMENDATION:</strong> Add paths to every RSA. Examples: "Fiberglass-Pools" / "Waco" or "Pool-Builder" / "Waco-TX". Each path field max 15 chars.
+  </div>
+  <div class="reasoning">Display paths are free real estate for relevance signals. Google uses them in quality score calculations and searchers use them as trust signals. Leaving them blank is leaving performance on the table at zero cost.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p1">
+  <div class="priority">P1 Critical</div>
+  <div class="title">ZERO Extensions in Entire Account &mdash; No Sitelinks, Callouts, Snippets, or Call</div>
+  <div class="detail">
+    <strong>FINDING:</strong> The account has zero extensions at any level &mdash; no sitelinks, no callouts, no structured snippets, no call extension. Not at customer level, not at campaign level, not at ad group level.<br>
+    <strong>DATA:</strong> Extensions directly impact Ad Rank (they are a component of the Ad Rank formula). With 51.1% impression share lost to rank on the Pool Builder campaign, missing extensions are a significant contributor to the rank deficit.<br>
+    <strong>RECOMMENDATION:</strong> Add all extensions per Sections 10&ndash;13 of this report. This is the single highest-impact change for improving impression share.
+  </div>
+  <div class="reasoning">Google's Ad Rank formula includes expected impact of extensions. An account with zero extensions is competing with a handicap against competitors who have them. In a small metro where budgets are modest, extensions are the cheapest way to gain competitive advantage.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p1">
+  <div class="priority">P1 Critical</div>
+  <div class="title">ZERO Customer Assets &mdash; No Business Name, Logo, or Marketing Images</div>
+  <div class="detail">
+    <strong>FINDING:</strong> No customer-level assets exist in the account. No business name asset, no logo, no marketing images.<br>
+    <strong>DATA:</strong> Customer assets enable rich ad formats and improve visual presence in search results. Without them, ads appear as plain text only.<br>
+    <strong>RECOMMENDATION:</strong> Upload: (1) Business name: "Leisure Pools Waco", (2) Leisure Pools logo (square + landscape), (3) 3&ndash;5 marketing images of completed pool installations.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<h3 style="font-size:16px;font-weight:700;color:#F39C12;margin:24px 0 12px">P2 &mdash; Moderate Findings</h3>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">No Price Anchor Headline in Any Ad Group</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Zero pricing headlines with a specific dollar amount across all 6 ad groups. The Cost/Pricing ad group has generic pricing headlines ("Pool Prices Waco", "Fiberglass Pool Cost") but no actual price anchor.<br>
+    <strong>DATA:</strong> The Cost/Pricing ad group has 20.5% CTR but 0 conversions from 45 clicks and $232 spend. Without a price anchor, low-budget searchers click through, see the real price, and bounce.<br>
+    <strong>RECOMMENDATION:</strong> Add "Pools Starting at $35K" (22 chars) pinned to H2 in every ad group. This pre-qualifies traffic and improves lead quality.
+  </div>
+  <div class="reasoning">Price anchors are the most effective lead quality filter in pool dealer ads. The Cost/Pricing ad group's 20.5% CTR with 0 conversions is a classic sign of unqualified price shoppers clicking through without knowing the price range.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">ZERO Audience Segments Configured</div>
+  <div class="detail">
+    <strong>FINDING:</strong> No In-Market, Life Events, Affinity, Custom Intent, or audience exclusions on either campaign.<br>
+    <strong>DATA:</strong> Without audience signals, the account treats all searchers identically. High-intent pool buyers (In-Market for Home Improvement) receive the same bid as casual browsers.<br>
+    <strong>RECOMMENDATION:</strong> Add audience layers with bid adjustments per Section 14. Use observation mode &mdash; do not restrict targeting.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">ZERO Device Bid Adjustments &mdash; Desktop Severely Underperforming</div>
+  <div class="detail">
+    <strong>FINDING:</strong> No device bid modifiers set on either campaign.<br>
+    <strong>DATA:</strong> Mobile: 251 clicks, 11 conversions, $122.75/conv (4.38% conv rate). Desktop: 28 clicks, 1 conversion, $206.17/conv (3.57% conv rate). Tablet: 1 click, 0 conversions, $9.76 spend.<br>
+    <strong>RECOMMENDATION:</strong> Set desktop bid adjustment to -25% and tablet to -30%. Mobile is driving 91.7% of conversions at a significantly lower cost &mdash; shift budget accordingly. See Section 15.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">ZERO Demographic Bid Adjustments</div>
+  <div class="detail">
+    <strong>FINDING:</strong> No age or household income bid modifiers on either campaign.<br>
+    <strong>DATA:</strong> Pool buyers skew 35&ndash;64 and higher household income. Without demographic modifiers, the account bids equally for 18&ndash;24 year olds (unlikely buyers) and 45&ndash;54 year olds (prime buyers).<br>
+    <strong>RECOMMENDATION:</strong> Add HHI and age bid modifiers per Section 16.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">Pool Builder Campaign: 51.1% Impression Share Lost to Rank</div>
+  <div class="detail">
+    <strong>FINDING:</strong> The Pool Builder / Contractor campaign has only 34% impression share with 51.1% lost to ad rank.<br>
+    <strong>DATA:</strong> Budget loss is 14.9% &mdash; moderate. But rank loss at 51.1% means over half of eligible impressions are lost because the ad isn't competitive enough.<br>
+    <strong>RECOMMENDATION:</strong> Adding extensions (Section 10&ndash;13), fixing display paths, and improving ad copy will directly address Ad Rank. These changes should recover a meaningful portion of the 51.1% rank loss without increasing budget.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">4 of 6 Ads Showing APPROVED_LIMITED Status</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Four RSAs have approval_status = 4 (APPROVED_LIMITED), which may restrict serving in certain contexts.<br>
+    <strong>DATA:</strong> APPROVED_LIMITED typically indicates minor policy issues that limit where the ad can serve. This is not a full disapproval but does reduce reach.<br>
+    <strong>RECOMMENDATION:</strong> When rebuilding the RSAs per Sections 6&ndash;8, the new ads should clear any policy flags. If limited status persists after rebuild, investigate specific policy topics in the Google Ads UI.
+  </div>
+  <span class="confidence conf-med">MEDIUM CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 Moderate</div>
+  <div class="title">Headline Category Imbalance: Pool Contractor &amp; Pool Builder General Are 80%+ Trust/Credential</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Pool Builder General and Pool Contractor ad groups are dominated by trust/credential headlines (Top-Rated, Licensed, Trusted, Expert, Award-Winning, Certified) with very few benefit, desire, or CTA headlines.<br>
+    <strong>DATA:</strong> Pool Builder General: 10 of 15 headlines are trust/credential variations. Pool Contractor: 11 of 15 are trust/credential. Google RSAs perform best with diverse headline categories so the system can test different combinations.<br>
+    <strong>RECOMMENDATION:</strong> Rebuild RSAs with balanced category mix: ~4 geo/brand, ~3 trust, ~3 benefit/desire, ~3 CTA, ~1 price anchor, ~1 urgency.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<h3 style="font-size:16px;font-weight:700;color:#3498DB;margin:24px 0 12px">P3 &mdash; Opportunities</h3>
+
+<div class="finding p3">
+  <div class="priority">P3 Opportunity</div>
+  <div class="title">Cost/Pricing Ad Group: 45 Clicks, $232 Spend, 0 Conversions &mdash; Likely Landing Page Issue</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Fiberglass Pools Cost/Pricing has the highest CTR in the account (20.5%) but zero conversions.<br>
+    <strong>DATA:</strong> 219 impressions, 45 clicks, $232.36 spend, 0 conversions. The ad is clearly compelling to price-intent searchers, but they are not converting on the landing page.<br>
+    <strong>RECOMMENDATION:</strong> This is NOT an ads problem &mdash; the 20.5% CTR proves the ad is working. The landing page likely does not show pricing information, causing price-intent visitors to bounce. Adding a price anchor headline ("Pools Starting at $35K") will help pre-qualify, but the LP also needs pricing context. Flag to dealer: ensure the landing page has visible pricing ranges.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 Opportunity</div>
+  <div class="title">Fiberglass vs Concrete: Very Low Volume (8 Clicks in 30 Days)</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Fiberglass vs Concrete ad group had only 30 impressions and 8 clicks in 30 days.<br>
+    <strong>DATA:</strong> 26.7% CTR is excellent, suggesting the ad resonates. But volume is too low to be meaningful. $52.69 spend with 0 conversions.<br>
+    <strong>RECOMMENDATION:</strong> In the rebuild, fold comparison-intent keywords into the main Fiberglass Pools Waco ad group rather than keeping a separate ad group. The volume doesn't justify a standalone group.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 Opportunity</div>
+  <div class="title">Fiberglass Pool Installation: Essentially Dormant (1 Click in 30 Days)</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Fiberglass Pool Installation ad group had 34 impressions and 1 click in 30 days ($5.71 spend).<br>
+    <strong>DATA:</strong> This ad group is effectively dead. Installation-intent keywords are being served through other ad groups or have too low search volume in the Waco market.<br>
+    <strong>RECOMMENDATION:</strong> Remove as standalone ad group. Fold installation keywords into the Leisure Pools Waco (Brand + Installer) ad group in the rebuild.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 Opportunity</div>
+  <div class="title">Minor: "Fiberglass Pool Near me" &mdash; Lowercase "m" in "me"</div>
+  <div class="detail">
+    <strong>FINDING:</strong> Headline in Fiberglass Pools General reads "Fiberglass Pool Near me" with a lowercase "m".<br>
+    <strong>DATA:</strong> Minor inconsistency. Google may auto-capitalize in some placements, but the asset itself should use title case for consistency.<br>
+    <strong>RECOMMENDATION:</strong> Fix to "Fiberglass Pool Near Me" in the rebuild.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 2: CURRENT PERFORMANCE SUMMARY -->
+<!-- ============================================ -->
+
+<section id="s2">
+<div class="section-header"><h2>2. Current Performance Summary</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:12px">Campaign Performance (Feb 14 &ndash; Mar 16, 2026)</h3>
+
+<table>
+<thead>
+<tr><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv</th><th>Cost/Conv</th><th>IS</th><th>IS Lost Budget</th><th>IS Lost Rank</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Pool Builder / Contractor</strong></td><td>1,656</td><td>142</td><td>8.57%</td><td>$5.66</td><td>$803.93</td><td>6</td><td>$133.99</td><td class="warn">34.0%</td><td>14.9%</td><td class="fail">51.1%</td></tr>
+<tr><td><strong>Fiberglass Pools (Primary)</strong></td><td>1,069</td><td>138</td><td class="good">12.9%</td><td>$5.52</td><td>$762.28</td><td>6</td><td>$127.05</td><td class="warn">68.1%</td><td>8.7%</td><td>23.2%</td></tr>
+<tr style="background:#f8f9fb;font-weight:700"><td>TOTAL</td><td>2,725</td><td>280</td><td>10.3%</td><td>$5.59</td><td>$1,566.21</td><td>12</td><td>$130.52</td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Ad Group Performance</h3>
+
+<table>
+<thead>
+<tr><th>Ad Group</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>Cost/Conv</th></tr>
+</thead>
+<tbody>
+<tr><td>Pool Builder General</td><td>Pool Builder / Contractor</td><td>954</td><td>96</td><td>10.1%</td><td>$504.32</td><td>4</td><td>$126.08</td></tr>
+<tr><td>Pool Contractor</td><td>Pool Builder / Contractor</td><td>702</td><td>46</td><td>6.55%</td><td>$299.61</td><td>2</td><td>$149.80</td></tr>
+<tr><td><strong>Fiberglass Pools General</strong></td><td>Fiberglass Pools (Primary)</td><td>786</td><td>84</td><td>10.7%</td><td>$471.53</td><td class="good">6</td><td class="good">$78.59</td></tr>
+<tr><td>Fiberglass Pools Cost/Pricing</td><td>Fiberglass Pools (Primary)</td><td>219</td><td>45</td><td class="good">20.5%</td><td>$232.36</td><td class="fail">0</td><td class="fail">&mdash;</td></tr>
+<tr><td>Fiberglass vs Concrete</td><td>Fiberglass Pools (Primary)</td><td>30</td><td>8</td><td class="good">26.7%</td><td>$52.69</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>Fiberglass Pool Installation</td><td>Fiberglass Pools (Primary)</td><td>34</td><td>1</td><td class="fail">2.9%</td><td>$5.71</td><td>0</td><td>&mdash;</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Device Performance</h3>
+
+<table>
+<thead>
+<tr><th>Device</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>Cost/Conv</th><th>Conv Rate</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mobile</strong></td><td>2,220</td><td>251</td><td class="good">11.3%</td><td>$1,350.28</td><td class="good">11</td><td class="good">$122.75</td><td class="good">4.38%</td></tr>
+<tr><td>Desktop</td><td>476</td><td>28</td><td>5.88%</td><td>$206.17</td><td>1</td><td class="warn">$206.17</td><td>3.57%</td></tr>
+<tr><td>Tablet</td><td>29</td><td>1</td><td>3.45%</td><td>$9.76</td><td>0</td><td>&mdash;</td><td>0%</td></tr>
+</tbody>
+</table>
+
+<div class="info-box">
+<strong>Key Takeaway:</strong> Mobile drives 91.7% of conversions at $122.75/conv vs desktop at $206.17/conv. The account is a mobile-first account &mdash; device bid adjustments should reflect this. The Fiberglass Pools General ad group is the star performer at $78.59/conv.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Top Converting Search Terms</h3>
+
+<table>
+<thead>
+<tr><th>Search Term</th><th>Conv</th><th>Cost</th><th>Clicks</th></tr>
+</thead>
+<tbody>
+<tr><td><code>fiberglass pool shell</code></td><td class="good">2</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>backyardboyz of texas</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>fiberglass pools</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>fiberglass pools with hot tub</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>limitless pool</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>pool builders near me</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+<tr><td><code>pool for home price</code></td><td>1</td><td>&mdash;</td><td>&mdash;</td></tr>
+</tbody>
+</table>
+
+<div class="note-box">
+<strong>Note on "backyardboyz of texas":</strong> This term converted but "backyardboyz" is on the negative keyword list. Verify that the broad match negative "backyardboyz" is not blocking this converting variant. The search term report shows it still triggered an ad and converted, so the negative may not be matching &mdash; but confirm in the UI.
+</div>
+
+<div class="info-box">
+<strong>Note on "limitless pool":</strong> "Limitless" is an actual Leisure Pools model name. This is a high-quality brand-aware search that converted. Consider adding "Leisure Pools Limitless" as a keyword.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: WASTED SPEND ANALYSIS -->
+<!-- ============================================ -->
+
+<section id="s3">
+<div class="section-header"><h2>3. Wasted Spend Analysis</h2></div>
+<div class="section-body">
+
+<div class="success-box">
+<strong>Strong Negative Keyword List:</strong> Only $13.74 of clearly irrelevant spend identified out of $910.18 captured search term spend. That's 1.5% waste rate &mdash; excellent. The existing ~85 negative keywords per campaign are doing their job.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">High-Spend Zero-Conversion Terms (Monitor List)</h3>
+
+<div class="waste-table">
+<div class="waste-row"><div class="term">fiberglass inground pool</div><div class="spend">$39.39</div><div class="clicks">~7</div></div>
+<div class="waste-row"><div class="term">aqua pools georgetown</div><div class="spend">$31.39</div><div class="clicks">~5</div></div>
+</div>
+
+<div class="note-box">
+<strong>"aqua pools georgetown"</strong> &mdash; "aqua pools" is already on the negative list. Verify this search term is now blocked. If it appeared before the negative was added, this is resolved. Georgetown is also outside the Waco DMA.<br><br>
+<strong>"fiberglass inground pool"</strong> &mdash; This is a legitimate product search. Do NOT add as negative. Monitor for another 30 days; if still zero conversions at $75+, consider pausing the keyword or adjusting the landing page.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">Waste Summary</h3>
+
+<table>
+<thead>
+<tr><th>Category</th><th>Spend</th><th>% of Captured</th></tr>
+</thead>
+<tbody>
+<tr><td>Clearly Irrelevant (waste)</td><td class="good">$13.74</td><td class="good">1.5%</td></tr>
+<tr><td>Relevant but Zero-Conv (monitor)</td><td>$70.78</td><td>7.8%</td></tr>
+<tr><td>Productive Spend</td><td>$825.66</td><td>90.7%</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: CAMPAIGN SETTINGS -->
+<!-- ============================================ -->
+
+<section id="s4">
+<div class="section-header"><h2>4. Campaign Settings &mdash; Current vs Rebuild</h2></div>
+<div class="section-body">
+
+<div class="info-box">
+<strong>Rebuild Strategy:</strong> Consolidate from 2 campaigns with 6 ad groups into 1 campaign with 3 tightly themed ad groups. The current 2-campaign structure splits a modest $48/day budget, and 3 of the 6 ad groups are essentially dormant or zero-converting. A single campaign with a unified budget will allocate spend more efficiently across the 3 productive themes.
+</div>
+
+<table>
+<thead>
+<tr><th>Setting</th><th>Current</th><th>Rebuild</th></tr>
+</thead>
+<tbody>
+<tr><td>Campaign Count</td><td>2 (Pool Builder + Fiberglass)</td><td class="pass">1 (Leisure Pools Waco)</td></tr>
+<tr><td>Ad Groups</td><td>6 (3 low/zero volume)</td><td class="pass">3 (tightly themed)</td></tr>
+<tr><td>Daily Budget</td><td>$24/day per campaign ($48 total)</td><td class="pass">$48/day (single campaign)</td></tr>
+<tr><td>Bid Strategy</td><td class="pass">Maximize Clicks</td><td class="pass">Maximize Clicks (keep &mdash; 12 conv/mo is under 30 threshold)</td></tr>
+<tr><td>CPC Cap</td><td class="pass">$15</td><td class="pass">$15 (appropriate for small metro)</td></tr>
+<tr><td>Network</td><td class="pass">Google Search only</td><td class="pass">Google Search only</td></tr>
+<tr><td>Location Targeting</td><td class="pass">Presence only (type 7)</td><td class="pass">Presence only</td></tr>
+<tr><td>Location</td><td>Waco DMA (geoTarget 200625)</td><td class="pass">Waco DMA (keep)</td></tr>
+<tr><td>Display Paths</td><td class="fail">ALL EMPTY</td><td class="pass">Set per ad group</td></tr>
+<tr><td>Extensions</td><td class="fail">ZERO</td><td class="pass">Full set (Sections 10&ndash;13)</td></tr>
+<tr><td>Audiences</td><td class="fail">ZERO</td><td class="pass">Observation mode (Section 14)</td></tr>
+<tr><td>Device Bids</td><td class="fail">ZERO</td><td class="pass">Mobile-first (Section 15)</td></tr>
+<tr><td>Demographic Bids</td><td class="fail">ZERO</td><td class="pass">Age + HHI (Section 16)</td></tr>
+<tr><td>Customer Assets</td><td class="fail">ZERO</td><td class="pass">Business name + logo + images</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5: CURRENT AD GROUP STRUCTURE -->
+<!-- ============================================ -->
+
+<section id="s5">
+<div class="section-header"><h2>5. Ad Group Structure &mdash; Current Account</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:12px">Current: 2 Campaigns, 6 Ad Groups</h3>
+
+<table>
+<thead>
+<tr><th>Ad Group</th><th>Campaign</th><th>Clicks</th><th>Conv</th><th>Cost</th><th>Status</th><th>Rebuild Action</th></tr>
+</thead>
+<tbody>
+<tr><td>Pool Builder General</td><td>Pool Builder / Contractor</td><td>96</td><td>4</td><td>$504</td><td class="pass">Active</td><td><span class="tag tag-keep">FOLD INTO AG1</span></td></tr>
+<tr><td>Pool Contractor</td><td>Pool Builder / Contractor</td><td>46</td><td>2</td><td>$300</td><td class="pass">Active</td><td><span class="tag tag-keep">FOLD INTO AG1</span></td></tr>
+<tr><td>Fiberglass Pools General</td><td>Fiberglass Pools (Primary)</td><td>84</td><td>6</td><td>$472</td><td class="pass">Active</td><td><span class="tag tag-keep">FOLD INTO AG2</span></td></tr>
+<tr><td>Fiberglass Pools Cost/Pricing</td><td>Fiberglass Pools (Primary)</td><td>45</td><td>0</td><td>$232</td><td class="warn">0 Conv</td><td><span class="tag tag-keep">BECOMES AG3</span></td></tr>
+<tr><td>Fiberglass vs Concrete</td><td>Fiberglass Pools (Primary)</td><td>8</td><td>0</td><td>$53</td><td class="warn">Low Vol</td><td><span class="tag tag-remove">FOLD INTO AG2</span></td></tr>
+<tr><td>Fiberglass Pool Installation</td><td>Fiberglass Pools (Primary)</td><td>1</td><td>0</td><td>$6</td><td class="fail">Dormant</td><td><span class="tag tag-remove">FOLD INTO AG1</span></td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Rebuild: 1 Campaign, 3 Ad Groups</h3>
+
+<table>
+<thead>
+<tr><th>New Ad Group</th><th>Theme</th><th>Source Ad Groups</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>AG1: Leisure Pools Waco</strong></td><td>Brand + Builder + Installer</td><td>Pool Builder General + Pool Contractor + Fiberglass Pool Installation</td><td>Consolidates all builder/contractor/installer intent under the brand umbrella. These searchers want someone to build their pool.</td></tr>
+<tr><td><strong>AG2: Fiberglass Pools Waco</strong></td><td>Product + Geo + Comparison</td><td>Fiberglass Pools General + Fiberglass vs Concrete</td><td>Captures product-specific and comparison intent. These searchers are researching fiberglass pools specifically.</td></tr>
+<tr><td><strong>AG3: Pool Cost &amp; Pricing</strong></td><td>Pricing Intent</td><td>Fiberglass Pools Cost/Pricing</td><td>Isolates price-intent traffic for dedicated messaging with price anchors. Needs landing page fix to convert.</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 6: AG1 - LEISURE POOLS WACO -->
+<!-- ============================================ -->
+
+<section id="s6">
+<div class="section-header"><h2>6. Ad Group 1: Leisure Pools Waco (Brand + Installer)</h2></div>
+<div class="section-body">
+
+<div class="info-box">
+<strong>Theme:</strong> Brand-aware and builder/installer intent searches. This is the primary ad group for people looking for a pool builder, pool contractor, or pool installer in the Waco area, as well as anyone searching for the Leisure Pools brand directly.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Display Paths</h3>
+
+<div class="copy-field individual">
+<label>Path 1 <span class="char-count">(13/15 chars)</span></label>
+<input type="text" value="Pool-Builders" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+<div class="copy-field individual">
+<label>Path 2 <span class="char-count">(7/15 chars)</span></label>
+<input type="text" value="Waco-TX" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Headlines (15) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Category</th><th>Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>H1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pool Builders in Waco TX" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-geo">GEO</span></td><td><span class="pin-note">PIN H1</span></td></tr>
+<tr><td>H2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pools Starting at $35K" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-price">PRICE</span></td><td><span class="pin-note">PIN H2</span></td></tr>
+<tr><td>H3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td><td><span class="tag tag-brand">BRAND</span></td><td></td></tr>
+<tr><td>H4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Waco Pool Builders" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td><td><span class="tag tag-geo">GEO</span></td><td></td></tr>
+<tr><td>H5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Licensed Pool Contractor" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-trust">TRUST</span></td><td></td></tr>
+<tr><td>H6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Get Your Free Estimate" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fast 2-4 Week Install" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H8</td><td><div class="copy-field" style="margin:0"><input type="text" value="30+ Pool Designs to Pick" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-product">PRODUCT</span></td><td></td></tr>
+<tr><td>H9</td><td><div class="copy-field" style="margin:0"><input type="text" value="Award-Winning Pool Builder" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>26</td><td><span class="tag tag-trust">TRUST</span></td><td></td></tr>
+<tr><td>H10</td><td><div class="copy-field" style="margin:0"><input type="text" value="Transform Your Backyard" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-desire">DESIRE</span></td><td></td></tr>
+<tr><td>H11</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pool Financing Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H12</td><td><div class="copy-field" style="margin:0"><input type="text" value="Request a Free Quote Today" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>26</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H13</td><td><div class="copy-field" style="margin:0"><input type="text" value="Your Dream Pool Awaits" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-desire">DESIRE</span></td><td></td></tr>
+<tr><td>H14</td><td><div class="copy-field" style="margin:0"><input type="text" value="Top-Rated in Central TX" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-trust">TRUST</span> <span class="tag tag-geo">GEO</span></td><td></td></tr>
+<tr><td>H15</td><td><div class="copy-field" style="margin:0"><input type="text" value="Low Maintenance Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 15 HEADLINES (one per line)</label>
+<textarea rows="17" readonly onclick="this.select(); document.execCommand('copy');">Pool Builders in Waco TX
+Pools Starting at $35K
+Leisure Pools Waco
+Waco Pool Builders
+Licensed Pool Contractor
+Get Your Free Estimate
+Fast 2-4 Week Install
+30+ Pool Designs to Pick
+Award-Winning Pool Builder
+Transform Your Backyard
+Pool Financing Available
+Request a Free Quote Today
+Your Dream Pool Awaits
+Top-Rated in Central TX
+Low Maintenance Pools</textarea>
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Descriptions (4) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>D1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco builds premium fiberglass pools with fast 2-4 week installation. Browse 30+ designs." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Licensed Waco pool builder. Low maintenance fiberglass pools starting at $35K. Get your free estimate." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Award-winning fiberglass pool installation in Waco TX. Financing available. Request a free quote today." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Transform your backyard with a Leisure Pools fiberglass pool. 30+ models. Serving the Waco TX area." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>89</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 4 DESCRIPTIONS (one per line)</label>
+<textarea rows="6" readonly onclick="this.select(); document.execCommand('copy');">Leisure Pools Waco builds premium fiberglass pools with fast 2-4 week installation. Browse 30+ designs.
+Licensed Waco pool builder. Low maintenance fiberglass pools starting at $35K. Get your free estimate.
+Award-winning fiberglass pool installation in Waco TX. Financing available. Request a free quote today.
+Transform your backyard with a Leisure Pools fiberglass pool. 30+ models. Serving the Waco TX area.</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 7: AG2 - FIBERGLASS POOLS WACO -->
+<!-- ============================================ -->
+
+<section id="s7">
+<div class="section-header"><h2>7. Ad Group 2: Fiberglass Pools Waco (Product + Geo)</h2></div>
+<div class="section-body">
+
+<div class="info-box">
+<strong>Theme:</strong> Product-specific and comparison searches. This ad group captures people researching fiberglass pools as a product category, comparing fiberglass to concrete/gunite, or looking for fiberglass pool options in the Waco area. Includes the former Fiberglass Pools General and Fiberglass vs Concrete keywords.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Display Paths</h3>
+
+<div class="copy-field individual">
+<label>Path 1 <span class="char-count">(15/15 chars)</span></label>
+<input type="text" value="Fiberglass-Pool" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+<div class="copy-field individual">
+<label>Path 2 <span class="char-count">(4/15 chars)</span></label>
+<input type="text" value="Waco" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Headlines (15) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Category</th><th>Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>H1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass Pools in Waco" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-geo">GEO</span> <span class="tag tag-product">PRODUCT</span></td><td><span class="pin-note">PIN H1</span></td></tr>
+<tr><td>H2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pools Starting at $35K" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-price">PRICE</span></td><td><span class="pin-note">PIN H2</span></td></tr>
+<tr><td>H3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass Pool Waco TX" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-geo">GEO</span></td><td></td></tr>
+<tr><td>H4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td><td><span class="tag tag-brand">BRAND</span></td><td></td></tr>
+<tr><td>H5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass Pool Near Me" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-geo">GEO</span></td><td></td></tr>
+<tr><td>H6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Premium Fiberglass Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-product">PRODUCT</span></td><td></td></tr>
+<tr><td>H7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fast 2-4 Week Installation" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>26</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H8</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass Beats Concrete" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>25</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H9</td><td><div class="copy-field" style="margin:0"><input type="text" value="30+ Pool Designs Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>26</td><td><span class="tag tag-product">PRODUCT</span></td><td></td></tr>
+<tr><td>H10</td><td><div class="copy-field" style="margin:0"><input type="text" value="Get Your Free Estimate" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H11</td><td><div class="copy-field" style="margin:0"><input type="text" value="No Resurfacing Needed" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H12</td><td><div class="copy-field" style="margin:0"><input type="text" value="Lower Maintenance Costs" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H13</td><td><div class="copy-field" style="margin:0"><input type="text" value="Request a Free Quote Today" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>26</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H14</td><td><div class="copy-field" style="margin:0"><input type="text" value="Transform Your Backyard" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-desire">DESIRE</span></td><td></td></tr>
+<tr><td>H15</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pool Financing Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 15 HEADLINES (one per line)</label>
+<textarea rows="17" readonly onclick="this.select(); document.execCommand('copy');">Fiberglass Pools in Waco
+Pools Starting at $35K
+Fiberglass Pool Waco TX
+Leisure Pools Waco
+Fiberglass Pool Near Me
+Premium Fiberglass Pools
+Fast 2-4 Week Installation
+Fiberglass Beats Concrete
+30+ Pool Designs Available
+Get Your Free Estimate
+No Resurfacing Needed
+Lower Maintenance Costs
+Request a Free Quote Today
+Transform Your Backyard
+Pool Financing Available</textarea>
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Descriptions (4) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>D1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Premium fiberglass pools in Waco TX. Installed in 2-4 weeks. 30+ designs. Get your free estimate now." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Why fiberglass? No resurfacing, lower maintenance, faster install than concrete. See Leisure Pools Waco." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco offers 30+ fiberglass pool designs starting at $35K. Financing options available." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>88</td></tr>
+<tr><td>D4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass beats concrete &mdash; no cracking, no replastering, no hassle. Browse models &amp; request a quote." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>89</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 4 DESCRIPTIONS (one per line)</label>
+<textarea rows="6" readonly onclick="this.select(); document.execCommand('copy');">Premium fiberglass pools in Waco TX. Installed in 2-4 weeks. 30+ designs. Get your free estimate now.
+Why fiberglass? No resurfacing, lower maintenance, faster install than concrete. See Leisure Pools Waco.
+Leisure Pools Waco offers 30+ fiberglass pool designs starting at $35K. Financing options available.
+Fiberglass beats concrete - no cracking, no replastering, no hassle. Browse models & request a quote.</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 8: AG3 - POOL COST & PRICING -->
+<!-- ============================================ -->
+
+<section id="s8">
+<div class="section-header"><h2>8. Ad Group 3: Pool Cost &amp; Pricing (Pricing Intent)</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Landing Page Alert:</strong> This ad group had 20.5% CTR but 0 conversions in 30 days (45 clicks, $232 spend). The ads are working &mdash; the landing page is not converting price-intent visitors. The rebuild adds price anchors to pre-qualify, but the dealer should also ensure the landing page shows pricing ranges. Without an LP fix, this ad group will continue to underperform regardless of ad copy quality.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Display Paths</h3>
+
+<div class="copy-field individual">
+<label>Path 1 <span class="char-count">(11/15 chars)</span></label>
+<input type="text" value="Pool-Prices" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+<div class="copy-field individual">
+<label>Path 2 <span class="char-count">(7/15 chars)</span></label>
+<input type="text" value="Waco-TX" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Headlines (15) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Category</th><th>Pin</th></tr>
+</thead>
+<tbody>
+<tr><td>H1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pool Prices in Waco TX" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-geo">GEO</span> <span class="tag tag-price">PRICE</span></td><td><span class="pin-note">PIN H1</span></td></tr>
+<tr><td>H2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pools Starting at $35K" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-price">PRICE</span></td><td><span class="pin-note">PIN H2</span></td></tr>
+<tr><td>H3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass Pool Pricing" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-price">PRICE</span></td><td></td></tr>
+<tr><td>H4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td><td><span class="tag tag-brand">BRAND</span></td><td></td></tr>
+<tr><td>H5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Affordable Fiberglass Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>27</td><td><span class="tag tag-price">PRICE</span></td><td></td></tr>
+<tr><td>H6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Get a Free Pool Quote" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Flexible Pool Financing" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H8</td><td><div class="copy-field" style="margin:0"><input type="text" value="Transparent Pool Pricing" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-trust">TRUST</span></td><td></td></tr>
+<tr><td>H9</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pools for Every Budget" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td><td><span class="tag tag-price">PRICE</span></td><td></td></tr>
+<tr><td>H10</td><td><div class="copy-field" style="margin:0"><input type="text" value="Compare Pool Costs Today" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H11</td><td><div class="copy-field" style="margin:0"><input type="text" value="Finance Your Dream Pool" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-desire">DESIRE</span></td><td></td></tr>
+<tr><td>H12</td><td><div class="copy-field" style="margin:0"><input type="text" value="Request a Free Estimate" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+<tr><td>H13</td><td><div class="copy-field" style="margin:0"><input type="text" value="Less Than Concrete Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-benefit">BENEFIT</span></td><td></td></tr>
+<tr><td>H14</td><td><div class="copy-field" style="margin:0"><input type="text" value="Low Cost Pool Ownership" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>23</td><td><span class="tag tag-price">PRICE</span></td><td></td></tr>
+<tr><td>H15</td><td><div class="copy-field" style="margin:0"><input type="text" value="See Our Pool Price Guide" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>24</td><td><span class="tag tag-cta">CTA</span></td><td></td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 15 HEADLINES (one per line)</label>
+<textarea rows="17" readonly onclick="this.select(); document.execCommand('copy');">Pool Prices in Waco TX
+Pools Starting at $35K
+Fiberglass Pool Pricing
+Leisure Pools Waco
+Affordable Fiberglass Pools
+Get a Free Pool Quote
+Flexible Pool Financing
+Transparent Pool Pricing
+Pools for Every Budget
+Compare Pool Costs Today
+Finance Your Dream Pool
+Request a Free Estimate
+Less Than Concrete Pools
+Low Cost Pool Ownership
+See Our Pool Price Guide</textarea>
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 8px">Descriptions (4) &mdash; Click to Copy</h3>
+
+<table>
+<thead>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>D1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass pools starting at $35K in Waco TX. Less than concrete with lower lifetime cost. Get a quote." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D2</td><td><div class="copy-field" style="margin:0"><input type="text" value="See transparent pool pricing from Leisure Pools Waco. Financing available. Request your free estimate." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>D3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Compare fiberglass vs concrete pool costs. Fiberglass saves on maintenance. Pools for every budget." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>87</td></tr>
+<tr><td>D4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Leisure Pools Waco &mdash; pool pricing you can trust. 30+ designs, flexible financing, fast installation." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>88</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 4 DESCRIPTIONS (one per line)</label>
+<textarea rows="6" readonly onclick="this.select(); document.execCommand('copy');">Fiberglass pools starting at $35K in Waco TX. Less than concrete with lower lifetime cost. Get a quote.
+See transparent pool pricing from Leisure Pools Waco. Financing available. Request your free estimate.
+Compare fiberglass vs concrete pool costs. Fiberglass saves on maintenance. Pools for every budget.
+Leisure Pools Waco - pool pricing you can trust. 30+ designs, flexible financing, fast installation.</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 9: CAMPAIGN NEGATIVES -->
+<!-- ============================================ -->
+
+<section id="s9">
+<div class="section-header"><h2>9. Campaign Negatives</h2></div>
+<div class="section-body">
+
+<div class="success-box">
+<strong>Existing Negative List: Strong.</strong> The current ~85 broad match negatives cover retail, service, DIY, jobs, wrong products, competitors, supply stores, and geo exclusions. Only 1.5% waste rate confirms effectiveness. Keep the existing list and add the recommended additions below.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">Current Negative Categories (Keep All)</h3>
+
+<table>
+<thead>
+<tr><th>Category</th><th>Examples</th><th>Count</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Retail/Above Ground</strong></td><td>above ground, intex, inflatable, doughboy</td><td>~6</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Service/Repair</strong></td><td>repair, cleaning, maintenance, service, resurfacing, liner replacement</td><td>~8</td><td class="pass">Keep</td></tr>
+<tr><td><strong>DIY</strong></td><td>diy, kits, plans, self install, how to build ourself</td><td>~5</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Jobs/Employment</strong></td><td>jobs, employment, hiring, careers, salary, wage</td><td>~6</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Wrong Product</strong></td><td>swim spa, stock tank pool, container pool, cold plunge, semi inground</td><td>~20</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Competitors</strong></td><td>viking pools, paradise pools, premier pools, blue world pools, etc.</td><td>~25</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Supply Stores</strong></td><td>pool store near me, pool supply near me</td><td>~3</td><td class="pass">Keep</td></tr>
+<tr><td><strong>Geo Exclusions</strong></td><td>Austin</td><td>~1</td><td class="pass">Keep</td></tr>
+</tbody>
+</table>
+
+<div class="note-box">
+<strong>Verify "backyardboyz" Negative:</strong> "backyardboyz" is on the negative list (broad match), but a search for "backyardboyz of texas" converted. Broad match negative "backyardboyz" should block any search containing that word, yet the conversion happened. Either: (1) the negative was added after the converting click, or (2) the broad match negative is not functioning as expected. Verify in the Google Ads UI &mdash; if it was added recently, no action needed. If it has been there, something is wrong with the negative matching.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Recommended Additions</h3>
+
+<table>
+<thead>
+<tr><th>Negative Keyword</th><th>Match Type</th><th>Reason</th></tr>
+</thead>
+<tbody>
+<tr><td><code>natural pool</code></td><td>Broad</td><td>Different product category (chemical-free pond-style pools)</td></tr>
+<tr><td><code>saltwater pool conversion</code></td><td>Broad</td><td>Existing pool modification, not new install</td></tr>
+<tr><td><code>pool removal</code></td><td>Broad</td><td>Opposite intent &mdash; removing pools</td></tr>
+<tr><td><code>pool demolition</code></td><td>Broad</td><td>Opposite intent</td></tr>
+<tr><td><code>used pool</code></td><td>Broad</td><td>Pre-owned pools, not relevant</td></tr>
+<tr><td><code>pool cover</code></td><td>Broad</td><td>Accessory, not pool installation</td></tr>
+<tr><td><code>pool heater</code></td><td>Broad</td><td>Accessory, not pool installation</td></tr>
+<tr><td><code>pool pump</code></td><td>Broad</td><td>Accessory/replacement part</td></tr>
+<tr><td><code>pool filter</code></td><td>Broad</td><td>Accessory/replacement part</td></tr>
+<tr><td><code>pool chemical</code></td><td>Broad</td><td>Maintenance supply, not installation</td></tr>
+<tr><td><code>public pool</code></td><td>Broad</td><td>Municipal/commercial, not residential</td></tr>
+<tr><td><code>community pool</code></td><td>Broad</td><td>Municipal/commercial, not residential</td></tr>
+<tr><td><code>hotel pool</code></td><td>Broad</td><td>Commercial, not residential</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; NEW NEGATIVES (one per line, add as broad match)</label>
+<textarea rows="15" readonly onclick="this.select(); document.execCommand('copy');">natural pool
+saltwater pool conversion
+pool removal
+pool demolition
+used pool
+pool cover
+pool heater
+pool pump
+pool filter
+pool chemical
+public pool
+community pool
+hotel pool</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 10: SITELINKS -->
+<!-- ============================================ -->
+
+<section id="s10">
+<div class="section-header"><h2>10. Sitelinks (8)</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO sitelinks in the entire account.</strong> Sitelinks are a critical component of Ad Rank. Add all 8 at the campaign level.
+</div>
+
+<table>
+<thead>
+<tr><th>#</th><th>Link Text</th><th>Chars</th><th>Description 1</th><th>D1 Chars</th><th>Description 2</th><th>D2 Chars</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Browse Pool Models" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>18</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Explore 30+ fiberglass pool designs" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>35</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Find the perfect pool for your yard" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>35</td>
+</tr>
+<tr>
+<td>2</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Get a Free Quote" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>16</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Request your free pool estimate now" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>35</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="No obligation, fast response time" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>33</td>
+</tr>
+<tr>
+<td>3</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Pool Photo Gallery" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>18</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Browse our completed pool projects" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>34</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Real installations in Waco TX area" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>34</td>
+</tr>
+<tr>
+<td>4</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Pool Financing Options" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>22</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Flexible financing for your pool" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>31</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Affordable monthly payment options" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>34</td>
+</tr>
+<tr>
+<td>5</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Why Fiberglass?" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>15</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Fiberglass vs concrete comparison" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>33</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Lower maintenance, faster install" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>33</td>
+</tr>
+<tr>
+<td>6</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Pool Colors & Finishes" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>22</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="See available pool color options" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>31</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Multiple finish styles to choose" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>32</td>
+</tr>
+<tr>
+<td>7</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Our Installation Process" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>24</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="See how we install your new pool" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>31</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Typically completed in 2-4 weeks" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>31</td>
+</tr>
+<tr>
+<td>8</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="About Leisure Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>19</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Award-winning fiberglass pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>30</td>
+<td><div class="copy-field" style="margin:0"><input type="text" value="Trusted pool builder in Waco TX" readonly onclick="this.select(); document.execCommand('copy');"></div></td>
+<td>31</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 11: CALLOUTS -->
+<!-- ============================================ -->
+
+<section id="s11">
+<div class="section-header"><h2>11. Callouts (12)</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO callouts in the entire account.</strong> Add all 12 at the campaign level.
+</div>
+
+<table>
+<thead>
+<tr><th>#</th><th>Callout Text</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Free Estimates" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>14</td></tr>
+<tr><td>2</td><td><div class="copy-field" style="margin:0"><input type="text" value="30+ Pool Designs" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>16</td></tr>
+<tr><td>3</td><td><div class="copy-field" style="margin:0"><input type="text" value="2-4 Week Installation" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td></tr>
+<tr><td>4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Financing Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>19</td></tr>
+<tr><td>5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Licensed & Insured" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+<tr><td>6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Low Maintenance Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td></tr>
+<tr><td>7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Locally Owned" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>13</td></tr>
+<tr><td>8</td><td><div class="copy-field" style="margin:0"><input type="text" value="No Resurfacing Needed" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td></tr>
+<tr><td>9</td><td><div class="copy-field" style="margin:0"><input type="text" value="Award-Winning Builder" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>21</td></tr>
+<tr><td>10</td><td><div class="copy-field" style="margin:0"><input type="text" value="Serving Waco TX Area" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>20</td></tr>
+<tr><td>11</td><td><div class="copy-field" style="margin:0"><input type="text" value="Premium Fiberglass" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+<tr><td>12</td><td><div class="copy-field" style="margin:0"><input type="text" value="Multiple Color Options" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; ALL 12 CALLOUTS (one per line)</label>
+<textarea rows="14" readonly onclick="this.select(); document.execCommand('copy');">Free Estimates
+30+ Pool Designs
+2-4 Week Installation
+Financing Available
+Licensed & Insured
+Low Maintenance Pools
+Locally Owned
+No Resurfacing Needed
+Award-Winning Builder
+Serving Waco TX Area
+Premium Fiberglass
+Multiple Color Options</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 12: STRUCTURED SNIPPETS -->
+<!-- ============================================ -->
+
+<section id="s12">
+<div class="section-header"><h2>12. Structured Snippets</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO structured snippets.</strong> Add both snippet sets at the campaign level.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin-bottom:12px">Snippet Set 1: Models</h3>
+
+<div class="copy-field individual">
+<label>Header</label>
+<input type="text" value="Models" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+
+<table>
+<thead>
+<tr><th>#</th><th>Value</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Elegance" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>8</td></tr>
+<tr><td>2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Tuscany" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>7</td></tr>
+<tr><td>3</td><td><div class="copy-field" style="margin:0"><input type="text" value="Riviera" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>7</td></tr>
+<tr><td>4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Monaco" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>6</td></tr>
+<tr><td>5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Limitless" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>9</td></tr>
+<tr><td>6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Pinnacle" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>8</td></tr>
+<tr><td>7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Esprit" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>6</td></tr>
+<tr><td>8</td><td><div class="copy-field" style="margin:0"><input type="text" value="Siesta" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>6</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; MODELS SNIPPET VALUES (one per line)</label>
+<textarea rows="10" readonly onclick="this.select(); document.execCommand('copy');">Elegance
+Tuscany
+Riviera
+Monaco
+Limitless
+Pinnacle
+Esprit
+Siesta</textarea>
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Snippet Set 2: Amenities</h3>
+
+<div class="copy-field individual">
+<label>Header</label>
+<input type="text" value="Amenities" readonly onclick="this.select(); document.execCommand('copy');">
+</div>
+
+<table>
+<thead>
+<tr><th>#</th><th>Value</th><th>Chars</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td><div class="copy-field" style="margin:0"><input type="text" value="Built-In Tanning Ledge" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>22</td></tr>
+<tr><td>2</td><td><div class="copy-field" style="margin:0"><input type="text" value="Spillover Spa" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>13</td></tr>
+<tr><td>3</td><td><div class="copy-field" style="margin:0"><input type="text" value="LED Pool Lighting" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>17</td></tr>
+<tr><td>4</td><td><div class="copy-field" style="margin:0"><input type="text" value="Water Features" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>14</td></tr>
+<tr><td>5</td><td><div class="copy-field" style="margin:0"><input type="text" value="Automatic Pool Cover" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>20</td></tr>
+<tr><td>6</td><td><div class="copy-field" style="margin:0"><input type="text" value="Bench Seating" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>13</td></tr>
+<tr><td>7</td><td><div class="copy-field" style="margin:0"><input type="text" value="Swim-Out Steps" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>14</td></tr>
+<tr><td>8</td><td><div class="copy-field" style="margin:0"><input type="text" value="Custom Decking" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>14</td></tr>
+</tbody>
+</table>
+
+<div class="copy-field bulk">
+<label>BULK PASTE &mdash; AMENITIES SNIPPET VALUES (one per line)</label>
+<textarea rows="10" readonly onclick="this.select(); document.execCommand('copy');">Built-In Tanning Ledge
+Spillover Spa
+LED Pool Lighting
+Water Features
+Automatic Pool Cover
+Bench Seating
+Swim-Out Steps
+Custom Decking</textarea>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 13: CALL EXTENSION -->
+<!-- ============================================ -->
+
+<section id="s13">
+<div class="section-header"><h2>13. Call Extension</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>NEEDS DEALER PHONE NUMBER</strong><br>
+No call extension exists in the account. A call extension is critical for mobile users (91.7% of conversions are mobile). The dealer's local phone number is needed to set this up.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">Call Extension Settings (Once Phone Number Obtained)</h3>
+
+<table>
+<thead>
+<tr><th>Setting</th><th>Value</th></tr>
+</thead>
+<tbody>
+<tr><td>Phone Number</td><td class="fail">[ OBTAIN FROM DEALER ]</td></tr>
+<tr><td>Country</td><td>US</td></tr>
+<tr><td>Call Reporting</td><td>ON</td></tr>
+<tr><td>Conversion Tracking</td><td>ON &mdash; count calls over 60 seconds as conversions</td></tr>
+<tr><td>Schedule</td><td>Business hours only (M&ndash;F 8am&ndash;6pm, Sat 9am&ndash;3pm CT)</td></tr>
+<tr><td>Device Preference</td><td>Mobile preferred</td></tr>
+</tbody>
+</table>
+
+<div class="info-box">
+<strong>Action Item:</strong> Contact Leisure Pools Waco to get their primary business phone number. Add the call extension once received. With 91.7% of conversions coming from mobile, a call extension will likely generate additional leads.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 14: AUDIENCE SEGMENTS -->
+<!-- ============================================ -->
+
+<section id="s14">
+<div class="section-header"><h2>14. Audience Segments</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO audience segments.</strong> Add all audiences below in <strong>Observation mode</strong> (do not restrict targeting). This allows bid optimization based on audience signals while maintaining full reach.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">In-Market Audiences</h3>
+
+<table>
+<thead>
+<tr><th>Audience</th><th>Bid Adjustment</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td>In-Market: Swimming Pools &amp; Spas</td><td class="good">+30%</td><td>Highest-intent audience &mdash; actively shopping for pools</td></tr>
+<tr><td>In-Market: Home Improvement</td><td>+15%</td><td>Broad home improvement intent, strong secondary signal</td></tr>
+<tr><td>In-Market: Landscaping Services</td><td>+10%</td><td>Backyard projects often include pools</td></tr>
+<tr><td>In-Market: Home &amp; Garden</td><td>+10%</td><td>General home improvement interest</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Life Events Audiences</h3>
+
+<table>
+<thead>
+<tr><th>Audience</th><th>Bid Adjustment</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td>Recently Purchased a Home</td><td class="good">+25%</td><td>New homeowners are prime pool buyers &mdash; making the home their own</td></tr>
+<tr><td>Recently Moved</td><td>+15%</td><td>Similar to home purchase &mdash; settling in and improving property</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Affinity Audiences</h3>
+
+<table>
+<thead>
+<tr><th>Audience</th><th>Bid Adjustment</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td>Home &amp; Garden Enthusiasts</td><td>+10%</td><td>Lifestyle match for pool buyers</td></tr>
+<tr><td>Outdoor Enthusiasts</td><td>+5%</td><td>Outdoor lifestyle signals pool interest</td></tr>
+<tr><td>Luxury Shoppers</td><td>+15%</td><td>Higher budget potential &mdash; fiberglass pools are a premium purchase</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Custom Intent Audience (Create New)</h3>
+
+<table>
+<thead>
+<tr><th>Audience Name</th><th>Keywords/URLs</th><th>Bid Adjustment</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Pool Buyers - Waco TX</strong></td><td>
+fiberglass pool cost, fiberglass pool near me, pool builder waco, how much does a fiberglass pool cost, leisure pools, pool installation cost, backyard pool ideas, inground pool cost
+</td><td class="good">+20%</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Audience Exclusions</h3>
+
+<table>
+<thead>
+<tr><th>Exclusion</th><th>Reason</th></tr>
+</thead>
+<tbody>
+<tr><td>In-Market: Pool Maintenance &amp; Supplies</td><td>Existing pool owners looking for maintenance, not new installs</td></tr>
+<tr><td>In-Market: Real Estate (Rentals)</td><td>Renters cannot install pools</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 15: DEVICE BID ADJUSTMENTS -->
+<!-- ============================================ -->
+
+<section id="s15">
+<div class="section-header"><h2>15. Device Bid Adjustments</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO device bid modifiers set.</strong> Mobile is dramatically outperforming desktop. Adjust bids to shift budget toward the converting device.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">Current Device Data (30 Days)</h3>
+
+<table>
+<thead>
+<tr><th>Device</th><th>Clicks</th><th>Conv</th><th>Conv Rate</th><th>Cost/Conv</th><th>% of Spend</th><th>% of Conv</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mobile</strong></td><td>251</td><td class="good">11</td><td class="good">4.38%</td><td class="good">$122.75</td><td>86.2%</td><td class="good">91.7%</td></tr>
+<tr><td>Desktop</td><td>28</td><td>1</td><td>3.57%</td><td class="warn">$206.17</td><td>13.2%</td><td>8.3%</td></tr>
+<tr><td>Tablet</td><td>1</td><td>0</td><td>0%</td><td class="fail">&mdash;</td><td>0.6%</td><td>0%</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Recommended Bid Adjustments</h3>
+
+<table>
+<thead>
+<tr><th>Device</th><th>Current</th><th>Recommended</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Mobile</strong></td><td>0% (default)</td><td class="pass">0% (keep as baseline)</td><td>Mobile is the primary converter &mdash; use as the baseline bid</td></tr>
+<tr><td><strong>Desktop</strong></td><td>0% (default)</td><td class="warn">-25%</td><td>$206/conv vs $123/conv mobile. 68% higher cost per conversion. Reduce bids to shift budget toward mobile.</td></tr>
+<tr><td><strong>Tablet</strong></td><td>0% (default)</td><td class="fail">-30%</td><td>1 click, 0 conversions. Extremely low volume. Reduce but don't eliminate &mdash; sample size is too small to conclude tablets never convert.</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 16: DEMOGRAPHIC ADJUSTMENTS -->
+<!-- ============================================ -->
+
+<section id="s16">
+<div class="section-header"><h2>16. Demographic Adjustments</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+<strong>Currently: ZERO demographic bid modifiers.</strong> Pool buyers have strong demographic skews &mdash; leverage these for smarter bidding.
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:16px 0 12px">Age Bid Adjustments</h3>
+
+<table>
+<thead>
+<tr><th>Age Range</th><th>Recommended</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td>18&ndash;24</td><td class="fail">-40%</td><td>Very unlikely to purchase a $35K+ pool. Reduce significantly.</td></tr>
+<tr><td>25&ndash;34</td><td>0%</td><td>Some first-time homeowners. Keep at baseline.</td></tr>
+<tr><td>35&ndash;44</td><td class="good">+15%</td><td>Prime pool buying age. Established homeowners with families.</td></tr>
+<tr><td>45&ndash;54</td><td class="good">+20%</td><td>Peak earning years. Most likely to have budget and home equity.</td></tr>
+<tr><td>55&ndash;64</td><td class="good">+15%</td><td>Pre-retirement. "Enjoy the backyard" motivation. Strong buyers.</td></tr>
+<tr><td>65+</td><td>+5%</td><td>Retirement buyers. Moderate increase &mdash; some are downsizing, others investing in home.</td></tr>
+<tr><td>Unknown</td><td>0%</td><td>No data to act on. Keep at baseline.</td></tr>
+</tbody>
+</table>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:20px 0 12px">Household Income Bid Adjustments</h3>
+
+<table>
+<thead>
+<tr><th>HHI Tier</th><th>Recommended</th><th>Rationale</th></tr>
+</thead>
+<tbody>
+<tr><td>Top 10%</td><td class="good">+25%</td><td>Highest purchasing power. Pool is an easy decision at this income level.</td></tr>
+<tr><td>11&ndash;20%</td><td class="good">+15%</td><td>Strong purchasing power. Pool is affordable with financing.</td></tr>
+<tr><td>21&ndash;30%</td><td>+10%</td><td>Moderate purchasing power. Pool is feasible with planning.</td></tr>
+<tr><td>31&ndash;40%</td><td>+5%</td><td>Can afford with financing. Slight boost.</td></tr>
+<tr><td>41&ndash;50%</td><td>0%</td><td>Baseline. May require significant financing.</td></tr>
+<tr><td>Lower 50%</td><td class="warn">-15%</td><td>$35K+ pool is a stretch. Reduce to shift budget toward higher HHI tiers.</td></tr>
+<tr><td>Unknown</td><td>0%</td><td>No data to act on. Keep at baseline.</td></tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 17: PRE-LAUNCH CHECKLIST -->
+<!-- ============================================ -->
+
+<section id="s17">
+<div class="section-header"><h2>17. Pre-Launch Checklist</h2></div>
+<div class="section-body">
+
+<div class="checklist">
+
+<h3>P1 Critical &mdash; Fix Immediately</h3>
+<label><input type="checkbox"> Remove "Florida Fiberglass Experts" headline from Fiberglass Pools General</label>
+<label><input type="checkbox"> Fix "Ger Your Free Estimate" typo &rarr; "Get Your Free Estimate"</label>
+<label><input type="checkbox"> Add display paths to all RSAs (path1 + path2 per ad group)</label>
+<label><input type="checkbox"> Add all 8 sitelinks with description lines (Section 10)</label>
+<label><input type="checkbox"> Add all 12 callouts (Section 11)</label>
+<label><input type="checkbox"> Add both structured snippet sets &mdash; Models + Amenities (Section 12)</label>
+<label><input type="checkbox"> Upload customer assets &mdash; business name, logo (square + landscape), 3&ndash;5 marketing images</label>
+
+<h3>Campaign Rebuild</h3>
+<label><input type="checkbox"> Create new campaign: "Leisure Pools Waco" with $48/day budget</label>
+<label><input type="checkbox"> Set bid strategy: Maximize Clicks, CPC cap $15</label>
+<label><input type="checkbox"> Set network: Google Search only (Search Partners OFF, Display OFF)</label>
+<label><input type="checkbox"> Set location targeting: Waco DMA, Presence only</label>
+<label><input type="checkbox"> Create AG1: Leisure Pools Waco &mdash; paste 15 headlines + 4 descriptions</label>
+<label><input type="checkbox"> Pin AG1 H1: "Pool Builders in Waco TX" &rarr; Headline Position 1</label>
+<label><input type="checkbox"> Pin AG1 H2: "Pools Starting at $35K" &rarr; Headline Position 2</label>
+<label><input type="checkbox"> Set AG1 paths: Pool-Builders / Waco-TX</label>
+<label><input type="checkbox"> Create AG2: Fiberglass Pools Waco &mdash; paste 15 headlines + 4 descriptions</label>
+<label><input type="checkbox"> Pin AG2 H1: "Fiberglass Pools in Waco" &rarr; Headline Position 1</label>
+<label><input type="checkbox"> Pin AG2 H2: "Pools Starting at $35K" &rarr; Headline Position 2</label>
+<label><input type="checkbox"> Set AG2 paths: Fiberglass-Pool / Waco</label>
+<label><input type="checkbox"> Create AG3: Pool Cost &amp; Pricing &mdash; paste 15 headlines + 4 descriptions</label>
+<label><input type="checkbox"> Pin AG3 H1: "Pool Prices in Waco TX" &rarr; Headline Position 1</label>
+<label><input type="checkbox"> Pin AG3 H2: "Pools Starting at $35K" &rarr; Headline Position 2</label>
+<label><input type="checkbox"> Set AG3 paths: Pool-Prices / Waco-TX</label>
+<label><input type="checkbox"> Migrate existing negative keyword list to new campaign</label>
+<label><input type="checkbox"> Add 13 recommended new negatives (Section 9)</label>
+
+<h3>Audience &amp; Bidding Layers</h3>
+<label><input type="checkbox"> Add In-Market audiences (Observation mode): Swimming Pools +30%, Home Improvement +15%, Landscaping +10%, Home &amp; Garden +10%</label>
+<label><input type="checkbox"> Add Life Events audiences: Recently Purchased Home +25%, Recently Moved +15%</label>
+<label><input type="checkbox"> Add Affinity audiences: Home &amp; Garden +10%, Outdoor +5%, Luxury Shoppers +15%</label>
+<label><input type="checkbox"> Create Custom Intent audience: "Pool Buyers - Waco TX" +20%</label>
+<label><input type="checkbox"> Add audience exclusions: Pool Maintenance, Real Estate Rentals</label>
+<label><input type="checkbox"> Set device bid adjustments: Desktop -25%, Tablet -30%</label>
+<label><input type="checkbox"> Set age bid adjustments: 18&ndash;24 -40%, 35&ndash;44 +15%, 45&ndash;54 +20%, 55&ndash;64 +15%, 65+ +5%</label>
+<label><input type="checkbox"> Set HHI bid adjustments: Top 10% +25%, 11&ndash;20% +15%, 21&ndash;30% +10%, 31&ndash;40% +5%, Lower 50% -15%</label>
+
+<h3>Call Extension</h3>
+<label><input type="checkbox"> Obtain dealer phone number</label>
+<label><input type="checkbox"> Add call extension with call reporting ON, 60-second conversion tracking</label>
+<label><input type="checkbox"> Set call schedule to business hours only</label>
+
+<h3>Post-Launch</h3>
+<label><input type="checkbox"> Pause old campaigns (Pool Builder / Contractor + Fiberglass Pools) after new campaign is live</label>
+<label><input type="checkbox"> Monitor Cost/Pricing ad group closely &mdash; flag to dealer if 0 conversions continue after 2 weeks</label>
+<label><input type="checkbox"> Verify "backyardboyz" negative is not blocking converting traffic</label>
+<label><input type="checkbox"> Check APPROVED_LIMITED status on new ads after 48 hours</label>
+<label><input type="checkbox"> Review search terms after 7 days &mdash; add new negatives as needed</label>
+
+</div>
+
+</div>
+</section>
+
+</div>
+
+<footer>
+  Leisure Pools Waco &mdash; Audit &amp; Campaign Rebuild &nbsp;&middot;&nbsp; Generated 2026-03-16 &nbsp;&middot;&nbsp; Explore Industries &nbsp;&middot;&nbsp; Account 615-393-4758
+</footer>
+
+</body>
+</html>

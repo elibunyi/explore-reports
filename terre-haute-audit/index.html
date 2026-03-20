@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Aviva Pools Terre Haute</title>
+<style>
+:root {
+  --aviva-primary: #1a1a2e;
+  --aviva-accent: #e94560;
+  --aviva-gold: #f5a623;
+  --p1: #dc3545;
+  --p2: #fd7e14;
+  --p3: #ffc107;
+  --pass: #28a745;
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --text: #212529;
+  --muted: #6c757d;
+  --border: #dee2e6;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+header { background: var(--aviva-primary); color: white; padding: 30px; margin-bottom: 20px; border-radius: 8px; }
+header h1 { font-size: 1.8em; margin-bottom: 5px; }
+header .subtitle { color: #aaa; font-size: 0.95em; }
+.summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+.card { background: var(--card); border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,.08); border-top: 4px solid var(--border); }
+.card.p1 { border-top-color: var(--p1); }
+.card.p2 { border-top-color: var(--p2); }
+.card.p3 { border-top-color: var(--p3); }
+.card.pass { border-top-color: var(--pass); }
+.card.metric { border-top-color: var(--aviva-accent); }
+.card .number { font-size: 2.5em; font-weight: 700; }
+.card .label { font-size: 0.85em; color: var(--muted); margin-top: 5px; }
+.card.p1 .number { color: var(--p1); }
+.card.p2 .number { color: var(--p2); }
+.card.p3 .number { color: var(--p3); }
+.card.pass .number { color: var(--pass); }
+.card.metric .number { color: var(--aviva-accent); font-size: 1.8em; }
+section { background: var(--card); border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,.08); }
+section h2 { font-size: 1.3em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--bg); }
+.issue { padding: 12px 15px; margin-bottom: 10px; border-radius: 6px; border-left: 4px solid var(--border); }
+.issue.p1 { border-left-color: var(--p1); background: #fff5f5; }
+.issue.p2 { border-left-color: var(--p2); background: #fff8f0; }
+.issue.p3 { border-left-color: var(--p3); background: #fffef0; }
+.issue .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.75em; font-weight: 600; color: white; margin-right: 8px; }
+.issue .tag.p1 { background: var(--p1); }
+.issue .tag.p2 { background: var(--p2); }
+.issue .tag.p3 { background: var(--p3); }
+.issue .title { font-weight: 600; display: inline; }
+.issue .detail { margin-top: 6px; font-size: 0.9em; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9em; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--bg); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+tr:hover { background: #f0f4ff; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; font-weight: 500; }
+.badge-pass { background: #d4edda; color: #155724; }
+.badge-fail { background: #f8d7da; color: #721c24; }
+.badge-warn { background: #fff3cd; color: #856404; }
+.badge-info { background: #d1ecf1; color: #0c5460; }
+.badge-active { background: #d4edda; color: #155724; }
+.controls { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+.controls label { display: flex; align-items: center; gap: 5px; font-size: 0.9em; cursor: pointer; }
+.controls input[type="checkbox"] { cursor: pointer; }
+.filter-btn { padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px; background: white; cursor: pointer; font-size: 0.85em; }
+.filter-btn:hover { background: var(--bg); }
+.filter-btn.active { background: var(--aviva-primary); color: white; border-color: var(--aviva-primary); }
+.kw-table td:first-child { font-family: monospace; }
+.char-count { font-size: 0.8em; color: var(--muted); }
+.over-limit { color: var(--p1); font-weight: 600; }
+footer { text-align: center; padding: 20px; color: var(--muted); font-size: 0.85em; }
+.headline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.headline-item { padding: 8px 12px; background: var(--bg); border-radius: 4px; font-size: 0.9em; display: flex; justify-content: space-between; }
+.headline-item .cat { font-size: 0.75em; padding: 2px 6px; border-radius: 3px; font-weight: 500; }
+.cat-kw { background: #cce5ff; color: #004085; }
+.cat-desire { background: #d4edda; color: #155724; }
+.cat-diff { background: #e2d5f1; color: #3d1d72; }
+.cat-trust { background: #fff3cd; color: #856404; }
+.cat-cta { background: #f8d7da; color: #721c24; }
+.waste-highlight { background: #fff0f0; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Google Ads Audit Report</h1>
+  <div class="subtitle">Aviva Pools Terre Haute &mdash; Account 922-518-8086 &mdash; Generated March 10, 2026</div>
+</header>
+
+<!-- Summary Cards -->
+<div class="summary-cards">
+  <div class="card p1">
+    <div class="number">5</div>
+    <div class="label">P1 Critical Issues</div>
+  </div>
+  <div class="card p2">
+    <div class="number">7</div>
+    <div class="label">P2 High Issues</div>
+  </div>
+  <div class="card p3">
+    <div class="number">3</div>
+    <div class="label">P3 Moderate Issues</div>
+  </div>
+  <div class="card pass">
+    <div class="number">6</div>
+    <div class="label">Checks Passed</div>
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="card metric">
+    <div class="number">$1,297</div>
+    <div class="label">Total Spend (Jan–Mar 10)</div>
+  </div>
+  <div class="card metric">
+    <div class="number">8.06%</div>
+    <div class="label">Account CTR</div>
+  </div>
+  <div class="card metric">
+    <div class="number">3</div>
+    <div class="label">Total Conversions</div>
+  </div>
+  <div class="card metric">
+    <div class="number">$432</div>
+    <div class="label">Cost / Conversion</div>
+  </div>
+</div>
+
+<!-- P1 ISSUES -->
+<section>
+  <h2>Priority 1 — Critical (Fix Immediately)</h2>
+
+  <div class="issue p1">
+    <span class="tag p1">P1</span>
+    <span class="title">Only 1 Ad Group — Entire Account Is a Single Bucket</span>
+    <div class="detail">The entire campaign uses a single ad group ("Ad group 1") with 21 keywords covering fiberglass pools, pool builders, pool contractors, pool installation, inground pools, and brand terms. This means every search — from "aviva pools" to "pool designs" to "swimming pool contractors" — triggers the same RSA ad with the same headlines and descriptions. Google cannot match ad copy to search intent because there's no segmentation. This is the #1 structural problem in this account and the root cause of the Average ad strength, inflated CPC, and low conversion rate.</div>
+  </div>
+
+  <div class="issue p1">
+    <span class="tag p1">P1</span>
+    <span class="title">Ad Strength: Average (Should Be Good or Excellent)</span>
+    <div class="detail">The only RSA has "Average" ad strength. With only 1 ad group, Google cannot optimize headline/description combinations for different search intents. The headline category analysis below shows the distribution is credential-heavy and desire-light. This directly suppresses impression share and inflates CPC.</div>
+  </div>
+
+  <div class="issue p1">
+    <span class="tag p1">P1</span>
+    <span class="title">5 of 9 Sitelinks Missing Description Lines</span>
+    <div class="detail">"Financing Options", "Pool Designs", "Range Of Pool Colors", "All Quality", and "Automatic Pool Covers" have zero description lines. Sitelinks without both Description Line 1 and Description Line 2 are ineligible for the expanded sitelink format (15–20% higher CTR). More than half the sitelinks are underperforming silently.</div>
+  </div>
+
+  <div class="issue p1">
+    <span class="tag p1">P1</span>
+    <span class="title">Zero Negative Keywords — $236+ Wasted on Irrelevant Searches</span>
+    <div class="detail">The account has zero negative keywords. Search terms show paid clicks for "above ground pool" ($141+), "pool liner replacement" ($12.87), "concrete pool near me" ($9.32), "diy pool kits" ($5.69), "swim spa" terms, "pool service near me" ($6.89), "pool repair" terms, and competitor names like "sparkle pools" ($48.47 combined). Estimated waste: $236+ and climbing.</div>
+  </div>
+
+  <div class="issue p1">
+    <span class="tag p1">P1</span>
+    <span class="title">Path 1 and Path 2 Both Blank on RSA</span>
+    <div class="detail">The display URL shows as avivapoolsterrehaute.com with no path context. Both Path 1 and Path 2 are empty. This wastes valuable ad real estate that signals relevance to searchers. Should be set to "Fiberglass-Pools" / context-specific path per ad group.</div>
+  </div>
+</section>
+
+<!-- P2 ISSUES -->
+<section>
+  <h2>Priority 2 — High (Fix This Week)</h2>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">2 Duplicate Sitelink URL Destinations</span>
+    <div class="detail">"Discover Paradise at Home" and "Pool Designs" both go to /stylish-pool-designs/. "Range Of Pool Colors" and "Stunning Pool Colors" both go to /pool-colors/. Duplicate URLs reduce sitelink diversity and waste extension slots. Replace duplicates with unique landing pages (e.g., /about-us/, /gallery/, /contact/).</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">Only 5 Unique Callouts (Recommend 8+)</span>
+    <div class="detail">10 callout rows but only 5 unique: "Passionate Pool Builders", "Aviva Fiberglass Pools", "Flexible Financing", "Lifetime Warranty", "Custom Pool Designs". Need at least 3 more unique callouts. Missing service-specific and trust-building callouts.</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">Sitelink "All Quality" — Vague, Non-Descriptive Text</span>
+    <div class="detail">"All Quality" means nothing to a searcher scanning ads. Sitelink text should clearly communicate what the user will find. Rename to "Our Build Quality" or "Why Fiberglass?" and add description lines.</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">Headline Pinning Reduces Google's Optimization Flexibility</span>
+    <div class="detail">3 headlines pinned to Position 1, 2 pinned to Position 2. Excessive pinning locks combinations and is a common cause of Average ad strength. With proper ad group segmentation, the Position 1 pins for geo-relevance become unnecessary because each ad group can have geo-specific keywords.</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">$33/day Budget = $1,023/mo (Exceeds $1,000 Target)</span>
+    <div class="detail">Daily budget is set at $33.00, which works out to ~$1,023/month. At the current $8.11 avg CPC, this yields roughly 126 clicks/month. With the 1.88% conversion rate, that's ~2.4 conversions/month at $432 per conversion — very expensive for pool leads.</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">Maximum CPC Bid Limit Set at $250</span>
+    <div class="detail">Campaign-level CPC cap is $250. While Maximize Clicks is the correct bid strategy for this account age (3 total conversions), the cap should be $15–$20 for pool dealer campaigns, not $250. This gives Google essentially no ceiling, which explains the $10+ and $20+ CPCs seen in the search terms report.</div>
+  </div>
+
+  <div class="issue p2">
+    <span class="tag p2">P2</span>
+    <span class="title">No Structured Snippets</span>
+    <div class="detail">Zero structured snippets in the account. Should have at least "Models" (The Apex, The Triumph, The Dynasty, etc.) and "Amenities" (Tanning Ledge, Bench Seating, Deep End, etc.) snippets to increase ad real estate.</div>
+  </div>
+</section>
+
+<!-- P3 ISSUES -->
+<section>
+  <h2>Priority 3 — Moderate (Optimize When Possible)</h2>
+
+  <div class="issue p3">
+    <span class="tag p3">P3</span>
+    <span class="title">21 Keywords in Single Ad Group (High Density)</span>
+    <div class="detail">With proper segmentation into 3–4 ad groups, keywords should be 8–15 per group. 21 in one bucket means intent dilution across fiberglass, contractor, installation, brand, and design terms.</div>
+  </div>
+
+  <div class="issue p3">
+    <span class="tag p3">P3</span>
+    <span class="title">ZIP Code Targeting (47 ZIP Codes) — Consider Named Cities</span>
+    <div class="detail">Location targeting uses 47 individual ZIP codes across West Central Indiana. This works but named city/region targeting is easier to manage and audit. Verify all target ZIPs are within the dealer's actual service area — some show Reach: 0 (meaning no impressionable population in Google's estimate).</div>
+  </div>
+
+  <div class="issue p3">
+    <span class="tag p3">P3</span>
+    <span class="title">"Financing Options" and "Flexible Pool Financing" Sitelinks — Redundant Concept</span>
+    <div class="detail">Two sitelinks about financing pointing to different URLs (/pool-financing/ vs /financing/). Consolidate to one strong financing sitelink and use the freed slot for a more diverse destination.</div>
+  </div>
+</section>
+
+<!-- PASSED CHECKS -->
+<section>
+  <h2>Checks Passed ✓</h2>
+  <table>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>Networks: Google Search only</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>Bid Strategy: Maximize Clicks (correct for 3 conversions — needs 30+ before switching to smart bidding)</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>Broad Match Keywords: OFF at campaign level</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>All keywords are Phrase Match</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>15 headlines present in RSA (correct count)</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>4 descriptions present in RSA (correct count)</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>All headlines ≤30 characters</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>All descriptions ≤90 characters</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>Call extension present with dealer phone number</td></tr>
+    <tr><td><span class="badge badge-pass">PASS</span></td><td>No broad match keywords anywhere</td></tr>
+  </table>
+</section>
+
+<!-- HEADLINE ANALYSIS -->
+<section>
+  <h2>Headline Category Analysis — Ad Group 1 (Only Ad Group)</h2>
+  <p style="margin-bottom: 15px; color: var(--muted); font-size: 0.9em;">Each headline categorized into one of 5 buckets. Ideal distribution: 3–4 Keyword Anchor, 3–4 Desire/Aspiration, 3–4 Differentiator, 2–3 Trust/Credential, 2 CTA.</p>
+
+  <table>
+    <thead>
+      <tr><th>Headline</th><th>Chars</th><th>Pin</th><th>Category</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fiberglass Pool Installation</td><td>28</td><td>Pos 1</td><td><span class="cat cat-kw">Keyword Anchor</span></td></tr>
+      <tr><td>West Central Indiana</td><td>20</td><td>—</td><td><span class="cat cat-kw">Keyword Anchor</span></td></tr>
+      <tr><td>Terre Haute's Backyard Escapes</td><td>30</td><td>—</td><td><span class="cat cat-desire">Desire / Aspiration</span></td></tr>
+      <tr><td>Stunning Pool Designs</td><td>21</td><td>—</td><td><span class="cat cat-desire">Desire / Aspiration</span></td></tr>
+      <tr><td>Aviva Fiberglass Pools</td><td>22</td><td>—</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Premium Quality Inground Pools</td><td>30</td><td>—</td><td><span class="cat cat-diff">Differentiator</span></td></tr>
+      <tr><td>Trusted Pool Builders in IN</td><td>27</td><td>Pos 1</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Contact Us For A Free Quote</td><td>27</td><td>Pos 2</td><td><span class="cat cat-cta">CTA</span></td></tr>
+      <tr><td>Terre Haute Pool Experts</td><td>24</td><td>Pos 1</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Expert Pool Contractors</td><td>23</td><td>—</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Discover Paradise At Home</td><td>25</td><td>—</td><td><span class="cat cat-desire">Desire / Aspiration</span></td></tr>
+      <tr><td>Lifetime Warranties</td><td>19</td><td>—</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Unwind in Your Own Oasis</td><td>24</td><td>Pos 2</td><td><span class="cat cat-desire">Desire / Aspiration</span></td></tr>
+      <tr><td>"Your Vision, Our Expertise"</td><td>28</td><td>—</td><td><span class="cat cat-trust">Trust / Credential</span></td></tr>
+      <tr><td>Fiberglass. Durable. Beautiful</td><td>30</td><td>—</td><td><span class="cat cat-diff">Differentiator</span></td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 20px;">
+    <h3 style="font-size: 1.1em; margin-bottom: 10px;">Category Distribution</h3>
+    <table>
+      <thead><tr><th>Category</th><th>Count</th><th>Target</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td><span class="cat cat-kw">Keyword Anchor</span></td><td>2</td><td>3–4</td><td><span class="badge badge-warn">LOW</span></td></tr>
+        <tr><td><span class="cat cat-desire">Desire / Aspiration</span></td><td>4</td><td>3–4</td><td><span class="badge badge-pass">OK</span></td></tr>
+        <tr><td><span class="cat cat-diff">Differentiator / Benefit</span></td><td>2</td><td>3–4</td><td><span class="badge badge-warn">LOW</span></td></tr>
+        <tr><td><span class="cat cat-trust">Trust / Credential</span></td><td>6</td><td>2–3</td><td><span class="badge badge-fail">OVER (6 vs 2–3)</span></td></tr>
+        <tr><td><span class="cat cat-cta">CTA</span></td><td>1</td><td>2</td><td><span class="badge badge-warn">LOW</span></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top: 10px; font-size: 0.9em; color: var(--p1); font-weight: 600;">Root cause of Average ad strength: 6 trust/credential headlines (double the target) crowding out keyword anchors, differentiators, and CTAs.</p>
+  </div>
+</section>
+
+<!-- KEYWORDS TABLE -->
+<section>
+  <h2>Keywords — Ad Group 1 (21 Phrase Match)</h2>
+  <table class="kw-table">
+    <thead><tr><th>Keyword</th><th>Match Type</th><th>Quality Score</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>"swimming pool contractors"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool builders near me"</td><td>Phrase</td><td>5</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool installation"</td><td>Phrase</td><td>6</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"aviva pools"</td><td>Phrase</td><td>6</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"in ground pools"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool contractor"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool contractors near me"</td><td>Phrase</td><td>5</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool companies near me"</td><td>Phrase</td><td>4</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"inground pools"</td><td>Phrase</td><td>3</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool installation near me"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"swimming pool installers near me"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool construction companies"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"outdoor pool installation"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool designs"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool builder"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"swimming pool construction"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"prefab pools"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"fiberglass pools"</td><td>Phrase</td><td>7</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool companies"</td><td>Phrase</td><td>3</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"fiberglass pool builders"</td><td>Phrase</td><td>—</td><td><span class="badge badge-active">Active</span></td></tr>
+      <tr><td>"pool construction near me"</td><td>Phrase</td><td>5</td><td><span class="badge badge-active">Active</span></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px; font-size: 0.9em; color: var(--muted);">Quality Scores range from 3–7 where available. "inground pools" and "pool companies" at QS 3 = poor landing page / relevance match.</p>
+</section>
+
+<!-- SITELINKS TABLE -->
+<section>
+  <h2>Sitelinks (9 Unique)</h2>
+  <table>
+    <thead><tr><th>Sitelink Text</th><th>Chars</th><th>Desc Line 1</th><th>Desc Line 2</th><th>URL</th></tr></thead>
+    <tbody>
+      <tr><td>2026 Modern Pool Designs</td><td>24</td><td><span class="badge badge-pass">✓</span> Latest Brochure Inside</td><td><span class="badge badge-pass">✓</span> Inspiration Starts Here</td><td>/request-brochure/</td></tr>
+      <tr><td>Discover Paradise at Home</td><td>25</td><td><span class="badge badge-pass">✓</span> See Our Pool Collections</td><td><span class="badge badge-pass">✓</span> Find Your Perfect Style</td><td>/stylish-pool-designs/</td></tr>
+      <tr class="waste-highlight"><td>Financing Options</td><td>17</td><td><span class="badge badge-fail">BLANK</span></td><td><span class="badge badge-fail">BLANK</span></td><td>/pool-financing/</td></tr>
+      <tr><td>Flexible Pool Financing</td><td>23</td><td><span class="badge badge-pass">✓</span> Affordable Monthly Plans</td><td><span class="badge badge-pass">✓</span> Fit Your Budget With Ease</td><td>/financing/</td></tr>
+      <tr class="waste-highlight"><td>Pool Designs</td><td>12</td><td><span class="badge badge-fail">BLANK</span></td><td><span class="badge badge-fail">BLANK</span></td><td>/stylish-pool-designs/ <span class="badge badge-warn">DUPE URL</span></td></tr>
+      <tr class="waste-highlight"><td>Range Of Pool Colors</td><td>20</td><td><span class="badge badge-fail">BLANK</span></td><td><span class="badge badge-fail">BLANK</span></td><td>/pool-colors/</td></tr>
+      <tr class="waste-highlight"><td>All Quality</td><td>11</td><td><span class="badge badge-fail">BLANK</span></td><td><span class="badge badge-fail">BLANK</span></td><td>/quality/</td></tr>
+      <tr><td>Stunning Pool Colors</td><td>20</td><td><span class="badge badge-pass">✓</span> Bring Your Dream To Life</td><td><span class="badge badge-pass">✓</span> "Vibrant, Lasting Finishes"</td><td>/pool-colors/ <span class="badge badge-warn">DUPE URL</span></td></tr>
+      <tr class="waste-highlight"><td>Automatic Pool Covers</td><td>21</td><td><span class="badge badge-fail">BLANK</span></td><td><span class="badge badge-fail">BLANK</span></td><td>/automatic-pool-covers/</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SEARCH TERMS WASTE -->
+<section>
+  <h2>Search Terms — Top Waste Categories</h2>
+  <p style="margin-bottom: 15px; color: var(--muted); font-size: 0.9em;">525 search terms analyzed from Jan 1 – Mar 10, 2026. $1,297 total spend, 3 conversions. Below are the biggest waste buckets that need negative keywords immediately.</p>
+
+  <table>
+    <thead><tr><th>Waste Category</th><th>Spend</th><th>Clicks</th><th>Conversions</th><th>Recommended Negative</th></tr></thead>
+    <tbody>
+      <tr class="waste-highlight"><td>"Above ground" terms</td><td>$141+</td><td>15+</td><td>0</td><td>"above ground" — Campaign Negative Phrase</td></tr>
+      <tr class="waste-highlight"><td>Competitor names (Sparkle Pools)</td><td>$48.47</td><td>4</td><td>0</td><td>"sparkle pools" — Campaign Negative Phrase</td></tr>
+      <tr class="waste-highlight"><td>"Inground pool kits/kit"</td><td>$31.84</td><td>3</td><td>1*</td><td>"pool kit" — Campaign Negative Phrase (review)</td></tr>
+      <tr class="waste-highlight"><td>Competitor names (Aquasport, Elizabeth)</td><td>$29.70</td><td>2</td><td>0</td><td>Each as Campaign Negative Exact</td></tr>
+      <tr class="waste-highlight"><td>"Pool liner" / replacement terms</td><td>$12.87</td><td>1</td><td>0</td><td>"pool liner" — Campaign Negative Phrase</td></tr>
+      <tr><td>"Concrete pool" terms</td><td>$9.32</td><td>1</td><td>0</td><td>"concrete pool" — Campaign Negative Phrase</td></tr>
+      <tr><td>"Pool service" / repair</td><td>$6.89</td><td>1</td><td>0</td><td>"pool service", "pool repair" — Neg Phrase</td></tr>
+      <tr><td>"DIY pool" terms</td><td>$5.69</td><td>1</td><td>0</td><td>"diy" — Campaign Negative Broad</td></tr>
+      <tr><td>"Hot tub" terms</td><td>$6.26</td><td>1</td><td>0</td><td>"hot tub" — Campaign Negative Phrase</td></tr>
+      <tr><td>"Swim spa" terms</td><td>$0</td><td>0</td><td>0</td><td>"swim spa" — Campaign Negative Phrase (preemptive)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 10px; font-size: 0.9em;"><strong>Total identifiable waste: $236+ out of $1,297 (18%+ of total spend)</strong></p>
+  <p style="font-size: 0.85em; color: var(--muted);">*The "inground pool kit" conversion should be verified — this searcher was looking for a DIY kit, not a professionally installed fiberglass pool. Likely a low-quality lead.</p>
+</section>
+
+<!-- PERFORMANCE METRICS -->
+<section>
+  <h2>Performance Metrics — Jan 1 to Mar 10, 2026</h2>
+  <table>
+    <thead><tr><th>Month</th><th>Spend</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Avg CPC</th><th>Conversions</th><th>Conv Rate</th><th>Cost/Conv</th></tr></thead>
+    <tbody>
+      <tr><td>January 2026</td><td>$516.70</td><td>49</td><td>631</td><td>7.77%</td><td>$10.54</td><td>2</td><td>4.08%</td><td>$258.35</td></tr>
+      <tr><td>February 2026</td><td>$516.55</td><td>75</td><td>959</td><td>7.82%</td><td>$6.89</td><td>0</td><td>0.00%</td><td>—</td></tr>
+      <tr><td>March (1–10)</td><td>$264.12</td><td>36</td><td>394</td><td>9.14%</td><td>$7.34</td><td>1</td><td>2.78%</td><td>$264.12</td></tr>
+      <tr style="font-weight:600; background: var(--bg);"><td>Total</td><td>$1,297.36</td><td>160</td><td>1,984</td><td>8.06%</td><td>$8.11</td><td>3</td><td>1.88%</td><td>$432.45</td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 15px;">
+    <h3 style="font-size: 1em; margin-bottom: 8px;">Key Observations</h3>
+    <div class="issue p2">
+      <span class="tag p2">P2</span>
+      <span class="title">$432 cost per conversion is 4–8x higher than pool dealer benchmark ($50–$100)</span>
+      <div class="detail">At $1,000/month budget, this account should be generating 10–20 leads, not 1–3. The combination of no ad group segmentation, no negative keywords, and $250 CPC cap is bleeding budget.</div>
+    </div>
+    <div class="issue p2">
+      <span class="tag p2">P2</span>
+      <span class="title">February: $516.55 spent, zero conversions</span>
+      <div class="detail">An entire month of spend with no conversions indicates fundamental targeting or landing page issues. 75 clicks with 0 conversions = something is broken in the funnel.</div>
+    </div>
+    <div class="issue p3">
+      <span class="tag p3">P3</span>
+      <span class="title">CTR is strong at 8.06% — not an ad copy problem at the click level</span>
+      <div class="detail">People are clicking the ads. They're just the wrong people (above ground, DIY, service, competitors) or the landing page isn't converting them. The structural issues need fixing first.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Explore Industries &mdash; Aviva Pools Terre Haute Google Ads Audit &mdash; March 10, 2026
+</footer>
+
+</div>
+</body>
+</html>

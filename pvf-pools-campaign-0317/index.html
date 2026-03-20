@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PVF Pools Western MA — Campaign Build Brief</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6f9;color:#1a1a2e;font-size:14px}
+.header{background:#1B3A5C;color:#fff;padding:28px 40px}
+.header h1{font-size:22px;font-weight:700;margin-bottom:6px}
+.header .sub{font-size:13px;color:#a8c8e8}
+.header .meta{margin-top:12px;display:flex;gap:20px;flex-wrap:wrap}
+.header .meta span{background:rgba(255,255,255,.12);padding:4px 12px;border-radius:4px;font-size:12px}
+.header .meta span strong{color:#7ec8e3}
+.container{max-width:1100px;margin:0 auto;padding:32px 24px}
+.section{background:#fff;border-radius:8px;margin-bottom:24px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.section-header{background:#1B3A5C;color:#fff;padding:14px 20px;font-size:15px;font-weight:700}
+.section-body{padding:20px}
+.ag-header{background:#2E86C1;color:#fff;padding:10px 20px;font-size:14px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#eaf2f8;color:#1B3A5C;font-weight:700;padding:8px 12px;text-align:left;border-bottom:2px solid #d0e4f0}
+td{padding:7px 12px;border-bottom:1px solid #eee;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fafcfe}
+.copy-box{background:#f8f9fa;border:1px solid #dee2e6;border-radius:4px;padding:10px 14px;font-family:'Courier New',monospace;font-size:12px;cursor:pointer;user-select:all;margin-bottom:6px;line-height:1.6}
+.copy-box:hover{background:#e8f4f8;border-color:#2E86C1}
+.field-label{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;margin-top:10px}
+.field-label:first-child{margin-top:0}
+.rsa-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:768px){.rsa-grid{grid-template-columns:1fr}}
+.rsa-col h4{font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.char-count{font-size:10px;color:#999;float:right}
+.tag-green{background:#d5f5e3;color:#1e8449;font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px}
+.tag-orange{background:#fef3cd;color:#856404;font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:768px){.info-grid{grid-template-columns:1fr}}
+.info-card{background:#f8f9fa;border-radius:6px;padding:14px;border-left:3px solid #2E86C1}
+.info-card .label{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.info-card .value{font-size:14px;font-weight:700;color:#1B3A5C}
+.info-card .note{font-size:11px;color:#888;margin-top:3px}
+.neg-bulk{background:#fff8f0;border:1px solid #f0c070;border-radius:4px;padding:10px 14px;font-family:'Courier New',monospace;font-size:12px;cursor:pointer;user-select:all;line-height:1.8}
+.neg-bulk:hover{background:#fef3e0}
+.loc-bulk{background:#f0f9ff;border:1px solid #90cdf4;border-radius:4px;padding:10px 14px;font-family:'Courier New',monospace;font-size:12px;cursor:pointer;user-select:all;line-height:1.8}
+.loc-bulk:hover{background:#e0f2fe}
+.kw-bulk{background:#f0fdf4;border:1px solid #86efac;border-radius:4px;padding:10px 14px;font-family:'Courier New',monospace;font-size:12px;cursor:pointer;user-select:all;line-height:1.8}
+.kw-bulk:hover{background:#dcfce7}
+.aud-table th{background:#eaf2f8;color:#1B3A5C;font-weight:700;padding:8px 12px;text-align:left}
+.aud-obs{color:#1e8449;font-weight:700;font-size:11px}
+.aud-exc{color:#c0392b;font-weight:700;font-size:11px}
+.checklist{list-style:none}
+.checklist li{padding:6px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:8px;font-size:13px}
+.checklist li:last-child{border-bottom:none}
+.check-box{width:16px;height:16px;border:2px solid #999;border-radius:3px;flex-shrink:0;margin-top:1px}
+.divider{border:none;border-top:1px solid #e8e8e8;margin:16px 0}
+.ag-block{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:20px;overflow:hidden}
+.ag-block:last-child{margin-bottom:0}
+.ag-inner{padding:16px}
+.note-box{background:#eaf2f8;border-left:3px solid #2E86C1;padding:10px 14px;border-radius:0 4px 4px 0;font-size:13px;margin-bottom:12px}
+.warn{background:#fef9e7;border-left:3px solid #f39c12;padding:10px 14px;border-radius:0 4px 4px 0;font-size:13px;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>Pioneer Valley Fiberglass Pools — Campaign Build Brief</h1>
+<div class="sub">Leisure Pools Dealer · Holyoke, MA · Western Massachusetts</div>
+<div class="meta">
+<span><strong>Budget:</strong> $2,000/mo ($66.67/day)</span>
+<span><strong>Bid Strategy:</strong> Maximize Clicks · $12 CPC cap</span>
+<span><strong>Campaign Type:</strong> Search only</span>
+<span><strong>Landing Page:</strong> pvfpools.com/contacts/</span>
+<span><strong>Date:</strong> 2026-03-17</span>
+</div>
+</div>
+
+<div class="container">
+
+<!-- 1. CAMPAIGN SETTINGS -->
+<div class="section">
+<div class="section-header">1 · Campaign Settings</div>
+<div class="section-body">
+<div class="note-box"><strong>New campaign — zero conversion history.</strong> Start on Maximize Clicks with $12 CPC cap. Switch to Maximize Conversions after 30+ conversions recorded. Western MA is a smaller, less competitive market than metro areas — $12 cap controls cost while building data.</div>
+<div class="info-grid">
+<div class="info-card"><div class="label">Campaign Name</div><div class="value">Leisure Pools Western MA</div><div class="note">Single campaign, 3 ad groups</div></div>
+<div class="info-card"><div class="label">Daily Budget</div><div class="value">$66.67/day</div><div class="note">$2,000/month</div></div>
+<div class="info-card"><div class="label">Bid Strategy</div><div class="value">Maximize Clicks</div><div class="note">CPC cap: $12.00 — required</div></div>
+<div class="info-card"><div class="label">Networks</div><div class="value">Google Search ONLY</div><div class="note">Uncheck Search Partners + Display</div></div>
+<div class="info-card"><div class="label">Locations</div><div class="value">Western MA — 15 cities</div><div class="note">See location list below</div></div>
+<div class="info-card"><div class="label">Language</div><div class="value">English</div><div class="note">—</div></div>
+<div class="info-card"><div class="label">Ad Rotation</div><div class="value">Optimize</div><div class="note">Best performing ads shown more</div></div>
+<div class="info-card"><div class="label">Ad Schedule</div><div class="value">All days, all hours</div><div class="note">Adjust after 60 days of data</div></div>
+<div class="info-card"><div class="label">Status at Launch</div><div class="value">Paused</div><div class="note">Unpause only after full review</div></div>
+</div>
+<hr class="divider">
+<div class="field-label">Location Targets — Bulk</div>
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="loc-bulk">Springfield, Massachusetts
+Holyoke, Massachusetts
+Chicopee, Massachusetts
+Westfield, Massachusetts
+Northampton, Massachusetts
+Amherst, Massachusetts
+Agawam, Massachusetts
+West Springfield, Massachusetts
+Easthampton, Massachusetts
+South Hadley, Massachusetts
+Ludlow, Massachusetts
+Palmer, Massachusetts
+Longmeadow, Massachusetts
+East Longmeadow, Massachusetts
+Wilbraham, Massachusetts</div>
+</div>
+</div>
+
+<!-- 2. DEVICE & DEMOGRAPHIC BID ADJUSTMENTS -->
+<div class="section">
+<div class="section-header">2 · Device &amp; Demographic Bid Adjustments</div>
+<div class="section-body">
+<div class="note-box">Starting bid adjustments based on industry benchmarks for pool dealer campaigns. Adjust after 60 days of account-specific data.</div>
+<table>
+<tr><th>Device</th><th>Bid Adjustment</th><th>Rationale</th></tr>
+<tr><td>Mobile</td><td style="font-weight:700;color:#e67e22">+10%</td><td>Majority of pool searches happen on mobile — efficient CPC in most markets</td></tr>
+<tr><td>Desktop</td><td>-10%</td><td>Higher CPC, but more deliberate — reduce slightly to control cost</td></tr>
+<tr><td>Tablet</td><td style="font-weight:700;color:#c0392b">-30%</td><td>Lowest conversion rate across pool dealer accounts</td></tr>
+</table>
+<hr class="divider">
+<div class="field-label">Age Bid Adjustments</div>
+<table>
+<tr><th>Age</th><th>Adjustment</th><th>Rationale</th></tr>
+<tr><td>18–24</td><td style="font-weight:700;color:#c0392b">-50%</td><td>Low purchase intent for $50–100K pool install</td></tr>
+<tr><td>25–34</td><td>-20%</td><td>Early homeowners, low conversion rate for pools</td></tr>
+<tr><td>35–44</td><td style="font-weight:700;color:#e67e22">+15%</td><td>Peak family + homeowner stage</td></tr>
+<tr><td>45–54</td><td style="font-weight:700;color:#e67e22">+20%</td><td>Highest HHI bracket, primary pool buyer demo</td></tr>
+<tr><td>55–64</td><td>+10%</td><td>Strong purchase intent, frequently cash buyers</td></tr>
+<tr><td>65+</td><td>-10%</td><td>Some interest but lower conversion rate</td></tr>
+</table>
+<hr class="divider">
+<div class="field-label">Household Income Bid Adjustments</div>
+<table>
+<tr><th>HHI Bracket</th><th>Adjustment</th><th>Rationale</th></tr>
+<tr><td>Top 10%</td><td style="font-weight:700;color:#e67e22">+30%</td><td>Highest purchasing power for discretionary pool install</td></tr>
+<tr><td>11–20%</td><td>+20%</td><td>Strong disposable income</td></tr>
+<tr><td>21–30%</td><td>+10%</td><td>Upper-middle — qualified with financing</td></tr>
+<tr><td>31–40%</td><td>0%</td><td>Neutral — financing critical at this level</td></tr>
+<tr><td>41–50%</td><td>-20%</td><td>Budget-constrained, lower close rate</td></tr>
+<tr><td>Lower 50%</td><td>-40%</td><td>Unlikely to convert at $50K+ pool cost</td></tr>
+</table>
+</div>
+</div>
+
+<!-- 3. AUDIENCE SEGMENTS -->
+<div class="section">
+<div class="section-header">3 · Audience Segments</div>
+<div class="section-body">
+<div class="note-box">All audiences set to <strong>Observation</strong> mode — NOT Targeting. Observation collects data and applies bid adjustments without restricting reach.</div>
+<table class="aud-table">
+<tr><th>Audience</th><th>Type</th><th>Mode</th><th>Bid Adj</th><th>Rationale</th></tr>
+<tr><td><strong>In-Market: Swimming Pools &amp; Spas</strong></td><td>In-Market</td><td><span class="aud-obs">OBSERVATION</span></td><td>+30%</td><td>Actively researching pools — highest intent</td></tr>
+<tr><td><strong>In-Market: Outdoor Living</strong></td><td>In-Market</td><td><span class="aud-obs">OBSERVATION</span></td><td>+15%</td><td>Backyard improvement intent overlaps with pool consideration</td></tr>
+<tr><td><strong>In-Market: Home Buyers</strong></td><td>In-Market</td><td><span class="aud-obs">OBSERVATION</span></td><td>+20%</td><td>New homeowners frequently buy pools within first 2 years</td></tr>
+<tr><td><strong>In-Market: Home Improvement</strong></td><td>In-Market</td><td><span class="aud-obs">OBSERVATION</span></td><td>+10%</td><td>Active home improvement projects — secondary signal</td></tr>
+<tr><td><strong>In-Market: Home Decor &amp; Renovation</strong></td><td>In-Market</td><td><span class="aud-obs">OBSERVATION</span></td><td>+10%</td><td>Renovation intent correlates with outdoor project stage</td></tr>
+<tr><td><strong>Affinity: Homeowners</strong></td><td>Affinity</td><td><span class="aud-obs">OBSERVATION</span></td><td>+15%</td><td>Non-homeowners won't buy an inground pool</td></tr>
+<tr><td><strong>Life Event: Recently Moved</strong></td><td>Life Event</td><td><span class="aud-obs">OBSERVATION</span></td><td>+20%</td><td>Post-move is a primary trigger for backyard investment</td></tr>
+<tr><td><strong>Custom Intent: Pool Installation Research</strong></td><td>Custom Intent</td><td><span class="aud-obs">OBSERVATION</span></td><td>+25%</td><td>Build with URL seeds from fiberglass pool cost/comparison pages</td></tr>
+<tr><td><strong>In-Market: Pool &amp; Hot Tub Supplies</strong></td><td>In-Market</td><td><span class="aud-exc">EXCLUDE</span></td><td>—</td><td>Pool supply shoppers already own a pool — zero install intent</td></tr>
+<tr><td><strong>In-Market: Pool Accessories</strong></td><td>In-Market</td><td><span class="aud-exc">EXCLUDE</span></td><td>—</td><td>Accessory buyers are existing pool owners, not buyers</td></tr>
+</table>
+<hr class="divider">
+<div class="note-box"><strong>Custom Intent Build:</strong> Audience Manager → Custom Segments → Create → Custom Intent<br>
+Name: <strong>Pool Installation Research — Western MA</strong><br>
+URL seeds: fiberglass pool cost comparison pages, Leisure Pools model pages, competitor dealer pages<br>
+Keyword signals: "fiberglass pool installer", "inground pool company western ma", "pool builder near me", "fiberglass pool cost massachusetts"</div>
+</div>
+</div>
+
+<!-- 4. CAMPAIGN NEGATIVES -->
+<div class="section">
+<div class="section-header">4 · Campaign-Level Negative Keywords</div>
+<div class="section-body">
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="neg-bulk">[DIY pool]
+[above ground pool]
+[above ground pool kit]
+[inflatable pool]
+[pool toys]
+[pool floats]
+[pool chemicals]
+[pool cleaning service]
+[pool repair near me]
+[pool maintenance]
+[pool cleaning company]
+[pool resurfacing]
+[pool store near me]
+[pool supplies]
+[portable pool]
+[stock tank pool]
+[pool table]
+[hot tub]
+[jacuzzi]
+[swim spa]
+[swimming lessons]
+[pool liner replacement]
+[pool liner installation]
+[pool opening service]
+[pool closing service]
+"pool cleaning"
+"pool maintenance"
+"pool repair"
+"above ground pool"
+"pool supplies"
+"pool chemicals"
+"pool store"
+"pool equipment"
+"DIY pool"
+"hot tub"
+"swim spa"
+"jacuzzi"
+"pool table"
+"swimming lessons"
+"pool liner"
+"pool cover replacement"</div>
+</div>
+</div>
+
+<!-- 5. AD GROUP STRUCTURE -->
+<div class="section">
+<div class="section-header">5 · Ad Group Structure</div>
+<div class="section-body">
+<div class="note-box"><strong>3 ad groups at $66.67/day</strong> — tight focus, sufficient budget per group. Springfield (155K pop) is the only city over 50K but doesn't warrant a standalone ad group at this budget level. Geo-modified keywords are included in the main groups instead.</div>
+<table>
+<tr><th>Ad Group</th><th>Intent</th><th>Keywords</th></tr>
+<tr><td><strong>Fiberglass Pool Installation</strong></td><td>Bottom-funnel: fiberglass-specific shoppers</td><td>12 keywords</td></tr>
+<tr><td><strong>Pool Builder Near Me</strong></td><td>Ultra high-intent: "near me" + geo searchers</td><td>12 keywords</td></tr>
+<tr><td><strong>Fiberglass Pool Cost &amp; Pricing</strong></td><td>Mid-funnel: price research and comparison</td><td>12 keywords</td></tr>
+</table>
+</div>
+</div>
+
+<!-- AG1: FIBERGLASS POOL INSTALLATION -->
+<div class="section">
+<div class="ag-header">Ad Group 1: Fiberglass Pool Installation</div>
+<div class="section-body">
+
+<div class="field-label">Keywords — Bulk Paste</div>
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="kw-bulk">[fiberglass pool installation]
+"fiberglass pool installation"
+[fiberglass pool installer]
+"fiberglass pool installer"
+[fiberglass inground pool]
+"fiberglass inground pool"
+[fiberglass pool companies]
+"fiberglass pool companies"
+[fiberglass pool dealer]
+"fiberglass pool dealer"
+[fiberglass pool installation near me]
+"fiberglass pool installation near me"</div>
+
+<hr class="divider">
+<div class="field-label">Keyword Volume Reference (Massachusetts — not national)</div>
+<table>
+<tr><th>Keyword</th><th>MA Monthly Vol</th><th>Competition</th><th>Est. CPC Range</th></tr>
+<tr><td>fiberglass pool installer</td><td style="font-weight:700;color:#e67e22">590</td><td>Low</td><td>$2.29–$9.44</td></tr>
+<tr><td>fiberglass pool installation near me</td><td>20</td><td>Low</td><td>N/A</td></tr>
+<tr><td>fiberglass pool companies</td><td>~50</td><td>High</td><td>$2.40–$16.82</td></tr>
+</table>
+<div class="note-box" style="margin-top:8px">Volumes are Massachusetts state-level. Western MA is ~10% of MA population (Springfield metro ~700K / MA ~7M). "Near me" terms localize automatically to the searcher, so only people in your geo targets will trigger ads.</div>
+
+<hr class="divider">
+<div class="field-label">RSA — Fiberglass Pool Installation</div>
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/contacts/</div>
+<div class="field-label">Path 1 <span class="char-count">15 chars</span></div>
+<div class="copy-box">Fiberglass-Pool</div>
+<div class="field-label">Path 2 <span class="char-count">12 chars</span></div>
+<div class="copy-box">Installation</div>
+
+<hr class="divider">
+<div class="rsa-grid">
+<div class="rsa-col">
+<h4>Headlines (1–15) · 30 char max</h4>
+
+<div class="field-label">1 · Keyword Anchor <span class="char-count">28 chars</span></div>
+<div class="copy-box">Fiberglass Pool Installation</div>
+
+<div class="field-label">2 · Keyword Anchor <span class="char-count">25 chars</span></div>
+<div class="copy-box">Fiberglass Pool Installer</div>
+
+<div class="field-label">3 · Keyword Anchor <span class="char-count">27 chars</span></div>
+<div class="copy-box">Fiberglass Pools Western MA</div>
+
+<div class="field-label">4 · Keyword Anchor <span class="char-count">26 chars</span></div>
+<div class="copy-box">Leisure Pools Dealer in MA</div>
+
+<div class="field-label">5 · Desire <span class="char-count">26 chars</span></div>
+<div class="copy-box">Your Dream Backyard Awaits</div>
+
+<div class="field-label">6 · Desire <span class="char-count">26 chars</span></div>
+<div class="copy-box">Start Swimming This Summer</div>
+
+<div class="field-label">7 · Desire <span class="char-count">29 chars</span></div>
+<div class="copy-box">The Pool Your Family Deserves</div>
+
+<div class="field-label">8 · Desire <span class="char-count">24 chars</span></div>
+<div class="copy-box">Pool Ownership Made Easy</div>
+</div>
+<div class="rsa-col">
+<h4>&nbsp;</h4>
+
+<div class="field-label">9 · Differentiator <span class="char-count">27 chars</span></div>
+<div class="copy-box">Installed in Just 3-10 Days</div>
+
+<div class="field-label">10 · Differentiator <span class="char-count">21 chars</span></div>
+<div class="copy-box">No Resurfacing. Ever.</div>
+
+<div class="field-label">11 · Differentiator <span class="char-count">24 chars</span></div>
+<div class="copy-box">Lower Cost Than Concrete</div>
+
+<div class="field-label">12 · Trust <span class="char-count">29 chars</span></div>
+<div class="copy-box">2019 Pool Builder of the Year</div>
+
+<div class="field-label">13 · Trust <span class="char-count">24 chars</span></div>
+<div class="copy-box">20+ Years Building Pools</div>
+
+<div class="field-label">14 · CTA <span class="char-count">27 chars</span></div>
+<div class="copy-box">Get a Free Pool Quote Today</div>
+
+<div class="field-label">15 · CTA <span class="char-count">23 chars</span></div>
+<div class="copy-box">Request a Free Estimate</div>
+</div>
+</div>
+
+<hr class="divider">
+<h4 style="font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Descriptions (1–4) · 90 char max</h4>
+
+<div class="field-label">Description 1 <span class="char-count">80 chars</span></div>
+<div class="copy-box">Fiberglass pool installation in 3–10 days. Lowest cost of ownership. Western MA.</div>
+
+<div class="field-label">Description 2 <span class="char-count">79 chars</span></div>
+<div class="copy-box">No resurfacing. Faster install than concrete. Lower long-term cost. Free quote.</div>
+
+<div class="field-label">Description 3 <span class="char-count">83 chars</span></div>
+<div class="copy-box">2019 National Pool Builder of the Year. Leisure Pools dealer. 20+ years experience.</div>
+
+<div class="field-label">Description 4 <span class="char-count">83 chars</span></div>
+<div class="copy-box">Ready for a backyard pool? Call Pioneer Valley Fiberglass Pools for a free consult.</div>
+
+</div>
+</div>
+
+<!-- AG2: POOL BUILDER NEAR ME -->
+<div class="section">
+<div class="ag-header">Ad Group 2: Pool Builder Near Me</div>
+<div class="section-body">
+
+<div class="field-label">Keywords — Bulk Paste</div>
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="kw-bulk">[pool builder near me]
+"pool builder near me"
+[pool companies near me]
+"pool companies near me"
+[pool contractors near me]
+"pool contractors near me"
+[pool installation near me]
+"pool installation near me"
+[inground pool builder near me]
+"inground pool builder near me"
+[fiberglass pool installer near me]
+"fiberglass pool installer near me"</div>
+
+<hr class="divider">
+<div class="field-label">Keyword Volume Reference (Massachusetts — not national)</div>
+<table>
+<tr><th>Keyword</th><th>MA Monthly Vol</th><th>Competition</th><th>Est. CPC Range</th></tr>
+<tr><td>pool contractors near me</td><td style="font-weight:700;color:#e67e22">2,900</td><td>Low</td><td>$6.33–$30.18</td></tr>
+<tr><td>pool builder near me</td><td style="font-weight:700;color:#e67e22">2,400</td><td>Medium</td><td>$5.43–$29.50</td></tr>
+<tr><td>pool companies near me</td><td style="font-weight:700;color:#e67e22">2,400</td><td>Medium</td><td>$5.43–$29.50</td></tr>
+<tr><td>pool installation near me</td><td>720</td><td>Low</td><td>$3.72–$19.58</td></tr>
+<tr><td>inground pool builder near me</td><td>~70</td><td>Low</td><td>$2.68–$19.70</td></tr>
+<tr><td>fiberglass pool installer near me</td><td>20</td><td>Low</td><td>N/A</td></tr>
+</table>
+<div class="note-box" style="margin-top:8px">Volumes pulled at Massachusetts state level via Google Ads Keyword Planner. Western MA ≈ 10% of state. "Near me" terms localize to the searcher's location automatically.</div>
+
+<hr class="divider">
+<div class="field-label">RSA — Pool Builder Near Me</div>
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/contacts/</div>
+<div class="field-label">Path 1 <span class="char-count">12 chars</span></div>
+<div class="copy-box">Pool-Builder</div>
+<div class="field-label">Path 2 <span class="char-count">10 chars</span></div>
+<div class="copy-box">Western-MA</div>
+
+<hr class="divider">
+<div class="rsa-grid">
+<div class="rsa-col">
+<h4>Headlines (1–15) · 30 char max</h4>
+
+<div class="field-label">1 · Keyword Anchor <span class="char-count">21 chars</span></div>
+<div class="copy-box">Pool Builder Near You</div>
+
+<div class="field-label">2 · Keyword Anchor <span class="char-count">25 chars</span></div>
+<div class="copy-box">Pool Companies Western MA</div>
+
+<div class="field-label">3 · Keyword Anchor <span class="char-count">24 chars</span></div>
+<div class="copy-box">Pool Contractor Near You</div>
+
+<div class="field-label">4 · Keyword Anchor <span class="char-count">27 chars</span></div>
+<div class="copy-box">Springfield MA Pool Builder</div>
+
+<div class="field-label">5 · Desire <span class="char-count">26 chars</span></div>
+<div class="copy-box">Your Dream Backyard Awaits</div>
+
+<div class="field-label">6 · Desire <span class="char-count">26 chars</span></div>
+<div class="copy-box">Start Swimming This Summer</div>
+
+<div class="field-label">7 · Desire <span class="char-count">29 chars</span></div>
+<div class="copy-box">The Pool Your Family Deserves</div>
+
+<div class="field-label">8 · Desire <span class="char-count">29 chars</span></div>
+<div class="copy-box">Transform Your Backyard Today</div>
+</div>
+<div class="rsa-col">
+<h4>&nbsp;</h4>
+
+<div class="field-label">9 · Differentiator <span class="char-count">27 chars</span></div>
+<div class="copy-box">Installed in Just 3-10 Days</div>
+
+<div class="field-label">10 · Differentiator <span class="char-count">21 chars</span></div>
+<div class="copy-box">No Resurfacing. Ever.</div>
+
+<div class="field-label">11 · Differentiator <span class="char-count">28 chars</span></div>
+<div class="copy-box">Faster Install Than Concrete</div>
+
+<div class="field-label">12 · Trust <span class="char-count">29 chars</span></div>
+<div class="copy-box">2019 Pool Builder of the Year</div>
+
+<div class="field-label">13 · Trust <span class="char-count">24 chars</span></div>
+<div class="copy-box">20+ Years Building Pools</div>
+
+<div class="field-label">14 · CTA <span class="char-count">27 chars</span></div>
+<div class="copy-box">Get a Free Pool Quote Today</div>
+
+<div class="field-label">15 · CTA <span class="char-count">23 chars</span></div>
+<div class="copy-box">Request a Free Estimate</div>
+</div>
+</div>
+
+<hr class="divider">
+<h4 style="font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Descriptions (1–4) · 90 char max</h4>
+
+<div class="field-label">Description 1 <span class="char-count">81 chars</span></div>
+<div class="copy-box">Local pool builder serving Springfield, Holyoke, Chicopee &amp; Western Massachusetts.</div>
+
+<div class="field-label">Description 2 <span class="char-count">84 chars</span></div>
+<div class="copy-box">From design to completion — fiberglass pool installs in 3–10 days. Get a free quote.</div>
+
+<div class="field-label">Description 3 <span class="char-count">83 chars</span></div>
+<div class="copy-box">Fiberglass pools cost less to own long-term than concrete. No resurfacing required.</div>
+
+<div class="field-label">Description 4 <span class="char-count">77 chars</span></div>
+<div class="copy-box">Award-winning pool builder with 20+ years of experience. Financing available.</div>
+
+</div>
+</div>
+
+<!-- AG3: FIBERGLASS POOL COST & PRICING -->
+<div class="section">
+<div class="ag-header">Ad Group 3: Fiberglass Pool Cost &amp; Pricing</div>
+<div class="section-body">
+
+<div class="field-label">Keywords — Bulk Paste</div>
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="kw-bulk">[fiberglass pool cost]
+"fiberglass pool cost"
+[inground pool cost]
+"inground pool cost"
+[how much does a fiberglass pool cost]
+"how much does a fiberglass pool cost"
+[fiberglass pool price]
+"fiberglass pool price"
+[cost of fiberglass pool installed]
+"cost of fiberglass pool installed"
+[fiberglass vs concrete pool cost]
+"fiberglass vs concrete pool cost"</div>
+
+<hr class="divider">
+<div class="field-label">Keyword Volume Reference (Massachusetts — not national)</div>
+<table>
+<tr><th>Keyword</th><th>MA Monthly Vol</th><th>Competition</th><th>Est. CPC Range</th></tr>
+<tr><td>inground pool cost</td><td style="font-weight:700;color:#e67e22">590</td><td>Low</td><td>$1.69–$6.87</td></tr>
+<tr><td>fiberglass pool cost</td><td>480</td><td>Medium</td><td>$0.93–$4.36</td></tr>
+<tr><td>how much does a fiberglass pool cost</td><td>~200</td><td>Medium</td><td>$0.87–$4.65</td></tr>
+<tr><td>fiberglass pool price</td><td>~150</td><td>High</td><td>$0.93–$4.36</td></tr>
+</table>
+<div class="note-box" style="margin-top:8px">Cost/pricing terms have lower CPCs ($1–$7) because they're mid-funnel research queries. "Near me" terms run $5–$30 because they're bottom-funnel hire intent. The $12 CPC cap protects against the high end.</div>
+
+<hr class="divider">
+<div class="field-label">RSA — Fiberglass Pool Cost &amp; Pricing</div>
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/contacts/</div>
+<div class="field-label">Path 1 <span class="char-count">15 chars</span></div>
+<div class="copy-box">Fiberglass-Pool</div>
+<div class="field-label">Path 2 <span class="char-count">7 chars</span></div>
+<div class="copy-box">Pricing</div>
+
+<hr class="divider">
+<div class="rsa-grid">
+<div class="rsa-col">
+<h4>Headlines (1–15) · 30 char max</h4>
+
+<div class="field-label">1 · Keyword Anchor <span class="char-count">26 chars</span></div>
+<div class="copy-box">Fiberglass Pool Cost Guide</div>
+
+<div class="field-label">2 · Keyword Anchor <span class="char-count">27 chars</span></div>
+<div class="copy-box">See Fiberglass Pool Pricing</div>
+
+<div class="field-label">3 · Keyword Anchor <span class="char-count">26 chars</span></div>
+<div class="copy-box">How Much Does a Pool Cost?</div>
+
+<div class="field-label">4 · Keyword Anchor <span class="char-count">29 chars</span></div>
+<div class="copy-box">Inground Pool Price Breakdown</div>
+
+<div class="field-label">5 · Desire <span class="char-count">29 chars</span></div>
+<div class="copy-box">Your Dream Pool Is Affordable</div>
+
+<div class="field-label">6 · Desire <span class="char-count">27 chars</span></div>
+<div class="copy-box">See Exactly What You'll Pay</div>
+
+<div class="field-label">7 · Desire <span class="char-count">29 chars</span></div>
+<div class="copy-box">Financing Makes It Affordable</div>
+
+<div class="field-label">8 · Differentiator <span class="char-count">24 chars</span></div>
+<div class="copy-box">Transparent Pool Pricing</div>
+</div>
+<div class="rsa-col">
+<h4>&nbsp;</h4>
+
+<div class="field-label">9 · Differentiator <span class="char-count">28 chars</span></div>
+<div class="copy-box">Fiberglass vs Concrete Price</div>
+
+<div class="field-label">10 · Differentiator <span class="char-count">27 chars</span></div>
+<div class="copy-box">No Resurfacing Costs. Ever.</div>
+
+<div class="field-label">11 · Differentiator <span class="char-count">30 chars</span></div>
+<div class="copy-box">Lower Total Cost Than Concrete</div>
+
+<div class="field-label">12 · Trust <span class="char-count">29 chars</span></div>
+<div class="copy-box">2019 Pool Builder of the Year</div>
+
+<div class="field-label">13 · Trust <span class="char-count">24 chars</span></div>
+<div class="copy-box">20+ Years Building Pools</div>
+
+<div class="field-label">14 · CTA <span class="char-count">27 chars</span></div>
+<div class="copy-box">Get a Free Pool Quote Today</div>
+
+<div class="field-label">15 · CTA <span class="char-count">23 chars</span></div>
+<div class="copy-box">Request a Free Estimate</div>
+</div>
+</div>
+
+<hr class="divider">
+<h4 style="font-size:12px;font-weight:700;color:#1B3A5C;margin-bottom:8px">Descriptions (1–4) · 90 char max</h4>
+
+<div class="field-label">Description 1 <span class="char-count">85 chars</span></div>
+<div class="copy-box">Fiberglass pools cost $50K–$100K installed. Compare that to concrete and vinyl liner.</div>
+
+<div class="field-label">Description 2 <span class="char-count">82 chars</span></div>
+<div class="copy-box">No resurfacing, no liner replacement. Fiberglass pools cost less to own long-term.</div>
+
+<div class="field-label">Description 3 <span class="char-count">78 chars</span></div>
+<div class="copy-box">Financing available through Vista Finance &amp; Lyon Financial. Get a quote today.</div>
+
+<div class="field-label">Description 4 <span class="char-count">84 chars</span></div>
+<div class="copy-box">Stop guessing — talk to Western MA's fiberglass pool experts for real pricing today.</div>
+
+</div>
+</div>
+
+<!-- 6. EXTENSIONS -->
+<div class="section">
+<div class="section-header">6 · Ad Extensions (Assets)</div>
+<div class="section-body">
+
+<div class="field-label" style="margin-bottom:12px">Sitelinks — 8 required · All description lines REQUIRED</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 1: Free Quote</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">10 / 25</span></div>
+<div class="copy-box">Free Quote</div>
+<div class="field-label">Description Line 1 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">Request a free design consultation</div>
+<div class="field-label">Description Line 2 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">Call or fill our online form today</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/contacts/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 2: Pool Designs</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">12 / 25</span></div>
+<div class="copy-box">Pool Designs</div>
+<div class="field-label">Description Line 1 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">See our fiberglass pool collection</div>
+<div class="field-label">Description Line 2 <span class="char-count">33 / 35</span></div>
+<div class="copy-box">Sizes from plunge to family pools</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/pool-designs/7-8-feet/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 3: Small &amp; Plunge Pools</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">20 / 25</span></div>
+<div class="copy-box">Small &amp; Plunge Pools</div>
+<div class="field-label">Description Line 1 <span class="char-count">33 / 35</span></div>
+<div class="copy-box">Compact pool designs for any yard</div>
+<div class="field-label">Description Line 2 <span class="char-count">29 / 35</span></div>
+<div class="copy-box">Fiji Plunge, Palladium &amp; more</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/pool-designs/small-pools/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 4: About Us</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">8 / 25</span></div>
+<div class="copy-box">About Us</div>
+<div class="field-label">Description Line 1 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">2019 National Pool Builder of Year</div>
+<div class="field-label">Description Line 2 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">20+ years in Western Massachusetts</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/about/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 5: Financing Options</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">17 / 25</span></div>
+<div class="copy-box">Financing Options</div>
+<div class="field-label">Description Line 1 <span class="char-count">32 / 35</span></div>
+<div class="copy-box">Flexible payment plans available</div>
+<div class="field-label">Description Line 2 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">Via Vista Finance &amp; Lyon Financial</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/financing/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 6: Our Install Process</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">19 / 25</span></div>
+<div class="copy-box">Our Install Process</div>
+<div class="field-label">Description Line 1 <span class="char-count">28 / 35</span></div>
+<div class="copy-box">See how your pool gets built</div>
+<div class="field-label">Description Line 2 <span class="char-count">29 / 35</span></div>
+<div class="copy-box">From dig to swim in 3–10 days</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/installation-info/installation/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 7: Equipment Packages</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">18 / 25</span></div>
+<div class="copy-box">Equipment Packages</div>
+<div class="field-label">Description Line 1 <span class="char-count">35 / 35</span></div>
+<div class="copy-box">Sanitizers, lighting, covers &amp; more</div>
+<div class="field-label">Description Line 2 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">Swim-ready pool packages available</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/pool-equipment/swim-ready-pool-package/</div>
+</div>
+</div>
+
+<div class="ag-block">
+<div class="ag-header" style="background:#2E86C1;padding:8px 14px;font-size:13px">Sitelink 8: Our Services</div>
+<div class="ag-inner">
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Link Text <span class="char-count">12 / 25</span></div>
+<div class="copy-box">Our Services</div>
+<div class="field-label">Description Line 1 <span class="char-count">35 / 35</span></div>
+<div class="copy-box">Opening, closing &amp; pool maintenance</div>
+<div class="field-label">Description Line 2 <span class="char-count">34 / 35</span></div>
+<div class="copy-box">Year-round pool care in Western MA</div>
+<div class="field-label">Final URL</div>
+<div class="copy-box">https://pvfpools.com/services/</div>
+</div>
+</div>
+
+<hr class="divider">
+<div class="field-label" style="margin-bottom:8px">Callout Extensions — 12 callouts · 25 chars max each</div>
+<div class="tag-green">BULK — Make Multiple Changes</div>
+<div class="neg-bulk">Installed in 3-10 Days
+Low-Maintenance Pool
+Smooth Non-Porous Surface
+Faster Than Concrete
+Free Consultation
+Licensed &amp; Insured
+Locally Owned &amp; Operated
+Financing Available
+5-Star Rated Builder
+20+ Years Experience
+Serving Western MA &amp; CT
+Lifetime Pool Warranty</div>
+
+<hr class="divider">
+<div class="field-label" style="margin-bottom:8px">Structured Snippets — REAL Models from pvfpools.com</div>
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+
+<div class="field-label">Snippet Header</div>
+<div class="copy-box">Models</div>
+<div class="field-label">Values (semicolon-separated for quick paste)</div>
+<div class="copy-box">Summit; Icon; Infinity; Elegance; Riviera; Tuscany</div>
+<div class="field-label">Individual Values</div>
+<div class="copy-box">Summit</div>
+<div class="copy-box">Icon</div>
+<div class="copy-box">Infinity</div>
+<div class="copy-box">Elegance</div>
+<div class="copy-box">Riviera</div>
+<div class="copy-box">Tuscany</div>
+
+<hr class="divider">
+<div class="field-label">Snippet Header</div>
+<div class="copy-box">Amenities</div>
+<div class="field-label">Values (semicolon-separated for quick paste)</div>
+<div class="copy-box">LED Lighting; Water Features; Tanning Ledges; Auto Covers; Built-In Spas</div>
+<div class="field-label">Individual Values</div>
+<div class="copy-box">LED Lighting</div>
+<div class="copy-box">Water Features</div>
+<div class="copy-box">Tanning Ledges</div>
+<div class="copy-box">Auto Covers</div>
+<div class="copy-box">Built-In Spas</div>
+
+<hr class="divider">
+<div class="field-label">Call Extension</div>
+<div class="tag-orange">ONE FIELD AT A TIME</div>
+<div class="field-label">Business Name</div>
+<div class="copy-box">Pioneer Valley Fiberglass Pools</div>
+<div class="field-label">Phone Number</div>
+<div class="copy-box">413-221-8358</div>
+
+</div>
+</div>
+
+<!-- 7. BID STRATEGY UPGRADE PATH -->
+<div class="section">
+<div class="section-header">7 · Bid Strategy Upgrade Path</div>
+<div class="section-body">
+<table>
+<tr><th>Phase</th><th>Trigger</th><th>Action</th></tr>
+<tr><td><strong>Phase 1 (Launch)</strong></td><td>New campaign — zero conversions</td><td>Maximize Clicks · $12 CPC cap</td></tr>
+<tr><td><strong>Phase 2</strong></td><td>30+ conversions recorded</td><td>Switch to Maximize Conversions (no target CPA)</td></tr>
+<tr><td><strong>Phase 3</strong></td><td>30+ conversions/month for 60 days</td><td>Consider Target CPA based on actual data</td></tr>
+</table>
+</div>
+</div>
+
+<!-- 8. PRE-LAUNCH CHECKLIST -->
+<div class="section">
+<div class="section-header">8 · Pre-Launch Checklist</div>
+<div class="section-body">
+<ul class="checklist">
+<li><span class="check-box"></span><strong>Auto-apply recommendations:</strong> OFF in account settings</li>
+<li><span class="check-box"></span><strong>Budget:</strong> $66.67/day confirmed</li>
+<li><span class="check-box"></span><strong>Bid strategy:</strong> Maximize Clicks with $12.00 CPC cap</li>
+<li><span class="check-box"></span><strong>Networks:</strong> Google Search ONLY — Search Partners and Display unchecked</li>
+<li><span class="check-box"></span><strong>Locations:</strong> All 15 Western MA cities added</li>
+<li><span class="check-box"></span><strong>Ad groups:</strong> 3 ad groups built as specified</li>
+<li><span class="check-box"></span><strong>Keywords:</strong> No broad match — exact and phrase only</li>
+<li><span class="check-box"></span><strong>RSAs:</strong> All 3 ad groups have 15 headlines + 4 descriptions + paths</li>
+<li><span class="check-box"></span><strong>Ad Strength:</strong> All 3 RSAs show Good or Excellent</li>
+<li><span class="check-box"></span><strong>Sitelinks:</strong> 8 sitelinks, all with Description Lines 1 AND 2</li>
+<li><span class="check-box"></span><strong>Sitelink URLs:</strong> All 8 URLs verified as live pages on pvfpools.com</li>
+<li><span class="check-box"></span><strong>Callouts:</strong> 12 callouts added</li>
+<li><span class="check-box"></span><strong>Structured snippets:</strong> Models (real) + Amenities added</li>
+<li><span class="check-box"></span><strong>Call extension:</strong> 413-221-8358 added</li>
+<li><span class="check-box"></span><strong>Audience segments:</strong> All observation audiences with bid adjustments</li>
+<li><span class="check-box"></span><strong>Audience exclusions:</strong> Pool Supplies + Pool Accessories excluded</li>
+<li><span class="check-box"></span><strong>Device bid adjustments:</strong> Mobile +10%, Desktop -10%, Tablet -30%</li>
+<li><span class="check-box"></span><strong>Demographic adjustments:</strong> Age and HHI bid adjustments applied</li>
+<li><span class="check-box"></span><strong>Conversion tracking:</strong> Confirm form + call conversions fire on pvfpools.com/contacts/ before launch</li>
+<li><span class="check-box"></span><strong>Campaign status:</strong> Keep Paused until all items confirmed</li>
+</ul>
+<hr class="divider">
+<div class="warn"><strong>ACTION ITEM FOR DEALER:</strong> Confirm conversion tracking is installed on pvfpools.com. Verify Google Tag fires on the /contacts/ thank-you page and on phone click events. Do NOT launch until tracking is confirmed live.</div>
+<div class="note-box"><strong>SERVICE AREA NOTE:</strong> This campaign targets Western MA only. If the dealer wants to expand into CT and/or RI, build separate campaigns for each state to control budgets and messaging independently. Ask the dealer to confirm which CT/RI cities they actively serve before building.</div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

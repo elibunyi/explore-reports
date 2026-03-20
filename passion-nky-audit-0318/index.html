@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passion Pools — Northern Kentucky Audit & Rebuild | 2026-03-18</title>
+<style>
+:root { --navy: #1B3A5C; --accent: #E8913A; --light-bg: #F5F7FA; --card-bg: #FFFFFF; --text: #2C3E50; --text-light: #6C7A89; --success: #27AE60; --warning: #F39C12; --danger: #E74C3C; --info: #3498DB; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--light-bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+h1 { color: var(--navy); font-size: 2em; margin-bottom: 5px; }
+h2 { color: var(--navy); font-size: 1.5em; margin: 30px 0 15px; border-bottom: 3px solid var(--accent); padding-bottom: 8px; }
+h3 { color: var(--navy); font-size: 1.2em; margin: 20px 0 10px; }
+.header { background: linear-gradient(135deg, var(--navy), #2C5F8A); color: white; padding: 30px; border-radius: 10px; margin-bottom: 25px; }
+.header h1 { color: white; }
+.header .meta { color: rgba(255,255,255,0.8); font-size: 0.9em; margin-top: 10px; }
+.header .meta span { display: inline-block; margin-right: 20px; }
+.card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 20px; }
+.toc { background: white; border-radius: 10px; padding: 20px 30px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.toc ol { padding-left: 20px; } .toc li { margin: 6px 0; } .toc a { color: var(--navy); text-decoration: none; font-weight: 500; } .toc a:hover { color: var(--accent); }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; font-weight: 700; color: white; text-transform: uppercase; }
+.tag-p1 { background: var(--danger); } .tag-p2 { background: var(--warning); } .tag-p3 { background: var(--info); }
+.tag-exact { background: #8E44AD; } .tag-phrase { background: var(--success); }
+.tag-brand { background: var(--accent); } .tag-geo { background: var(--info); } .tag-benefit { background: var(--danger); } .tag-cta { background: var(--warning); } .tag-product { background: var(--success); }
+.warning-box { background: #FDE8E8; border-left: 4px solid var(--danger); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.note-box { background: #FFF8E1; border-left: 4px solid var(--warning); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.success-box { background: #E8F5E9; border-left: 4px solid var(--success); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.info-box { background: #E3F2FD; border-left: 4px solid var(--info); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; }
+td { padding: 8px 12px; border-bottom: 1px solid #E0E0E0; }
+tr:nth-child(even) { background: #F8F9FA; } tr:hover { background: #EEF2F7; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 15px 0; }
+.metric-card { background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 15px; text-align: center; }
+.metric-card .value { font-size: 1.8em; font-weight: 700; color: var(--navy); }
+.metric-card .label { font-size: 0.85em; color: var(--text-light); margin-top: 4px; }
+.copy-box { margin: 8px 0; }
+.copy-box label { display: block; font-size: 0.8em; color: var(--text-light); margin-bottom: 3px; font-weight: 600; }
+.copy-box input { width: 100%; padding: 8px 12px; background: #F0F0F0; border: 1px solid #D0D0D0; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; cursor: pointer; }
+.copy-box .char-count { font-size: 0.75em; color: var(--text-light); float: right; margin-top: 2px; }
+.bulk-paste { margin: 15px 0; }
+.bulk-paste label { display: block; background: var(--success); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-weight: 700; font-size: 0.85em; }
+.bulk-paste textarea { width: 100%; min-height: 150px; padding: 12px; background: #F0F0F0; border: 1px solid #D0D0D0; border-radius: 0 0 6px 6px; font-family: 'Courier New', monospace; font-size: 0.85em; resize: vertical; cursor: pointer; }
+.checklist { list-style: none; padding: 0; }
+.checklist li { padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+.checklist .section-header { font-weight: 700; color: var(--navy); margin-top: 15px; padding-top: 10px; border-top: 1px solid #E0E0E0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Leisure Pools Northern Kentucky — Audit & Campaign Rebuild</h1>
+  <div class="meta">
+    <span><strong>Date:</strong> March 18, 2026</span>
+    <span><strong>Account:</strong> Passion Pools (237-536-3197)</span>
+    <span><strong>Campaign:</strong> Leisure Pools Northern Kentucky Campaign</span>
+  </div>
+  <div class="meta"><span><strong>Data Range:</strong> Feb 16 – Mar 18, 2026 (30 days)</span><span><strong>Brand:</strong> Leisure Pools</span></div>
+</div>
+
+<div class="toc"><h3>Table of Contents</h3>
+<ol>
+<li><a href="#s1">Audit Findings</a></li>
+<li><a href="#s2">Current Performance</a></li>
+<li><a href="#s3">Wasted Spend Analysis</a></li>
+<li><a href="#s4">Campaign Settings</a></li>
+<li><a href="#s5">Ad Group Structure — Proposed Rebuild</a></li>
+<li><a href="#s6">AG1: Leisure Pools NKY (Keywords + RSA)</a></li>
+<li><a href="#s7">AG2: Fiberglass Pools NKY (Keywords + RSA)</a></li>
+<li><a href="#s8">AG3: Pool Cost & Installation NKY (Keywords + RSA)</a></li>
+<li><a href="#s9">Campaign Negatives</a></li>
+<li><a href="#s10">Extensions Audit</a></li>
+<li><a href="#s11">Callouts</a></li>
+<li><a href="#s12">Structured Snippets</a></li>
+<li><a href="#s13">Call Extension</a></li>
+<li><a href="#s14">Audience Segments</a></li>
+<li><a href="#s15">Device Bid Adjustments</a></li>
+<li><a href="#s16">Demographic Adjustments</a></li>
+<li><a href="#s17">Pre-Launch Checklist</a></li>
+</ol>
+</div>
+
+<!-- SECTION 1 -->
+<div class="card" id="s1">
+<h2>1. Audit Findings — NKY</h2>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Critically Thin Negative Keywords</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> NKY has exactly <strong>1 negative keyword</strong>: "above ground" (broad). That's it.</p>
+<p><strong>IMPACT:</strong> Estimated ~$250+ wasted over 30 days on competitors (Lucas Pools $37.42, Shehan $18.22, Klimat Master $16.31, Watson's $14.01, Luxe Pools $15.06, Aladdin $12.40), semi-inground ($42.93), pool service/repair ($23.31), DIY ($26.21), and irrelevant terms ($21.20+).</p>
+<p><strong>RECOMMENDATION:</strong> Add full negative list from Section 9 immediately.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Single Ad Group Structure</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> One ad group ("Ad group 1") with ~30 phrase-match keywords covering brand, product, competitor, and cost intent — all served by the same RSA.</p>
+<p><strong>IMPACT:</strong> QS=3 on "pool companies," QS=1 on competitor terms, while branded "leisure pools" hits QS=10. The single ad group can't serve relevant copy to each intent. NKY has the best CTR in the account (10.71%) but it's being dragged down by irrelevant keyword/ad mismatches.</p>
+<p><strong>RECOMMENDATION:</strong> Restructure to 3 themed ad groups per Section 5.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Competitor Keywords as Positive Targets</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Active keywords: "sheehan pools" (QS=3, 71 impr, $21.25, 0 conv), "klimat master pools" (QS=1, 41 impr, $16.31, 0 conv), "mid american pools" (QS=1, 43 impr, $20.19, 1 conv), "aladdin pools" (QS=1, 17 impr, $12.40, 0 conv), "tri state gunite pools" (QS=1, 3 impr, $0).</p>
+<p><strong>RECOMMENDATION:</strong> Pause all competitor keywords. Add as negatives. "mid american pools" had 1 conversion — monitor after cleanup but QS=1 means inflated CPCs.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>Losing 16.1% Impression Share to Budget</strong>
+<p style="margin-top:8px;">At $75/day, NKY is losing meaningful share to budget. Once negatives eliminate ~$8/day in waste, the effective budget for qualified searches increases. If share is still budget-limited after cleanup, consider increasing to $85/day.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>No Income Demographic Targeting</strong>
+<p style="margin-top:8px;">No HHI bid adjustments set. Pool installation is $40K-$80K+. See Section 16.</p>
+</div>
+
+<div class="success-box">
+<strong>What's Working:</strong> NKY has the best CTR (10.71%), strongest branded QS (10), and "fiberglass pools" at QS=8 with 15% CTR and 4 conversions. NKY also has decent extensions — 5 campaign sitelinks, 5 callouts, call extension, plus customer-level assets. CPA $162 is the best of the 3 campaigns.
+</div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="card" id="s2">
+<h2>2. Current Performance — NKY</h2>
+<div class="info-grid">
+  <div class="metric-card"><div class="value">$2,109</div><div class="label">Total Spend</div></div>
+  <div class="metric-card"><div class="value">339</div><div class="label">Clicks</div></div>
+  <div class="metric-card"><div class="value">3,165</div><div class="label">Impressions</div></div>
+  <div class="metric-card"><div class="value">10.71%</div><div class="label">CTR</div></div>
+  <div class="metric-card"><div class="value">$6.22</div><div class="label">Avg CPC</div></div>
+  <div class="metric-card"><div class="value">13</div><div class="label">Conversions</div></div>
+  <div class="metric-card"><div class="value">$162</div><div class="label">CPA</div></div>
+  <div class="metric-card"><div class="value">59.5%</div><div class="label">Impression Share</div></div>
+</div>
+
+<h3>Device Breakdown</h3>
+<table>
+<tr><th>Device</th><th>Impr</th><th>Clicks</th><th>Cost</th><th>Conv</th><th>CPA</th></tr>
+<tr><td>Desktop</td><td>2,498</td><td>269</td><td>$1,643</td><td>10</td><td>$164</td></tr>
+<tr><td>Mobile</td><td>623</td><td>65</td><td>$421</td><td>3</td><td>$140</td></tr>
+<tr><td>Tablet</td><td>44</td><td>5</td><td>$45</td><td>0</td><td>—</td></tr>
+</table>
+
+<h3>Top Keywords</h3>
+<table>
+<tr><th>Keyword</th><th>Match</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>QS</th></tr>
+<tr><td>pool contractor</td><td>Phrase</td><td>671</td><td>45</td><td>6.7%</td><td>$293</td><td>3</td><td>5</td></tr>
+<tr><td>pool companies</td><td>Phrase</td><td>615</td><td>50</td><td>8.1%</td><td>$333</td><td>2</td><td style="color:orange;">3</td></tr>
+<tr><td>inground pools</td><td>Phrase</td><td>588</td><td>72</td><td>12.2%</td><td>$441</td><td>0</td><td>6</td></tr>
+<tr><td>fiberglass pools</td><td>Phrase</td><td>339</td><td>51</td><td>15.0%</td><td>$310</td><td>4</td><td style="color:green;font-weight:700;">8</td></tr>
+<tr><td>swimming pool installation</td><td>Phrase</td><td>216</td><td>24</td><td>11.1%</td><td>$159</td><td>0</td><td>—</td></tr>
+<tr><td>pool installation</td><td>Phrase</td><td>151</td><td>28</td><td>18.5%</td><td>$213</td><td>0</td><td>3</td></tr>
+<tr><td>pool construction</td><td>Phrase</td><td>145</td><td>10</td><td>6.9%</td><td>$61</td><td>0</td><td>5</td></tr>
+<tr><td>leisure pools</td><td>Phrase</td><td>100</td><td>22</td><td>22.0%</td><td>$77</td><td>3</td><td style="color:green;font-weight:700;">10</td></tr>
+<tr><td>prefab pools</td><td>Phrase</td><td>94</td><td>12</td><td>12.8%</td><td>$69</td><td>0</td><td>6</td></tr>
+</table>
+</div>
+
+<!-- SECTION 3 -->
+<div class="card" id="s3">
+<h2>3. Wasted Spend Analysis — NKY</h2>
+<p><strong>Estimated waste: ~$250+ (11.9% of campaign spend)</strong></p>
+<table>
+<tr><th>Category</th><th>Terms</th><th>Est. Spend</th><th>Conv</th></tr>
+<tr><td style="font-weight:700;">Competitors</td><td>lucas pools ($37), shehan ($18), klimat master ($16), watsons ($14), luxe pools ($15), aladdin ($12), eastgate ($12), mid american ($14)</td><td style="color:red;">$138</td><td>1</td></tr>
+<tr><td style="font-weight:700;">Semi-Inground</td><td>semi inground pool ($22), semi inground pools ($13), best semi inground ($9)</td><td style="color:red;">$43</td><td>0</td></tr>
+<tr><td style="font-weight:700;">Service/Repair</td><td>pool liner replacement ($14), pool opening service ($10)</td><td style="color:orange;">$23</td><td>0</td></tr>
+<tr><td style="font-weight:700;">DIY/Kits</td><td>diy in ground pool ($10), diy pool kits ($8), diy plunge pool kit ($8)</td><td style="color:orange;">$26</td><td>0</td></tr>
+<tr><td style="font-weight:700;">Irrelevant</td><td>koi pools ($10), doughboy pool ($11), vinyl pool cost ($11)</td><td style="color:orange;">$32</td><td>0</td></tr>
+<tr style="font-weight:700;background:#FDE8E8;"><td>TOTAL</td><td></td><td style="color:red;">~$250+</td><td>1</td></tr>
+</table>
+</div>
+
+<!-- SECTION 4 -->
+<div class="card" id="s4">
+<h2>4. Campaign Settings — NKY</h2>
+<table>
+<tr><th>Setting</th><th>Current</th><th>Recommendation</th></tr>
+<tr><td>Bid Strategy</td><td style="color:green;">Maximize Conversion Value ✓</td><td><strong>Keep.</strong> 13 conv/month is low but cleaning up waste will improve signal quality. Re-evaluate in 60 days.</td></tr>
+<tr><td>Daily Budget</td><td>$75</td><td>Keep $75 initially. After negatives recapture ~$8/day, effective budget for qualified searches increases. Raise to $85 if still losing IS to budget after 2 weeks.</td></tr>
+<tr><td>Networks</td><td style="color:green;">Search Only ✓</td><td>No change</td></tr>
+<tr><td>Location Targeting</td><td>Presence (API type 7)</td><td>Verify in UI — should be "Presence" only</td></tr>
+<tr><td>Call Extension</td><td style="color:green;">(859) 279-1010 ✓</td><td>No change</td></tr>
+</table>
+</div>
+
+<!-- SECTION 5 -->
+<div class="card" id="s5">
+<h2>5. Ad Group Structure — NKY Rebuild</h2>
+<table>
+<tr><th>Ad Group</th><th>Theme</th><th>Why</th></tr>
+<tr><td><strong>AG1: Leisure Pools NKY</strong></td><td>Brand + installer intent</td><td>QS=10 on branded terms, lowest CPC ($3.52), best conv rate</td></tr>
+<tr><td><strong>AG2: Fiberglass Pools NKY</strong></td><td>Product + geo</td><td>QS=8 on "fiberglass pools," 15% CTR, 4 conversions</td></tr>
+<tr><td><strong>AG3: Pool Cost & Install NKY</strong></td><td>Cost/pricing intent</td><td>High volume research-stage terms, need price anchor in ad</td></tr>
+</table>
+</div>
+
+<!-- SECTION 6: AG1 -->
+<div class="card" id="s6">
+<h2>6. AG1: Leisure Pools NKY — Keywords + RSA</h2>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG1 NKY (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"leisure pools northern kentucky"
+[leisure pools northern kentucky]
+"leisure pools near me"
+"leisure pools northern ky"
+[leisure pools northern ky]
+"fiberglass pool builders northern kentucky"
+"fiberglass pool installer near me"
+"pool builders northern kentucky"
+"pool builders near me"
+[leisure pools]</textarea>
+</div>
+
+<h3>RSA — AG1 NKY</h3>
+<div class="copy-box"><label>Path 1</label><input type="text" value="NKY-Pools" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">9/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Free-Quotes" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<div class="bulk-paste">
+<label>Bulk Headlines — AG1 NKY (15 headlines, click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Leisure Pools N. Kentucky
+Pools Starting at $10/Day
+Fiberglass Pool Builders
+Your Dream Backyard Awaits
+Installed in Weeks Not Months
+150,000+ Pools Worldwide
+Lifetime Structural Warranty
+Get a Free Quote Today
+31 Pool Models to Choose
+Transform Your Backyard
+Low Maintenance Pools
+25+ Years of Excellence
+Financing Available
+Schedule a Consultation
+Premium Fiberglass Pools</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG1 NKY (4 descriptions)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Leisure Pools offers 31 fiberglass pool models with a Lifetime Structural Warranty. Get a free quote today!
+Premium fiberglass pools installed in weeks, not months. 150,000+ pools in 23 countries. Request your free consultation.
+From The Elegance to The Pinnacle — find the perfect pool for your backyard. Financing available. Call today!
+Trusted by homeowners in Northern Kentucky. Low maintenance, fast installation, lifetime warranty. Your pool starts here.</textarea>
+</div>
+</div>
+
+<!-- SECTION 7: AG2 -->
+<div class="card" id="s7">
+<h2>7. AG2: Fiberglass Pools NKY — Keywords + RSA</h2>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG2 NKY</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"fiberglass pools northern kentucky"
+"fiberglass pools near me"
+"fiberglass pool"
+"fiberglass inground pool"
+"fiberglass pool companies"
+"prefab pools near me"
+"prefab pools"
+"inground pools northern kentucky"
+"inground pool"
+"plunge pool"</textarea>
+</div>
+
+<div class="copy-box"><label>Path 1</label><input type="text" value="Fiberglass" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">10/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Pool-Models" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<div class="bulk-paste">
+<label>Bulk Headlines — AG2 NKY (15 headlines)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Fiberglass Pools N. Kentucky
+Starting at Just $10/Day
+Top-Rated Fiberglass Pools
+Your Backyard Oasis Awaits
+Installed in Weeks Not Months
+31 Styles & Sizes Available
+Lifetime Structural Warranty
+Request a Free Quote Now
+AquaGuard X Color System
+Low Maintenance Pools
+150,000+ Pools Installed
+Swim This Summer
+Expert Pool Installation
+Financing Options Available
+See Our Pool Gallery</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG2 NKY</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Fiberglass pools built to last. Choose from 31 models — from compact plunge pools to 40' family pools. Free quotes!
+Why fiberglass? Faster install, lower maintenance, lifetime warranty. Explore our pool models and request a free quote.
+Premium fiberglass pools with AquaGuard X gelcoat for diamond-like sparkle. 25+ years of quality. See our gallery today.
+From The Elegance to The Wave — we have the perfect fiberglass pool for your backyard. Schedule your free consultation.</textarea>
+</div>
+</div>
+
+<!-- SECTION 8: AG3 -->
+<div class="card" id="s8">
+<h2>8. AG3: Pool Cost & Installation NKY — Keywords + RSA</h2>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG3 NKY</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"inground pool cost"
+"inground pool cost kentucky"
+"fiberglass pool cost"
+"pool installation near me"
+"pool installation cost"
+"pool installation northern kentucky"
+"how much does a pool cost"
+"swimming pool installation"
+"pool construction"
+"pool companies near me"</textarea>
+</div>
+
+<div class="copy-box"><label>Path 1</label><input type="text" value="Pool-Cost" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">9/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Free-Quotes" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<div class="bulk-paste">
+<label>Bulk Headlines — AG3 NKY (15 headlines)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Inground Pool Cost in NKY
+As Low as $10 Per Day
+Affordable Pool Installation
+Pool Cost & Financing Info
+Installed in Weeks Not Months
+Lifetime Structural Warranty
+Get Your Free Pool Quote
+Fiberglass Saves You Money
+No Resurfacing Needed
+Pool Installation Experts
+Request a Free Estimate
+31 Models Starting at 10'
+Lower Lifetime Cost
+Fast Professional Install
+See Pool Pricing Options</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG3 NKY</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Wondering how much a pool costs? Fiberglass pools start lower than you think. Financing available. Get a free quote today!
+Fiberglass pools cost less over time — no resurfacing, no liner replacements, lower chemical costs. Request your free estimate.
+Pool installation in weeks, not months. Lifetime structural warranty included. 31 models from 10' plunge pools to 40' family pools.
+Get transparent pool pricing and financing options. Licensed, insured installers with 25+ years of experience. Call today!</textarea>
+</div>
+</div>
+
+<!-- SECTION 9: NEGATIVES -->
+<div class="card" id="s9">
+<h2>9. Campaign Negatives — NKY</h2>
+<p><strong>Current negatives: 1</strong> ("above ground" broad). Need 70+.</p>
+
+<div class="bulk-paste">
+<label>MASTER NEGATIVE LIST — NKY (click to copy all, paste into Google Ads Editor)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');" style="min-height:400px;">leslie
+leslies
+leslie's
+pool store
+pool stores
+pool supply
+pool supplies
+pinch a penny
+above ground
+hot tub
+kiddie pool
+inflatable
+pool table
+intex
+bestway
+walmart
+amazon
+costco
+doughboy
+coleman pool
+semi inground
+semi-inground
+pool repair
+pool service
+pool cleaning
+pool opening
+pool closing
+pool maintenance
+liner replacement
+pool liner
+resurfacing
+pool heater
+pool pump
+pool filter
+diy
+pool kit
+pool kits
+how to build
+swimming lessons
+public pool
+hotel pool
+apartment pool
+koi pool
+stock tank
+cowboy pool
+container pool
+shipping container
+swim spa
+swimspa
+endless pool
+natural swimming pool
+acrylic pool
+vinyl pool
+pools for sale
+pool sale
+eastgate
+watsons
+watson's
+premier pools
+knickerbocker
+shehan
+sheehan
+klimat master
+lucas pools
+lipps pools
+aladdin pools
+aurora pools
+luxe pools
+heatwave pools
+mid american
+scioto valley
+advanced backyard
+aquamarine pools
+westside pools
+latham
+radiant pool
+biodesign</textarea>
+</div>
+</div>
+
+<!-- SECTION 10: EXTENSIONS -->
+<div class="card" id="s10">
+<h2>10. Extensions Audit — NKY</h2>
+
+<h3>Sitelinks</h3>
+<div class="success-box"><strong>5 campaign-level sitelinks found:</strong> Stylish Pool Designs, Contact Us, Stunning Pool Colors, 2026 Pool Brochure, Finance Your Pool<br><strong>+ 5 customer-level sitelinks:</strong> Service Areas, Pool Covers, Pool Designs, Spas And Tanning Ledges, Pool Colors<br><strong>Total: ~10 sitelinks — GOOD.</strong> Meets the 8+ target.</div>
+<p><strong>Note:</strong> Unable to verify sitelink description lines via API. Check in Google Ads UI that all sitelinks have both Description Line 1 and Description Line 2 populated (≤35 chars each). Missing desc lines reduce ad real estate.</p>
+
+<h3>Callouts</h3>
+<div class="success-box"><strong>5 campaign-level callouts:</strong> Expert Pool Installers, Custom Pool Designs, Lifetime Warranty, Flexible Financing, Fast Local Installation<br><strong>+ 3 customer-level callouts:</strong> Financing Available, Get A Free Estimate, View Service Areas<br><strong>Total: 8 callouts — GOOD.</strong></div>
+<p>Consider adding 4 more to reach 12: "31 Pool Models", "150,000+ Pools Built", "Low Maintenance", "AquaGuard X Gelcoat"</p>
+
+<h3>Structured Snippets</h3>
+<div class="success-box"><strong>Customer-level structured snippet found:</strong> Header: "Highlights" — values unable to verify via API. Check in UI.</div>
+<p>Recommend adding a "Models" header snippet with verified names: The Elegance, The Pinnacle, The Wave, The Supreme, The Ultimate, The Eclipse, The Riviera</p>
+</div>
+
+<!-- SECTION 11 -->
+<div class="card" id="s11">
+<h2>11. Recommended Additional Callouts</h2>
+<div class="bulk-paste">
+<label>Additional Callouts to Add (click to copy)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">31 Pool Models
+150,000+ Pools Built
+Low Maintenance
+AquaGuard X Gelcoat</textarea>
+</div>
+</div>
+
+<!-- SECTION 12 -->
+<div class="card" id="s12">
+<h2>12. Structured Snippets — Recommended</h2>
+<h3>Header: Models</h3>
+<div class="copy-box"><label>Values</label><input type="text" value="The Elegance, The Pinnacle, The Wave, The Supreme, The Ultimate, The Eclipse, The Riviera, The Moroccan, The Reflection" readonly onclick="this.select(); document.execCommand('copy');"></div>
+<h3>Header: Amenities</h3>
+<div class="copy-box"><label>Values</label><input type="text" value="Built-In Spa, Tanning Ledge, LED Lighting, Water Features, Bench Seating, Auto Cover Ready, Splash Deck" readonly onclick="this.select(); document.execCommand('copy');"></div>
+<div class="info-box">All model names verified from official Leisure Pools product registry (31 models total).</div>
+</div>
+
+<!-- SECTION 13 -->
+<div class="card" id="s13">
+<h2>13. Call Extension — NKY</h2>
+<div class="success-box"><strong>Call extension active:</strong> (859) 279-1010 — Confirmed via API. No changes needed.</div>
+</div>
+
+<!-- SECTION 14 -->
+<div class="card" id="s14">
+<h2>14. Audience Segments</h2>
+<table>
+<tr><th>Type</th><th>Audience</th><th>Bid Adj</th></tr>
+<tr><td>In-Market</td><td>Swimming Pools & Spas</td><td>+20%</td></tr>
+<tr><td>In-Market</td><td>Home Improvement</td><td>+10%</td></tr>
+<tr><td>In-Market</td><td>Residential Properties (for sale)</td><td>+15%</td></tr>
+<tr><td>In-Market</td><td>Kitchen & Bath Remodeling</td><td>+10%</td></tr>
+<tr><td>In-Market</td><td>Landscape Services</td><td>+10%</td></tr>
+<tr><td>Life Event</td><td>Recently Moved</td><td>+15%</td></tr>
+<tr><td>Life Event</td><td>Recently Purchased a Home</td><td>+15%</td></tr>
+<tr><td>Affinity</td><td>Home & Garden Enthusiasts</td><td>+5%</td></tr>
+<tr><td>Affinity</td><td>Luxury Shoppers</td><td>+10%</td></tr>
+<tr><td>Exclusion</td><td>In-Market for Rental Properties</td><td>Exclude</td></tr>
+</table>
+</div>
+
+<!-- SECTION 15 -->
+<div class="card" id="s15">
+<h2>15. Device Bid Adjustments — NKY</h2>
+<table>
+<tr><th>Device</th><th>Recommended</th><th>Rationale</th></tr>
+<tr><td>Desktop</td><td>0%</td><td>Baseline — 77% of spend, 77% of conversions</td></tr>
+<tr><td>Mobile</td><td>-5%</td><td>Good CPA ($140) but lower volume — slight trim</td></tr>
+<tr><td>Tablet</td><td>-15%</td><td>44 impressions, 0 conv — minimal data, hedge down</td></tr>
+</table>
+</div>
+
+<!-- SECTION 16 -->
+<div class="card" id="s16">
+<h2>16. Demographic Adjustments — NKY</h2>
+<h3>Age Ranges</h3>
+<table>
+<tr><th>Age</th><th>Adj</th></tr>
+<tr><td>18-24</td><td>-30%</td></tr>
+<tr><td>25-34</td><td>0%</td></tr>
+<tr><td>35-44</td><td>+15%</td></tr>
+<tr><td>45-54</td><td>+20%</td></tr>
+<tr><td>55-64</td><td>+10%</td></tr>
+<tr><td>65+</td><td>-10%</td></tr>
+<tr><td>Unknown</td><td>0%</td></tr>
+</table>
+<h3>Household Income</h3>
+<table>
+<tr><th>HHI Tier</th><th>Adj</th></tr>
+<tr><td>Top 10%</td><td>+20%</td></tr>
+<tr><td>11-20%</td><td>+10%</td></tr>
+<tr><td>21-30%</td><td>0%</td></tr>
+<tr><td>31-40%</td><td>-5%</td></tr>
+<tr><td>41-50%</td><td>-10%</td></tr>
+<tr><td>Lower 50%</td><td>-20%</td></tr>
+<tr><td>Unknown</td><td>0%</td></tr>
+</table>
+</div>
+
+<!-- SECTION 17 -->
+<div class="card" id="s17">
+<h2>17. Pre-Launch Checklist — NKY</h2>
+<ul class="checklist">
+<li class="section-header">Campaign Settings</li>
+<li><input type="checkbox"><label>Bidding: Keep Maximize Conversion Value (no change)</label></li>
+<li><input type="checkbox"><label>Budget: $75/day (reassess after 2 weeks post-cleanup)</label></li>
+<li><input type="checkbox"><label>Location targeting verified: Presence Only (check in UI)</label></li>
+<li class="section-header">Ad Groups & Keywords</li>
+<li><input type="checkbox"><label>3 new ad groups created (Brand, Fiberglass, Cost)</label></li>
+<li><input type="checkbox"><label>Competitor keywords PAUSED (sheehan, klimat master, aladdin, mid american, tri state gunite)</label></li>
+<li><input type="checkbox"><label>Old "Ad group 1" paused after new groups are active</label></li>
+<li class="section-header">Negative Keywords</li>
+<li><input type="checkbox"><label>Full 73-keyword negative list added (Section 9)</label></li>
+<li class="section-header">Ad Copy</li>
+<li><input type="checkbox"><label>15 headlines + 4 descriptions per ad group</label></li>
+<li><input type="checkbox"><label>Price anchor "$10/Day" pinned to H2</label></li>
+<li><input type="checkbox"><label>Geo-specific "N. Kentucky" in H1</label></li>
+<li class="section-header">Extensions</li>
+<li><input type="checkbox"><label>Verify sitelink description lines populated (check in UI)</label></li>
+<li><input type="checkbox"><label>Add 4 additional callouts to reach 12</label></li>
+<li><input type="checkbox"><label>Add "Models" structured snippet with verified names</label></li>
+<li class="section-header">Audiences & Adjustments</li>
+<li><input type="checkbox"><label>Audience segments added (Section 14)</label></li>
+<li><input type="checkbox"><label>Device adjustments set (Mobile -5%, Tablet -15%)</label></li>
+<li><input type="checkbox"><label>Age + HHI adjustments set (Section 16)</label></li>
+</ul>
+</div>
+
+<div class="card" style="text-align:center;color:var(--text-light);font-size:0.85em;">
+Generated by Claude Opus 4.6 — dealer-audit-v2 | Passion Pools NKY (237-536-3197) | March 18, 2026 | All model names verified
+</div>
+
+</div></body></html>

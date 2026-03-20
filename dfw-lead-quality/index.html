@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pools 123 DFW (7966555131) — Lead Quality Deep Dive</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; padding: 24px; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 1.6em; margin-bottom: 4px; }
+h2 { font-size: 1.25em; margin: 28px 0 12px; border-bottom: 2px solid #e63946; padding-bottom: 6px; }
+h3 { font-size: 1.05em; margin: 18px 0 8px; color: #444; }
+.subtitle { color: #666; font-size: 0.9em; margin-bottom: 20px; }
+.alert-box { background: #fef3f3; border-left: 4px solid #e63946; padding: 14px 18px; margin: 16px 0; border-radius: 4px; }
+.alert-box strong { color: #e63946; }
+.success-box { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 16px 0; border-radius: 4px; }
+.success-box strong { color: #16a34a; }
+.info-box { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 14px 18px; margin: 16px 0; border-radius: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+th { background: #1a1a2e; color: #fff; padding: 10px 14px; text-align: left; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 8px 14px; border-bottom: 1px solid #eee; font-size: 0.9em; }
+tr:hover td { background: #f8f9fa; }
+.bad { color: #e63946; font-weight: 600; }
+.good { color: #22c55e; font-weight: 600; }
+.copy-block { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 14px 18px; margin: 10px 0; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 0.85em; line-height: 1.7; cursor: pointer; position: relative; white-space: pre-wrap; }
+.copy-block:hover { background: #e9ecef; border-color: #adb5bd; }
+.copy-block::after { content: 'Click to copy'; position: absolute; top: 6px; right: 10px; font-size: 0.75em; color: #868e96; font-family: -apple-system, sans-serif; }
+.copy-block.copied::after { content: 'Copied!'; color: #22c55e; }
+.copy-single { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 4px; padding: 6px 12px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 0.85em; cursor: pointer; display: inline-block; margin: 2px; }
+.copy-single:hover { background: #e9ecef; }
+.section { background: #fff; border-radius: 8px; padding: 20px 24px; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 12px 0; }
+.metric-card { background: #f8f9fa; border-radius: 6px; padding: 14px; text-align: center; }
+.metric-card .value { font-size: 1.5em; font-weight: 700; color: #1a1a2e; }
+.metric-card .label { font-size: 0.8em; color: #666; margin-top: 4px; }
+.priority-high { border-left: 4px solid #e63946; }
+.priority-med { border-left: 4px solid #f59e0b; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 0.75em; font-weight: 600; margin: 1px; }
+.tag-phrase { background: #dbeafe; color: #1d4ed8; }
+.tag-exact { background: #dcfce7; color: #16a34a; }
+.tag-broad { background: #fef3c7; color: #b45309; }
+.tag-new { background: #fce7f3; color: #be185d; }
+footer { text-align: center; color: #999; font-size: 0.8em; margin-top: 40px; padding: 20px; }
+</style>
+<script>
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('copy-block') || e.target.classList.contains('copy-single')) {
+    const text = e.target.getAttribute('data-copy') || e.target.textContent;
+    navigator.clipboard.writeText(text.trim()).then(() => {
+      e.target.classList.add('copied');
+      setTimeout(() => e.target.classList.remove('copied'), 1500);
+    });
+  }
+});
+</script>
+</head>
+<body>
+
+<h1>Pools 123 DFW — Lead Quality Deep Dive</h1>
+<p class="subtitle">Account 796-655-5131 &bull; Leisure Pools Dallas/Fort Worth &bull; Generated 2026-03-16</p>
+
+<div class="alert-box">
+<strong>HIGH ALERT:</strong> DFW is the suspected primary source of Donavan's lead quality complaint (email 2026-03-15, CC'd CEO). This campaign has NOT been updated with the Houston fixes applied on March 11. DFW has only ~25 basic negative keywords vs Houston's 59+ on its primary campaign alone.
+</div>
+
+<!-- CAMPAIGN PERFORMANCE -->
+<div class="section">
+<h2>Campaign Performance (March 1-16)</h2>
+<div class="metric-grid">
+<div class="metric-card"><div class="value">17</div><div class="label">Total Conversions</div></div>
+<div class="metric-card"><div class="value">$2,048</div><div class="label">Total Spend</div></div>
+<div class="metric-card"><div class="value">$120</div><div class="label">Avg CPL</div></div>
+<div class="metric-card"><div class="value">7,330</div><div class="label">Total Impressions</div></div>
+</div>
+
+<table>
+<thead><tr><th>Campaign</th><th>Impr</th><th>Clicks</th><th>Conv</th><th>Cost</th><th>CTR</th><th>CPC</th><th>CPL</th></tr></thead>
+<tbody>
+<tr>
+<td>Fiberglass Pools Primary</td>
+<td>2,536</td><td>442</td><td>9</td><td>$1,010</td>
+<td class="good">17.4%</td><td>$2.29</td><td>$112</td>
+</tr>
+<tr>
+<td>Pool Builder/Contractor</td>
+<td>4,794</td><td>329</td><td>8</td><td>$1,038</td>
+<td class="bad">6.9%</td><td>$3.16</td><td>$130</td>
+</tr>
+</tbody>
+</table>
+
+<div class="alert-box">
+<strong>Pool Builder/Contractor CTR is 6.9%</strong> — way below Houston's 10.2%. This campaign is showing for massive volumes of irrelevant queries (4,794 impressions vs Houston's 1,544 in the same period). This is the primary source of bad leads.
+</div>
+</div>
+
+<!-- SEARCH TERM PROBLEMS -->
+<div class="section priority-high">
+<h2>Problematic Search Terms Bleeding Budget</h2>
+<p style="margin-bottom:12px;color:#666;">These search terms triggered DFW ads but are NOT fiberglass pool buyer intent. Many are already blocked in Houston but NOT in DFW.</p>
+
+<table>
+<thead><tr><th>Search Term</th><th>Impr</th><th>Clicks</th><th>Conv</th><th>Issue</th></tr></thead>
+<tbody>
+<tr><td class="bad">texas pocket pools</td><td>24+15</td><td>-</td><td>0</td><td>Not a real product — slang/novelty</td></tr>
+<tr><td class="bad">plungie pool cost</td><td>17</td><td>-</td><td>0</td><td>Competitor brand (plunge pool)</td></tr>
+<tr><td class="bad">container pools texas</td><td>15+13</td><td>-</td><td>0</td><td>Not fiberglass — shipping containers</td></tr>
+<tr><td class="bad">texas party pools</td><td>13</td><td>-</td><td>0</td><td>Party/rental — not buyers</td></tr>
+<tr><td class="bad">cowboy pools dallas</td><td>-</td><td>-</td><td>0</td><td>Stock tank brand — not fiberglass</td></tr>
+<tr><td class="bad">doughboy pool</td><td>-</td><td>-</td><td>0</td><td>Above ground brand</td></tr>
+<tr><td class="bad">ecopool container pool</td><td>-</td><td>-</td><td>0</td><td>Container pool brand</td></tr>
+<tr><td class="bad">prefab pools</td><td>21</td><td>-</td><td>0</td><td>Generic — often cheap/DIY intent</td></tr>
+<tr><td class="bad">latham pools price list</td><td>19</td><td>-</td><td>0</td><td>Competitor — pricing comparison</td></tr>
+<tr><td class="bad">latham pool cost</td><td>10</td><td>5</td><td>0</td><td>Competitor — 5 clicks, $0 return</td></tr>
+<tr><td class="bad">how much are latham pools</td><td>-</td><td>-</td><td>0</td><td>Competitor brand research</td></tr>
+<tr><td class="bad">aqua pools dfw</td><td>-</td><td>-</td><td>0</td><td>Local competitor</td></tr>
+<tr><td class="bad">premier pools and spas</td><td>-</td><td>-</td><td>0</td><td>National competitor</td></tr>
+<tr><td class="bad">ipoolgo prices</td><td>-</td><td>-</td><td>0</td><td>Unrelated brand</td></tr>
+</tbody>
+</table>
+
+<h3>Converting Search Terms (the good ones)</h3>
+<table>
+<thead><tr><th>Search Term</th><th>Impr</th><th>Conv</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td class="good">fiberglass pools</td><td>-</td><td>1</td><td>Core term</td></tr>
+<tr><td class="good">fiberglass pool</td><td>-</td><td>1</td><td>Core term</td></tr>
+</tbody>
+</table>
+<p style="margin-top:8px;color:#666;font-size:0.9em;">Only 2 conversions from core fiberglass terms. Compare to Houston: 7 conversions from high-quality terms post-update.</p>
+</div>
+
+<!-- NEGATIVE KEYWORD GAP -->
+<div class="section priority-high">
+<h2>Negative Keyword Gap Analysis: DFW vs Houston</h2>
+
+<div class="alert-box">
+<strong>DFW is missing 72 negative keywords</strong> — 58 that Houston already has on its primary campaign, plus 14 identified from DFW's own search term data. This is the #1 fix.
+</div>
+
+<h3>Current DFW Negatives (~25 basic terms)</h3>
+<p style="color:#666;margin-bottom:8px;">DFW currently only blocks the bare minimum:</p>
+<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:16px;">
+<span class="tag tag-broad">repair</span>
+<span class="tag tag-broad">used</span>
+<span class="tag tag-broad">jobs</span>
+<span class="tag tag-broad">portable</span>
+<span class="tag tag-broad">employment</span>
+<span class="tag tag-broad">service</span>
+<span class="tag tag-broad">hiring</span>
+<span class="tag tag-broad">cleaning</span>
+<span class="tag tag-broad">resale</span>
+<span class="tag tag-broad">maintenance</span>
+<span class="tag tag-broad">plans</span>
+<span class="tag tag-broad">inflatable</span>
+<span class="tag tag-broad">diy</span>
+<span class="tag tag-broad">careers</span>
+<span class="tag tag-broad">salary</span>
+<span class="tag tag-broad">kits</span>
+<span class="tag tag-broad">wage</span>
+<span class="tag tag-broad">self install</span>
+<span class="tag tag-broad">above ground</span>
+<span class="tag tag-broad">intex</span>
+<span class="tag tag-broad">aboveground</span>
+<span class="tag tag-exact">[leslie]</span>
+<span class="tag tag-exact">[pinch]</span>
+<span class="tag tag-phrase">"how to build ourself"</span>
+</div>
+
+<h3>NEGATIVES TO ADD — Fiberglass Pools Primary Campaign (23557939898)</h3>
+<p style="color:#666;margin-bottom:8px;">Click the block below to copy all negatives. Format: one per line, match type notation included.</p>
+
+<div class="copy-block" data-copy="cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+plunge pool cost
+container pool
+container pools
+shipping container pool
+shipping container pools
+container pools texas
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi in ground pool
+semi in ground pools
+swim spa
+swim spas
+swimspa
+swimspas
+stock tank pool
+stock tank pools
+texas pocket pools
+texas pocket pool
+liner pool cost
+pool plastering cost
+soake pools cost
+pool supply near me
+pool store near me
+pool supplies near me
+pool supply store near me
+doughboy pool
+doughboy pools
+ecopool
+eco pool container
+prefab pools
+prefab pool
+texas party pools
+party pools
+cold plunge pool
+cold plunge pools
+dipping pool
+natural swimming pool
+natural swimming pools
+ipoolgo
+ipoolgo prices
+[latham pools]
+[latham pool]
+&quot;latham pools price&quot;
+&quot;latham pool cost&quot;
+&quot;how much are latham pools&quot;
+[aqua pools dfw]
+[aqua pools]
+&quot;premier pools and spas&quot;
+[premier pools]
+leslie pool
+&quot;leslie pool&quot;
+leslie pools
+&quot;leslie pools&quot;
+leslie's pool
+&quot;leslie's pool&quot;
+leslie's pools
+&quot;leslie's pools&quot;
+leslies pool
+&quot;leslies pool&quot;
+leslies pools
+&quot;leslies pools&quot;
+leslie pool supply
+&quot;leslie pool supply&quot;
+leslie's pool supply
+leslies pool supply
+leslie pool supplies
+leslie's pool supplies
+leslies pool supplies
+&quot;leslie pool supplies&quot;
+&quot;leslie's pool supplies&quot;
+&quot;leslies pool supplies&quot;
+leslie's pool supplies houston
+pinch a penny
+&quot;pinch a penny&quot;
+scp poolcorp
+&quot;scp poolcorp&quot;">cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+plunge pool cost
+container pool
+container pools
+shipping container pool
+shipping container pools
+container pools texas
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi in ground pool
+semi in ground pools
+swim spa
+swim spas
+swimspa
+swimspas
+stock tank pool
+stock tank pools
+texas pocket pools
+texas pocket pool
+liner pool cost
+pool plastering cost
+soake pools cost
+pool supply near me
+pool store near me
+pool supplies near me
+pool supply store near me
+doughboy pool
+doughboy pools
+ecopool
+eco pool container
+prefab pools
+prefab pool
+texas party pools
+party pools
+cold plunge pool
+cold plunge pools
+dipping pool
+natural swimming pool
+natural swimming pools
+ipoolgo
+ipoolgo prices
+[latham pools]
+[latham pool]
+"latham pools price"
+"latham pool cost"
+"how much are latham pools"
+[aqua pools dfw]
+[aqua pools]
+"premier pools and spas"
+[premier pools]
+leslie pool
+"leslie pool"
+leslie pools
+"leslie pools"
+leslie's pool
+"leslie's pool"
+leslie's pools
+"leslie's pools"
+leslies pool
+"leslies pool"
+leslies pools
+"leslies pools"
+leslie pool supply
+"leslie pool supply"
+leslie's pool supply
+leslies pool supply
+leslie pool supplies
+leslie's pool supplies
+leslies pool supplies
+"leslie pool supplies"
+"leslie's pool supplies"
+"leslies pool supplies"
+leslie's pool supplies houston
+pinch a penny
+"pinch a penny"
+scp poolcorp
+"scp poolcorp"</div>
+
+<h3>NEGATIVES TO ADD — Pool Builder/Contractor Campaign (23557939901)</h3>
+<p style="color:#666;margin-bottom:8px;">Same list applies. Pool Builder campaign also needs geo exclusions like Houston has:</p>
+
+<div class="copy-block" data-copy="cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+plunge pool cost
+container pool
+container pools
+shipping container pool
+shipping container pools
+container pools texas
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi in ground pool
+semi in ground pools
+swim spa
+swim spas
+swimspa
+swimspas
+stock tank pool
+stock tank pools
+texas pocket pools
+texas pocket pool
+liner pool cost
+pool plastering cost
+soake pools cost
+pool supply near me
+pool store near me
+pool supplies near me
+pool supply store near me
+doughboy pool
+doughboy pools
+ecopool
+eco pool container
+prefab pools
+prefab pool
+texas party pools
+party pools
+cold plunge pool
+cold plunge pools
+dipping pool
+natural swimming pool
+natural swimming pools
+ipoolgo
+ipoolgo prices
+[latham pools]
+[latham pool]
+&quot;latham pools price&quot;
+&quot;latham pool cost&quot;
+&quot;how much are latham pools&quot;
+[aqua pools dfw]
+[aqua pools]
+&quot;premier pools and spas&quot;
+[premier pools]
+leslie pool
+&quot;leslie pool&quot;
+leslie pools
+&quot;leslie pools&quot;
+leslie's pool
+&quot;leslie's pool&quot;
+leslie's pools
+&quot;leslie's pools&quot;
+leslies pool
+&quot;leslies pool&quot;
+leslies pools
+&quot;leslies pools&quot;
+leslie pool supply
+&quot;leslie pool supply&quot;
+leslie's pool supply
+leslies pool supply
+leslie pool supplies
+leslie's pool supplies
+leslies pool supplies
+&quot;leslie pool supplies&quot;
+&quot;leslie's pool supplies&quot;
+&quot;leslies pool supplies&quot;
+pinch a penny
+&quot;pinch a penny&quot;
+scp poolcorp
+&quot;scp poolcorp&quot;">cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+plunge pool cost
+container pool
+container pools
+shipping container pool
+shipping container pools
+container pools texas
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi in ground pool
+semi in ground pools
+swim spa
+swim spas
+swimspa
+swimspas
+stock tank pool
+stock tank pools
+texas pocket pools
+texas pocket pool
+liner pool cost
+pool plastering cost
+soake pools cost
+pool supply near me
+pool store near me
+pool supplies near me
+pool supply store near me
+doughboy pool
+doughboy pools
+ecopool
+eco pool container
+prefab pools
+prefab pool
+texas party pools
+party pools
+cold plunge pool
+cold plunge pools
+dipping pool
+natural swimming pool
+natural swimming pools
+ipoolgo
+ipoolgo prices
+[latham pools]
+[latham pool]
+"latham pools price"
+"latham pool cost"
+"how much are latham pools"
+[aqua pools dfw]
+[aqua pools]
+"premier pools and spas"
+[premier pools]
+leslie pool
+"leslie pool"
+leslie pools
+"leslie pools"
+leslie's pool
+"leslie's pool"
+leslie's pools
+"leslie's pools"
+leslies pool
+"leslies pool"
+leslies pools
+"leslies pools"
+leslie pool supply
+"leslie pool supply"
+leslie's pool supply
+leslies pool supply
+leslie pool supplies
+leslie's pool supplies
+leslies pool supplies
+"leslie pool supplies"
+"leslie's pool supplies"
+"leslies pool supplies"
+pinch a penny
+"pinch a penny"
+scp poolcorp
+"scp poolcorp"</div>
+</div>
+
+<!-- HOUSTON COMPARISON -->
+<div class="section">
+<h2>Houston vs DFW Comparison (Post-Update Baseline)</h2>
+
+<div class="success-box">
+<strong>Houston (updated March 11)</strong> — 7 conversions from high-quality terms at $192 CPL on Primary, 13.9% CTR. Search terms converting: "fiberglass pool", "fiberglass pools houston", "piscinas de fibra de vidrio en houston tx".
+</div>
+
+<table>
+<thead><tr><th>Metric</th><th>Houston (Mar 11-16)</th><th>DFW (Mar 1-16)</th><th>Gap</th></tr></thead>
+<tbody>
+<tr><td>Primary CTR</td><td class="good">13.9%</td><td>17.4%</td><td>DFW higher CTR on primary</td></tr>
+<tr><td>Builder CTR</td><td>10.2%</td><td class="bad">6.9%</td><td class="bad">DFW 3.3% lower — irrelevant queries</td></tr>
+<tr><td>Primary Conv</td><td class="good">5</td><td>9</td><td>DFW OK on primary</td></tr>
+<tr><td>Builder Conv</td><td>2</td><td>8</td><td>But are these quality leads?</td></tr>
+<tr><td>Negative KWs (Primary)</td><td class="good">59</td><td class="bad">~25</td><td class="bad">DFW missing 34+ negatives</td></tr>
+<tr><td>Negative KWs (Total)</td><td class="good">237</td><td class="bad">~50</td><td class="bad">DFW massively under-protected</td></tr>
+<tr><td>Shared Sets</td><td>None</td><td>None</td><td>Neither uses shared lists</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- AUDIENCE RECOMMENDATIONS -->
+<div class="section">
+<h2>Audience & Demographic Recommendations</h2>
+
+<div class="info-box">
+<strong>Houston updated demographics on March 11</strong> — age range and income range criteria were modified at ad_group level across all ad groups. DFW likely has default (no exclusions) or wider targeting. Demographic comparison data pending.
+</div>
+
+<h3>Recommended Income Targeting (Gradual Tightening)</h3>
+<p style="margin-bottom:12px;color:#666;">Dealer is comfortable going to top 25% HHI only. Recommend phased approach:</p>
+
+<table>
+<thead><tr><th>Phase</th><th>Action</th><th>Income Ranges to Exclude</th></tr></thead>
+<tbody>
+<tr><td><strong>Phase 1 (Now)</strong></td><td>Exclude bottom 2 tiers</td><td>Lower 50% + 41-50% of HHI</td></tr>
+<tr><td><strong>Phase 2 (1 week)</strong></td><td>Exclude bottom 3 tiers</td><td>Add 31-40% of HHI</td></tr>
+<tr><td><strong>Phase 3 (2 weeks)</strong></td><td>Top 25% only</td><td>Exclude everything below top 25%</td></tr>
+</tbody>
+</table>
+
+<h3>Age Range Recommendations</h3>
+<p style="color:#666;">Match Houston's targeting — fiberglass pool buyers are typically 30-64. Consider excluding:</p>
+<ul style="margin:8px 0 0 20px;color:#555;">
+<li>18-24 age range (unlikely pool buyers)</li>
+<li>Unknown age (low-quality traffic)</li>
+</ul>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="section priority-high">
+<h2>Priority Action Plan</h2>
+
+<table>
+<thead><tr><th>#</th><th>Action</th><th>Priority</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Add 72 negative keywords</strong> to both DFW campaigns (use copy blocks above)</td><td class="bad">CRITICAL</td><td>Eliminates container pools, cowboy pools, plungie, Leslie's, competitors</td></tr>
+<tr><td>2</td><td><strong>Tighten income targeting</strong> — exclude bottom 50% HHI at ad group level</td><td class="bad">HIGH</td><td>Fiberglass pools are $40K-$100K+ — exclude low HHI</td></tr>
+<tr><td>3</td><td><strong>Exclude 18-24 and Unknown age</strong> at ad group level</td><td>MEDIUM</td><td>Reduces tire-kicker impressions</td></tr>
+<tr><td>4</td><td><strong>Monitor Pool Builder campaign</strong> — 6.9% CTR indicates broad match bleeding</td><td>MEDIUM</td><td>Consider pausing or restructuring if negatives don't fix CTR</td></tr>
+<tr><td>5</td><td><strong>Review in 1 week</strong> — compare pre/post negative keyword CPL and CTR</td><td>FOLLOW-UP</td><td>Verify improvement matches Houston trajectory</td></tr>
+</tbody>
+</table>
+</div>
+
+<footer>
+Pools 123 DFW Lead Quality Audit &bull; Generated 2026-03-16 &bull; Explore Industries
+</footer>
+
+</body>
+</html>

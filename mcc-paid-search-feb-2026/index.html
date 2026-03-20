@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Industries — February 2026 Paid Search</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 24px;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 28px 32px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+  .header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
+  .header p { font-size: 13px; color: #a0b4cc; margin-top: 6px; }
+  .partial-note {
+    background: #fffbeb;
+    border: 1.5px solid #f59e0b;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #92400e;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .control-group { display: flex; align-items: center; gap: 8px; }
+  .control-group label { font-size: 13px; font-weight: 600; color: #555; }
+  select, input[type=text] {
+    padding: 7px 12px;
+    border: 1.5px solid #d0d7de;
+    border-radius: 7px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  select:focus, input:focus { border-color: #0f3460; }
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    background: white;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    color: #666;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .stat-chip strong { display: block; font-size: 18px; color: #1a1a2e; font-weight: 700; }
+  .legend {
+    background: white;
+    border: 1.5px solid #e0e7ef;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .legend-title { font-size: 12px; font-weight: 700; color: #555; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .legend-items { display: flex; gap: 18px; flex-wrap: wrap; }
+  .legend-col { display: flex; flex-direction: column; gap: 5px; }
+  .legend-col-title { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 2px; }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: #444; }
+  .swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; }
+  .table-wrap {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1.5px solid #e0e7ef;
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: #1a1a2e;
+    color: white;
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    transition: background 0.15s;
+  }
+  thead th:hover { background: #0f3460; }
+  thead th.budget-col { background: #0f3460; border-left: 2px solid rgba(255,255,255,0.25); }
+  thead th.budget-col:hover { background: #1a1a2e; }
+  thead th .sort-indicator {
+    display: inline-block;
+    margin-left: 5px;
+    opacity: 0.5;
+    font-size: 10px;
+  }
+  thead th.sort-asc .sort-indicator::after { content: "▲"; opacity: 1; }
+  thead th.sort-desc .sort-indicator::after { content: "▼"; opacity: 1; }
+  thead th:not(.sort-asc):not(.sort-desc) .sort-indicator::after { content: "⇅"; }
+  tbody tr { border-bottom: 1px solid #edf0f4; transition: background 0.1s; }
+  tbody tr:hover { background: #f5f8ff !important; }
+  tbody tr.brand-header td {
+    background: #e8edf5 !important;
+    font-weight: 700;
+    font-size: 12px;
+    color: #2c3e70;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 7px 14px;
+    border-top: 2px solid #c8d0e0;
+  }
+  tbody td {
+    padding: 9px 14px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  td.budget-section { border-left: 2px solid #c8d0e0; }
+  td.dealer-cell { font-weight: 500; min-width: 180px; white-space: normal; }
+  td.account-cell { color: #888; font-size: 11.5px; }
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .badge-active   { background: #d1fae5; color: #065f46; }
+  .badge-inactive { background: #f3f4f6; color: #9ca3af; }
+  .badge-aviva    { background: #dbeafe; color: #1e40af; }
+  .badge-leisure  { background: #ede9fe; color: #5b21b6; }
+  .metric-cell { text-align: right; font-variant-numeric: tabular-nums; }
+  .null-cell { color: #ccc; text-align: right; }
+  .cad-note { font-size: 10px; color: #888; margin-left: 3px; }
+  .over-budget { background: #fde8e8; color: #991b1b; font-weight: 600; }
+  .under-budget { background: #dcfce7; color: #166534; font-weight: 600; }
+  .on-budget { background: #f8fafc; color: #64748b; }
+  #row-count { font-size: 13px; color: #666; margin-left: auto; }
+  .totals-row td {
+    font-weight: 700;
+    background: #f0f2f5 !important;
+    border-top: 2px solid #c8d0e0;
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Explore Industries — February 2026 Paid Search Performance</h1>
+  <p>Source: Google Ads &nbsp;|&nbsp; 46 accounts &nbsp;|&nbsp; Feb 1 – Feb 28, 2026</p>
+</div>
+
+
+
+<div class="controls">
+  <div class="control-group">
+    <label>Brand</label>
+    <select id="filterBrand" onchange="renderTable()">
+      <option value="">All Brands</option>
+            <option value="Aviva Pools">Aviva Pools</option>
+      <option value="Leisure Pools">Leisure Pools</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Status</label>
+    <select id="filterStatus" onchange="renderTable()">
+      <option value="">All</option>
+      <option value="Active">Active Only</option>
+      <option value="Inactive">Inactive Only</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Budget</label>
+    <select id="filterBudget" onchange="renderTable()">
+      <option value="">All</option>
+      <option value="over">Over Budget</option>
+      <option value="under">Under Budget</option>
+      <option value="no-budget">No Budget Set</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Search</label>
+    <input type="text" id="filterSearch" placeholder="Search dealer name…" oninput="renderTable()" style="width:200px">
+  </div>
+  <span id="row-count"></span>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="legend">
+  <div class="legend-title">Conditional Formatting Key</div>
+  <div class="legend-items">
+    <div class="legend-col">
+      <div class="legend-col-title">CTR</div>
+      <div class="legend-item"><div class="swatch" style="background:#fde8e8"></div>&lt; 5% — Below avg</div>
+      <div class="legend-item"><div class="swatch" style="background:#fef9c3"></div>5–8% — Average</div>
+      <div class="legend-item"><div class="swatch" style="background:#dcfce7"></div>8–12% — Good</div>
+      <div class="legend-item"><div class="swatch" style="background:#86efac"></div>&gt; 12% — Excellent</div>
+    </div>
+    <div class="legend-col">
+      <div class="legend-col-title">Avg CPC</div>
+      <div class="legend-item"><div class="swatch" style="background:#86efac"></div>&lt; $3 — Great value</div>
+      <div class="legend-item"><div class="swatch" style="background:#dcfce7"></div>$3–$6 — Normal</div>
+      <div class="legend-item"><div class="swatch" style="background:#fef9c3"></div>$6–$10 — High</div>
+      <div class="legend-item"><div class="swatch" style="background:#fde8e8"></div>&gt; $10 — Very high</div>
+    </div>
+    <div class="legend-col">
+      <div class="legend-col-title">Conv. Rate</div>
+      <div class="legend-item"><div class="swatch" style="background:#fde8e8"></div>&lt; 1% — Low</div>
+      <div class="legend-item"><div class="swatch" style="background:#fef9c3"></div>1–3% — Below avg</div>
+      <div class="legend-item"><div class="swatch" style="background:#dcfce7"></div>3–5% — Good</div>
+      <div class="legend-item"><div class="swatch" style="background:#86efac"></div>&gt; 5% — Excellent</div>
+    </div>
+    <div class="legend-col">
+      <div class="legend-col-title">Opt. Score</div>
+      <div class="legend-item"><div class="swatch" style="background:#fde8e8"></div>&lt; 55% — Needs work</div>
+      <div class="legend-item"><div class="swatch" style="background:#fef9c3"></div>55–70% — Fair</div>
+      <div class="legend-item"><div class="swatch" style="background:#dcfce7"></div>70–80% — Good</div>
+      <div class="legend-item"><div class="swatch" style="background:#86efac"></div>&gt; 80% — Excellent</div>
+    </div>
+    <div class="legend-col">
+      <div class="legend-col-title">Spend</div>
+      <div class="legend-item"><div class="swatch" style="background:#f0f9ff"></div>$0–$600</div>
+      <div class="legend-item"><div class="swatch" style="background:#bae6fd"></div>$600–$1,500</div>
+      <div class="legend-item"><div class="swatch" style="background:#38bdf8"></div>$1,500–$4,000</div>
+      <div class="legend-item"><div class="swatch" style="background:#0284c7;color:white;padding:1px 3px;border-radius:2px"></div>&gt; $4,000</div>
+    </div>
+    <div class="legend-col">
+      <div class="legend-col-title">vs. Budget</div>
+      <div class="legend-item"><div class="swatch" style="background:#dcfce7"></div>Under budget</div>
+      <div class="legend-item"><div class="swatch" style="background:#fde8e8"></div>Over budget</div>
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table id="mainTable">
+    <thead>
+      <tr>
+        <th onclick="sortBy('brand')" data-key="brand">Brand<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('dealer')" data-key="dealer">Dealer<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('account_id')" data-key="account_id">Account ID<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('status')" data-key="status">Status<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('clicks')" data-key="clicks">Clicks<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('impressions')" data-key="impressions">Impressions<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('ctr')" data-key="ctr">CTR<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('avg_cpc')" data-key="avg_cpc">Avg CPC<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('conversions')" data-key="conversions">Conversions<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('conv_rate')" data-key="conv_rate">Conv. Rate<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('opt_score')" data-key="opt_score">Opt. Score<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('spend')" data-key="spend" class="budget-col">Spend<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('daily_budget')" data-key="daily_budget" class="budget-col">Daily Budget<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('monthly_budget')" data-key="monthly_budget" class="budget-col">Monthly Budget<span class="sort-indicator"></span></th>
+        <th onclick="sortBy('vs_budget')" data-key="vs_budget" class="budget-col">vs. Budget<span class="sort-indicator"></span></th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+</div>
+
+<script>
+const RAW_DATA = [{"brand": "Aviva Pools", "dealer": "Aqua- Corpus Christi", "account_id": "734-045-0319", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": 66.0, "monthly_budget": 1980.0, "vs_budget": -1980.0}, {"brand": "Aviva Pools", "dealer": "Aquamarine Pools - San Antonio", "account_id": "199-471-2376", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Aviva Pools", "dealer": "Aviva Pools (National)", "account_id": "197-761-1142", "status": "Active", "clicks": 314, "impressions": 4376, "ctr": 7.18, "avg_cpc": 3.21, "spend": 1009.1, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 52.5, "currency": "USD", "daily_budget": 33.0, "monthly_budget": 990.0, "vs_budget": 19.1}, {"brand": "Aviva Pools", "dealer": "Aviva Pools Nashville South", "account_id": "636-110-4793", "status": "Active", "clicks": 51, "impressions": 970, "ctr": 5.26, "avg_cpc": 10.26, "spend": 523.27, "conversions": 1.0, "conv_rate": 1.96, "opt_score": 69.8, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 13.27}, {"brand": "Aviva Pools", "dealer": "Aviva Pools Terra Haute", "account_id": "922-518-8086", "status": "Active", "clicks": 75, "impressions": 959, "ctr": 7.82, "avg_cpc": 6.89, "spend": 516.55, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 90.3, "currency": "USD", "daily_budget": 33.0, "monthly_budget": 990.0, "vs_budget": -473.45}, {"brand": "Leisure Pools", "dealer": "All American Pools & Spas", "account_id": "160-361-4892", "status": "Active", "clicks": 297, "impressions": 3509, "ctr": 8.46, "avg_cpc": 2.84, "spend": 843.28, "conversions": 5.0, "conv_rate": 1.68, "opt_score": 68.2, "currency": "USD", "daily_budget": 28.0, "monthly_budget": 840.0, "vs_budget": 3.28}, {"brand": "Leisure Pools", "dealer": "Aquamarine Pools - Oklahoma", "account_id": "819-726-4086", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Backyard Pool and Patio", "account_id": "711-781-2876", "status": "Active", "clicks": 201, "impressions": 2287, "ctr": 8.79, "avg_cpc": 8.4, "spend": 1688.29, "conversions": 6.0, "conv_rate": 2.99, "opt_score": 68.1, "currency": "USD", "daily_budget": 56.0, "monthly_budget": 1680.0, "vs_budget": 8.29}, {"brand": "Leisure Pools", "dealer": "Blue Orca Pools", "account_id": "978-079-6043", "status": "Active", "clicks": 482, "impressions": 4322, "ctr": 11.15, "avg_cpc": 2.39, "spend": 1151.68, "conversions": 18.0, "conv_rate": 3.73, "opt_score": 69.3, "currency": "USD", "daily_budget": 60.0, "monthly_budget": 1800.0, "vs_budget": -648.32}, {"brand": "Leisure Pools", "dealer": "Blue Science Pools", "account_id": "299-098-2200", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Bluefin Contracting & Design", "account_id": "249-441-5491", "status": "Active", "clicks": 214, "impressions": 1945, "ctr": 11.0, "avg_cpc": 3.84, "spend": 820.85, "conversions": 9.5, "conv_rate": 4.44, "opt_score": 76.2, "currency": "USD", "daily_budget": 27.0, "monthly_budget": 810.0, "vs_budget": 10.85}, {"brand": "Leisure Pools", "dealer": "Cajun Pools and Spas", "account_id": "648-605-3029", "status": "Active", "clicks": 537, "impressions": 2727, "ctr": 19.69, "avg_cpc": 1.87, "spend": 1003.2, "conversions": 1.0, "conv_rate": 19.0, "opt_score": 70.4, "currency": "USD", "daily_budget": 33.0, "monthly_budget": 990.0, "vs_budget": 13.2}, {"brand": "Leisure Pools", "dealer": "DBJ Pools", "account_id": "921-112-0791", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Explore Industries Manager Account 2", "account_id": "146-023-9846", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Fiberglass Pool Solutions", "account_id": "643-401-9356", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": -510.0}, {"brand": "Leisure Pools", "dealer": "Integrity Built Pools", "account_id": "553-727-6145", "status": "Active", "clicks": 227, "impressions": 2380, "ctr": 9.54, "avg_cpc": 10.71, "spend": 2432.03, "conversions": 5.0, "conv_rate": 2.2, "opt_score": 76.5, "currency": "USD", "daily_budget": 80.0, "monthly_budget": 2400.0, "vs_budget": 32.03}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Athens", "account_id": "354-541-4886", "status": "Active", "clicks": 125, "impressions": 1368, "ctr": 9.14, "avg_cpc": 2.5, "spend": 312.62, "conversions": 4.0, "conv_rate": 3.2, "opt_score": 45.8, "currency": "USD", "daily_budget": 33.0, "monthly_budget": 990.0, "vs_budget": -677.38}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Austin", "account_id": "618-562-9903", "status": "Active", "clicks": 66, "impressions": 667, "ctr": 9.9, "avg_cpc": 6.05, "spend": 399.62, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 69.3, "currency": "USD", "daily_budget": 125.0, "monthly_budget": 3750.0, "vs_budget": -3350.38}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Boston North", "account_id": "186-757-8797", "status": "Active", "clicks": 69, "impressions": 912, "ctr": 7.57, "avg_cpc": 3.32, "spend": 228.91, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 55.3, "currency": "USD", "daily_budget": 33.0, "monthly_budget": 990.0, "vs_budget": -761.09}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Coastal Mississippi", "account_id": "244-459-5956", "status": "Active", "clicks": 227, "impressions": 1980, "ctr": 11.46, "avg_cpc": 2.28, "spend": 517.47, "conversions": 13.0, "conv_rate": 5.73, "opt_score": 77.6, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 7.47}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Columbus OH", "account_id": "500-052-3507", "status": "Active", "clicks": 302, "impressions": 3814, "ctr": 7.92, "avg_cpc": 7.74, "spend": 2337.82, "conversions": 10.0, "conv_rate": 3.31, "opt_score": 58.4, "currency": "USD", "daily_budget": 60.0, "monthly_budget": 1800.0, "vs_budget": 537.82}, {"brand": "Leisure Pools", "dealer": "Leisure Pools DFW", "account_id": "796-655-5131", "status": "Active", "clicks": 653, "impressions": 6358, "ctr": 10.27, "avg_cpc": 3.44, "spend": 2247.37, "conversions": 8.0, "conv_rate": 1.23, "opt_score": 71.6, "currency": "USD", "daily_budget": 132.0, "monthly_budget": 3960.0, "vs_budget": -1712.63}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Europe", "account_id": "958-165-2837", "status": "Active", "clicks": 992, "impressions": 18879, "ctr": 5.25, "avg_cpc": 1.43, "spend": 1416.75, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 69.8, "currency": "USD", "daily_budget": 85.0, "monthly_budget": 2550.0, "vs_budget": -1133.25}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Front Range", "account_id": "761-964-5742", "status": "Active", "clicks": 302, "impressions": 4088, "ctr": 7.39, "avg_cpc": 8.05, "spend": 2431.97, "conversions": 10.0, "conv_rate": 3.31, "opt_score": 59.8, "currency": "USD", "daily_budget": 80.0, "monthly_budget": 2400.0, "vs_budget": 31.97}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Houston", "account_id": "679-038-2043", "status": "Active", "clicks": 2523, "impressions": 25730, "ctr": 9.81, "avg_cpc": 3.62, "spend": 9124.28, "conversions": 37.0, "conv_rate": 1.47, "opt_score": 66.9, "currency": "USD", "daily_budget": 300.0, "monthly_budget": 9000.0, "vs_budget": 124.28}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Jacksonville", "account_id": "659-279-5595", "status": "Active", "clicks": 567, "impressions": 5770, "ctr": 9.83, "avg_cpc": 2.86, "spend": 1620.93, "conversions": 32.0, "conv_rate": 5.64, "opt_score": 69.6, "currency": "USD", "daily_budget": 50.0, "monthly_budget": 1500.0, "vs_budget": 120.93}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Lake City", "account_id": "581-853-5707", "status": "Active", "clicks": 80, "impressions": 871, "ctr": 9.18, "avg_cpc": 6.45, "spend": 516.09, "conversions": 2.0, "conv_rate": 2.5, "opt_score": 73.7, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 6.09}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Northwest Ohio", "account_id": "386-816-0717", "status": "Active", "clicks": 82, "impressions": 648, "ctr": 12.65, "avg_cpc": 6.28, "spend": 515.34, "conversions": 1.0, "conv_rate": 1.22, "opt_score": 79.3, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 5.34}, {"brand": "Leisure Pools", "dealer": "Leisure Pools OK", "account_id": "232-235-2945", "status": "Active", "clicks": 925, "impressions": 7185, "ctr": 12.87, "avg_cpc": 3.81, "spend": 3526.17, "conversions": 15.0, "conv_rate": 1.62, "opt_score": 79.5, "currency": "USD", "daily_budget": 116.0, "monthly_budget": 3480.0, "vs_budget": 46.17}, {"brand": "Leisure Pools", "dealer": "Leisure Pools San Antonio", "account_id": "972-063-3800", "status": "Active", "clicks": 73, "impressions": 755, "ctr": 9.67, "avg_cpc": 4.69, "spend": 342.23, "conversions": 1.0, "conv_rate": 1.37, "opt_score": 71.2, "currency": "USD", "daily_budget": 100.0, "monthly_budget": 3000.0, "vs_budget": -2657.77}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Sarasota", "account_id": "477-640-7725", "status": "Active", "clicks": 155, "impressions": 1549, "ctr": 10.01, "avg_cpc": 3.37, "spend": 522.45, "conversions": 6.0, "conv_rate": 3.87, "opt_score": 68.5, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 12.45}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Wabash Valley", "account_id": "198-709-3378", "status": "Active", "clicks": 78, "impressions": 765, "ctr": 10.2, "avg_cpc": 6.62, "spend": 516.6, "conversions": 3.0, "conv_rate": 3.85, "opt_score": 77.2, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Leisure Pools Waco", "account_id": "615-393-4758", "status": "Active", "clicks": 57, "impressions": 639, "ctr": 8.92, "avg_cpc": 7.41, "spend": 422.1, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 82.3, "currency": "USD", "daily_budget": 75.0, "monthly_budget": 2250.0, "vs_budget": -1827.9}, {"brand": "Leisure Pools", "dealer": "Lifestyle Pools", "account_id": "132-079-7549", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Locey Swim & Spa", "account_id": "328-152-7794", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Our Leisure Pools", "account_id": "688-731-3574", "status": "Active", "clicks": 364, "impressions": 4378, "ctr": 8.31, "avg_cpc": 2.33, "spend": 846.73, "conversions": 9.0, "conv_rate": 2.47, "opt_score": null, "currency": "CAD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Passion Pools", "account_id": "237-536-3197", "status": "Active", "clicks": 997, "impressions": 12787, "ctr": 7.8, "avg_cpc": 8.05, "spend": 8027.04, "conversions": 42.0, "conv_rate": 4.21, "opt_score": 68.2, "currency": "USD", "daily_budget": 272.5, "monthly_budget": 8175.0, "vs_budget": -147.96}, {"brand": "Leisure Pools", "dealer": "Pools123 - Texas", "account_id": "668-400-8990", "status": "Active", "clicks": 1505, "impressions": 10961, "ctr": 13.73, "avg_cpc": 3.4, "spend": 5111.58, "conversions": 49.96, "conv_rate": 3.32, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Pools321", "account_id": "741-957-5788", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Poolux Builders", "account_id": "309-520-8045", "status": "Active", "clicks": 785, "impressions": 4528, "ctr": 17.34, "avg_cpc": 0.66, "spend": 518.18, "conversions": 0.0, "conv_rate": 0.0, "opt_score": 78.0, "currency": "USD", "daily_budget": 17.0, "monthly_budget": 510.0, "vs_budget": 8.18}, {"brand": "Leisure Pools", "dealer": "Prairie Pools", "account_id": "945-943-6515", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}, {"brand": "Leisure Pools", "dealer": "Precision Fiberglass Pools", "account_id": "817-306-3391", "status": "Active", "clicks": 242, "impressions": 3469, "ctr": 6.98, "avg_cpc": 3.39, "spend": 820.74, "conversions": 3.0, "conv_rate": 1.24, "opt_score": 69.4, "currency": "USD", "daily_budget": 28.0, "monthly_budget": 840.0, "vs_budget": -19.26}, {"brand": "Leisure Pools", "dealer": "Pronto Pools", "account_id": "859-932-2758", "status": "Active", "clicks": 290, "impressions": 2264, "ctr": 12.81, "avg_cpc": 2.97, "spend": 861.05, "conversions": 3.0, "conv_rate": 1.03, "opt_score": 61.8, "currency": "USD", "daily_budget": 28.33, "monthly_budget": 849.9, "vs_budget": 11.15}, {"brand": "Leisure Pools", "dealer": "The Pool Company", "account_id": "999-920-3572", "status": "Active", "clicks": 146, "impressions": 2002, "ctr": 7.29, "avg_cpc": 9.4, "spend": 1373.12, "conversions": 2.0, "conv_rate": 1.37, "opt_score": 72.0, "currency": "USD", "daily_budget": 45.43, "monthly_budget": 1362.9, "vs_budget": 10.22}, {"brand": "Leisure Pools", "dealer": "Tri County Pools", "account_id": "673-602-5219", "status": "Active", "clicks": 174, "impressions": 2130, "ctr": 8.17, "avg_cpc": 4.29, "spend": 746.74, "conversions": 14.0, "conv_rate": 8.05, "opt_score": 35.2, "currency": "USD", "daily_budget": 25.0, "monthly_budget": 750.0, "vs_budget": -3.26}, {"brand": "Leisure Pools", "dealer": "Zanares Xterior Living", "account_id": "270-149-4593", "status": "Active", "clicks": 0, "impressions": 0, "ctr": null, "avg_cpc": 0.0, "spend": 0.0, "conversions": 0.0, "conv_rate": 0.0, "opt_score": null, "currency": "USD", "daily_budget": null, "monthly_budget": null, "vs_budget": null}];
+
+let sortKey = 'spend';
+let sortDir = 'desc';
+
+function sortBy(key) {
+  if (sortKey === key) {
+    sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+  } else {
+    sortKey = key;
+    sortDir = (key === 'dealer' || key === 'brand' || key === 'account_id') ? 'asc' : 'desc';
+  }
+  renderTable();
+}
+
+function getFiltered() {
+  const brand  = document.getElementById('filterBrand').value;
+  const status = document.getElementById('filterStatus').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase();
+  const budget = document.getElementById('filterBudget').value;
+  return RAW_DATA.filter(r => {
+    if (brand  && r.brand  !== brand)  return false;
+    if (status && r.status !== status) return false;
+    if (search && !r.dealer.toLowerCase().includes(search)) return false;
+    if (budget === 'over'      && !(r.vs_budget !== null && r.vs_budget > 0))  return false;
+    if (budget === 'under'     && !(r.vs_budget !== null && r.vs_budget <= 0)) return false;
+    if (budget === 'no-budget' && r.monthly_budget !== null) return false;
+    return true;
+  });
+}
+
+function getSorted(data) {
+  return [...data].sort((a, b) => {
+    let av = a[sortKey], bv = b[sortKey];
+    if (av === null && bv === null) return 0;
+    if (av === null) return 1;
+    if (bv === null) return -1;
+    if (typeof av === 'string') av = av.toLowerCase(), bv = (bv||'').toLowerCase();
+    let cmp = av < bv ? -1 : av > bv ? 1 : 0;
+    return sortDir === 'asc' ? cmp : -cmp;
+  });
+}
+
+function ctrColor(v)  {
+  if (v === null) return '';
+  if (v < 5)  return 'background:#fde8e8';
+  if (v < 8)  return 'background:#fef9c3';
+  if (v < 12) return 'background:#dcfce7';
+  return 'background:#86efac';
+}
+function cpcColor(v) {
+  if (v === null) return '';
+  if (v < 3)  return 'background:#86efac';
+  if (v < 6)  return 'background:#dcfce7';
+  if (v < 10) return 'background:#fef9c3';
+  return 'background:#fde8e8';
+}
+function cvrColor(v) {
+  if (v === null) return '';
+  if (v < 1)  return 'background:#fde8e8';
+  if (v < 3)  return 'background:#fef9c3';
+  if (v < 5)  return 'background:#dcfce7';
+  return 'background:#86efac';
+}
+function optColor(v) {
+  if (v === null) return '';
+  if (v < 55) return 'background:#fde8e8';
+  if (v < 70) return 'background:#fef9c3';
+  if (v < 80) return 'background:#dcfce7';
+  return 'background:#86efac';
+}
+function spendColor(v) {
+  if (v === null || v === 0) return 'background:#f8fafc;color:#ccc';
+  if (v < 600)  return 'background:#f0f9ff;color:#0c4a6e';
+  if (v < 1500) return 'background:#bae6fd;color:#0c4a6e';
+  if (v < 4000) return 'background:#38bdf8;color:#0c4a6e';
+  return 'background:#0284c7;color:white';
+}
+function convColor(v) {
+  if (v === null || v === 0) return '';
+  if (v < 3)  return 'background:#fef9c3';
+  if (v < 10) return 'background:#dcfce7';
+  if (v < 25) return 'background:#86efac';
+  return 'background:#4ade80';
+}
+function clicksColor(v) {
+  if (!v) return '';
+  if (v < 100)  return '';
+  if (v < 500)  return 'background:#f0f9ff';
+  if (v < 1000) return 'background:#bae6fd';
+  return 'background:#38bdf8';
+}
+function fmt(v, decimals=2, prefix='$') {
+  if (v === null || v === undefined) return '<span class="null-cell">—</span>';
+  return prefix + v.toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+}
+
+function updateSortHeaders() {
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.remove('sort-asc','sort-desc');
+    if (th.dataset.key === sortKey) th.classList.add('sort-' + sortDir);
+  });
+}
+
+function updateStats(filtered) {
+  const active = filtered.filter(r => r.status === 'Active');
+  const totalSpend   = active.reduce((s,r) => s + (r.spend          || 0), 0);
+  const totalBudget  = active.filter(r => r.monthly_budget !== null).reduce((s,r) => s + (r.monthly_budget || 0), 0);
+  const budgetAccts  = active.filter(r => r.monthly_budget !== null).length;
+  const totalClicks  = active.reduce((s,r) => s + (r.clicks         || 0), 0);
+  const totalImpr    = active.reduce((s,r) => s + (r.impressions    || 0), 0);
+  const totalConv    = active.reduce((s,r) => s + (r.conversions    || 0), 0);
+  const overBudget   = active.filter(r => r.vs_budget !== null && r.vs_budget > 0).length;
+  const underBudget  = active.filter(r => r.vs_budget !== null && r.vs_budget <= 0).length;
+  const avgCTR = totalImpr   ? (totalClicks / totalImpr * 100)   : 0;
+  const avgCVR = totalClicks ? (totalConv   / totalClicks * 100) : 0;
+  const avgCPC = totalClicks ? (totalSpend  / totalClicks)       : 0;
+  const budgetUtil = totalBudget ? (totalSpend / totalBudget * 100) : 0;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-chip"><strong>${filtered.length}</strong>Total Accounts</div>
+    <div class="stat-chip"><strong>${active.length}</strong>Active</div>
+    <div class="stat-chip"><strong>$${totalSpend.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>Total Spend</div>
+    ${budgetAccts > 0 ? `<div class="stat-chip"><strong>$${totalBudget.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</strong>Total Monthly Budget</div>
+    <div class="stat-chip"><strong>${budgetUtil.toFixed(1)}%</strong>Budget Utilization</div>` : ''}
+    <div class="stat-chip"><strong style="color:${overBudget > 0 ? '#991b1b' : '#166534'}">${overBudget}</strong>Over Budget</div>
+    <div class="stat-chip"><strong style="color:#166534">${underBudget}</strong>Under Budget</div>
+    <div class="stat-chip"><strong>${totalClicks.toLocaleString()}</strong>Clicks</div>
+    <div class="stat-chip"><strong>${avgCTR.toFixed(2)}%</strong>Avg CTR</div>
+    <div class="stat-chip"><strong>$${avgCPC.toFixed(2)}</strong>Avg CPC</div>
+    <div class="stat-chip"><strong>${totalConv.toFixed(1)}</strong>Conversions</div>
+    <div class="stat-chip"><strong>${avgCVR.toFixed(2)}%</strong>Avg Conv. Rate</div>
+  `;
+}
+
+function renderTable() {
+  const filtered = getFiltered();
+  const sorted   = getSorted(filtered);
+  updateStats(filtered);
+  updateSortHeaders();
+
+  const isDefaultView = (sortKey === 'spend'
+    && !document.getElementById('filterBrand').value
+    && !document.getElementById('filterStatus').value
+    && !document.getElementById('filterBudget').value
+    && !document.getElementById('filterSearch').value);
+  const groupByBrand = (sortKey === 'brand' || isDefaultView);
+
+  let html = '';
+  let prevBrand = null;
+
+  sorted.forEach(r => {
+    if (groupByBrand && r.brand !== prevBrand) {
+      prevBrand = r.brand;
+      html += `<tr class="brand-header"><td colspan="15">${r.brand}</td></tr>`;
+    }
+
+    const activeClass = r.status === 'Active' ? 'badge-active' : 'badge-inactive';
+    const brandClass  = r.brand === 'Aviva Pools' ? 'badge-aviva' : 'badge-leisure';
+    const cadNote     = r.currency === 'CAD' ? '<span class="cad-note">CAD</span>' : '';
+
+    // vs. budget cell
+    let vbClass = '', vbText = '<span class="null-cell">—</span>';
+    if (r.vs_budget !== null) {
+      if (r.vs_budget > 0.005) {
+        vbClass = 'over-budget';
+        vbText  = '+$' + r.vs_budget.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' OVER';
+      } else if (r.vs_budget < -0.005) {
+        vbClass = 'under-budget';
+        vbText  = '-$' + Math.abs(r.vs_budget).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' left';
+      } else {
+        vbClass = 'on-budget';
+        vbText  = '$0.00';
+      }
+    }
+
+    html += `<tr>
+      <td><span class="badge ${brandClass}">${r.brand.replace(' Pools','')}</span></td>
+      <td class="dealer-cell">${r.dealer}</td>
+      <td class="account-cell">${r.account_id}</td>
+      <td><span class="badge ${activeClass}">${r.status}</span></td>
+      <td class="metric-cell" style="${clicksColor(r.clicks)}">${r.clicks ? r.clicks.toLocaleString() : '—'}</td>
+      <td class="metric-cell">${r.impressions ? r.impressions.toLocaleString() : '—'}</td>
+      <td class="metric-cell" style="${ctrColor(r.ctr)}">${r.ctr !== null ? r.ctr.toFixed(2)+'%' : '—'}</td>
+      <td class="metric-cell" style="${cpcColor(r.avg_cpc)}">${r.avg_cpc !== null ? '$'+r.avg_cpc.toFixed(2) : '—'}</td>
+      <td class="metric-cell" style="${convColor(r.conversions)}">${r.conversions !== null && r.conversions !== 0 ? r.conversions : '—'}</td>
+      <td class="metric-cell" style="${cvrColor(r.conv_rate)}">${r.conv_rate !== null ? r.conv_rate.toFixed(2)+'%' : '—'}</td>
+      <td class="metric-cell" style="${optColor(r.opt_score)}">${r.opt_score !== null ? r.opt_score.toFixed(1)+'%' : '—'}</td>
+      <td class="metric-cell budget-section" style="${spendColor(r.spend)}">${r.spend !== null ? '$'+r.spend.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+cadNote : '—'}</td>
+      <td class="metric-cell">${r.daily_budget !== null ? '$'+r.daily_budget.toFixed(2) : '<span class="null-cell">—</span>'}</td>
+      <td class="metric-cell">${r.monthly_budget !== null ? '$'+r.monthly_budget.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}) : '<span class="null-cell">—</span>'}</td>
+      <td class="metric-cell ${vbClass}">${vbText}</td>
+    </tr>`;
+  });
+
+  // Totals row (active only)
+  const active = sorted.filter(r => r.status === 'Active');
+  if (active.length > 0) {
+    const tSpend  = active.reduce((s,r) => s + (r.spend       || 0), 0);
+    const tClicks = active.reduce((s,r) => s + (r.clicks      || 0), 0);
+    const tImpr   = active.reduce((s,r) => s + (r.impressions || 0), 0);
+    const tConv   = active.reduce((s,r) => s + (r.conversions || 0), 0);
+    const tCTR = tImpr   ? tClicks / tImpr * 100 : 0;
+    const tCPC = tClicks ? tSpend  / tClicks : 0;
+    const tCVR = tClicks ? tConv   / tClicks * 100 : 0;
+    const tMonBud = active.filter(r => r.monthly_budget !== null).reduce((s,r) => s + (r.monthly_budget || 0), 0);
+    const tDailyBud = active.filter(r => r.daily_budget !== null).reduce((s,r) => s + (r.daily_budget || 0), 0);
+    const tVsBud  = tMonBud > 0 ? tSpend - tMonBud : null;
+    let vbClass2 = '', vbText2 = '—';
+    if (tVsBud !== null) {
+      if (tVsBud > 0.005) { vbClass2 = 'over-budget';  vbText2 = '+$'+tVsBud.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' OVER'; }
+      else if (tVsBud < -0.005) { vbClass2 = 'under-budget'; vbText2 = '-$'+Math.abs(tVsBud).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+' left'; }
+      else { vbClass2 = 'on-budget'; vbText2 = '$0.00'; }
+    }
+    html += `<tr class="totals-row">
+      <td colspan="4">Active Accounts Total (${active.length})</td>
+      <td class="metric-cell">${tClicks.toLocaleString()}</td>
+      <td class="metric-cell">${tImpr.toLocaleString()}</td>
+      <td class="metric-cell">${tCTR.toFixed(2)}%</td>
+      <td class="metric-cell">$${tCPC.toFixed(2)}</td>
+      <td class="metric-cell">${tConv.toFixed(1)}</td>
+      <td class="metric-cell">${tCVR.toFixed(2)}%</td>
+      <td class="metric-cell">—</td>
+      <td class="metric-cell budget-section">$${tSpend.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+      <td class="metric-cell">$${tDailyBud.toFixed(2)}</td>
+      <td class="metric-cell">$${tMonBud.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+      <td class="metric-cell ${vbClass2}">${vbText2}</td>
+    </tr>`;
+  }
+
+  document.getElementById('tableBody').innerHTML = html;
+  document.getElementById('row-count').textContent =
+    `Showing ${sorted.length} of ${RAW_DATA.length} accounts`;
+}
+
+renderTable();
+</script>
+</body>
+</html>

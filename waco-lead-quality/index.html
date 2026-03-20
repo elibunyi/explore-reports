@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pools 123 Waco — Lead Quality Deep Dive</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; }
+.header { background: #1a1a2e; color: white; padding: 32px 40px; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { color: #a0aec0; font-size: 14px; }
+.header .meta { display: flex; gap: 24px; margin-top: 12px; font-size: 13px; color: #cbd5e0; }
+.header .meta span { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 4px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.card { background: white; border-radius: 8px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.card h2 { font-size: 18px; color: #1a1a2e; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e2e8f0; }
+.card h3 { font-size: 15px; color: #4a5568; margin: 16px 0 8px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f7fafc; text-align: left; padding: 10px 12px; font-weight: 600; color: #4a5568; border-bottom: 2px solid #e2e8f0; }
+td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
+tr:hover { background: #f7fafc; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.metric-box { background: #f7fafc; border-radius: 8px; padding: 16px; text-align: center; }
+.metric-box .value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+.metric-box .label { font-size: 12px; color: #718096; margin-top: 4px; }
+.flag-red { color: #e53e3e; font-weight: 600; }
+.flag-yellow { color: #d69e2e; font-weight: 600; }
+.flag-green { color: #38a169; font-weight: 600; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.badge-missing { background: #fed7d7; color: #c53030; }
+.badge-present { background: #c6f6d5; color: #276749; }
+.badge-partial { background: #fefcbf; color: #975a16; }
+.copy-block { background: #f8f9fa; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; font-family: 'SF Mono', Consolas, monospace; font-size: 12px; line-height: 1.8; cursor: pointer; transition: background 0.3s; white-space: pre-wrap; }
+.copy-block:hover { background: #edf2f7; }
+.copy-hint { font-size: 11px; color: #a0aec0; margin-bottom: 6px; font-style: italic; }
+.section-intro { font-size: 14px; color: #4a5568; margin-bottom: 16px; line-height: 1.6; }
+.priority-list { list-style: none; }
+.priority-list li { padding: 12px 16px; border-left: 4px solid #e53e3e; margin-bottom: 8px; background: #fff5f5; border-radius: 0 6px 6px 0; font-size: 14px; }
+.priority-list li.medium { border-left-color: #d69e2e; background: #fffff0; }
+.priority-list li.low { border-left-color: #38a169; background: #f0fff4; }
+.priority-list li strong { display: block; margin-bottom: 4px; }
+.gap-table td.missing { background: #fff5f5; }
+.gap-table td.present { background: #f0fff4; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .metric-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Pools 123 Waco — Lead Quality Deep Dive</h1>
+    <div class="subtitle">Account 615-393-4758 &bull; Leisure Pools Brand &bull; Generated 2026-03-16</div>
+    <div class="meta">
+        <span>Date Range: March 1–16, 2026</span>
+        <span>Benchmark: Pools 123 Houston (679-038-2043)</span>
+        <span>Houston negatives updated: March 11, 2026</span>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- ACCOUNT SUMMARY -->
+<div class="card">
+    <h2>Account Performance Summary</h2>
+    <div class="metric-grid">
+        <div class="metric-box">
+            <div class="value">2,002</div>
+            <div class="label">Total Impressions</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">221</div>
+            <div class="label">Total Clicks</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">12</div>
+            <div class="label">Conversions</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">$1,132.77</div>
+            <div class="label">Total Spend</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">$5.13</div>
+            <div class="label">Avg CPC</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">$94.40</div>
+            <div class="label">Cost / Conversion</div>
+        </div>
+    </div>
+</div>
+
+<!-- CAMPAIGN PERFORMANCE -->
+<div class="card">
+    <h2>Campaign Performance (March 1–16)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Campaign</th>
+                <th>Impressions</th>
+                <th>Clicks</th>
+                <th>CTR</th>
+                <th>Avg CPC</th>
+                <th>Conversions</th>
+                <th>Cost</th>
+                <th>Cost/Conv</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pool Builder / Contractor</strong></td>
+                <td>1,214</td>
+                <td>112</td>
+                <td>9.23%</td>
+                <td>$5.12</td>
+                <td>6</td>
+                <td>$573.98</td>
+                <td>$95.66</td>
+            </tr>
+            <tr>
+                <td><strong>Fiberglass Pools (Primary)</strong></td>
+                <td>788</td>
+                <td>109</td>
+                <td>13.83%</td>
+                <td>$5.13</td>
+                <td>6</td>
+                <td>$558.79</td>
+                <td>$93.13</td>
+            </tr>
+            <tr style="font-weight:700; background:#f7fafc;">
+                <td>TOTAL</td>
+                <td>2,002</td>
+                <td>221</td>
+                <td>11.04%</td>
+                <td>$5.13</td>
+                <td>12</td>
+                <td>$1,132.77</td>
+                <td>$94.40</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- PROBLEMATIC SEARCH TERMS -->
+<div class="card">
+    <h2>Problematic Search Terms — Non-Buyer Intent</h2>
+    <p class="section-intro">These search terms triggered ads but indicate users who are NOT shopping for a fiberglass pool installation. Each one is wasting budget or diluting lead quality. Terms marked in red generated paid clicks.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Search Term</th>
+                <th>Campaign</th>
+                <th>Impr</th>
+                <th>Clicks</th>
+                <th>Cost</th>
+                <th>Issue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="flag-red">aqua pools georgetown</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>22</td>
+                <td>2</td>
+                <td>$18.11</td>
+                <td>Competitor name — not our brand</td>
+            </tr>
+            <tr>
+                <td class="flag-red">premier pools and spas</td>
+                <td>Pool Builder / Contractor</td>
+                <td>18</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor name — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>texas pocket pools</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>container pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>modular plunge pool</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product</td>
+            </tr>
+            <tr>
+                <td>plunge pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product</td>
+            </tr>
+            <tr>
+                <td class="flag-red">poology</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>1</td>
+                <td>$6.09</td>
+                <td>Irrelevant brand search</td>
+            </tr>
+            <tr>
+                <td>small plunge pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product</td>
+            </tr>
+            <tr>
+                <td class="flag-red">aqua pools com</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>3</td>
+                <td>2</td>
+                <td>$8.96</td>
+                <td>Competitor name — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>aqua pools georgetown tx</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor name — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>fiberglass pool resurfacing near me</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Service intent — not buying a pool</td>
+            </tr>
+            <tr>
+                <td>precast concrete pool</td>
+                <td>Pool Builder / Contractor</td>
+                <td>8</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product type</td>
+            </tr>
+            <tr>
+                <td>pool liner replacement cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Service/repair intent</td>
+            </tr>
+            <tr>
+                <td class="flag-red">aquapools</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td>pebble tec installers near me</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Resurfacing service — not new pool</td>
+            </tr>
+            <tr>
+                <td>semi inground pool installation</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass — Houston has this blocked</td>
+            </tr>
+            <tr>
+                <td class="flag-red">viking fiberglass pools</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>4</td>
+                <td>1</td>
+                <td>$4.57</td>
+                <td>Competitor brand name</td>
+            </tr>
+            <tr>
+                <td>latham tuscan 14.27</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor brand (Latham)</td>
+            </tr>
+            <tr>
+                <td>liberty fiberglass pools</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>5</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor brand name</td>
+            </tr>
+            <tr>
+                <td>pool liner replacement near me</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Service intent — liner pools, not fiberglass</td>
+            </tr>
+            <tr>
+                <td>pool resurfacing companies near me</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Service intent</td>
+            </tr>
+            <tr>
+                <td>pool coping installers near me</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Service/repair intent</td>
+            </tr>
+            <tr>
+                <td>how much does it cost to reline a pool</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Liner/service intent</td>
+            </tr>
+            <tr>
+                <td>how much is pool liner installation</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Liner pool intent</td>
+            </tr>
+            <tr>
+                <td>infinity pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Non-fiberglass product type</td>
+            </tr>
+            <tr>
+                <td>discount pools elkhart</td>
+                <td>Pool Builder / Contractor</td>
+                <td>2</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>Competitor / out-of-market location</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="margin-top:12px; font-size:13px; color:#718096;"><strong>Estimated wasted spend from problematic clicks this period: ~$37.73</strong> (and growing — many of these terms will generate clicks as volume increases in spring).</p>
+</div>
+
+<!-- CURRENT NEGATIVE KEYWORDS -->
+<div class="card">
+    <h2>Current Negative Keywords</h2>
+    <p class="section-intro">Waco currently has <strong>58 negative keyword entries</strong> across both campaigns. Both campaigns share the same negative list. Match types: BROAD = broad match, PHRASE = phrase match, EXACT = exact match.</p>
+    <div class="two-col">
+        <div>
+            <h3>Broad Match Negatives (shared across both campaigns)</h3>
+            <table>
+                <thead><tr><th>Keyword</th></tr></thead>
+                <tbody>
+                    <tr><td>repair</td></tr>
+                    <tr><td>used</td></tr>
+                    <tr><td>jobs</td></tr>
+                    <tr><td>portable</td></tr>
+                    <tr><td>employment</td></tr>
+                    <tr><td>service</td></tr>
+                    <tr><td>hiring</td></tr>
+                    <tr><td>cleaning</td></tr>
+                    <tr><td>resale</td></tr>
+                    <tr><td>maintenance</td></tr>
+                    <tr><td>plans</td></tr>
+                    <tr><td>inflatable</td></tr>
+                    <tr><td>diy</td></tr>
+                    <tr><td>careers</td></tr>
+                    <tr><td>salary</td></tr>
+                    <tr><td>kits</td></tr>
+                    <tr><td>wage</td></tr>
+                    <tr><td>self install</td></tr>
+                    <tr><td>Austin</td></tr>
+                    <tr><td>above ground</td></tr>
+                    <tr><td>intex</td></tr>
+                    <tr><td>aboveground</td></tr>
+                    <tr><td>how to build ourself</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Phrase &amp; Exact Match Negatives</h3>
+            <table>
+                <thead><tr><th>Keyword</th><th>Match</th></tr></thead>
+                <tbody>
+                    <tr><td>leslie</td><td>PHRASE</td></tr>
+                    <tr><td>pinch</td><td>PHRASE</td></tr>
+                    <tr><td>leslie pool</td><td>EXACT</td></tr>
+                    <tr><td>leslie's pools</td><td>EXACT</td></tr>
+                    <tr><td>leslie swimming pool supplies</td><td>EXACT</td></tr>
+                    <tr><td>leslie's pool supply</td><td>EXACT</td></tr>
+                    <tr><td>leslie's pool near me</td><td>EXACT</td></tr>
+                    <tr><td>leslie store near me</td><td>EXACT</td></tr>
+                    <tr><td>leslie's near me</td><td>EXACT</td></tr>
+                    <tr><td>scp poolcorp</td><td>EXACT</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- GAP ANALYSIS VS HOUSTON -->
+<div class="card">
+    <h2>Gap Analysis vs Houston Baseline</h2>
+    <p class="section-intro">Houston's negative keyword list was updated on March 11 and is performing well. Below is the full comparison. <span class="badge badge-missing">MISSING</span> means Waco does not have this negative and needs it. <span class="badge badge-present">COVERED</span> means Waco already blocks this.</p>
+    <table class="gap-table">
+        <thead>
+            <tr><th>Houston Negative Keyword</th><th>Category</th><th>Waco Status</th><th>Search Term Evidence</th></tr>
+        </thead>
+        <tbody>
+            <tr class="missing"><td>cowboy pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>cowboy pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>plungie pool</td><td>Competitor brand</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>plungie pool cost</td><td>Competitor brand</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>plungie pools</td><td>Competitor brand</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>texas pocket pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Triggered — 4 impressions</td></tr>
+            <tr class="missing"><td>container pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Triggered — "container pool cost" 3 impr</td></tr>
+            <tr class="missing"><td>container pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>container pools texas</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>shipping container pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>semi inground pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Triggered — "semi inground pool installation" 2 impr</td></tr>
+            <tr class="missing"><td>semi inground pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>See above</td></tr>
+            <tr class="missing"><td>semi-inground pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>See above</td></tr>
+            <tr class="missing"><td>semi-inground pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>See above</td></tr>
+            <tr class="missing"><td>semi inground pool cost</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>See above</td></tr>
+            <tr class="missing"><td>semi inground pools cost</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>See above</td></tr>
+            <tr class="missing"><td>stock tank pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>swim spa</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>swim spas</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>swim spa cost</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>swim spas cost</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr><td>leslie's</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Phrase match "leslie" blocks all variants</td></tr>
+            <tr><td>leslies</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie's pool</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslies pool</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie pool</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Exact match + phrase "leslie"</td></tr>
+            <tr><td>leslie's pool supplies</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie's pool supply</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Exact match present</td></tr>
+            <tr><td>leslie pool supplies</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie pool supply</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie's near me</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Exact match present</td></tr>
+            <tr><td>leslies near me</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>leslie's pool supplies near me</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "leslie"</td></tr>
+            <tr><td>pinch a penny</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Phrase match "pinch" blocks all variants</td></tr>
+            <tr><td>pinch a penny pool supplies</td><td>Pool supply store</td><td><span class="badge badge-present">COVERED</span></td><td>Covered by phrase "pinch"</td></tr>
+            <tr class="missing"><td>pool supply near me</td><td>Pool supply intent</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>pool supplies near me</td><td>Pool supply intent</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>pool store near me</td><td>Pool supply intent</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>liner pool cost</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Related: "pool liner replacement cost" 4 impr</td></tr>
+            <tr class="missing"><td>pool plastering cost</td><td>Service intent</td><td><span class="badge badge-missing">MISSING</span></td><td>Related: "pebble tec installers" 4 impr</td></tr>
+            <tr class="missing"><td>soake pools cost</td><td>Competitor brand</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>ipoolgo prices</td><td>Competitor brand</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>doughboy pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>prefab pools</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>cold plunge pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Related: "plunge pool cost" 3 impr</td></tr>
+            <tr class="missing"><td>dipping pool</td><td>Non-fiberglass product</td><td><span class="badge badge-missing">MISSING</span></td><td>Not seen yet — preemptive</td></tr>
+            <tr class="missing"><td>aqua pools</td><td>Competitor name</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Triggered — 30+ impressions, 4 clicks, $27.07</td></tr>
+            <tr class="missing"><td>premier pools and spas</td><td>Competitor name</td><td><span class="badge badge-missing">MISSING</span></td><td class="flag-red">Triggered — 21 impressions across both campaigns</td></tr>
+        </tbody>
+    </table>
+    <p style="margin-top:16px; font-size:14px;"><strong>Summary: 33 of Houston's negatives are MISSING from Waco.</strong> Of those, at least 7 are already triggering impressions in Waco's search terms this month.</p>
+</div>
+
+<!-- CLICK-TO-COPY BLOCKS -->
+<div class="card">
+    <h2>Click-to-Copy Negative Keyword Blocks</h2>
+    <p class="section-intro">Click any block below to copy the full list to clipboard. Add these to both campaigns in Waco. These are organized by priority.</p>
+
+    <h3>Block 1: Houston Baseline Gaps — CRITICAL (add immediately)</h3>
+    <p class="copy-hint">Click to copy — add as Broad Match negatives to both campaigns</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pool cost
+plungie pools
+texas pocket pools
+container pool
+container pools
+container pools texas
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+pool supply near me
+pool supplies near me
+pool store near me
+liner pool cost
+pool plastering cost
+soake pools cost
+ipoolgo prices
+doughboy pool
+prefab pools
+cold plunge pool
+dipping pool
+aqua pools
+premier pools and spas</pre>
+
+    <h3>Block 2: Additional Negatives from Waco Search Term Analysis</h3>
+    <p class="copy-hint">Click to copy — recommended based on Waco-specific search term data</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">precast concrete pool
+modular plunge pool
+plunge pool cost
+small plunge pool cost
+pebble tec
+pool liner replacement
+pool resurfacing
+pool coping installer
+pool reline
+infinity pool cost
+viking fiberglass
+latham tuscan
+liberty fiberglass pools
+blue world pools
+poology
+discount pools elkhart</pre>
+
+    <h3>Block 3: Competitor Brand Negatives (Phrase Match recommended)</h3>
+    <p class="copy-hint">Click to copy — add as Phrase Match negatives to both campaigns</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">aqua pools
+premier pools
+viking pools
+viking fiberglass
+latham pools
+latham tuscan
+liberty pools
+blue world pools
+paradise pools
+backyardboyz
+tallman pools
+ocean quest pools</pre>
+</div>
+
+<!-- RECOMMENDED ACTIONS -->
+<div class="card">
+    <h2>Recommended Actions — Prioritized</h2>
+
+    <ul class="priority-list">
+        <li>
+            <strong>1. Add Houston baseline negatives immediately (Block 1)</strong>
+            33 negative keywords from Houston's proven list are completely missing from Waco. At least 7 are already triggering impressions. This is the single most impactful change — Houston saw improved lead quality within days of adding these on March 11.
+        </li>
+        <li>
+            <strong>2. Add Waco-specific negatives (Block 2)</strong>
+            Waco's search terms reveal additional junk queries that Houston may not see due to different geo dynamics: precast concrete, pool liners, resurfacing, plunge pools, and competitor brands specific to the Waco market.
+        </li>
+        <li>
+            <strong>3. Add competitor brand negatives as Phrase Match (Block 3)</strong>
+            Multiple competitor names are triggering ads — aqua pools alone generated 30+ impressions and 4 clicks ($27). Phrase match negatives for competitor brands will prevent this going forward.
+        </li>
+        <li class="medium">
+            <strong>4. Monitor "fiberglass pool shell" and "factory direct" terms</strong>
+            Terms like "fiberglass pool shell" and "fiberglass pool shell factory direct" are generating clicks. These could be DIY-oriented or could be legitimate leads looking for shell-only purchases. Monitor conversion quality on these before blocking.
+        </li>
+        <li class="medium">
+            <strong>5. Review "cost" and "how much" queries for conversion quality</strong>
+            Several cost/price queries are generating clicks without conversions: "fiberglass pool cost" (3 clicks, $16.11), "how much does an inground pool cost" (1 click, $4.62). These may convert later in the funnel but are worth monitoring.
+        </li>
+        <li class="low">
+            <strong>6. Schedule follow-up review in 2 weeks</strong>
+            After adding negatives, check search terms again by April 1 to catch any new junk queries that emerge as spring search volume increases. This is the same cadence used for Houston.
+        </li>
+    </ul>
+</div>
+
+<!-- SUMMARY COMPARISON -->
+<div class="card">
+    <h2>Waco vs Houston — At a Glance</h2>
+    <table>
+        <thead>
+            <tr><th>Metric</th><th>Waco (current)</th><th>Houston (post-fix)</th><th>Gap</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Negative keywords (campaign-level)</td>
+                <td>~29 unique terms</td>
+                <td>~62 unique terms</td>
+                <td class="flag-red">33 keywords missing</td>
+            </tr>
+            <tr>
+                <td>Competitor brand protection</td>
+                <td>Leslie's, Pinch a Penny only</td>
+                <td>Leslie's, Pinch, Aqua Pools, Premier, Plungie, Soake, etc.</td>
+                <td class="flag-red">Major gaps</td>
+            </tr>
+            <tr>
+                <td>Non-fiberglass product blocking</td>
+                <td>Above ground, inflatable, intex only</td>
+                <td>+ Container, semi-inground, swim spa, stock tank, cowboy, plunge, doughboy, prefab</td>
+                <td class="flag-red">Wide open</td>
+            </tr>
+            <tr>
+                <td>Pool supply store blocking</td>
+                <td class="flag-green">Covered (Leslie's, Pinch)</td>
+                <td>Covered</td>
+                <td class="flag-green">Good</td>
+            </tr>
+            <tr>
+                <td>Avg CPC</td>
+                <td>$5.13</td>
+                <td>Benchmark</td>
+                <td>In range</td>
+            </tr>
+            <tr>
+                <td>Cost/Conversion</td>
+                <td>$94.40</td>
+                <td>Benchmark after cleanup</td>
+                <td class="flag-yellow">Should improve after negatives added</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card" style="text-align:center; background:#1a1a2e; color:white;">
+    <p style="font-size:13px; opacity:0.7;">Report generated by Claude Code for Explore Industries &bull; March 16, 2026 &bull; Read-only analysis — no changes made to account</p>
+</div>
+
+</div>
+</body>
+</html>

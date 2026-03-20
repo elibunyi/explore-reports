@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite - Leisure Pools Columbus OH — Audit & Campaign Rebuild | 2026-03-18</title>
+<style>
+:root { --navy: #0a1628; --accent: #2196F3; --accent-dark: #1565C0; --gold: #FFB81C; --green: #4CAF50; --red: #f44336; --orange: #ff9800; --bg: #f5f7fa; --card: #ffffff; --text: #1a1a2e; --muted: #6b7280; --border: #e2e8f0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.header { background: linear-gradient(135deg, var(--navy) 0%, #1a2744 100%); color: white; padding: 40px 32px; }
+.header h1 { font-size: 28px; margin-bottom: 8px; }
+.header .subtitle { color: var(--accent); font-size: 16px; margin-bottom: 16px; }
+.header .meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px; color: #94a3b8; }
+.health-score { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.08); border-radius: 12px; padding: 12px 24px; margin-top: 16px; }
+.health-score .number { font-size: 48px; font-weight: 800; }
+.health-score.poor .number { color: var(--red); }
+.health-score.fair .number { color: var(--orange); }
+.health-score.good .number { color: var(--green); }
+.toc { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 24px 32px; }
+.toc h2 { font-size: 18px; margin-bottom: 12px; color: var(--navy); }
+.toc ol { padding-left: 20px; columns: 2; column-gap: 32px; }
+.toc li { padding: 4px 0; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin: 20px 32px; }
+section h2 { font-size: 20px; color: var(--navy); border-bottom: 2px solid var(--accent); padding-bottom: 8px; margin-bottom: 16px; }
+section h3 { font-size: 16px; color: var(--accent-dark); margin: 16px 0 8px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; font-weight: 600; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+tr:hover td { background: #f0f4ff; }
+.tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.tag.p1 { background: #fde8e8; color: var(--red); }
+.tag.p2 { background: #fff3e0; color: #e65100; }
+.tag.p3 { background: #e8f5e9; color: #2e7d32; }
+.tag.good { background: #e8f5e9; color: var(--green); }
+.tag.bad { background: #fde8e8; color: var(--red); }
+.tag.warn { background: #fff3e0; color: #e65100; }
+.copy-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 12px 0; position: relative; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; white-space: pre-wrap; word-break: break-word; max-height: 300px; overflow-y: auto; cursor: pointer; }
+.copy-box:hover { background: #eef2ff; border-color: var(--accent); }
+.copy-box::after { content: 'Click to copy'; position: absolute; top: 8px; right: 12px; font-size: 10px; color: var(--accent); font-family: -apple-system, sans-serif; opacity: 0.7; }
+.copy-box.copied::after { content: 'Copied!'; color: var(--green); }
+.bulk-paste { background: #eff6ff; border: 2px dashed var(--accent); border-radius: 8px; padding: 16px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 12px; white-space: pre-wrap; cursor: pointer; max-height: 400px; overflow-y: auto; }
+.bulk-paste:hover { background: #dbeafe; }
+.finding { padding: 12px 16px; border-left: 4px solid; border-radius: 0 8px 8px 0; margin: 8px 0; }
+.finding.critical { border-color: var(--red); background: #fff5f5; }
+.finding.important { border-color: var(--orange); background: #fffbeb; }
+.finding.minor { border-color: var(--green); background: #f0fdf4; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 16px 0; }
+.metric-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+.metric-card .value { font-size: 28px; font-weight: 800; color: var(--navy); }
+.metric-card .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.checklist { list-style: none; padding: 0; }
+.checklist li { padding: 8px 0; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+.checklist li::before { content: '☐'; font-size: 16px; }
+.checklist li.done::before { content: '☑'; color: var(--green); }
+.summary-box { background: linear-gradient(135deg, #0a1628 0%, #1a2744 100%); color: white; border-radius: 12px; padding: 24px; margin: 16px 0; }
+.summary-box h3 { color: var(--gold); }
+</style>
+<script>
+document.addEventListener('click', function(e) {
+  const box = e.target.closest('.copy-box, .bulk-paste');
+  if (box) {
+    navigator.clipboard.writeText(box.textContent.replace(/Click to copy|Copied!/g, '').trim());
+    box.classList.add('copied');
+    setTimeout(() => box.classList.remove('copied'), 2000);
+  }
+});
+</script>
+</head>
+<body>
+
+<div class="header">
+  <h1>Elite - Leisure Pools Columbus OH</h1>
+  <div class="subtitle">Google Ads Audit & Campaign Rebuild Specification</div>
+  <div class="meta">
+    <span>Account ID: 500-052-3507</span>
+    <span>Brand: Leisure Pools</span>
+    <span>Audit Date: March 18, 2026</span>
+    <span>Period: Feb 16 - Mar 18, 2026 (30 days)</span>
+  </div>
+  <div class="health-score poor">
+    <div>
+      <div class="number">38</div>
+      <div style="font-size:12px;color:#94a3b8">/100</div>
+    </div>
+    <div>
+      <div style="font-size:16px;font-weight:600">Account Health Score</div>
+      <div style="font-size:13px;color:#94a3b8">5 P1 Critical | 4 P2 Important | 3 P3 Minor</div>
+    </div>
+  </div>
+</div>
+
+<nav class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#s1">Executive Summary</a></li>
+    <li><a href="#s2">Account Performance Snapshot</a></li>
+    <li><a href="#s3">Campaign Structure Analysis</a></li>
+    <li><a href="#s4">Location Targeting Audit</a></li>
+    <li><a href="#s5">Keyword Analysis</a></li>
+    <li><a href="#s6">Search Terms Deep Dive</a></li>
+    <li><a href="#s7">Ad Copy Audit</a></li>
+    <li><a href="#s8">Extensions & Assets Audit</a></li>
+    <li><a href="#s9">Conversion Tracking Health</a></li>
+    <li><a href="#s10">Device Performance</a></li>
+    <li><a href="#s11">Negative Keywords — Current & Rebuild</a></li>
+    <li><a href="#s12">Campaign Rebuild — Ad Group Structure</a></li>
+    <li><a href="#s13">Campaign Rebuild — RSA Copy</a></li>
+    <li><a href="#s14">Campaign Rebuild — Extensions</a></li>
+    <li><a href="#s15">Audience Segments & Demographics</a></li>
+    <li><a href="#s16">Bid Strategy & Budget Recommendations</a></li>
+    <li><a href="#s17">Pre-Launch Checklist</a></li>
+  </ol>
+</nav>
+
+<!-- SECTION 1: EXECUTIVE SUMMARY -->
+<section id="s1">
+  <h2>1. Executive Summary</h2>
+  <div class="summary-box">
+    <h3>Key Findings</h3>
+    <p style="margin-top:8px">This account is running two campaigns (main Search Campaign + new High Intent campaign) with a combined $60/day budget. The main campaign has 13 conversions over 30 days at $185 CPA. However, the account is structurally weak: a single ad group contains ALL keywords for the main campaign, match types are entirely phrase match (good — no broad), but negative keyword coverage is critically thin with only 4 campaign-level negatives plus 25 ad-group-level negatives. Location targeting uses PRESENCE (correct). Search partners are OFF (correct). The High Intent campaign has barely started with only 9 impressions.</p>
+    <p style="margin-top:12px"><strong>Biggest issues:</strong> Dangerous negative keyword gap (competitors, DIY, service/repair leaking through), single ad group handles all intent types, no customer-level extensions, Maximize Conversions without a CPC cap on low-volume account, and 40% impression share means 60% of available searches are being missed.</p>
+  </div>
+
+  <h3>Priority Issues</h3>
+  <div class="finding critical"><span class="tag p1">P1</span> <strong>Negative keyword coverage critically thin</strong> — Only 4 campaign-level negatives. Competitors (Scioto Valley, Premier Pools, Marzetti, etc.), DIY, pool service/repair, semi-inground, container pools all leaking through. Estimated $50-80/mo wasted.</div>
+  <div class="finding critical"><span class="tag p1">P1</span> <strong>Single ad group structure</strong> — All keyword intents (brand, generic pool, fiberglass specific, cost/pricing, builder/contractor) crammed into one ad group. Kills Quality Score relevance and ad copy targeting.</div>
+  <div class="finding critical"><span class="tag p1">P1</span> <strong>No customer-level extensions</strong> — Zero sitelinks, zero callouts, zero structured snippets, zero call extensions at the account level. The ads are running naked without any extensions.</div>
+  <div class="finding critical"><span class="tag p1">P1</span> <strong>Maximize Conversions without CPC cap on low-volume account</strong> — 13 conversions/month is below the 15+ threshold where Maximize Conversions works reliably. No CPC ceiling means Google can (and does) spend $10+ per click. Average CPC is $6.69 but individual clicks reaching $10.96.</div>
+  <div class="finding critical"><span class="tag p1">P1</span> <strong>No income demographic targeting</strong> — No income range exclusions. Pool installations are $60K+ purchases. Bottom income tiers are wasting budget on unqualified clicks.</div>
+  <div class="finding important"><span class="tag p2">P2</span> <strong>"pool company" keyword has QS 3/10</strong> — Highest-spend keyword ($575 cost, 68 clicks) has terrible quality score. Ad relevance is low because all keywords share one ad group with generic copy.</div>
+  <div class="finding important"><span class="tag p2">P2</span> <strong>"inground pool price" keyword has QS 3/10</strong> — Second-highest spend keyword ($339, 70 clicks) also has poor quality score. Cost queries need their own ad group with pricing-focused copy.</div>
+  <div class="finding important"><span class="tag p2">P2</span> <strong>High Intent campaign barely serving</strong> — 9 impressions in 30 days. Using Maximize Clicks (appropriate for new campaign) but the campaign is not getting volume. May be cannibalizing the main campaign's Columbus-specific terms.</div>
+  <div class="finding important"><span class="tag p2">P2</span> <strong>"plunge pool" QS 3/10</strong> — Good keyword (Leisure Pools sells plunge models) but poor QS. Needs its own ad group with plunge-focused copy.</div>
+  <div class="finding minor"><span class="tag p3">P3</span> <strong>Duplicate keyword coverage across campaigns</strong> — "pool builder Columbus" exists in both campaigns, creating internal competition.</div>
+  <div class="finding minor"><span class="tag p3">P3</span> <strong>Many zero-impression exact match keywords</strong> — 15+ exact match keywords in the main campaign with 0 impressions. These are wasting account complexity with no benefit — the phrase match variants cover them.</div>
+  <div class="finding minor"><span class="tag p3">P3</span> <strong>Ad strength "Good" (6) on all 3 RSAs</strong> — Not bad, but not "Excellent." Could be improved with more differentiated headlines and pinning strategy.</div>
+</section>
+
+<!-- SECTION 2: ACCOUNT PERFORMANCE SNAPSHOT -->
+<section id="s2">
+  <h2>2. Account Performance Snapshot (Feb 16 - Mar 18, 2026)</h2>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="value">4,220</div><div class="label">Impressions</div></div>
+    <div class="metric-card"><div class="value">362</div><div class="label">Clicks</div></div>
+    <div class="metric-card"><div class="value">8.6%</div><div class="label">CTR</div></div>
+    <div class="metric-card"><div class="value">$2,421</div><div class="label">Total Spend</div></div>
+    <div class="metric-card"><div class="value">13</div><div class="label">Conversions</div></div>
+    <div class="metric-card"><div class="value">$186</div><div class="label">Cost/Conv</div></div>
+    <div class="metric-card"><div class="value">$6.69</div><div class="label">Avg CPC</div></div>
+    <div class="metric-card"><div class="value">40.1%</div><div class="label">Search Imp. Share</div></div>
+  </div>
+
+  <h3>Campaign Breakdown</h3>
+  <table>
+    <tr><th>Campaign</th><th>Status</th><th>Bidding</th><th>Budget/Day</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Conv</th><th>Cost</th><th>CPA</th><th>IS</th></tr>
+    <tr><td>Leisure Pools Columbus OH Search Campaign</td><td><span class="tag good">Enabled</span></td><td>Max Conversions</td><td>$60</td><td>4,211</td><td>360</td><td>8.5%</td><td>13</td><td>$2,409</td><td>$185</td><td>40.1%</td></tr>
+    <tr><td>High Intent</td><td><span class="tag good">Enabled</span></td><td>Max Clicks</td><td>$32.88</td><td>9</td><td>2</td><td>22.2%</td><td>0</td><td>$12</td><td>—</td><td>71.4%</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 3: CAMPAIGN STRUCTURE -->
+<section id="s3">
+  <h2>3. Campaign Structure Analysis</h2>
+  <table>
+    <tr><th>Campaign</th><th>Ad Groups</th><th>Keywords</th><th>Structure Issue</th></tr>
+    <tr><td>Leisure Pools Columbus OH Search Campaign</td><td>1 (Fiberglass Pool Installation)</td><td>~45 keywords (mix of phrase + exact)</td><td><span class="tag bad">Single ad group — all intents merged</span></td></tr>
+    <tr><td>High Intent</td><td>2 (Fiberglass Pool Builder Columbus, Pool Builder Near Me)</td><td>~30 keywords (phrase + exact)</td><td><span class="tag good">Better structure — themed ad groups</span></td></tr>
+  </table>
+
+  <h3>Structural Issues</h3>
+  <ul>
+    <li><strong>Main campaign uses one ad group for everything:</strong> Brand queries ("leisure pools"), generic queries ("pool company"), fiberglass-specific ("fiberglass pools"), pricing queries ("inground pool price"), builder queries ("pool builder Columbus"), and plunge queries all share one ad group and one RSA. This destroys Quality Score because the ad can't be relevant to all these intents simultaneously.</li>
+    <li><strong>High Intent campaign is well-structured</strong> but barely running. Only 9 impressions suggests budget allocation or keyword overlap issues.</li>
+    <li><strong>Search Partners OFF</strong> on both campaigns. <span class="tag good">CORRECT</span></li>
+    <li><strong>Content Network OFF</strong> on both campaigns. <span class="tag good">CORRECT</span></li>
+  </ul>
+</section>
+
+<!-- SECTION 4: LOCATION TARGETING -->
+<section id="s4">
+  <h2>4. Location Targeting Audit</h2>
+  <table>
+    <tr><th>Campaign</th><th>Targeting Mode</th><th>Status</th><th>Locations</th></tr>
+    <tr><td>Leisure Pools Columbus OH Search Campaign</td><td>PRESENCE (People in your targeted locations)</td><td><span class="tag good">CORRECT</span></td><td>63 Ohio ZIP codes / areas targeted</td></tr>
+    <tr><td>High Intent</td><td>PRESENCE (People in your targeted locations)</td><td><span class="tag good">CORRECT</span></td><td>Columbus, OH DMA + proximity targets</td></tr>
+  </table>
+  <p style="margin-top:12px"><strong>Location targeting is correctly set to PRESENCE</strong> on both campaigns. This means ads only show to people physically located in the target areas, not people merely "interested in" Columbus OH. This is one of the few settings done correctly on this account.</p>
+  <p>The main campaign targets 63 specific geographic areas (ZIP codes and sub-areas within the Columbus OH metro), which is granular and appropriate. The High Intent campaign uses a broader Columbus DMA target with proximity-based targeting.</p>
+</section>
+
+<!-- SECTION 5: KEYWORD ANALYSIS -->
+<section id="s5">
+  <h2>5. Keyword Analysis</h2>
+  <h3>Top Performing Keywords (by spend)</h3>
+  <table>
+    <tr><th>Keyword</th><th>Match</th><th>QS</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Conv</th><th>Cost</th><th>CPC</th></tr>
+    <tr><td>pool company</td><td>Phrase</td><td><span class="tag bad">3</span></td><td>1,258</td><td>68</td><td>5.4%</td><td>3.5</td><td>$575</td><td>$8.46</td></tr>
+    <tr><td>inground pool price</td><td>Phrase</td><td><span class="tag bad">3</span></td><td>557</td><td>70</td><td>12.6%</td><td>1</td><td>$339</td><td>$4.85</td></tr>
+    <tr><td>fiberglass pools</td><td>Phrase</td><td><span class="tag good">8</span></td><td>532</td><td>70</td><td>13.2%</td><td>3</td><td>$333</td><td>$4.76</td></tr>
+    <tr><td>pool installation</td><td>Phrase</td><td><span class="tag warn">4</span></td><td>521</td><td>45</td><td>8.6%</td><td>1</td><td>$425</td><td>$9.45</td></tr>
+    <tr><td>pool contractor</td><td>Phrase</td><td><span class="tag warn">5</span></td><td>663</td><td>27</td><td>4.1%</td><td>0</td><td>$204</td><td>$7.55</td></tr>
+    <tr><td>plunge pool</td><td>Phrase</td><td><span class="tag bad">3</span></td><td>248</td><td>19</td><td>7.7%</td><td>1.5</td><td>$74</td><td>$3.92</td></tr>
+    <tr><td>leisure pools</td><td>Phrase</td><td><span class="tag good">10</span></td><td>79</td><td>19</td><td>24.1%</td><td>1</td><td>$116</td><td>$6.12</td></tr>
+    <tr><td>pool builder Columbus</td><td>Phrase</td><td>—</td><td>100</td><td>14</td><td>14.0%</td><td>1</td><td>$141</td><td>$10.09</td></tr>
+    <tr><td>pool builder</td><td>Phrase</td><td><span class="tag warn">5</span></td><td>94</td><td>7</td><td>7.4%</td><td>0</td><td>$61</td><td>$8.69</td></tr>
+    <tr><td>fiberglass pool cost</td><td>Phrase</td><td><span class="tag warn">5</span></td><td>66</td><td>7</td><td>10.6%</td><td>0</td><td>$39</td><td>$5.59</td></tr>
+    <tr><td>fiberglass pool companies</td><td>Phrase</td><td><span class="tag good">10</span></td><td>19</td><td>6</td><td>31.6%</td><td>0</td><td>$43</td><td>$7.10</td></tr>
+    <tr><td>fiberglass inground pool</td><td>Phrase</td><td><span class="tag warn">6</span></td><td>49</td><td>4</td><td>8.2%</td><td>1</td><td>$16</td><td>$4.08</td></tr>
+  </table>
+
+  <h3>Match Type Distribution</h3>
+  <p><strong>All keywords are Phrase or Exact match.</strong> <span class="tag good">NO BROAD MATCH</span> — This is correct per policy.</p>
+  <p>The account uses both phrase and exact match for many keywords, with the exact match variants getting zero impressions. The phrase match variants are doing all the heavy lifting.</p>
+
+  <h3>Quality Score Issues</h3>
+  <ul>
+    <li><strong>QS 3 (Critical):</strong> "pool company" (highest spend), "inground pool price" (2nd highest spend), "plunge pool" — These three keywords alone account for $988/mo spend with terrible QS. Moving them to themed ad groups with relevant ad copy would dramatically improve QS.</li>
+    <li><strong>QS 4-5:</strong> "pool installation", "pool contractor", "pool builder", "fiberglass pool cost" — All moderate QS that would benefit from ad group restructure.</li>
+    <li><strong>QS 8-10:</strong> "fiberglass pools" (QS 8), "leisure pools" (QS 10), "fiberglass pool companies" (QS 10), "fiberglass pool designs" (QS 10) — These work well because the ad copy happens to be relevant to fiberglass/Leisure queries.</li>
+  </ul>
+</section>
+
+<!-- SECTION 6: SEARCH TERMS -->
+<section id="s6">
+  <h2>6. Search Terms Deep Dive</h2>
+  <h3>Wasted Spend — Irrelevant Search Terms</h3>
+  <table>
+    <tr><th>Search Term</th><th>Clicks</th><th>Cost</th><th>Issue</th></tr>
+    <tr><td>fiberglass pools diy</td><td>2</td><td>$13.96</td><td>DIY — not a dealer lead</td></tr>
+    <tr><td>precast concrete pools</td><td>1</td><td>$2.87</td><td>Concrete — not fiberglass (but converted)</td></tr>
+    <tr><td>astoria 14 pool</td><td>1</td><td>$2.92</td><td>Competitor product</td></tr>
+    <tr><td>cocktail pool</td><td>0</td><td>$0</td><td>Not typically fiberglass</td></tr>
+  </table>
+  <p style="margin-top:12px"><strong>Estimated wasted spend: $50-80/mo</strong> from DIY, competitor, service/repair, semi-inground, and retail supply queries that leak through the thin negative keyword coverage.</p>
+
+  <h3>Competitor Leakage (impressions burned, no clicks but wasting IS)</h3>
+  <table>
+    <tr><th>Competitor</th><th>Impressions</th></tr>
+    <tr><td>Scioto Valley Pools (+ and spas)</td><td>48</td></tr>
+    <tr><td>Rainbow Pools Lancaster Ohio</td><td>15</td></tr>
+    <tr><td>Premier Pools and Spas</td><td>9</td></tr>
+    <tr><td>Quality Pools</td><td>8</td></tr>
+    <tr><td>River Pools</td><td>5</td></tr>
+    <tr><td>Marzetti Pools (+ Columbus)</td><td>8</td></tr>
+    <tr><td>Leslies Pool</td><td>6</td></tr>
+    <tr><td>GW Pools</td><td>4</td></tr>
+    <tr><td>Moore Brothers Pools</td><td>3</td></tr>
+    <tr><td>Okeanos Pools</td><td>3</td></tr>
+    <tr><td>Latham Plunge Pools</td><td>3</td></tr>
+    <tr><td>Outdoor FX Plain City</td><td>3</td></tr>
+    <tr><td>Pools Plus Columbus Ohio</td><td>3</td></tr>
+    <tr><td>Clear Water Pools and Spas</td><td>3</td></tr>
+    <tr><td>Chevron Pools Grove City</td><td>2</td></tr>
+    <tr><td>Doughboy Pool Installers</td><td>3</td></tr>
+  </table>
+  <p><strong>Total competitor impressions: ~126</strong> — These are burning impression share and should be negated.</p>
+
+  <h3>High-Value Search Terms to Reinforce</h3>
+  <table>
+    <tr><th>Search Term</th><th>Clicks</th><th>Conv</th><th>Action</th></tr>
+    <tr><td>in ground pool cost ohio</td><td>3</td><td>1</td><td>Add as exact match keyword</td></tr>
+    <tr><td>fiberglass pools near me</td><td>3</td><td>0</td><td>Good — keep targeting</td></tr>
+    <tr><td>pool builders columbus ohio</td><td>0</td><td>0</td><td>Add as exact match in High Intent</td></tr>
+    <tr><td>the summit fiberglass pool</td><td>3</td><td>0</td><td>Leisure Pools model — excellent intent</td></tr>
+    <tr><td>leisure pools</td><td>1</td><td>0</td><td>Brand — high quality intent</td></tr>
+    <tr><td>columbus ohio pool installation</td><td>2</td><td>0</td><td>Add as exact match keyword</td></tr>
+  </table>
+</section>
+
+<!-- SECTION 7: AD COPY AUDIT -->
+<section id="s7">
+  <h2>7. Ad Copy Audit</h2>
+  <h3>RSA 1 — Main Campaign (Fiberglass Pool Installation)</h3>
+  <table>
+    <tr><th>Ad ID</th><th>Path</th><th>Strength</th><th>Impr</th><th>Clicks</th><th>Conv</th><th>Cost</th></tr>
+    <tr><td>782251829940</td><td>/poolbuilder/ohio</td><td><span class="tag warn">Good (6)</span></td><td>4,211</td><td>360</td><td>13</td><td>$2,409</td></tr>
+  </table>
+  <p><strong>Headlines (15):</strong></p>
+  <ol>
+    <li>Top Pool Builders Columbus OH</li>
+    <li>Best Pool Contractors Near You</li>
+    <li>Get Your Fiberglass Pool Now</li>
+    <li>Top Quality Inground Pools</li>
+    <li>Leisure Pools Columbus Ohio</li>
+    <li>Get A Free Pool Estimate</li>
+    <li>Discover The Perfect Pool</li>
+    <li>Superior Pool Installations</li>
+    <li>Pool Construction Near You</li>
+    <li>Transform Your Backyard Oasis</li>
+    <li>Get A Pool In Days, Not Months</li>
+    <li>Columbus Ohio Pool Builders</li>
+    <li>Best in Class Fiberglass pools</li>
+    <li>Fiberglass Pool Pricing</li>
+    <li>Leisure Fiberglass Pools</li>
+  </ol>
+  <p><strong>Descriptions (4):</strong></p>
+  <ol>
+    <li>Award-Winning Pools Installed in 2-3 Weeks. Discover Our Range of Leisure Fiberglass Pools</li>
+    <li>Flexible Financing Available. Make Your Dream Pool Affordable With Low Monthly Payments.</li>
+    <li>We offer a wide range of stunning fiberglass pool designs and colors for your home.</li>
+    <li>Lifetime Warranty. Low Maintenance Fiberglass Pools Built to Last Decades, Not Years.</li>
+  </ol>
+
+  <h3>Issues Found</h3>
+  <ul>
+    <li><strong>No price anchor headline:</strong> No headline filters budget shoppers (e.g., "Starting at $65K+" or "Premium Pool Installations"). This means the ad attracts clicks from people who can't afford a fiberglass pool.</li>
+    <li><strong>No pinning strategy:</strong> All headlines and descriptions have pinned_field = 0, meaning Google rotates freely. At minimum, pin the brand name to position 1 and a CTA to position 3.</li>
+    <li><strong>"Best in Class Fiberglass pools" has inconsistent capitalization</strong> — lowercase "pools" vs Title Case elsewhere.</li>
+    <li><strong>Path is generic:</strong> "/poolbuilder/ohio" is fine but could be more specific per ad group in a rebuild.</li>
+  </ul>
+
+  <h3>RSA 2 — High Intent (Fiberglass Pool Builder Columbus)</h3>
+  <p>15 headlines + 4 descriptions. Well-written with Columbus-specific copy, competitive differentiators ("No Resurfacing. Ever."), and suburb callouts (Dublin, Westerville, Hilliard). Ad strength: Good (6).</p>
+  <p>This ad is well-constructed but barely serving (9 impressions).</p>
+
+  <h3>RSA 3 — High Intent (Pool Builder Near Me)</h3>
+  <p>15 headlines + 4 descriptions. Near-me focused copy. Ad strength: Good (6). Zero impressions.</p>
+</section>
+
+<!-- SECTION 8: EXTENSIONS & ASSETS -->
+<section id="s8">
+  <h2>8. Extensions & Assets Audit</h2>
+  <table>
+    <tr><th>Extension Type</th><th>Count</th><th>Required</th><th>Status</th></tr>
+    <tr><td>Sitelinks</td><td>0</td><td>8</td><td><span class="tag bad">MISSING</span></td></tr>
+    <tr><td>Callouts</td><td>0</td><td>12+</td><td><span class="tag bad">MISSING</span></td></tr>
+    <tr><td>Structured Snippets</td><td>0</td><td>2+</td><td><span class="tag bad">MISSING</span></td></tr>
+    <tr><td>Call Extension</td><td>0</td><td>1</td><td><span class="tag bad">MISSING</span></td></tr>
+    <tr><td>Image Extensions</td><td>0</td><td>4+</td><td><span class="tag bad">MISSING</span></td></tr>
+  </table>
+  <p style="margin-top:12px;font-weight:700;color:var(--red)">ZERO customer-level extensions. The ads are running completely naked — no sitelinks, no callouts, no snippets, no call extension. This is a P1 issue that directly impacts CTR, Quality Score, and ad rank.</p>
+</section>
+
+<!-- SECTION 9: CONVERSION TRACKING -->
+<section id="s9">
+  <h2>9. Conversion Tracking Health</h2>
+  <p>The account is recording 13 conversions over 30 days. The conversion action query returned an error, so I cannot verify the specific conversion actions configured. However, based on the data:</p>
+  <ul>
+    <li><strong>13 conversions on $2,421 spend = $186 CPA</strong> — This is within acceptable range for fiberglass pool leads in a mid-size market, though above optimal ($100-150).</li>
+    <li><strong>Conversion tracking appears functional</strong> — conversions are being recorded across multiple keywords, which suggests tracking is working.</li>
+    <li><strong>Fractional conversions visible</strong> — "pool company" shows 3.5 conversions and "plunge pool" shows 1.5, indicating data-driven attribution is active. This is good.</li>
+    <li><strong>Brochure downloads are real conversions</strong> — per policy, these require contact form fills and should be counted as valid leads.</li>
+  </ul>
+  <div class="finding important"><span class="tag p2">P2</span> Unable to verify conversion action configuration via API. Recommend manual review in the Google Ads UI to confirm: (1) which conversion actions are set as primary, (2) that phone calls are being tracked, (3) that form submissions are configured correctly.</div>
+</section>
+
+<!-- SECTION 10: DEVICE PERFORMANCE -->
+<section id="s10">
+  <h2>10. Device Performance</h2>
+  <h3>Main Campaign (Leisure Pools Columbus OH Search Campaign)</h3>
+  <table>
+    <tr><th>Device</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Conv</th><th>Cost</th><th>CPA</th></tr>
+    <tr><td>Mobile</td><td>3,290</td><td>295</td><td>9.0%</td><td>10</td><td>$1,838</td><td>$184</td></tr>
+    <tr><td>Desktop</td><td>881</td><td>59</td><td>6.7%</td><td>3</td><td>$552</td><td>$184</td></tr>
+    <tr><td>Tablet</td><td>40</td><td>6</td><td>15.0%</td><td>0</td><td>$18</td><td>—</td></tr>
+  </table>
+  <p><strong>Analysis:</strong> Mobile dominates with 78% of impressions and 82% of clicks. Mobile and desktop CPAs are essentially equal ($184). Mobile CTR is higher (9.0% vs 6.7%), suggesting the landing page may not be optimized for desktop. Tablet volume is negligible.</p>
+  <p><strong>Recommendation:</strong> No device bid adjustments needed — performance is balanced across mobile and desktop. Tablet can be reduced -20% but the volume is too low to matter.</p>
+</section>
+
+<!-- SECTION 11: NEGATIVE KEYWORDS -->
+<section id="s11">
+  <h2>11. Negative Keywords — Current State & Rebuild</h2>
+  <h3>Current Campaign-Level Negatives (4 total)</h3>
+  <table>
+    <tr><th>Keyword</th><th>Match Type</th></tr>
+    <tr><td>cheap</td><td>Broad</td></tr>
+    <tr><td>above</td><td>Broad</td></tr>
+    <tr><td>leslie</td><td>Broad</td></tr>
+    <tr><td>above ground</td><td>Broad</td></tr>
+  </table>
+
+  <h3>Current Ad Group-Level Negatives (25 total — Fiberglass Pool Installation)</h3>
+  <p>The 25 ad group negatives are mostly "above ground" variants, acrylic, precast concrete, pool depot, diving pool, etc. These were added by Eli on 2026-03-18.</p>
+
+  <h3>REBUILD — Complete Negative Keyword List</h3>
+  <p>Click to copy each category block, then paste into Google Ads Editor.</p>
+
+  <h4>Competitors (Broad Match Negative)</h4>
+  <div class="copy-box">scioto valley
+premier pools and spas
+marzetti pools
+rainbow pools
+river pools
+moore brothers
+okeanos pools
+quality pools
+gw pools
+chevron pools
+pools plus
+outdoor fx
+clear water pools
+latham pools
+doughboy
+radiant pools
+san juan pools
+blue haven pools
+anthony sylvan</div>
+
+  <h4>DIY / Self-Install (Broad Match Negative)</h4>
+  <div class="copy-box">diy
+do it yourself
+self install
+how to build
+how to install</div>
+
+  <h4>Service / Repair / Cleaning (Broad Match Negative)</h4>
+  <div class="copy-box">pool service
+pool repair
+pool cleaning
+pool maintenance
+pool opening
+pool closing
+pool resurfacing
+pool replastering
+pool leak
+pool pump repair
+pool filter repair
+pool heater repair</div>
+
+  <h4>Above Ground / Semi-Inground (Broad Match Negative)</h4>
+  <div class="copy-box">above ground
+semi inground
+semi-inground
+semi in ground
+semi above ground
+inflatable pool
+kiddie pool
+stock tank pool
+intex pool</div>
+
+  <h4>Container / Alternative Pools (Broad Match Negative)</h4>
+  <div class="copy-box">cowboy pool
+container pool
+shipping container pool
+plungie pool
+soake pool
+natural swimming pool
+swim spa
+swimspa</div>
+
+  <h4>Pool Supply / Retail (Broad Match Negative)</h4>
+  <div class="copy-box">pool supply
+pool store
+pool supplies
+pinch a penny
+pool chemicals
+pool equipment
+pool pump
+pool filter
+pool cover</div>
+
+  <h4>Non-Fiberglass Types (Broad Match Negative)</h4>
+  <div class="copy-box">vinyl liner
+liner pool
+concrete pool cost
+gunite pool cost
+pool plastering
+pool replastering</div>
+
+  <h4>Budget / Bargain (Broad Match Negative)</h4>
+  <div class="copy-box">cheap pool
+cheapest pool
+free pool
+budget pool
+low cost pool</div>
+
+  <h4>Jobs / Employment (Broad Match Negative)</h4>
+  <div class="copy-box">pool jobs
+pool technician
+pool careers
+pool employment
+hiring pool</div>
+
+  <h3>Bulk Paste — All Negatives (Campaign Level)</h3>
+  <div class="bulk-paste">scioto valley
+premier pools and spas
+marzetti pools
+rainbow pools
+river pools
+moore brothers
+okeanos pools
+quality pools
+gw pools
+chevron pools
+pools plus
+outdoor fx
+clear water pools
+latham pools
+doughboy
+radiant pools
+san juan pools
+blue haven pools
+anthony sylvan
+diy
+do it yourself
+self install
+how to build
+how to install
+pool service
+pool repair
+pool cleaning
+pool maintenance
+pool opening
+pool closing
+pool resurfacing
+pool replastering
+pool leak
+pool pump repair
+pool filter repair
+pool heater repair
+above ground
+semi inground
+semi-inground
+semi in ground
+semi above ground
+inflatable pool
+kiddie pool
+stock tank pool
+intex pool
+cowboy pool
+container pool
+shipping container pool
+plungie pool
+soake pool
+natural swimming pool
+swim spa
+swimspa
+vinyl liner
+liner pool
+concrete pool cost
+gunite pool cost
+pool plastering
+pool replastering
+pool supply
+pool store
+pool supplies
+pinch a penny
+pool chemicals
+pool equipment
+pool pump
+pool filter
+pool cover
+cheap pool
+cheapest pool
+free pool
+budget pool
+low cost pool
+pool jobs
+pool technician
+pool careers
+pool employment
+hiring pool</div>
+</section>
+
+<!-- SECTION 12: CAMPAIGN REBUILD — AD GROUP STRUCTURE -->
+<section id="s12">
+  <h2>12. Campaign Rebuild — Ad Group Structure</h2>
+  <p>Restructure from 1 ad group to 6 themed ad groups. Each ad group gets keyword themes that share search intent, enabling relevant ad copy and higher Quality Scores.</p>
+
+  <h3>AG1: Fiberglass Pools — Core</h3>
+  <div class="copy-box">[fiberglass pools] (exact)
+"fiberglass pools" (phrase)
+[fiberglass pool] (exact)
+"fiberglass pool" (phrase)
+"fiberglass swimming pool" (phrase)
+[fiberglass inground pool] (exact)
+"fiberglass inground pool" (phrase)
+"fiberglass pool designs" (phrase)
+"custom fiberglass pools" (phrase)
+"fiberglass pool shells" (phrase)
+"small fiberglass pools" (phrase)</div>
+
+  <h3>AG2: Pool Builder / Contractor — Columbus</h3>
+  <div class="copy-box">[pool builder columbus ohio] (exact)
+"pool builder columbus" (phrase)
+[pool builders columbus ohio] (exact)
+"pool company columbus" (phrase)
+[pool contractor columbus ohio] (exact)
+"pool contractor columbus" (phrase)
+"pool companies columbus ohio" (phrase)
+"pool installation columbus ohio" (phrase)
+[columbus ohio pool builder] (exact)
+"swimming pool builders columbus" (phrase)</div>
+
+  <h3>AG3: Pool Cost / Pricing</h3>
+  <div class="copy-box">"inground pool price" (phrase)
+"inground pool cost" (phrase)
+[inground pool cost ohio] (exact)
+"fiberglass pool cost" (phrase)
+"how much is an inground pool" (phrase)
+"cost of inground pool" (phrase)
+"how much are in ground pools" (phrase)
+"fiberglass pool pricing" (phrase)
+"average cost of fiberglass pool" (phrase)
+"in ground pool cost ohio" (phrase)</div>
+
+  <h3>AG4: Pool Installation / Near Me</h3>
+  <div class="copy-box">"pool installation near me" (phrase)
+"pool builder near me" (phrase)
+"pool contractor near me" (phrase)
+"pool companies near me" (phrase)
+"fiberglass pool installer near me" (phrase)
+"inground pool installation near me" (phrase)
+"fiberglass pools near me" (phrase)
+"pool builders near me" (phrase)
+"inground pool builder near me" (phrase)
+"swimming pool builders near me" (phrase)</div>
+
+  <h3>AG5: Leisure Pools — Brand</h3>
+  <div class="copy-box">[leisure pools] (exact)
+"leisure pools" (phrase)
+[leisure pools columbus ohio] (exact)
+"leisure pools columbus" (phrase)
+"leisure pool" (phrase)
+"leisure fiberglass pools" (phrase)
+[leisure pools dealer] (exact)
+"leisure pools dealer" (phrase)</div>
+
+  <h3>AG6: Plunge Pool / Small Pool</h3>
+  <div class="copy-box">"plunge pool" (phrase)
+[plunge pool columbus ohio] (exact)
+"plunge pool columbus" (phrase)
+"plunge pools" (phrase)
+"small pool" (phrase)
+"small inground pool" (phrase)
+"cocktail pool" (phrase)
+"small backyard pool" (phrase)</div>
+</section>
+
+<!-- SECTION 13: CAMPAIGN REBUILD — RSA COPY -->
+<section id="s13">
+  <h2>13. Campaign Rebuild — RSA Copy</h2>
+  <p>One RSA per ad group. 15 headlines + 4 descriptions each. Pin H1 to position 1, brand or CTA to position 3.</p>
+
+  <h3>AG1: Fiberglass Pools — Core</h3>
+  <p><strong>Path:</strong> /Fiberglass-Pools/Columbus-OH</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Fiberglass Pools Columbus OH
+H2: Installed in Weeks, Not Months
+H3 (Pin 3): Get a Free Pool Estimate
+H4: Leisure Pools Certified Dealer
+H5: Lifetime Structural Warranty
+H6: 150,000+ Pools Worldwide
+H7: Low Maintenance Fiberglass
+H8: AquaGuard X Color System
+H9: 30+ Pool Designs Available
+H10: Non-Porous Smooth Surface
+H11: Pool Projects Starting at $65K+
+H12: Swimming Pool Installation
+H13: Award-Winning Pool Builder
+H14: Columbus Ohio Pool Experts
+H15: Transform Your Backyard
+
+DESCRIPTIONS:
+D1: Custom fiberglass pools installed in Columbus OH in just 2-3 weeks. Lifetime warranty included. Schedule your free estimate today.
+D2: Leisure Pools dealer serving Dublin, Westerville, Hilliard & all of central Ohio. 30+ designs, financing available.
+D3: Low maintenance, fast installation, lifetime warranty. Fiberglass outperforms concrete on every metric that matters.
+D4: Over 150,000 pools installed worldwide. See why Columbus homeowners choose Leisure Pools fiberglass over concrete.</div>
+
+  <h3>AG2: Pool Builder / Contractor — Columbus</h3>
+  <p><strong>Path:</strong> /Pool-Builder/Columbus-OH</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Pool Builder Columbus Ohio
+H2: Licensed & Insured Contractors
+H3 (Pin 3): Schedule Free Consultation
+H4: 5-Star Rated Pool Company
+H5: Fiberglass Pool Specialists
+H6: Serving Dublin & Westerville
+H7: Pool Projects Starting at $65K+
+H8: Installed in 2-3 Weeks
+H9: Leisure Pools Certified Dealer
+H10: Lifetime Structural Warranty
+H11: Columbus Pool Experts
+H12: Award-Winning Pool Builder
+H13: Central Ohio Pool Contractor
+H14: Top-Rated Pool Installation
+H15: Your Dream Pool Starts Here
+
+DESCRIPTIONS:
+D1: Columbus pool contractor serving Dublin, Westerville, Hilliard & surrounding areas. Licensed, insured, 5-star rated.
+D2: From design to completion — fiberglass pool installs in 2-3 weeks. Get a free quote from Columbus's top pool builder.
+D3: Fiberglass pools outperform concrete on cost, maintenance & install time. See why we're Columbus's preferred builder.
+D4: Licensed, insured & award-winning. Leisure Pools dealer proudly serving Columbus OH and central Ohio communities.</div>
+
+  <h3>AG3: Pool Cost / Pricing</h3>
+  <p><strong>Path:</strong> /Pool-Cost/Free-Quote</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Fiberglass Pool Cost Ohio
+H2: Pool Projects Starting at $65K+
+H3 (Pin 3): Get Your Free Pool Quote
+H4: Inground Pool Pricing Guide
+H5: Financing Options Available
+H6: Installed in Weeks Not Months
+H7: Lower Lifetime Cost vs Concrete
+H8: No Resurfacing Costs Ever
+H9: Transparent Pool Pricing
+H10: Columbus OH Pool Estimates
+H11: Investment That Adds Value
+H12: Lifetime Warranty Included
+H13: Less Maintenance Than Concrete
+H14: As Little as $10 a Day
+H15: Flexible Payment Plans
+
+DESCRIPTIONS:
+D1: Fiberglass pool pricing for Columbus OH. Projects typically start at $65K+. Free, no-obligation estimates. Financing available.
+D2: Fiberglass costs less than concrete over a lifetime — lower maintenance, no resurfacing, lifetime warranty. Get your quote.
+D3: Transparent pricing on fiberglass pool installations in Columbus. Includes design consultation. Call today for a free estimate.
+D4: Own a pool for less than you think. Flexible financing plans available. Fiberglass installs fast — swim this summer.</div>
+
+  <h3>AG4: Pool Installation / Near Me</h3>
+  <p><strong>Path:</strong> /Pool-Install/Near-You</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Pool Installation Near You
+H2: Columbus OH Pool Installers
+H3 (Pin 3): Get a Free Estimate Today
+H4: Installed in Just 2-3 Weeks
+H5: Licensed Pool Contractors
+H6: Serving All of Central Ohio
+H7: Fiberglass Pool Specialists
+H8: Lifetime Structural Warranty
+H9: 5-Star Rated Pool Builder
+H10: Dublin Westerville Hilliard
+H11: Pool Projects Starting at $65K+
+H12: Award-Winning Installations
+H13: Local Pool Experts Near You
+H14: Swim This Summer
+H15: Schedule a Free Consultation
+
+DESCRIPTIONS:
+D1: Local fiberglass pool installer serving Columbus, Dublin, Westerville & all of central Ohio. Free quotes. Licensed & insured.
+D2: Fiberglass pools installed in weeks, not months. Get your pool before summer. Schedule your free design consultation now.
+D3: Top-rated pool installation company near you. Over 150,000 pools installed globally. Lifetime warranty on every pool.
+D4: Your local Leisure Pools dealer. From backyard assessment to splash — we handle everything. Call for a free estimate.</div>
+
+  <h3>AG5: Leisure Pools — Brand</h3>
+  <p><strong>Path:</strong> /Leisure-Pools/Columbus</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Leisure Pools Columbus Ohio
+H2: Official Leisure Pools Dealer
+H3 (Pin 3): Schedule Free Consultation
+H4: 150,000+ Pools Worldwide
+H5: 25+ Years of Excellence
+H6: Lifetime Structural Warranty
+H7: 30+ Pool Models Available
+H8: AquaGuard X Color System
+H9: Installed in 2-3 Weeks
+H10: Swimming in Quality & Style
+H11: Columbus OH Leisure Dealer
+H12: Fiberglass Pool Experts
+H13: Pool Projects Starting at $65K+
+H14: See Our Pool Gallery
+H15: Transform Your Backyard
+
+DESCRIPTIONS:
+D1: Your authorized Leisure Pools dealer in Columbus Ohio. 30+ award-winning fiberglass pool designs. Lifetime warranty included.
+D2: 150,000+ pools installed in 23 countries. Leisure Pools — the world's most trusted fiberglass pool brand. Free consultation.
+D3: AquaGuard X color system, lifetime structural warranty, installed in weeks. See why Leisure Pools leads the industry.
+D4: Columbus's Leisure Pools specialist. Serving Dublin, Westerville, Hilliard & central OH. Visit our gallery or call today.</div>
+
+  <h3>AG6: Plunge Pool / Small Pool</h3>
+  <p><strong>Path:</strong> /Plunge-Pool/Columbus</p>
+  <div class="copy-box">HEADLINES:
+H1 (Pin 1): Plunge Pools Columbus Ohio
+H2: Compact Pool Solutions
+H3 (Pin 3): Get Your Free Quote Today
+H4: Perfect for Small Backyards
+H5: Fiberglass Plunge Pools
+H6: Fiji Plunge & Palladium
+H7: Installed in Under 2 Weeks
+H8: Low Maintenance Design
+H9: Pool Projects Starting at $45K+
+H10: Leisure Pools Plunge Models
+H11: Year-Round Relaxation
+H12: Cold Plunge & Spa Capable
+H13: Lifetime Structural Warranty
+H14: Small Pool Big Impact
+H15: Space-Efficient Pool Design
+
+DESCRIPTIONS:
+D1: Fiberglass plunge pools for Columbus OH backyards. Compact, low-maintenance, installed fast. Perfect for smaller spaces.
+D2: Leisure Pools Fiji Plunge and Palladium Plunge models — designed for relaxation. Lifetime warranty. Free consultation.
+D3: Don't have a huge yard? No problem. Plunge pools fit where full-size pools can't. Installed in under 2 weeks.
+D4: Cold plunge, hot spa, or just relaxation — plunge pools do it all. Columbus's fiberglass plunge pool experts.</div>
+</section>
+
+<!-- SECTION 14: EXTENSIONS REBUILD -->
+<section id="s14">
+  <h2>14. Campaign Rebuild — Extensions</h2>
+
+  <h3>Sitelinks (8)</h3>
+  <div class="copy-box">1. Pool Gallery
+   Browse Our Fiberglass Pool Designs
+   See 30+ Models, Colors & Features
+   URL: leisurepoolsusa.com/fiberglass-swimming-pools/
+
+2. Get a Free Quote
+   No-Obligation Pool Estimate
+   Find Out What Your Pool Will Cost
+   URL: [dealer landing page/contact]
+
+3. Financing Options
+   Flexible Pool Payment Plans
+   Make Your Dream Pool Affordable
+   URL: [dealer financing page]
+
+4. Pool Models & Sizes
+   Pools From 10' to 40' Long
+   Find Your Perfect Pool Size
+   URL: leisurepoolsusa.com/fiberglass-swimming-pools/
+
+5. Why Fiberglass?
+   Fiberglass vs Concrete vs Vinyl
+   Lower Cost, Less Maintenance
+   URL: leisurepoolsusa.com/why-fiberglass/
+
+6. Our Warranty
+   Lifetime Structural Warranty
+   Industry-Leading Protection
+   URL: leisurepoolsusa.com/warranty/
+
+7. Plunge Pools
+   Compact Pools for Any Backyard
+   Perfect for Smaller Spaces
+   URL: leisurepoolsusa.com/fiberglass-swimming-pools/the-fiji-plunge/
+
+8. About Us
+   Columbus's Trusted Pool Builder
+   Licensed, Insured & 5-Star Rated
+   URL: [dealer about page]</div>
+
+  <h3>Callouts (12)</h3>
+  <div class="copy-box">Lifetime Warranty
+Installed in 2-3 Weeks
+Free Pool Estimates
+Financing Available
+Licensed & Insured
+30+ Pool Designs
+AquaGuard X Colors
+Low Maintenance
+150,000+ Pools Worldwide
+5-Star Rated
+Serving Central Ohio
+Non-Porous Surface</div>
+
+  <h3>Structured Snippets</h3>
+  <div class="copy-box">Header: Models
+Values: The Elegance, The Supreme, The Pinnacle, The Eclipse, The Wave, The Reflection, The Fiji Plunge
+
+Header: Neighborhoods
+Values: Dublin, Westerville, Hilliard, Grove City, Gahanna, Powell, New Albany
+
+Header: Services
+Values: Pool Design, Pool Installation, Pool Financing, Free Consultations</div>
+
+  <h3>Call Extension</h3>
+  <div class="copy-box">Phone: [Dealer phone number — verify with Eli]
+Call reporting: ON
+Call conversion: Calls > 60 seconds</div>
+</section>
+
+<!-- SECTION 15: AUDIENCES & DEMOGRAPHICS -->
+<section id="s15">
+  <h2>15. Audience Segments & Demographics</h2>
+
+  <h3>Current State</h3>
+  <p><strong>No audience segments configured. No income demographic exclusions.</strong></p>
+
+  <h3>Recommended Audience Segments (Observation Mode)</h3>
+  <div class="copy-box">IN-MARKET AUDIENCES:
+- Home & Garden > Swimming Pools
+- Real Estate > Home Purchase
+- Home Improvement > Remodeling
+
+AFFINITY AUDIENCES:
+- Home & Garden Enthusiasts
+- Outdoor Enthusiasts
+- Luxury Shoppers
+
+DEMOGRAPHICS TO EXCLUDE:
+- Income: Lower 50% (exclude)
+- Income: 40-50% (exclude)
+- Age: 18-24 (exclude — not pool buyers)
+
+DEMOGRAPHICS TO BOOST:
+- Income: Top 10% (+20%)
+- Age: 35-54 (+15%)
+- Parental Status: Parent (+10%)</div>
+
+  <h3>Income Range Exclusions — Critical</h3>
+  <p>Pool installations start at $60K+. The bottom 2-3 income ranges should be excluded to prevent unqualified clicks. Currently NO income exclusions exist on this account.</p>
+</section>
+
+<!-- SECTION 16: BID STRATEGY & BUDGET -->
+<section id="s16">
+  <h2>16. Bid Strategy & Budget Recommendations</h2>
+
+  <h3>Current Setup</h3>
+  <table>
+    <tr><th>Campaign</th><th>Strategy</th><th>Budget</th><th>Issue</th></tr>
+    <tr><td>Main Search</td><td>Maximize Conversions (no CPA target)</td><td>$60/day</td><td><span class="tag warn">No CPC ceiling — $10+ clicks happening</span></td></tr>
+    <tr><td>High Intent</td><td>Maximize Clicks</td><td>$32.88/day</td><td><span class="tag good">Appropriate for new campaign</span></td></tr>
+  </table>
+
+  <h3>Recommendations</h3>
+  <ol>
+    <li><strong>Main Campaign — Switch to Manual CPC with Enhanced CPC</strong> — With only 13 conversions/month, Maximize Conversions doesn't have enough data to optimize well. Manual CPC + eCPC gives you control while still allowing some automated bidding. Set max CPC at $8.00 to prevent runaway clicks.</li>
+    <li><strong>Alternative: Keep Max Conv but add CPC ceiling</strong> — If staying on Maximize Conversions, set a CPC bid ceiling of $8.00-$9.00 to prevent the $10+ clicks on generic terms.</li>
+    <li><strong>High Intent Campaign</strong> — Keep Maximize Clicks for now until it accumulates enough data. Monitor for 30 more days. If no conversions by then, evaluate whether to fold these keywords into the main campaign.</li>
+    <li><strong>Budget allocation</strong> — Consider shifting some High Intent budget to the main campaign. $60/day is limited for 40% impression share — $80/day would capture significantly more qualified traffic.</li>
+  </ol>
+</section>
+
+<!-- SECTION 17: PRE-LAUNCH CHECKLIST -->
+<section id="s17">
+  <h2>17. Pre-Launch Checklist</h2>
+  <ul class="checklist">
+    <li>Add all negative keywords from Section 11 (campaign level)</li>
+    <li>Create 6 themed ad groups per Section 12</li>
+    <li>Build RSA copy for each ad group per Section 13</li>
+    <li>Add 8 sitelinks per Section 14</li>
+    <li>Add 12 callouts per Section 14</li>
+    <li>Add structured snippets (Models, Neighborhoods, Services)</li>
+    <li>Add call extension with dealer phone number</li>
+    <li>Set income range exclusions (bottom 3 tiers)</li>
+    <li>Add audience segments in observation mode</li>
+    <li>Set CPC ceiling ($8-9) or switch to Manual CPC + eCPC</li>
+    <li>Exclude age 18-24 demographic</li>
+    <li>Verify conversion tracking: confirm primary conversion actions in UI</li>
+    <li>Verify landing page URL is correct and mobile-optimized</li>
+    <li>Pause zero-impression exact match keywords (phrase covers them)</li>
+    <li>Resolve keyword overlap between Main and High Intent campaigns</li>
+    <li>Fix "Best in Class Fiberglass pools" capitalization</li>
+    <li>Add pin strategy to RSAs (brand H1, CTA H3)</li>
+  </ul>
+</section>
+
+<div style="text-align:center;padding:32px;color:var(--muted);font-size:12px">
+  Generated by Claude Code — Elite - Leisure Pools Columbus OH Audit & Rebuild<br>
+  Account 500-052-3507 | March 18, 2026 | Leisure Pools Brand
+</div>
+
+</body>
+</html>

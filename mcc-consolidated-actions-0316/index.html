@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consolidated Action Items — 2026-03-16 — 32 Dealers</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; padding: 24px; max-width: 1000px; margin: 0 auto; }
+  h1 { font-size: 24px; margin-bottom: 4px; }
+  .subtitle { color: #6b7280; font-size: 13px; margin-bottom: 20px; }
+  .action-group { background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .action-group h2 { font-size: 16px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid #e2e8f0; }
+  .action-group h2 .count { background: #dc2626; color: white; border-radius: 10px; padding: 1px 8px; font-size: 12px; margin-left: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f1f5f9; padding: 6px 10px; text-align: left; font-weight: 600; }
+  td { padding: 6px 10px; border-bottom: 1px solid #f1f5f9; }
+  .check { width: 20px; text-align: center; }
+  .dealer { font-weight: 600; }
+  .p1 { color: #dc2626; font-weight: 700; }
+  .note { font-size: 11px; color: #6b7280; }
+  .copy-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 8px; font-family: monospace; font-size: 12px; white-space: pre-wrap; cursor: pointer; margin: 6px 0; }
+  .copy-box:hover { background: #e0f2fe; }
+  .copy-box::after { content: " 📋 click to copy"; font-family: sans-serif; color: #93c5fd; font-size: 10px; }
+  @media print { .copy-box::after { display: none; } }
+</style>
+<script>
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('copy-box')) {
+    navigator.clipboard.writeText(e.target.textContent.replace(/ 📋 click to copy$/, ''));
+    e.target.style.background = '#dcfce7';
+    setTimeout(() => e.target.style.background = '', 800);
+  }
+});
+</script>
+</head>
+<body>
+
+<h1>Consolidated Action Items — March 16, 2026</h1>
+<p class="subtitle">Organized by action type for batch processing in Google Ads Editor. Check off as completed.</p>
+
+<!-- ACTION 1: CONVERSION TRACKING -->
+<div class="action-group">
+  <h2>1. Fix Conversion Tracking <span class="count">4 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;color:#dc2626;font-weight:600;">DO THIS FIRST — everything else is secondary if tracking is broken.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Issue</th><th>Spend (blind)</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Poolux Builders</td><td>2 of 4 conversion actions REMOVED. 0 conv on $558.</td><td>$558</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Aqua Pools Corpus Christi</td><td>3 active conversion actions but 0 conversions on 137 clicks. GA4 events not firing.</td><td>$865</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Nashville South</td><td>Campaign REMOVED — no active campaigns. 0 conv on $485 historical.</td><td>$485</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Europe</td><td>0.19% conversion rate across 6 campaigns. 3 conv on €2,487. Likely broken on all 6 dealer sites.</td><td>€2,487</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 2: LOCATION TARGETING -->
+<div class="action-group">
+  <h2>2. Fix Location Targeting → Presence Only <span class="count">20+ dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Change from "Presence or Interest" to "Presence" in campaign settings. Batch via Ads Editor.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">All American Pools & Spas</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Backyard Pool and Patio</td><td>REPEAT from 3/12</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Cajun Pools and Spas</td><td>REPEAT from 3/12</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Nashville South</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Terre Haute</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Beaufort</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Coastal MS</td><td>Needs UI verification</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Lake City</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Sarasota</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Savannah</td><td>Both campaigns</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Passion Pools</td><td>All 3 campaigns</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Integrity Built Pools</td><td>REPEAT from 3/12</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Austin</td><td>NO geo targeting found — may need locations added entirely</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools OK</td><td>Likely PRESENCE_OR_INTEREST — needs UI check</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools San Antonio</td><td>Both campaigns</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Pronto Pools</td><td></td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Aqua Pools Corpus Christi</td><td>Both campaigns</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 3: WRONG GEO COPY -->
+<div class="action-group">
+  <h2>3. Fix Wrong-Geo Ad Copy <span class="count">6 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Template copy-paste errors — ads reference wrong cities/states. Fix in RSA headlines & descriptions.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>What's Wrong</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools DFW</td><td>"Jacksonville" and "Florida" references in DFW/Texas account</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools San Antonio</td><td>"Florida Fiberglass Experts" headline + "Waco's premier" in description</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Waco</td><td>"Florida Fiberglass Experts" headline</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Sarasota</td><td>"Mississippi" references in Florida/Sarasota account</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Front Range</td><td>"Fort Colilns" typo (should be Collins)</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Europe</td><td>Cross-campaign geo contamination (Düsseldorf headlines in Sauerland, München in Düsseldorf)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 4: TYPO FIX -->
+<div class="action-group">
+  <h2>4. Fix "Ger Your Free Estimate" Typo <span class="count">5+ dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Find "Ger Your" → replace with "Get Your" in RSA headlines. Same template source.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools DFW</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools San Antonio</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Waco</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Jacksonville</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Front Range</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 5: NEGATIVE KEYWORDS -->
+<div class="action-group">
+  <h2>5. Add Negative Keyword Lists <span class="count">26 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Bulk-paste negative lists are in each dealer's individual audit HTML (click-to-copy format). Core negatives every account needs:</p>
+  <div class="copy-box">above ground pool
+above ground pools
+above ground swimming pool
+intex pool
+bestway pool
+inflatable pool
+kiddie pool
+pool maintenance
+pool cleaning
+pool repair
+pool service
+pool chemicals
+hot tub
+spa
+jacuzzi
+swim spa
+pool cover
+pool liner
+vinyl liner pool
+concrete pool
+gunite pool
+pool kit
+diy pool
+pool supplies
+pool equipment
+pool filter
+pool pump
+pool heater
+pool jobs
+pool careers
+pool company for sale
+used pool
+cheap pool
+free pool</div>
+  <p class="note">Each dealer's individual report has a customized negative list with market-specific additions. Use those for best results.</p>
+</div>
+
+<!-- ACTION 6: EXTENSIONS -->
+<div class="action-group">
+  <h2>6. Add Extensions (Sitelinks + Callouts) <span class="count">22 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Each individual report has dealer-specific extension copy. Dealers needing extensions:</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Missing</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">All American Pools & Spas</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Cajun Pools and Spas</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Nashville South</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Terre Haute</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Athens</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Beaufort</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Lake City</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Northwest Ohio</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Sarasota</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Savannah</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Integrity Built Pools</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Austin</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Boston North</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools DFW</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools OK</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools San Antonio</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Waco</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Poolux Builders</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Precision Fiberglass Pools</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Pronto Pools</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Tri County Pools</td><td>All extensions</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Front Range</td><td>Sitelink descriptions missing</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 7: BID STRATEGY -->
+<div class="action-group">
+  <h2>7. Fix Bid Strategy Mismatches <span class="count">6 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">Accounts using Maximize Conversions with insufficient conversion volume (&lt;30/month). Switch to Maximize Clicks with CPC cap.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Current</th><th>Recommended</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Northwest Ohio</td><td>Max Conv (2 conv/mo)</td><td>Max Clicks w/ $5 cap</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Lake City</td><td>Max Conv (3 conv/mo)</td><td>Max Clicks w/ $5 cap</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Tri County Pools</td><td>Max Conv (15 conv/mo)</td><td>Max Clicks w/ $5 cap</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Europe</td><td>Max Conv (3 conv/mo)</td><td>Max Clicks w/ €3 cap</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Backyard Pool and Patio</td><td>Max Clicks — NO CPC cap</td><td>Add $5-10 CPC cap</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools OK (Tulsa Reboot)</td><td>Max Clicks — NO CPC cap ($5.71 avg)</td><td>Add $5 CPC cap</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 8: BROAD MATCH -->
+<div class="action-group">
+  <h2>8. Remove Broad Match Keywords <span class="count">3 dealers</span></h2>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Leisure Pools Houston</td><td>4 broad match keywords — switch to phrase match</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - LP Jacksonville</td><td>Broad match keyword detected — switch to phrase</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Precision Fiberglass Pools</td><td>ALL 14 keywords broad — full rebuild needed</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 9: SEARCH PARTNERS -->
+<div class="action-group">
+  <h2>9. Disable Search Partners <span class="count">2 dealers</span></h2>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Cajun Pools and Spas</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Poolux Builders</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ACTION 10: FULL REBUILDS -->
+<div class="action-group">
+  <h2>10. Full Account Rebuilds Needed <span class="count">3 dealers</span></h2>
+  <p style="font-size:13px;margin-bottom:10px;">These accounts need ground-up rebuilds — new campaigns, ad groups, keywords, and all assets. Full rebuild specs in each dealer's audit HTML.</p>
+  <table>
+    <thead><tr><th class="check">☐</th><th>Dealer</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td class="check">☐</td><td class="dealer">Precision Fiberglass Pools</td><td>Campaign deleted, all broad match, zero structure. Health 15.</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Elite - Aviva Nashville South</td><td>Campaign removed, all broad match, 0 conv. Health 18.</td></tr>
+      <tr><td class="check">☐</td><td class="dealer">Poolux Builders</td><td>Tracking broken, zero structure, single ad group "Ad group 1". Health 18.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top:20px;padding:14px;background:#f1f5f9;border-radius:8px;font-size:12px;color:#6b7280;text-align:center;">
+  <p>Generated 2026-03-16 | Individual audit HTMLs with full rebuild specs + click-to-copy assets in ~/Desktop/Dealer-Accounts/[Dealer]/</p>
+</div>
+
+</body>
+</html>

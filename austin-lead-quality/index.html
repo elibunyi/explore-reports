@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pools 123 Austin — Lead Quality Deep Dive</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+.header { background: #1a1a2e; color: #fff; padding: 40px 0; text-align: center; }
+.header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+.header .subtitle { color: #a0a0c0; font-size: 1rem; }
+.header .meta { color: #7070a0; font-size: 0.85rem; margin-top: 12px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 30px 20px; }
+.card { background: #fff; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.card h2 { font-size: 1.3rem; color: #1a1a2e; margin-bottom: 16px; border-bottom: 2px solid #e8e8f0; padding-bottom: 10px; }
+.card h3 { font-size: 1.05rem; color: #444; margin: 16px 0 10px; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.9rem; }
+th { background: #1a1a2e; color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; }
+td { padding: 9px 12px; border-bottom: 1px solid #eee; }
+tr:hover td { background: #f8f8fc; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.metric-box { background: #f8f9fa; border-radius: 8px; padding: 16px; text-align: center; border-left: 4px solid #1a1a2e; }
+.metric-box .value { font-size: 1.6rem; font-weight: 700; color: #1a1a2e; }
+.metric-box .label { font-size: 0.8rem; color: #666; margin-top: 4px; }
+.badge-bad { background: #f8d7da; color: #721c24; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+.badge-warn { background: #fff3cd; color: #856404; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+.badge-good { background: #d4edda; color: #155724; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+.badge-missing { background: #f8d7da; color: #721c24; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+.badge-present { background: #d4edda; color: #155724; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+.copy-block { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 16px; font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.85rem; white-space: pre-wrap; cursor: pointer; transition: background 0.3s; line-height: 1.8; }
+.copy-block:hover { background: #e9ecef; }
+.copy-hint { font-size: 0.78rem; color: #888; margin-bottom: 8px; font-style: italic; }
+.priority-1 { border-left: 4px solid #dc3545; }
+.priority-2 { border-left: 4px solid #ffc107; }
+.priority-3 { border-left: 4px solid #17a2b8; }
+.action-item { padding: 14px 18px; margin-bottom: 10px; background: #f8f9fa; border-radius: 8px; }
+.action-item .title { font-weight: 700; margin-bottom: 4px; }
+.action-item .desc { font-size: 0.9rem; color: #555; }
+.waste-total { font-size: 1.1rem; font-weight: 700; color: #dc3545; }
+.section-intro { color: #555; font-size: 0.92rem; margin-bottom: 16px; }
+.neg-category { font-weight: 600; color: #1a1a2e; margin: 14px 0 6px; font-size: 0.95rem; }
+.gap-table td.missing { color: #dc3545; font-weight: 600; }
+.gap-table td.present { color: #28a745; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Pools 123 Austin — Lead Quality Deep Dive</h1>
+    <div class="subtitle">Leisure Pools Dealer | Account ID: 618-562-9903</div>
+    <div class="meta">Report Period: March 1 - 16, 2026 | Generated: March 16, 2026 | Baseline: Houston (679-038-2043, updated Mar 11)</div>
+</div>
+
+<div class="container">
+
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="card">
+        <h2>Executive Summary</h2>
+        <div class="metric-grid">
+            <div class="metric-box">
+                <div class="value">4,046</div>
+                <div class="label">Total Impressions</div>
+            </div>
+            <div class="metric-box">
+                <div class="value">400</div>
+                <div class="label">Total Clicks</div>
+            </div>
+            <div class="metric-box">
+                <div class="value">10.0</div>
+                <div class="label">Conversions</div>
+            </div>
+            <div class="metric-box">
+                <div class="value">$1,921.30</div>
+                <div class="label">Total Spend</div>
+            </div>
+            <div class="metric-box">
+                <div class="value">$4.80</div>
+                <div class="label">Avg CPC</div>
+            </div>
+            <div class="metric-box">
+                <div class="value">$192.13</div>
+                <div class="label">Cost/Conversion</div>
+            </div>
+        </div>
+        <p class="section-intro">Austin is leaking budget to competitor brands, alternative pool types, and pool supply store searches that Houston already blocks. At least <span class="waste-total">$183.40 in wasted spend</span> identified from non-buyer search terms in this 16-day window. The account is missing 30+ negative keywords that Houston has had since March 11.</p>
+    </div>
+
+    <!-- CAMPAIGN PERFORMANCE -->
+    <div class="card">
+        <h2>Campaign Performance (Mar 1-16, 2026)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign</th>
+                    <th>Impressions</th>
+                    <th>Clicks</th>
+                    <th>CTR</th>
+                    <th>Avg CPC</th>
+                    <th>Spend</th>
+                    <th>Conversions</th>
+                    <th>Cost/Conv</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Fiberglass Pools (Primary)</strong></td>
+                    <td>1,518</td>
+                    <td>235</td>
+                    <td>15.48%</td>
+                    <td>$4.11</td>
+                    <td>$965.86</td>
+                    <td>6.67</td>
+                    <td>$144.84</td>
+                </tr>
+                <tr>
+                    <td><strong>Pool Builder / Contractor</strong></td>
+                    <td>2,528</td>
+                    <td>165</td>
+                    <td>6.53%</td>
+                    <td>$5.79</td>
+                    <td>$955.44</td>
+                    <td>3.33</td>
+                    <td>$286.62</td>
+                </tr>
+                <tr style="background:#f0f0f8; font-weight:600;">
+                    <td>TOTAL</td>
+                    <td>4,046</td>
+                    <td>400</td>
+                    <td>9.88%</td>
+                    <td>$4.80</td>
+                    <td>$1,921.30</td>
+                    <td>10.00</td>
+                    <td>$192.13</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top:14px; font-size:0.9rem; color:#666;"><strong>Key takeaway:</strong> Pool Builder / Contractor is running a $286.62 cost/conversion — nearly 2x Fiberglass Pools. This campaign is the primary source of junk traffic (cowboy pools, container pools, stock tanks, competitor names).</p>
+    </div>
+
+    <!-- PROBLEMATIC SEARCH TERMS -->
+    <div class="card">
+        <h2>Top Problematic Search Terms (Non-Buyer Intent)</h2>
+        <p class="section-intro">These search terms are eating budget with zero or near-zero conversions. Most should be blocked by negative keywords that Houston already has.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Search Term</th>
+                    <th>Campaign</th>
+                    <th>Impr</th>
+                    <th>Clicks</th>
+                    <th>Cost</th>
+                    <th>Conv</th>
+                    <th>Issue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>cowboy pools austin</td><td>Pool Builder / Contractor</td><td>135</td><td>8</td><td>$47.79</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>cowboy pool austin</td><td>Pool Builder / Contractor</td><td>10</td><td>1</td><td>$5.68</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>cowboy pools showroom photos</td><td>Pool Builder / Contractor</td><td>6</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>cowboy pools texas</td><td>Pool Builder / Contractor</td><td>4</td><td>1</td><td>$6.15</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>cowboy pools cost</td><td>Pool Builder / Contractor</td><td>4</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>premier pools and spas</td><td>Pool Builder / Contractor</td><td>16</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>aqua pools georgetown</td><td>Pool Builder / Contractor</td><td>27</td><td>1</td><td>$6.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>aqua pools san antonio</td><td>Fiberglass Pools (Primary)</td><td>4</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>darnell pools austin</td><td>Pool Builder / Contractor</td><td>7</td><td>2</td><td>$12.54</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>pila pools / pila pool / pila pools texas</td><td>Pool Builder / Contractor</td><td>24</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-bad">Competitor</span></td></tr>
+                <tr><td>plungie pool cost</td><td>Pool Builder / Contractor</td><td>15</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>plungie pool</td><td>Pool Builder / Contractor</td><td>8</td><td>1</td><td>$5.64</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>how much do plungie pools cost</td><td>Pool Builder / Contractor</td><td>4</td><td>1</td><td>$7.12</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>container pools texas</td><td>Pool Builder / Contractor</td><td>12</td><td>1</td><td>$5.65</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>container pool cost</td><td>Pool Builder / Contractor</td><td>9</td><td>1</td><td>$4.72</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>shipping container pools texas</td><td>Pool Builder / Contractor</td><td>4</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>doughboy pool</td><td>Pool Builder / Contractor</td><td>9</td><td>1</td><td>$5.68</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>stock tank pools austin</td><td>Pool Builder / Contractor</td><td>8</td><td>1</td><td>$3.11</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>stock tank pool company near me</td><td>Pool Builder / Contractor</td><td>4</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>texas pocket pools</td><td>Pool Builder / Contractor</td><td>7</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>texas tiny pools cost</td><td>Pool Builder / Contractor</td><td>8</td><td>2</td><td>$11.87</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>tiny pools austin</td><td>Pool Builder / Contractor</td><td>11</td><td>0</td><td>$0.00</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+                <tr><td>national pool tile pflugerville</td><td>Pool Builder / Contractor</td><td>17</td><td>1</td><td>$5.29</td><td>0</td><td><span class="badge-bad">Pool Supply</span></td></tr>
+                <tr><td>prefab pools</td><td>Fiberglass Pools (Primary)</td><td>14</td><td>4</td><td>$14.36</td><td>1</td><td><span class="badge-warn">Mixed Intent</span></td></tr>
+                <tr><td>plunge pool cost / plunge pool austin</td><td>Pool Builder / Contractor</td><td>24</td><td>2</td><td>$11.11</td><td>0</td><td><span class="badge-warn">Alt Pool Type</span></td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top:14px;"><span class="waste-total">Estimated wasted spend from junk terms: ~$183.40</span> (16 days). Annualized: ~$4,180/year if left unchecked.</p>
+    </div>
+
+    <!-- CURRENT NEGATIVE KEYWORDS -->
+    <div class="card">
+        <h2>Current Negative Keywords (Austin)</h2>
+        <p class="section-intro">Austin has 32 negative keywords per campaign — mostly generic service/job/DIY filters. Missing all competitor brands and alternative pool type negatives that Houston has.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keyword</th>
+                    <th>Match Type</th>
+                    <th>Campaigns</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>repair</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>used</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>jobs</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>portable</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>employment</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>service</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>hiring</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>cleaning</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>resale</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>maintenance</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>plans</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>inflatable</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>diy</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>careers</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>salary</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>kits</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>wage</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>self install</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>above ground</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>intex</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>aboveground</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>how to build ourself</td><td>BROAD</td><td>Both</td></tr>
+                <tr><td>leslie</td><td>PHRASE</td><td>Both</td></tr>
+                <tr><td>pinch</td><td>PHRASE</td><td>Both</td></tr>
+                <tr><td>leslie pool</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie's pools</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie swimming pool supplies</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie's pool supply</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie's pool near me</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie store near me</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>leslie's near me</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+                <tr><td>scp poolcorp</td><td>EXACT</td><td>Pool Builder / Contractor only</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- GAP ANALYSIS VS HOUSTON -->
+    <div class="card">
+        <h2>Gap Analysis: Austin vs Houston Negative Keywords</h2>
+        <p class="section-intro">Houston was updated March 11 and is performing well. Below is every keyword from Houston's baseline that Austin is <strong>missing</strong>. Search terms in red are actively bleeding budget in Austin right now.</p>
+        <table class="gap-table">
+            <thead>
+                <tr>
+                    <th>Houston Negative Keyword</th>
+                    <th>Category</th>
+                    <th>Austin Status</th>
+                    <th>Seen in Austin Search Terms?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Cowboy Pools -->
+                <tr><td class="missing">cowboy pool</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 10 impr, 1 click, $5.68</strong></td></tr>
+                <tr><td class="missing">cowboy pools</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 135 impr, 8 clicks, $47.79</strong></td></tr>
+                <!-- Plungie -->
+                <tr><td class="missing">plungie pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 8 impr, 1 click, $5.64</strong></td></tr>
+                <tr><td class="missing">plungie pool cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 15 impr</strong></td></tr>
+                <tr><td class="missing">plungie pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 4 impr, 1 click, $7.12</strong></td></tr>
+                <!-- Texas Pocket -->
+                <tr><td class="missing">texas pocket pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 7 impr</strong></td></tr>
+                <!-- Container -->
+                <tr><td class="missing">container pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 9 impr, 1 click, $4.72</strong></td></tr>
+                <tr><td class="missing">container pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 12 impr, 1 click, $5.65</strong></td></tr>
+                <tr><td class="missing">container pools texas</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — same as above</strong></td></tr>
+                <tr><td class="missing">shipping container pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 4 impr</strong></td></tr>
+                <!-- Semi Inground -->
+                <tr><td class="missing">semi inground pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">semi inground pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">semi-inground pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">semi-inground pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">semi inground pool cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">semi inground pools cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <!-- Stock Tank -->
+                <tr><td class="missing">stock tank pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 12 impr, 1 click, $3.11</strong></td></tr>
+                <!-- Swim Spa -->
+                <tr><td class="missing">swim spa</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">swim spas</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">swim spa cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">swim spas cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <!-- Leslie's (some covered, some missing) -->
+                <tr><td class="present">leslies</td><td>Pool Supply</td><td><span class="badge-present">COVERED</span> (via "leslie" phrase)</td><td>--</td></tr>
+                <tr><td class="present">leslie's</td><td>Pool Supply</td><td><span class="badge-present">COVERED</span> (via "leslie" phrase)</td><td>--</td></tr>
+                <tr><td class="missing">leslies pool</td><td>Pool Supply</td><td><span class="badge-present">COVERED</span> (via "leslie" phrase)</td><td>--</td></tr>
+                <!-- Pinch a Penny -->
+                <tr><td class="present">pinch a penny</td><td>Pool Supply</td><td><span class="badge-present">COVERED</span> (via "pinch" phrase)</td><td>--</td></tr>
+                <tr><td class="present">pinch a penny pool supplies</td><td>Pool Supply</td><td><span class="badge-present">COVERED</span> (via "pinch" phrase)</td><td>--</td></tr>
+                <!-- Pool Supply Near Me -->
+                <tr><td class="missing">pool supply near me</td><td>Pool Supply</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">pool supplies near me</td><td>Pool Supply</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">pool store near me</td><td>Pool Supply</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <!-- Misc -->
+                <tr><td class="missing">liner pool cost</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">pool plastering cost</td><td>Service</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">soake pools cost</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">ipoolgo prices</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">doughboy pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 9 impr, 1 click, $5.68</strong></td></tr>
+                <tr><td class="missing">prefab pools</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 14 impr, 4 clicks, $14.36</strong></td></tr>
+                <tr><td class="missing">cold plunge pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">dipping pool</td><td>Alt Pool Type</td><td><span class="badge-missing">MISSING</span></td><td>Not yet</td></tr>
+                <tr><td class="missing">aqua pools</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 31 impr, 1 click, $6.00</strong></td></tr>
+                <tr><td class="missing">premier pools and spas</td><td>Competitor</td><td><span class="badge-missing">MISSING</span></td><td><strong>YES — 16 impr</strong></td></tr>
+            </tbody>
+        </table>
+        <p style="margin-top:16px; font-weight:600; color:#dc3545;">34 negative keywords from Houston baseline are missing in Austin. 14 of them are actively appearing in search terms and costing money.</p>
+    </div>
+
+    <!-- CLICK-TO-COPY BLOCKS -->
+    <div class="card">
+        <h2>Click-to-Copy Negative Keyword Blocks</h2>
+        <p class="section-intro">Click any block to copy its contents to clipboard. Add these as campaign-level negative keywords in Google Ads Editor or the UI. All should be added as <strong>Phrase Match</strong> unless noted.</p>
+
+        <div class="neg-category">PRIORITY 1 — Competitor Brands (Phrase Match)</div>
+        <p class="copy-hint">Click to copy:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+aqua pools
+premier pools and spas
+soake pools
+soake pools cost
+ipoolgo prices
+darnell pools
+pila pools
+pila pool
+golden hour pools</pre>
+
+        <div class="neg-category">PRIORITY 2 — Alternative Pool Types (Phrase Match)</div>
+        <p class="copy-hint">Click to copy:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">container pool
+container pools
+container pools texas
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+texas pocket pools
+doughboy pool
+cold plunge pool
+dipping pool</pre>
+
+        <div class="neg-category">PRIORITY 3 — Pool Supply / Retail Stores (Phrase Match)</div>
+        <p class="copy-hint">Click to copy:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">pool supply near me
+pool supplies near me
+pool store near me
+national pool tile</pre>
+
+        <div class="neg-category">PRIORITY 4 — Miscellaneous / Cost Research (Phrase Match)</div>
+        <p class="copy-hint">Click to copy:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">liner pool cost
+pool plastering cost
+prefab pools
+tiny pools
+texas tiny pools</pre>
+
+        <div class="neg-category">ALL MISSING HOUSTON NEGATIVES — Combined Block (Phrase Match)</div>
+        <p class="copy-hint">Click to copy all at once:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pools
+plungie pool cost
+texas pocket pools
+container pool
+container pools
+container pools texas
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+pool supply near me
+pool supplies near me
+pool store near me
+liner pool cost
+pool plastering cost
+soake pools cost
+ipoolgo prices
+doughboy pool
+prefab pools
+cold plunge pool
+dipping pool
+aqua pools
+premier pools and spas</pre>
+    </div>
+
+    <!-- ADDITIONAL AUSTIN-SPECIFIC NEGATIVES -->
+    <div class="card">
+        <h2>Austin-Specific Additions (Beyond Houston Baseline)</h2>
+        <p class="section-intro">These search terms appeared in Austin's data but weren't in Houston's baseline. Recommend adding these as well.</p>
+        <p class="copy-hint">Click to copy:</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">darnell pools
+pila pools
+pila pool
+golden hour pools
+national pool tile
+tiny pools
+texas tiny pools
+hill country lagoons
+atx pools</pre>
+    </div>
+
+    <!-- RECOMMENDED ACTIONS -->
+    <div class="card">
+        <h2>Recommended Actions (Prioritized)</h2>
+
+        <div class="action-item priority-1">
+            <div class="title">1. IMMEDIATE — Add Houston Baseline Negatives</div>
+            <div class="desc">Copy the "ALL MISSING HOUSTON NEGATIVES" block above and add as phrase-match campaign-level negatives to <strong>both</strong> campaigns. This is the same fix that improved Houston and should be done today. Estimated monthly savings: ~$350-500.</div>
+        </div>
+
+        <div class="action-item priority-1">
+            <div class="title">2. IMMEDIATE — Add Austin-Specific Negatives</div>
+            <div class="desc">Austin has local competitors (Darnell Pools, Pila Pools, Golden Hour Pools) and local alt-pool brands (Texas Tiny Pools) that Houston doesn't see. Add the Austin-specific block above.</div>
+        </div>
+
+        <div class="action-item priority-2">
+            <div class="title">3. THIS WEEK — Review Pool Builder / Contractor Campaign Keywords</div>
+            <div class="desc">This campaign has a $286.62 cost/conversion — nearly 2x the Fiberglass Pools campaign. It's attracting the bulk of junk traffic. Review the keyword match types and consider tightening to phrase/exact match for core terms.</div>
+        </div>
+
+        <div class="action-item priority-2">
+            <div class="title">4. THIS WEEK — Verify Fiberglass Pools (Primary) Negatives</div>
+            <div class="desc">The Fiberglass Pools campaign only has the generic negatives (no Leslie's exact matches, no scp poolcorp). Copy the exact-match Leslie's negatives from Pool Builder / Contractor to this campaign as well.</div>
+        </div>
+
+        <div class="action-item priority-3">
+            <div class="title">5. ONGOING — Weekly Search Term Review</div>
+            <div class="desc">Set a recurring check for new junk terms. Austin's market has different local competitors than Houston — new ones will appear. Flag any term with 3+ clicks and 0 conversions.</div>
+        </div>
+
+        <div class="action-item priority-3">
+            <div class="title">6. NEXT MONTH — Sync Negative Keyword Lists Across Pools 123 Accounts</div>
+            <div class="desc">Consider creating a shared negative keyword list at the MCC level for all Pools 123 dealer accounts. This ensures Houston's fixes propagate automatically to Austin, San Antonio, and any future locations.</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="text-align:center; padding:30px 0; color:#888; font-size:0.82rem;">
+        Generated by Explore Industries | March 16, 2026<br>
+        Account: Pools 123 Austin (618-562-9903) | MCC: 836-765-6694<br>
+        Houston baseline reference: 679-038-2043 (updated Mar 11, 2026)
+    </div>
+
+</div>
+
+</body>
+</html>

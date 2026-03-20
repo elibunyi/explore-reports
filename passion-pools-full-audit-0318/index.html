@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passion Pools — Full Audit & Campaign Rebuild | 2026-03-18</title>
+<style>
+:root {
+  --navy: #1B3A5C;
+  --accent: #E8913A;
+  --light-bg: #F5F7FA;
+  --card-bg: #FFFFFF;
+  --text: #2C3E50;
+  --text-light: #6C7A89;
+  --success: #27AE60;
+  --warning: #F39C12;
+  --danger: #E74C3C;
+  --info: #3498DB;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--light-bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+h1 { color: var(--navy); font-size: 2em; margin-bottom: 5px; }
+h2 { color: var(--navy); font-size: 1.5em; margin: 30px 0 15px; border-bottom: 3px solid var(--accent); padding-bottom: 8px; }
+h3 { color: var(--navy); font-size: 1.2em; margin: 20px 0 10px; }
+h4 { color: var(--text); margin: 15px 0 8px; }
+
+.header { background: linear-gradient(135deg, var(--navy), #2C5F8A); color: white; padding: 30px; border-radius: 10px; margin-bottom: 25px; }
+.header h1 { color: white; }
+.header .meta { color: rgba(255,255,255,0.8); font-size: 0.9em; margin-top: 10px; }
+.header .meta span { display: inline-block; margin-right: 20px; }
+
+.card { background: var(--card-bg); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 20px; margin-bottom: 20px; }
+
+.toc { background: white; border-radius: 10px; padding: 20px 30px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.toc ol { padding-left: 20px; }
+.toc li { margin: 6px 0; }
+.toc a { color: var(--navy); text-decoration: none; font-weight: 500; }
+.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+.tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; font-weight: 700; color: white; text-transform: uppercase; letter-spacing: 0.5px; }
+.tag-p1 { background: var(--danger); }
+.tag-p2 { background: var(--warning); }
+.tag-p3 { background: var(--info); }
+.tag-new { background: var(--success); }
+.tag-keep { background: var(--info); }
+.tag-remove { background: var(--danger); }
+.tag-exact { background: #8E44AD; }
+.tag-phrase { background: var(--success); }
+.tag-brand { background: var(--accent); }
+.tag-geo { background: var(--info); }
+.tag-benefit { background: var(--danger); }
+.tag-cta { background: var(--warning); }
+.tag-product { background: var(--success); }
+
+.warning-box { background: #FDE8E8; border-left: 4px solid var(--danger); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.note-box { background: #FFF8E1; border-left: 4px solid var(--warning); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.success-box { background: #E8F5E9; border-left: 4px solid var(--success); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.info-box { background: #E3F2FD; border-left: 4px solid var(--info); padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; font-weight: 600; }
+td { padding: 8px 12px; border-bottom: 1px solid #E0E0E0; }
+tr:nth-child(even) { background: #F8F9FA; }
+tr:hover { background: #EEF2F7; }
+
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0; }
+.metric-card { background: white; border: 1px solid #E0E0E0; border-radius: 8px; padding: 15px; text-align: center; }
+.metric-card .value { font-size: 1.8em; font-weight: 700; color: var(--navy); }
+.metric-card .label { font-size: 0.85em; color: var(--text-light); margin-top: 4px; }
+
+.copy-box { margin: 8px 0; }
+.copy-box label { display: block; font-size: 0.8em; color: var(--text-light); margin-bottom: 3px; font-weight: 600; }
+.copy-box input { width: 100%; padding: 8px 12px; background: #F0F0F0; border: 1px solid #D0D0D0; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.9em; cursor: pointer; }
+.copy-box input:focus { outline: 2px solid var(--accent); }
+.copy-box .char-count { font-size: 0.75em; color: var(--text-light); float: right; margin-top: 2px; }
+
+.bulk-paste { margin: 15px 0; }
+.bulk-paste label { display: block; background: var(--success); color: white; padding: 8px 15px; border-radius: 6px 6px 0 0; font-weight: 700; font-size: 0.85em; }
+.bulk-paste textarea { width: 100%; min-height: 150px; padding: 12px; background: #F0F0F0; border: 1px solid #D0D0D0; border-radius: 0 0 6px 6px; font-family: 'Courier New', monospace; font-size: 0.85em; resize: vertical; cursor: pointer; }
+
+.checklist { list-style: none; padding: 0; }
+.checklist li { padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
+.checklist label { cursor: pointer; }
+.checklist .section-header { font-weight: 700; color: var(--navy); margin-top: 15px; padding-top: 10px; border-top: 1px solid #E0E0E0; }
+
+.health-score { display: inline-block; font-size: 3em; font-weight: 900; padding: 15px 25px; border-radius: 10px; color: white; }
+.health-bad { background: var(--danger); }
+.health-ok { background: var(--warning); }
+.health-good { background: var(--success); }
+
+.campaign-tab { display: inline-block; padding: 8px 20px; background: var(--navy); color: white; border-radius: 6px 6px 0 0; font-weight: 600; margin-right: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Passion Pools — Audit & Campaign Rebuild</h1>
+  <div class="meta">
+    <span><strong>Date:</strong> March 18, 2026</span>
+    <span><strong>Account ID:</strong> 237-536-3197</span>
+    <span><strong>Brand:</strong> Leisure Pools</span>
+    <span><strong>Markets:</strong> Northern Kentucky, Cincinnati, Dayton</span>
+  </div>
+  <div class="meta" style="margin-top:8px;">
+    <span><strong>Data Range:</strong> Feb 16 – Mar 18, 2026 (30 days)</span>
+    <span><strong>Generated by:</strong> Claude Opus 4.6 (dealer-audit-v2)</span>
+  </div>
+  <div style="margin-top:15px;">
+    <span class="health-score health-bad">32/100</span>
+    <span style="margin-left:15px;font-size:1.1em;">Account Health Score</span>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#s1">Audit Findings</a></li>
+    <li><a href="#s2">Current Performance Summary</a></li>
+    <li><a href="#s3">Wasted Spend Analysis</a></li>
+    <li><a href="#s4">Campaign Settings — Current vs Rebuild</a></li>
+    <li><a href="#s5">Ad Group Structure — Proposed Rebuild</a></li>
+    <li><a href="#s6">Ad Group 1: Leisure Pools Brand + Installer (Keywords + RSA)</a></li>
+    <li><a href="#s7">Ad Group 2: Fiberglass Pools + Geo (Keywords + RSA)</a></li>
+    <li><a href="#s8">Ad Group 3: Pool Cost & Pricing (Keywords + RSA)</a></li>
+    <li><a href="#s9">Campaign Negatives</a></li>
+    <li><a href="#s10">Sitelinks</a></li>
+    <li><a href="#s11">Callouts</a></li>
+    <li><a href="#s12">Structured Snippets</a></li>
+    <li><a href="#s13">Call Extension</a></li>
+    <li><a href="#s14">Audience Segments</a></li>
+    <li><a href="#s15">Device Bid Adjustments</a></li>
+    <li><a href="#s16">Demographic Adjustments</a></li>
+    <li><a href="#s17">Pre-Launch Checklist</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1: AUDIT FINDINGS -->
+<div class="card" id="s1">
+<h2>1. Audit Findings</h2>
+<p style="margin-bottom:15px;">5 P1 Critical | 6 P2 Moderate | 3 P3 Opportunity</p>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Critically Thin Negative Keywords — All Campaigns</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Entire account has exactly <strong>2 negative keywords</strong> total — "above ground" (broad) on NKY and Cincinnati only. Dayton has <strong>ZERO</strong> negatives.</p>
+<p><strong>CONTEXT:</strong> The March 16 audit flagged this exact same issue. No changes have been made since. This is a repeat finding.</p>
+<p><strong>REASONING:</strong> With ~90 active phrase-match keywords and zero negative keyword protection, the account is wide open to irrelevant search terms. Competitor names, pool supply stores, pool service queries, DIY/kit queries, and above-ground pool searches are all matching freely. Estimated wasted spend: <strong>$1,153+ over 30 days (~$38/day, 14% of total spend)</strong>.</p>
+<p><strong>CONFIDENCE:</strong> HIGH</p>
+<p><strong>RECOMMENDATION:</strong> Add the full negative keyword list from Section 9 to ALL THREE campaigns immediately. This is the single highest-impact change available.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Single Ad Group Structure — All Campaigns</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Each campaign has exactly one ad group named "Ad group 1" with 25-30 phrase-match keywords. NKY: 339 clicks / 13 conv. Cincinnati: 515 clicks / 12 conv. Dayton: 524 clicks / 20 conv.</p>
+<p><strong>REASONING:</strong> A single ad group cannot deliver relevant ad copy to diverse search intents. Someone searching "fiberglass pool cost" sees the same ad as someone searching "leisure pools cincinnati." Quality Scores confirm this — "pool companies" has QS=1 in Dayton and QS=3 in Cincinnati/NKY, while branded "leisure pools" terms have QS=10. The mismatch is costing relevance and driving up CPCs.</p>
+<p><strong>CONFIDENCE:</strong> HIGH</p>
+<p><strong>RECOMMENDATION:</strong> Restructure each campaign to 3 themed ad groups with tailored RSA copy per Section 5-8.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Maximize Conversion Value on Low-Volume Campaigns</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> All 3 campaigns use Maximize Conversion Value. Combined: 45 conversions over 30 days (1.5/day). Per campaign: NKY 13 (~0.43/day), Cincinnati 12 (~0.4/day), Dayton 20 (~0.67/day).</p>
+<p><strong>REASONING:</strong> Google recommends 30+ conversions/month per campaign for smart bidding to optimize effectively. None of these campaigns meet that threshold individually. Maximize Conversion Value is a value-optimized strategy — even more data-hungry than Maximize Conversions. On low-volume accounts, smart bidding makes erratic decisions, leading to CPC spikes (Dayton avg CPC $7.17, NKY $6.22) and inconsistent performance. Maximize Clicks with a CPC cap would give more control and predictable spend.</p>
+<p><strong>CONFIDENCE:</strong> HIGH</p>
+<p><strong>RECOMMENDATION:</strong> Switch all 3 campaigns to Maximize Clicks with CPC caps: NKY $12, Cincinnati $10, Dayton $12. Re-evaluate after 60 days of conversion data accumulates.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Competitor Keywords Actively Bidding — Massive Waste</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> The account has competitor names as active POSITIVE keywords: "eastgate pools" (QS=1, 579 impr, 21 clicks, $96.76, 0 conv), "premier pools and spas" (QS=3, 165 impr, 9 clicks, $54.84, 0 conv), "mid american pools" (QS=1, 123 impr, 3 clicks, $20.19), "sheehan pools" (QS=3, 71 impr, 4 clicks, $21.25), "klimat master pools" (QS=1, 41 impr, 2 clicks, $16.31), "aladdin pools" (QS=1, 17 impr, 2 clicks, $12.40), "aquamarine pools" (QS=1-3, 34 impr, 0 clicks), "tri state gunite pools" (QS=1), "westside pools" (QS=4).</p>
+<p><strong>REASONING:</strong> These are competitor brand names being used as PHRASE MATCH keywords. They trigger whenever someone searches for a competitor — delivering a Leisure Pools ad with QS=1, paying inflated CPCs, and converting at near-zero. Over 30 days, competitor keywords consumed ~$221 in clicks with 0-1 conversions across all. This is not competitive conquest — this is waste.</p>
+<p><strong>CONFIDENCE:</strong> HIGH</p>
+<p><strong>RECOMMENDATION:</strong> Pause ALL competitor-name keywords and add them as campaign-level negatives instead. If conquest is intentional, it should be in a separate campaign with dedicated copy addressing the competitor comparison.</p>
+</div>
+
+<div class="warning-box">
+<span class="tag tag-p1">P1</span> <strong>Location Targeting: Presence or Interest (Needs Verification)</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> API returned positive_geo_target_type = 7, negative_geo_target_type = 5. Per Google's API enum, type 7 = PRESENCE, which is correct. However, Cincinnati campaign has primary_status = 8 (which may indicate a serving limitation). Recommend verifying in the Google Ads UI that location targeting is set to "Presence: People in or regularly in your targeted locations" and NOT "Presence or interest."</p>
+<p><strong>CONFIDENCE:</strong> MEDIUM — API enum mapping is per documented spec but should be visually verified.</p>
+<p><strong>RECOMMENDATION:</strong> Verify in Google Ads UI. If set to "Presence or interest," switch to "Presence" only.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>No Extensions/Assets Detected</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Asset queries returned errors. The March 16 audit also flagged zero extensions. No sitelinks, no callouts, no structured snippets, no call extension confirmed via API.</p>
+<p><strong>REASONING:</strong> Extensions improve CTR by 10-20% and are free real estate in search results. Missing all four extension types is a significant competitive disadvantage.</p>
+<p><strong>RECOMMENDATION:</strong> Add all extensions from Sections 10-13.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>Pool Store/Retail Queries Burning Budget</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> "pool stores near me" (3 campaigns, $24.17), "pool store" ($8.82), "pool and patio stores near me" ($14.78), "pool stores open near me" ($9.05). Total: ~$56.82 with 0 conversions.</p>
+<p><strong>RECOMMENDATION:</strong> Add "pool store," "pool supply," "pool supplies" as campaign negatives.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>Semi-Inground Queries — Consistent Waste</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Semi-inground terms across all 3 campaigns: $110.71 total, 0 conversions. "semi inground pool," "semi inground pool kits," "pictures of semi inground pools," "semi inground pool sale."</p>
+<p><strong>RECOMMENDATION:</strong> Add "semi inground" and "semi-inground" as campaign negatives.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>Service/Repair/Maintenance Queries</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> "pool repair near me" ($17.07), "pool service near me" ($30.09 combined), "pool opening service" ($9.81), "pool liner replacement" ($22.37 combined), "pool maintenance service" ($7.97). Total: ~$107.90, 0 conversions.</p>
+<p><strong>RECOMMENDATION:</strong> Add "pool repair," "pool service," "pool cleaning," "pool opening," "pool liner," "liner replacement" as negatives.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>DIY/Kit Queries</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> "diy in ground pool" ($10.35), "diy pool kits" ($8.01), "cheapest inground pool kits" ($9.34), "inground pool kits" ($8.70). Total: ~$69.95, 1 conversion (on "in ground pool kit" which barely qualifies).</p>
+<p><strong>RECOMMENDATION:</strong> Add "diy," "pool kit," "pool kits" as negatives.</p>
+</div>
+
+<div class="note-box">
+<span class="tag tag-p2">P2</span> <strong>No Income Demographic Targeting</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> No income range bid adjustments found in prior audit. Pool installation is a $40K-$80K+ purchase — HHI targeting is critical.</p>
+<p><strong>RECOMMENDATION:</strong> Set HHI bid adjustments per Section 16.</p>
+</div>
+
+<div class="info-box">
+<span class="tag tag-p3">P3</span> <strong>Budget Imbalance — Dayton Over-Indexed</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> NKY: $75/day budget, $68.26/day actual. Cincinnati: $75/day budget, $74.18/day actual. Dayton: $122.50/day budget, $121.69/day actual. Dayton gets 46% of total spend but has similar conversion volume per dollar as the others.</p>
+<p><strong>RECOMMENDATION:</strong> Consider rebalancing — NKY could benefit from more budget (losing 16% IS to budget). Cincinnati losing 13.4% IS to budget. Dayton only losing 7.8%.</p>
+</div>
+
+<div class="info-box">
+<span class="tag tag-p3">P3</span> <strong>Brand Search Opportunity — "Pinnacle 35" Search Detected</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> Someone searched "pinnacle 35" (a specific Leisure Pools model, The Pinnacle™ 35'). 3 impressions, 2 clicks, $11.51 cost. This indicates active brand/model awareness in the market.</p>
+<p><strong>RECOMMENDATION:</strong> Monitor for additional model-specific searches. Consider adding top Leisure Pools model names as exact-match keywords in a brand ad group.</p>
+</div>
+
+<div class="info-box">
+<span class="tag tag-p3">P3</span> <strong>Plunge Pool Searches — NOT Negatives</strong>
+<p style="margin-top:8px;"><strong>DATA:</strong> "plunge pool" (48 impr, 5 clicks, $35.50), "plunge pools" (18 impr, 3 clicks, $25.45), "prefab plunge pool near me" (5 impr, 3 clicks, $16.22). Zero conversions but Leisure Pools sells The Fiji Plunge™ and The Palladium Plunge™.</p>
+<p><strong>RECOMMENDATION:</strong> Do NOT negate. These are qualified buyers. Consider dedicated plunge pool ad copy or sitelink.</p>
+</div>
+
+</div>
+
+<!-- SECTION 2: CURRENT PERFORMANCE SUMMARY -->
+<div class="card" id="s2">
+<h2>2. Current Performance Summary</h2>
+
+<div class="info-grid">
+  <div class="metric-card"><div class="value">$8,159</div><div class="label">Total Spend</div></div>
+  <div class="metric-card"><div class="value">1,378</div><div class="label">Total Clicks</div></div>
+  <div class="metric-card"><div class="value">15,953</div><div class="label">Impressions</div></div>
+  <div class="metric-card"><div class="value">8.6%</div><div class="label">CTR</div></div>
+  <div class="metric-card"><div class="value">$5.92</div><div class="label">Avg CPC</div></div>
+  <div class="metric-card"><div class="value">45</div><div class="label">Conversions</div></div>
+  <div class="metric-card"><div class="value">$181.31</div><div class="label">Cost/Conversion</div></div>
+  <div class="metric-card"><div class="value">3.26%</div><div class="label">Conversion Rate</div></div>
+</div>
+
+<h3>Campaign Breakdown (Feb 16 – Mar 18)</h3>
+<table>
+<tr><th>Campaign</th><th>Budget/Day</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv</th><th>CPA</th><th>IS</th><th>Lost IS (Budget)</th><th>Lost IS (Rank)</th></tr>
+<tr><td>NKY</td><td>$75</td><td>3,165</td><td>339</td><td>10.71%</td><td>$6.22</td><td>$2,109</td><td>13</td><td>$162</td><td>59.5%</td><td>16.1%</td><td>24.4%</td></tr>
+<tr><td>Cincinnati</td><td>$75</td><td>6,396</td><td>515</td><td>8.05%</td><td>$4.45</td><td>$2,292</td><td>12</td><td>$191</td><td>44.4%</td><td>13.4%</td><td>42.2%</td></tr>
+<tr><td>Dayton</td><td>$122.50</td><td>6,392</td><td>524</td><td>8.20%</td><td>$7.17</td><td>$3,758</td><td>20</td><td>$188</td><td>61.8%</td><td>7.8%</td><td>30.4%</td></tr>
+<tr style="font-weight:700;background:#E8F0FE;"><td>TOTAL</td><td>$272.50</td><td>15,953</td><td>1,378</td><td>8.64%</td><td>$5.92</td><td>$8,159</td><td>45</td><td>$181</td><td>—</td><td>—</td><td>—</td></tr>
+</table>
+
+<h3>Device Breakdown</h3>
+<table>
+<tr><th>Device</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>CPA</th><th>Conv Rate</th></tr>
+<tr><td>Desktop (2)</td><td>12,558</td><td>1,086</td><td>8.65%</td><td>$6,429</td><td>35</td><td>$184</td><td>3.22%</td></tr>
+<tr><td>Mobile (4)</td><td>3,186</td><td>272</td><td>8.54%</td><td>$1,613</td><td>9</td><td>$179</td><td>3.31%</td></tr>
+<tr><td>Tablet (3)</td><td>209</td><td>20</td><td>9.57%</td><td>$116</td><td>1</td><td>$116</td><td>5.00%</td></tr>
+</table>
+<div class="info-box">
+<strong>Device Insight:</strong> Desktop drives 79% of spend and 78% of conversions. Mobile has a slightly better CPA ($179 vs $184) but much lower volume. Tablet is negligible. Device performance is relatively balanced — no aggressive adjustments needed. Mobile is performing well for pool industry.
+</div>
+
+<h3>Top Keywords by Impressions (with Quality Score)</h3>
+<table>
+<tr><th>Keyword</th><th>Campaign</th><th>Match</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>Cost</th><th>Conv</th><th>QS</th></tr>
+<tr><td>pool companies</td><td>Dayton</td><td>Phrase</td><td>1,705</td><td>135</td><td>7.9%</td><td>$7.11</td><td>$959</td><td>4</td><td style="color:red;font-weight:700;">1</td></tr>
+<tr><td>pool contractor</td><td>Dayton</td><td>Phrase</td><td>1,285</td><td>47</td><td>3.7%</td><td>$7.19</td><td>$338</td><td>0</td><td style="color:red;font-weight:700;">—</td></tr>
+<tr><td>pool companies</td><td>Cincinnati</td><td>Phrase</td><td>1,157</td><td>93</td><td>8.0%</td><td>$4.79</td><td>$445</td><td>1</td><td style="color:orange;font-weight:700;">3</td></tr>
+<tr><td>inground pool</td><td>Cincinnati</td><td>Phrase</td><td>925</td><td>70</td><td>7.6%</td><td>$4.44</td><td>$311</td><td>1</td><td>5</td></tr>
+<tr><td>fiberglass pools</td><td>Cincinnati</td><td>Phrase</td><td>816</td><td>75</td><td>9.2%</td><td>$4.57</td><td>$343</td><td>1</td><td style="color:green;font-weight:700;">8</td></tr>
+<tr><td>pool contractor</td><td>Cincinnati</td><td>Phrase</td><td>767</td><td>32</td><td>4.2%</td><td>$5.22</td><td>$167</td><td>1</td><td>—</td></tr>
+<tr><td>inground pool</td><td>Dayton</td><td>Phrase</td><td>713</td><td>70</td><td>9.8%</td><td>$7.47</td><td>$523</td><td>3</td><td style="color:orange;font-weight:700;">3</td></tr>
+<tr><td>pool contractor</td><td>NKY</td><td>Phrase</td><td>671</td><td>45</td><td>6.7%</td><td>$6.51</td><td>$293</td><td>3</td><td>5</td></tr>
+<tr><td>pool companies</td><td>NKY</td><td>Phrase</td><td>615</td><td>50</td><td>8.1%</td><td>$6.67</td><td>$333</td><td>2</td><td style="color:orange;font-weight:700;">3</td></tr>
+<tr><td>inground pools</td><td>NKY</td><td>Phrase</td><td>588</td><td>72</td><td>12.2%</td><td>$6.12</td><td>$441</td><td>0</td><td>6</td></tr>
+<tr><td>eastgate pools</td><td>Cincinnati</td><td>Phrase</td><td>579</td><td>21</td><td>3.6%</td><td>$4.61</td><td>$97</td><td>0</td><td style="color:red;font-weight:700;">1</td></tr>
+<tr><td>fiberglass pools</td><td>Dayton</td><td>Phrase</td><td>566</td><td>50</td><td>8.8%</td><td>$7.38</td><td>$369</td><td>4</td><td style="color:green;font-weight:700;">7</td></tr>
+<tr><td>fiberglass pools</td><td>NKY</td><td>Phrase</td><td>339</td><td>51</td><td>15.0%</td><td>$6.08</td><td>$310</td><td>4</td><td style="color:green;font-weight:700;">8</td></tr>
+<tr><td>leisure pools</td><td>Cincinnati</td><td>Phrase</td><td>129</td><td>23</td><td>17.8%</td><td>$2.91</td><td>$67</td><td>1</td><td style="color:green;font-weight:700;">10</td></tr>
+<tr><td>leisure pools</td><td>NKY</td><td>Phrase</td><td>100</td><td>22</td><td>22.0%</td><td>$3.52</td><td>$77</td><td>3</td><td style="color:green;font-weight:700;">10</td></tr>
+</table>
+<div class="warning-box">
+<strong>Quality Score Alert:</strong> "pool companies" — the highest-impression keyword — has QS=1 in Dayton. This means Google considers the ad and landing page a poor match for this query. The single ad group structure makes it impossible to improve this — the ad copy cannot be simultaneously optimized for "pool companies," "fiberglass pools," and "leisure pools." Restructuring to themed ad groups is the fix.
+</div>
+
+</div>
+
+<!-- SECTION 3: WASTED SPEND ANALYSIS -->
+<div class="card" id="s3">
+<h2>3. Wasted Spend Analysis</h2>
+<p style="margin-bottom:10px;"><strong>Estimated total wasted spend (30 days): $1,153+ (~14.1% of total spend)</strong></p>
+
+<table>
+<tr><th>Category</th><th>Example Terms</th><th>Clicks</th><th>Est. Spend</th><th>Conv</th></tr>
+<tr><td style="font-weight:700;">Competitors</td><td>eastgate pools, leslies pool, watsons, premier pools, knickerbocker, shehan, klimat master, lucas pools, aladdin, luxe pools</td><td>~85</td><td style="color:red;font-weight:700;">$533</td><td>1</td></tr>
+<tr><td style="font-weight:700;">Above Ground</td><td>above ground pools dayton, above ground pool installation, above ground container pool</td><td>~18</td><td style="color:red;font-weight:700;">$142</td><td>0</td></tr>
+<tr><td style="font-weight:700;">Semi-Inground</td><td>semi inground pool, semi inground pool kits, semi inground pool ideas</td><td>~14</td><td style="color:red;font-weight:700;">$111</td><td>0</td></tr>
+<tr><td style="font-weight:700;">Service/Repair</td><td>pool repair near me, pool service, pool liner replacement, pool opening service</td><td>~15</td><td style="color:red;font-weight:700;">$108</td><td>0</td></tr>
+<tr><td style="font-weight:700;">DIY/Kits</td><td>diy pool, cheapest inground pool kits, in ground pool kit</td><td>~9</td><td style="color:orange;font-weight:700;">$70</td><td>1</td></tr>
+<tr><td style="font-weight:700;">Pool Store/Retail</td><td>pool stores near me, pool store, pool and patio stores</td><td>~8</td><td style="color:orange;font-weight:700;">$57</td><td>0</td></tr>
+<tr><td style="font-weight:700;">Irrelevant Other</td><td>koi pools, cowboy pools, endless pool costco, doughboy pool, coleman pools, vinyl pool cost, biodesign pool, acrylic swimming pools</td><td>~15</td><td style="color:orange;font-weight:700;">$133</td><td>0</td></tr>
+<tr style="font-weight:700;background:#FDE8E8;"><td>TOTAL WASTE</td><td></td><td>~164</td><td style="color:red;">$1,153+</td><td>2</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>Key insight:</strong> Competitors alone account for $533 in waste — nearly half of all wasted spend. The Leslie's pool store chain is the single largest non-competitor waste source at $168.86 across all 3 markets. Adding negatives per Section 9 would recapture most of this spend for qualified searches.
+</div>
+</div>
+
+<!-- SECTION 4: CAMPAIGN SETTINGS -->
+<div class="card" id="s4">
+<h2>4. Campaign Settings — Current vs Rebuild</h2>
+<p style="margin-bottom:5px;font-style:italic;">Apply these settings to ALL THREE campaigns (NKY, Cincinnati, Dayton)</p>
+
+<table>
+<tr><th>Setting</th><th>Current</th><th>Rebuild</th><th>Notes</th></tr>
+<tr><td>Bid Strategy</td><td style="color:red;">Maximize Conversion Value</td><td style="color:green;font-weight:700;">Maximize Clicks</td><td>Insufficient conversion volume for smart bidding</td></tr>
+<tr><td>Max CPC Cap — NKY</td><td>None</td><td style="font-weight:700;">$12.00</td><td>Mid-metro market, competitive</td></tr>
+<tr><td>Max CPC Cap — Cincinnati</td><td>None</td><td style="font-weight:700;">$10.00</td><td>Largest market, more inventory</td></tr>
+<tr><td>Max CPC Cap — Dayton</td><td>None</td><td style="font-weight:700;">$12.00</td><td>Current avg CPC $7.17, cap above for headroom</td></tr>
+<tr><td>Daily Budget — NKY</td><td>$75</td><td style="font-weight:700;">$85</td><td>Losing 16% IS to budget</td></tr>
+<tr><td>Daily Budget — Cincinnati</td><td>$75</td><td style="font-weight:700;">$85</td><td>Losing 13.4% IS to budget, largest market</td></tr>
+<tr><td>Daily Budget — Dayton</td><td>$122.50</td><td style="font-weight:700;">$100</td><td>Reduce slightly — waste reduction will improve efficiency</td></tr>
+<tr><td>Networks</td><td style="color:green;">Search Only ✓</td><td>Search Only</td><td>Correct — no changes</td></tr>
+<tr><td>Search Partners</td><td style="color:green;">OFF ✓</td><td>OFF</td><td>Correct — no changes</td></tr>
+<tr><td>Display Network</td><td style="color:green;">OFF ✓</td><td>OFF</td><td>Correct — no changes</td></tr>
+<tr><td>Location Targeting</td><td>PRESENCE (verify in UI)</td><td>Presence Only</td><td>API shows type 7 = Presence; verify visually</td></tr>
+<tr><td>Ad Rotation</td><td>Optimize</td><td>Optimize</td><td>No change</td></tr>
+</table>
+</div>
+
+<!-- SECTION 5: AD GROUP STRUCTURE -->
+<div class="card" id="s5">
+<h2>5. Ad Group Structure — Proposed Rebuild</h2>
+<p style="margin-bottom:10px;">Each campaign gets 3 themed ad groups. The structure below applies to all 3 campaigns — substitute the geo terms for each market.</p>
+
+<table>
+<tr><th>Ad Group</th><th>Theme</th><th>Keywords Focus</th><th>Why</th></tr>
+<tr><td><strong>AG1: Leisure Pools Brand + Installer</strong></td><td>Brand + installer intent</td><td>"leisure pools [city]", "fiberglass pool installer [city]", "fiberglass pool builders [city]"</td><td>Highest QS (10), lowest CPC, best conversion rate on branded terms</td></tr>
+<tr><td><strong>AG2: Fiberglass Pools [Geo]</strong></td><td>Product + geo intent</td><td>"fiberglass pools [city]", "fiberglass inground pool", "prefab pools near me"</td><td>Strong CTR and QS (6-8), product-aware buyers</td></tr>
+<tr><td><strong>AG3: Pool Cost & Installation</strong></td><td>Cost/pricing + install intent</td><td>"inground pool cost [state]", "pool installation near me", "how much does a pool cost"</td><td>High volume, research-stage buyers, need price anchor in ad</td></tr>
+</table>
+
+<div class="info-box">
+<strong>Competitor keywords removed from positive targeting:</strong> eastgate pools, premier pools and spas, mid american pools, sheehan pools, klimat master pools, aladdin pools, aquamarine pools, westside pools, tri state gunite pools, cincinnati pool professionals, dayton pool professionals. These should be added as negatives or moved to a dedicated conquest campaign with tailored copy.
+</div>
+</div>
+
+<!-- SECTION 6: AG1 — Brand + Installer -->
+<div class="card" id="s6">
+<h2>6. Ad Group 1: Leisure Pools Brand + Installer</h2>
+<p style="margin-bottom:5px;font-style:italic;">Repeat this ad group in each campaign, swapping geo terms. Keywords shown here use [CITY] placeholder — replace with: Northern Kentucky / Cincinnati / Dayton.</p>
+
+<h3>Keywords</h3>
+<table>
+<tr><th>Keyword</th><th>Match</th><th>Notes</th></tr>
+<tr><td>"leisure pools [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Branded, QS=10</td></tr>
+<tr><td>[leisure pools [CITY]]</td><td><span class="tag tag-exact">Exact</span></td><td>Branded exact</td></tr>
+<tr><td>"leisure pools near me"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Brand + local</td></tr>
+<tr><td>"fiberglass pool builders [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Installer intent</td></tr>
+<tr><td>"fiberglass pool installer near me"</td><td><span class="tag tag-phrase">Phrase</span></td><td>High intent</td></tr>
+<tr><td>"fiberglass pool installers [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Geo-specific</td></tr>
+<tr><td>"pool builders [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td><td>High intent</td></tr>
+<tr><td>"pool builders near me"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Local intent</td></tr>
+<tr><td>"swimming pool builders near me"</td><td><span class="tag tag-phrase">Phrase</span></td><td>Variant</td></tr>
+<tr><td>[leisure pools]</td><td><span class="tag tag-exact">Exact</span></td><td>Pure brand</td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG1 (NKY version, click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"leisure pools northern kentucky"
+[leisure pools northern kentucky]
+"leisure pools near me"
+"fiberglass pool builders northern kentucky"
+"fiberglass pool installer near me"
+"fiberglass pool installers northern kentucky"
+"pool builders northern kentucky"
+"pool builders near me"
+"swimming pool builders near me"
+[leisure pools]</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG1 (Cincinnati version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"leisure pools cincinnati"
+[leisure pools cincinnati]
+"leisure pools near me"
+"fiberglass pool builders cincinnati"
+"fiberglass pool installer near me"
+"fiberglass pool installers cincinnati"
+"pool builders cincinnati"
+"pool builders near me"
+"swimming pool builders near me"
+[leisure pools]</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG1 (Dayton version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"leisure pools dayton"
+[leisure pools dayton]
+"leisure pools near me"
+"fiberglass pool builders dayton"
+"fiberglass pool installer near me"
+"fiberglass pool installers dayton"
+"pool builders dayton"
+"pool builders near me"
+"swimming pool builders near me"
+[leisure pools]</textarea>
+</div>
+
+<h3>RSA Specification — AG1</h3>
+<div class="copy-box"><label>Path 1</label><input type="text" value="Fiberglass-Pools" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">16/15 — SHORTEN to: Pools</span></div>
+<div class="copy-box"><label>Path 1 (corrected)</label><input type="text" value="Pools" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">5/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Free-Quotes" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<h4>Headlines (15) — AG1</h4>
+<table>
+<tr><th>#</th><th>Headline</th><th>Type</th><th>Chars</th><th>Pin</th></tr>
+<tr><td>1</td><td><div class="copy-box"><input type="text" value="Leisure Pools [CITY]" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-brand">Brand</span></td><td>20-26</td><td>H1</td></tr>
+<tr><td>2</td><td><div class="copy-box"><input type="text" value="Pools Starting at $10/Day" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Price</span></td><td>25</td><td>H2</td></tr>
+<tr><td>3</td><td><div class="copy-box"><input type="text" value="Fiberglass Pool Builders" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-product">Product</span></td><td>24</td><td>—</td></tr>
+<tr><td>4</td><td><div class="copy-box"><input type="text" value="Your Dream Backyard Awaits" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Desire</span></td><td>26</td><td>—</td></tr>
+<tr><td>5</td><td><div class="copy-box"><input type="text" value="Installed in Weeks Not Months" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Benefit</span></td><td>29</td><td>—</td></tr>
+<tr><td>6</td><td><div class="copy-box"><input type="text" value="150,000+ Pools Worldwide" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-brand">Trust</span></td><td>25</td><td>—</td></tr>
+<tr><td>7</td><td><div class="copy-box"><input type="text" value="Lifetime Structural Warranty" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-brand">Trust</span></td><td>28</td><td>—</td></tr>
+<tr><td>8</td><td><div class="copy-box"><input type="text" value="Get a Free Quote Today" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-cta">CTA</span></td><td>22</td><td>—</td></tr>
+<tr><td>9</td><td><div class="copy-box"><input type="text" value="31 Pool Models to Choose" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-product">Product</span></td><td>25</td><td>—</td></tr>
+<tr><td>10</td><td><div class="copy-box"><input type="text" value="Transform Your Backyard" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Desire</span></td><td>23</td><td>—</td></tr>
+<tr><td>11</td><td><div class="copy-box"><input type="text" value="Low Maintenance Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Benefit</span></td><td>21</td><td>—</td></tr>
+<tr><td>12</td><td><div class="copy-box"><input type="text" value="25+ Years of Excellence" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-brand">Trust</span></td><td>24</td><td>—</td></tr>
+<tr><td>13</td><td><div class="copy-box"><input type="text" value="Financing Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-benefit">Benefit</span></td><td>19</td><td>—</td></tr>
+<tr><td>14</td><td><div class="copy-box"><input type="text" value="Schedule a Consultation" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-cta">CTA</span></td><td>23</td><td>—</td></tr>
+<tr><td>15</td><td><div class="copy-box"><input type="text" value="Premium Fiberglass Pools" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td><span class="tag tag-product">Product</span></td><td>24</td><td>—</td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Headlines — AG1 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Leisure Pools [CITY]
+Pools Starting at $10/Day
+Fiberglass Pool Builders
+Your Dream Backyard Awaits
+Installed in Weeks Not Months
+150,000+ Pools Worldwide
+Lifetime Structural Warranty
+Get a Free Quote Today
+31 Pool Models to Choose
+Transform Your Backyard
+Low Maintenance Pools
+25+ Years of Excellence
+Financing Available
+Schedule a Consultation
+Premium Fiberglass Pools</textarea>
+</div>
+
+<h4>Descriptions (4) — AG1</h4>
+<table>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+<tr><td>1</td><td><div class="copy-box"><input type="text" value="Leisure Pools offers 31 fiberglass pool models with a Lifetime Structural Warranty. Get a free quote today!" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>89</td></tr>
+<tr><td>2</td><td><div class="copy-box"><input type="text" value="Premium fiberglass pools installed in weeks, not months. 150,000+ pools in 23 countries. Request your free consultation." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>3</td><td><div class="copy-box"><input type="text" value="From The Elegance to The Pinnacle — find the perfect pool for your backyard. Financing available. Call today!" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+<tr><td>4</td><td><div class="copy-box"><input type="text" value="Trusted by homeowners worldwide. Low maintenance, fast installation, lifetime warranty. Your dream pool starts here." readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>90</td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG1 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Leisure Pools offers 31 fiberglass pool models with a Lifetime Structural Warranty. Get a free quote today!
+Premium fiberglass pools installed in weeks, not months. 150,000+ pools in 23 countries. Request your free consultation.
+From The Elegance to The Pinnacle — find the perfect pool for your backyard. Financing available. Call today!
+Trusted by homeowners worldwide. Low maintenance, fast installation, lifetime warranty. Your dream pool starts here.</textarea>
+</div>
+</div>
+
+<!-- SECTION 7: AG2 — Fiberglass Pools + Geo -->
+<div class="card" id="s7">
+<h2>7. Ad Group 2: Fiberglass Pools [Geo]</h2>
+
+<h3>Keywords</h3>
+<table>
+<tr><th>Keyword</th><th>Match</th></tr>
+<tr><td>"fiberglass pools [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"fiberglass pools near me"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"fiberglass pool"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"fiberglass inground pool"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"prefab pools near me"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"prefab pools"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"inground pools [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"inground pool"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"fiberglass pool companies"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"plunge pool"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG2 (NKY version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"fiberglass pools northern kentucky"
+"fiberglass pools near me"
+"fiberglass pool"
+"fiberglass inground pool"
+"prefab pools near me"
+"prefab pools"
+"inground pools northern kentucky"
+"inground pool"
+"fiberglass pool companies"
+"plunge pool"</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG2 (Cincinnati version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"fiberglass pools cincinnati"
+"fiberglass pools near me"
+"fiberglass pool"
+"fiberglass inground pool"
+"prefab pools near me"
+"prefab pools"
+"inground pools cincinnati"
+"inground pool"
+"fiberglass pool companies"
+"plunge pool"</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG2 (Dayton version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"fiberglass pools dayton"
+"fiberglass pools near me"
+"fiberglass pool"
+"fiberglass inground pool"
+"prefab pools near me"
+"prefab pools"
+"inground pools dayton"
+"inground pool"
+"fiberglass pool companies"
+"plunge pool"</textarea>
+</div>
+
+<h3>RSA — AG2</h3>
+<div class="copy-box"><label>Path 1</label><input type="text" value="Fiberglass-Pools" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">16/15 — use: Fiberglass</span></div>
+<div class="copy-box"><label>Path 1 (corrected)</label><input type="text" value="Fiberglass" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">10/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Pool-Models" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<h4>Headlines (15) — AG2</h4>
+<div class="bulk-paste">
+<label>Bulk Headlines — AG2 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Fiberglass Pools [CITY]
+Starting at Just $10/Day
+Top-Rated Fiberglass Pools
+Your Backyard Oasis Awaits
+Installed in Weeks Not Months
+31 Styles & Sizes Available
+Lifetime Structural Warranty
+Request a Free Quote Now
+AquaGuard X Color System
+Low Maintenance Pools
+150,000+ Pools Installed
+Swim This Summer
+Expert Pool Installation
+Financing Options Available
+See Our Pool Gallery</textarea>
+</div>
+
+<h4>Descriptions (4) — AG2</h4>
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG2 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Fiberglass pools built to last. Choose from 31 models — from compact plunge pools to 40' family pools. Free quotes!
+Why fiberglass? Faster install, lower maintenance, lifetime warranty. Explore our pool models and request a free quote.
+Premium fiberglass pools with AquaGuard X gelcoat for diamond-like sparkle. 25+ years of quality. See our gallery today.
+From The Elegance to The Wave — we have the perfect fiberglass pool for your backyard. Schedule your free consultation.</textarea>
+</div>
+</div>
+
+<!-- SECTION 8: AG3 — Pool Cost & Installation -->
+<div class="card" id="s8">
+<h2>8. Ad Group 3: Pool Cost & Installation</h2>
+
+<h3>Keywords</h3>
+<table>
+<tr><th>Keyword</th><th>Match</th></tr>
+<tr><td>"inground pool cost"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"inground pool cost [STATE]"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"fiberglass pool cost"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"pool installation near me"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"pool installation cost"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"pool installation [CITY]"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"how much does a pool cost"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"swimming pool installation"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"pool construction"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+<tr><td>"pool companies near me"</td><td><span class="tag tag-phrase">Phrase</span></td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG3 (NKY version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"inground pool cost"
+"inground pool cost kentucky"
+"fiberglass pool cost"
+"pool installation near me"
+"pool installation cost"
+"pool installation northern kentucky"
+"how much does a pool cost"
+"swimming pool installation"
+"pool construction"
+"pool companies near me"</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG3 (Cincinnati version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"inground pool cost"
+"inground pool cost ohio"
+"fiberglass pool cost"
+"pool installation near me"
+"pool installation cost"
+"pool installation cincinnati"
+"how much does a pool cost"
+"swimming pool installation"
+"pool construction"
+"pool companies near me"</textarea>
+</div>
+
+<div class="bulk-paste">
+<label>Bulk Keywords — AG3 (Dayton version)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">"inground pool cost"
+"inground pool cost ohio"
+"fiberglass pool cost"
+"pool installation near me"
+"pool installation cost"
+"pool installation dayton"
+"how much does a pool cost"
+"swimming pool installation"
+"pool construction"
+"pool companies near me"</textarea>
+</div>
+
+<h3>RSA — AG3</h3>
+<div class="copy-box"><label>Path 1</label><input type="text" value="Pool-Cost" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">9/15</span></div>
+<div class="copy-box"><label>Path 2</label><input type="text" value="Free-Quotes" readonly onclick="this.select(); document.execCommand('copy');"><span class="char-count">11/15</span></div>
+
+<h4>Headlines (15) — AG3</h4>
+<div class="bulk-paste">
+<label>Bulk Headlines — AG3 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Inground Pool Cost [CITY]
+As Low as $10 Per Day
+Affordable Pool Installation
+Pool Cost & Financing Info
+Installed in Weeks Not Months
+Lifetime Structural Warranty
+Get Your Free Pool Quote
+Fiberglass Saves You Money
+No Resurfacing Needed
+Pool Installation Experts
+Request a Free Estimate
+31 Models Starting at 10'
+Lower Lifetime Cost
+Fast Professional Install
+See Pool Pricing Options</textarea>
+</div>
+
+<h4>Descriptions (4) — AG3</h4>
+<div class="bulk-paste">
+<label>Bulk Descriptions — AG3 (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Wondering how much a pool costs? Fiberglass pools start lower than you think. Financing available. Get a free quote today!
+Fiberglass pools cost less over time — no resurfacing, no liner replacements, lower chemical costs. Request your free estimate.
+Pool installation in weeks, not months. Lifetime structural warranty included. 31 models from 10' plunge pools to 40' family pools.
+Get transparent pool pricing and financing options. Licensed, insured installers with 25+ years of experience. Call today!</textarea>
+</div>
+</div>
+
+<!-- SECTION 9: CAMPAIGN NEGATIVES -->
+<div class="card" id="s9">
+<h2>9. Campaign Negatives</h2>
+<p style="margin-bottom:10px;font-style:italic;">Add ALL of these to ALL THREE campaigns. Currently: 2 total negatives (above ground on NKY + Cincinnati). Dayton has ZERO.</p>
+
+<h3>1. Retail / Pool Supply</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>leslie</td><td>Broad</td></tr>
+<tr><td>leslies</td><td>Broad</td></tr>
+<tr><td>leslie's</td><td>Broad</td></tr>
+<tr><td>pool store</td><td>Broad</td></tr>
+<tr><td>pool stores</td><td>Broad</td></tr>
+<tr><td>pool supply</td><td>Broad</td></tr>
+<tr><td>pool supplies</td><td>Broad</td></tr>
+<tr><td>pinch a penny</td><td>Broad</td></tr>
+</table>
+
+<h3>2. Above Ground / Wrong Product</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>above ground</td><td>Broad</td></tr>
+<tr><td>hot tub</td><td>Broad</td></tr>
+<tr><td>kiddie pool</td><td>Broad</td></tr>
+<tr><td>inflatable</td><td>Broad</td></tr>
+<tr><td>pool table</td><td>Broad</td></tr>
+<tr><td>intex</td><td>Broad</td></tr>
+<tr><td>bestway</td><td>Broad</td></tr>
+<tr><td>walmart</td><td>Broad</td></tr>
+<tr><td>amazon</td><td>Broad</td></tr>
+<tr><td>costco</td><td>Broad</td></tr>
+<tr><td>doughboy</td><td>Broad</td></tr>
+<tr><td>coleman pool</td><td>Broad</td></tr>
+</table>
+
+<h3>3. Semi-Inground</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>semi inground</td><td>Broad</td></tr>
+<tr><td>semi-inground</td><td>Broad</td></tr>
+</table>
+
+<h3>4. Service / Repair / Maintenance</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>pool repair</td><td>Broad</td></tr>
+<tr><td>pool service</td><td>Broad</td></tr>
+<tr><td>pool cleaning</td><td>Broad</td></tr>
+<tr><td>pool opening</td><td>Broad</td></tr>
+<tr><td>pool closing</td><td>Broad</td></tr>
+<tr><td>pool maintenance</td><td>Broad</td></tr>
+<tr><td>liner replacement</td><td>Broad</td></tr>
+<tr><td>pool liner</td><td>Broad</td></tr>
+<tr><td>resurfacing</td><td>Broad</td></tr>
+<tr><td>pool heater</td><td>Broad</td></tr>
+<tr><td>pool pump</td><td>Broad</td></tr>
+<tr><td>pool filter</td><td>Broad</td></tr>
+</table>
+
+<h3>5. DIY / Kits</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>diy</td><td>Broad</td></tr>
+<tr><td>pool kit</td><td>Broad</td></tr>
+<tr><td>pool kits</td><td>Broad</td></tr>
+<tr><td>how to build</td><td>Broad</td></tr>
+</table>
+
+<h3>6. Irrelevant</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>swimming lessons</td><td>Broad</td></tr>
+<tr><td>public pool</td><td>Broad</td></tr>
+<tr><td>hotel pool</td><td>Broad</td></tr>
+<tr><td>apartment pool</td><td>Broad</td></tr>
+<tr><td>koi pool</td><td>Broad</td></tr>
+<tr><td>stock tank</td><td>Broad</td></tr>
+<tr><td>cowboy pool</td><td>Broad</td></tr>
+<tr><td>container pool</td><td>Broad</td></tr>
+<tr><td>shipping container</td><td>Broad</td></tr>
+<tr><td>swim spa</td><td>Broad</td></tr>
+<tr><td>swimspa</td><td>Broad</td></tr>
+<tr><td>endless pool</td><td>Broad</td></tr>
+<tr><td>natural swimming pool</td><td>Broad</td></tr>
+<tr><td>acrylic pool</td><td>Broad</td></tr>
+<tr><td>vinyl pool</td><td>Broad</td></tr>
+<tr><td>pools for sale</td><td>Broad</td></tr>
+<tr><td>pool sale</td><td>Broad</td></tr>
+</table>
+
+<h3>7. Competitors (ALL Campaigns)</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Match Type</th></tr>
+<tr><td>eastgate</td><td>Broad</td></tr>
+<tr><td>watsons</td><td>Broad</td></tr>
+<tr><td>watson's</td><td>Broad</td></tr>
+<tr><td>premier pools</td><td>Broad</td></tr>
+<tr><td>knickerbocker</td><td>Broad</td></tr>
+<tr><td>shehan</td><td>Broad</td></tr>
+<tr><td>sheehan</td><td>Broad</td></tr>
+<tr><td>klimat master</td><td>Broad</td></tr>
+<tr><td>lucas pools</td><td>Broad</td></tr>
+<tr><td>lipps pools</td><td>Broad</td></tr>
+<tr><td>aladdin pools</td><td>Broad</td></tr>
+<tr><td>aurora pools</td><td>Broad</td></tr>
+<tr><td>luxe pools</td><td>Broad</td></tr>
+<tr><td>heatwave pools</td><td>Broad</td></tr>
+<tr><td>mid american</td><td>Broad</td></tr>
+<tr><td>scioto valley</td><td>Broad</td></tr>
+<tr><td>advanced backyard</td><td>Broad</td></tr>
+<tr><td>aquamarine pools</td><td>Broad</td></tr>
+<tr><td>westside pools</td><td>Broad</td></tr>
+<tr><td>latham</td><td>Broad</td></tr>
+<tr><td>radiant pool</td><td>Broad</td></tr>
+<tr><td>biodesign</td><td>Broad</td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>MASTER NEGATIVE LIST — All Categories Combined (click to copy all, paste into Google Ads Editor)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');" style="min-height:400px;">leslie
+leslies
+leslie's
+pool store
+pool stores
+pool supply
+pool supplies
+pinch a penny
+above ground
+hot tub
+kiddie pool
+inflatable
+pool table
+intex
+bestway
+walmart
+amazon
+costco
+doughboy
+coleman pool
+semi inground
+semi-inground
+pool repair
+pool service
+pool cleaning
+pool opening
+pool closing
+pool maintenance
+liner replacement
+pool liner
+resurfacing
+pool heater
+pool pump
+pool filter
+diy
+pool kit
+pool kits
+how to build
+swimming lessons
+public pool
+hotel pool
+apartment pool
+koi pool
+stock tank
+cowboy pool
+container pool
+shipping container
+swim spa
+swimspa
+endless pool
+natural swimming pool
+acrylic pool
+vinyl pool
+pools for sale
+pool sale
+eastgate
+watsons
+watson's
+premier pools
+knickerbocker
+shehan
+sheehan
+klimat master
+lucas pools
+lipps pools
+aladdin pools
+aurora pools
+luxe pools
+heatwave pools
+mid american
+scioto valley
+advanced backyard
+aquamarine pools
+westside pools
+latham
+radiant pool
+biodesign</textarea>
+</div>
+</div>
+
+<!-- SECTION 10: SITELINKS -->
+<div class="card" id="s10">
+<h2>10. Sitelinks</h2>
+<p style="margin-bottom:10px;font-style:italic;">8 sitelinks with both description lines. URLs should point to the DEALER'S WEBSITE (passionpoolsky.com or equivalent) — NOT leisurepoolsusa.com. If dealer website URL is unknown, use placeholders marked [DEALER URL].</p>
+
+<div class="warning-box">
+<strong>NEEDS DEALER WEBSITE URL.</strong> Passion Pools' website URL is needed to set correct sitelink final URLs. Verify the dealer's website before adding these sitelinks. Do NOT use leisurepoolsusa.com as the final URL — that's the manufacturer site, not the dealer.
+</div>
+
+<table>
+<tr><th>#</th><th>Link Text</th><th>Desc Line 1</th><th>Desc Line 2</th><th>Final URL</th></tr>
+<tr><td>1</td><td>Our Fiberglass Pools</td><td>31 Models From Compact to Family</td><td>Find Your Perfect Pool Style</td><td>[DEALER URL]/pools</td></tr>
+<tr><td>2</td><td>Pool Cost & Financing</td><td>Affordable Payment Options</td><td>Pools Starting at $10 Per Day</td><td>[DEALER URL]/financing</td></tr>
+<tr><td>3</td><td>Pool Photo Gallery</td><td>See Completed Pool Projects</td><td>Real Backyards, Real Pools</td><td>[DEALER URL]/gallery</td></tr>
+<tr><td>4</td><td>Request a Free Quote</td><td>Get Your Custom Pool Estimate</td><td>No Obligation, Free Consult</td><td>[DEALER URL]/contact</td></tr>
+<tr><td>5</td><td>Why Fiberglass?</td><td>Low Maintenance & Long Lasting</td><td>Installed in Weeks Not Months</td><td>[DEALER URL]/why-fiberglass</td></tr>
+<tr><td>6</td><td>Pool Models & Sizes</td><td>From 10' Plunge to 40' Family</td><td>Browse All Available Pools</td><td>[DEALER URL]/models</td></tr>
+<tr><td>7</td><td>About Passion Pools</td><td>Your Local Pool Experts</td><td>Serving NKY, Cincy & Dayton</td><td>[DEALER URL]/about</td></tr>
+<tr><td>8</td><td>Customer Reviews</td><td>See What Our Customers Say</td><td>5-Star Rated Pool Builder</td><td>[DEALER URL]/reviews</td></tr>
+</table>
+</div>
+
+<!-- SECTION 11: CALLOUTS -->
+<div class="card" id="s11">
+<h2>11. Callouts</h2>
+
+<table>
+<tr><th>#</th><th>Callout Text</th><th>Chars</th></tr>
+<tr><td>1</td><td><div class="copy-box"><input type="text" value="Free Quotes" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>11</td></tr>
+<tr><td>2</td><td><div class="copy-box"><input type="text" value="Licensed & Insured" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+<tr><td>3</td><td><div class="copy-box"><input type="text" value="Financing Available" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>19</td></tr>
+<tr><td>4</td><td><div class="copy-box"><input type="text" value="Lifetime Warranty" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>17</td></tr>
+<tr><td>5</td><td><div class="copy-box"><input type="text" value="Fast Installation" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>17</td></tr>
+<tr><td>6</td><td><div class="copy-box"><input type="text" value="31 Pool Models" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>14</td></tr>
+<tr><td>7</td><td><div class="copy-box"><input type="text" value="150,000+ Pools Built" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>20</td></tr>
+<tr><td>8</td><td><div class="copy-box"><input type="text" value="Low Maintenance" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>15</td></tr>
+<tr><td>9</td><td><div class="copy-box"><input type="text" value="Free Consultations" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+<tr><td>10</td><td><div class="copy-box"><input type="text" value="Premium Fiberglass" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+<tr><td>11</td><td><div class="copy-box"><input type="text" value="AquaGuard X Gelcoat" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>19</td></tr>
+<tr><td>12</td><td><div class="copy-box"><input type="text" value="Serving NKY & Ohio" readonly onclick="this.select(); document.execCommand('copy');"></div></td><td>18</td></tr>
+</table>
+
+<div class="bulk-paste">
+<label>Bulk Callouts (click to copy all)</label>
+<textarea readonly onclick="this.select(); document.execCommand('copy');">Free Quotes
+Licensed & Insured
+Financing Available
+Lifetime Warranty
+Fast Installation
+31 Pool Models
+150,000+ Pools Built
+Low Maintenance
+Free Consultations
+Premium Fiberglass
+AquaGuard X Gelcoat
+Serving NKY & Ohio</textarea>
+</div>
+</div>
+
+<!-- SECTION 12: STRUCTURED SNIPPETS -->
+<div class="card" id="s12">
+<h2>12. Structured Snippets</h2>
+
+<h3>Header: Models</h3>
+<div class="copy-box"><label>Values (comma-separated)</label><input type="text" value="The Elegance, The Pinnacle, The Wave, The Supreme, The Ultimate, The Eclipse, The Riviera, The Moroccan, The Reflection" readonly onclick="this.select(); document.execCommand('copy');"></div>
+
+<h3>Header: Amenities</h3>
+<div class="copy-box"><label>Values (comma-separated)</label><input type="text" value="Built-In Spa, Tanning Ledge, LED Lighting, Water Features, Bench Seating, Auto Cover Ready, Splash Deck" readonly onclick="this.select(); document.execCommand('copy');"></div>
+
+<div class="info-box">
+<strong>Verified model names:</strong> All model names above are from the official Leisure Pools product registry (31 pool models). No fabricated names.
+</div>
+</div>
+
+<!-- SECTION 13: CALL EXTENSION -->
+<div class="card" id="s13">
+<h2>13. Call Extension</h2>
+
+<div class="warning-box">
+<strong>NEEDS DEALER PHONE NUMBER.</strong> Passion Pools' phone number is required for the call extension. Check the dealer's website or Google Business Profile to get the correct number before adding.
+</div>
+
+<table>
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Phone Number</td><td>[NEEDS DEALER PHONE]</td></tr>
+<tr><td>Country</td><td>US</td></tr>
+<tr><td>Call Reporting</td><td>On</td></tr>
+</table>
+</div>
+
+<!-- SECTION 14: AUDIENCE SEGMENTS -->
+<div class="card" id="s14">
+<h2>14. Audience Segments</h2>
+
+<h3>In-Market Audiences (Observation, Bid Adjustments)</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj</th><th>Rationale</th></tr>
+<tr><td>Swimming Pools & Spas</td><td>+20%</td><td>Direct intent — actively shopping for pools</td></tr>
+<tr><td>Home Improvement</td><td>+10%</td><td>Adjacent intent — investing in property</td></tr>
+<tr><td>Residential Properties (for sale)</td><td>+15%</td><td>New homeowners are top pool buyers</td></tr>
+<tr><td>Kitchen & Bath Remodeling</td><td>+10%</td><td>Big-ticket home investment behavior</td></tr>
+<tr><td>Landscape Services</td><td>+10%</td><td>Outdoor space investment</td></tr>
+</table>
+
+<h3>Life Events</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj</th><th>Rationale</th></tr>
+<tr><td>Recently Moved</td><td>+15%</td><td>New homeowners frequently invest in pools</td></tr>
+<tr><td>Recently Purchased a Home</td><td>+15%</td><td>Making their new house a home</td></tr>
+</table>
+
+<h3>Affinity</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj</th><th>Rationale</th></tr>
+<tr><td>Home & Garden Enthusiasts</td><td>+5%</td><td>Outdoor lifestyle interest</td></tr>
+<tr><td>Luxury Shoppers</td><td>+10%</td><td>Higher budget buyers</td></tr>
+</table>
+
+<h3>Exclusions</h3>
+<table>
+<tr><th>Audience</th><th>Reason</th></tr>
+<tr><td>In-Market for Rental Properties</td><td>Renters don't install pools</td></tr>
+</table>
+</div>
+
+<!-- SECTION 15: DEVICE BID ADJUSTMENTS -->
+<div class="card" id="s15">
+<h2>15. Device Bid Adjustments</h2>
+
+<table>
+<tr><th>Device</th><th>Current Adj</th><th>Recommended Adj</th><th>Rationale</th></tr>
+<tr><td>Desktop</td><td>0% (default)</td><td><strong>0%</strong></td><td>Desktop: 78% of spend, 78% of conv, CPA $184 — baseline performer</td></tr>
+<tr><td>Mobile</td><td>0% (default)</td><td><strong>-5%</strong></td><td>Mobile: 20% of spend, 20% of conv, CPA $179 — slightly better CPA but lower volume. Minor reduction.</td></tr>
+<tr><td>Tablet</td><td>0% (default)</td><td><strong>-15%</strong></td><td>Tablet: 1.4% of spend, 2.2% of conv — too little data for conclusions, slight reduction as a hedge</td></tr>
+</table>
+
+<div class="info-box">
+<strong>Note:</strong> Device performance is relatively balanced for this account. Mobile CPA ($179) is actually slightly better than Desktop ($184). Don't over-adjust — the data doesn't support aggressive mobile bid reductions.
+</div>
+</div>
+
+<!-- SECTION 16: DEMOGRAPHIC ADJUSTMENTS -->
+<div class="card" id="s16">
+<h2>16. Demographic Adjustments</h2>
+
+<h3>Age Ranges</h3>
+<table>
+<tr><th>Age Range</th><th>Current Adj</th><th>Recommended Adj</th><th>Rationale</th></tr>
+<tr><td>18-24</td><td>0%</td><td><strong>-30%</strong></td><td>Very unlikely to purchase a $40K+ pool</td></tr>
+<tr><td>25-34</td><td>0%</td><td><strong>0%</strong></td><td>First-time homebuyers, emerging pool buyers</td></tr>
+<tr><td>35-44</td><td>0%</td><td><strong>+15%</strong></td><td>Peak pool-buying age — established homeowners</td></tr>
+<tr><td>45-54</td><td>0%</td><td><strong>+20%</strong></td><td>Highest household income, most likely to invest</td></tr>
+<tr><td>55-64</td><td>0%</td><td><strong>+10%</strong></td><td>Empty nesters upgrading homes</td></tr>
+<tr><td>65+</td><td>0%</td><td><strong>-10%</strong></td><td>Lower purchase intent for major home projects</td></tr>
+<tr><td>Unknown</td><td>0%</td><td><strong>0%</strong></td><td>Do not exclude — leave at neutral</td></tr>
+</table>
+
+<h3>Household Income</h3>
+<table>
+<tr><th>HHI Tier</th><th>Current Adj</th><th>Recommended Adj</th><th>Rationale</th></tr>
+<tr><td>Top 10%</td><td>0%</td><td><strong>+20%</strong></td><td>Most likely to afford a $40K-$80K+ pool</td></tr>
+<tr><td>11-20%</td><td>0%</td><td><strong>+10%</strong></td><td>Strong purchase power</td></tr>
+<tr><td>21-30%</td><td>0%</td><td><strong>0%</strong></td><td>Middle range — can afford with financing</td></tr>
+<tr><td>31-40%</td><td>0%</td><td><strong>-5%</strong></td><td>May stretch budget, slightly lower intent</td></tr>
+<tr><td>41-50%</td><td>0%</td><td><strong>-10%</strong></td><td>Lower purchase probability</td></tr>
+<tr><td>Lower 50%</td><td>0%</td><td><strong>-20%</strong></td><td>Very unlikely to purchase at this price point</td></tr>
+<tr><td>Unknown</td><td>0%</td><td><strong>0%</strong></td><td>Do not exclude</td></tr>
+</table>
+</div>
+
+<!-- SECTION 17: PRE-LAUNCH CHECKLIST -->
+<div class="card" id="s17">
+<h2>17. Pre-Launch Checklist</h2>
+
+<ul class="checklist">
+<li class="section-header">Campaign Settings</li>
+<li><input type="checkbox" id="c1"><label for="c1">Bid strategy switched to Maximize Clicks (all 3 campaigns)</label></li>
+<li><input type="checkbox" id="c2"><label for="c2">Max CPC cap set: NKY $12, Cincinnati $10, Dayton $12</label></li>
+<li><input type="checkbox" id="c3"><label for="c3">Daily budgets adjusted: NKY $85, Cincinnati $85, Dayton $100</label></li>
+<li><input type="checkbox" id="c4"><label for="c4">Networks: Search Only (Partners OFF, Display OFF) — already correct</label></li>
+<li><input type="checkbox" id="c5"><label for="c5">Location targeting verified: Presence Only (check in UI)</label></li>
+<li><input type="checkbox" id="c6"><label for="c6">Service area locations confirmed per campaign</label></li>
+
+<li class="section-header">Ad Groups & Keywords</li>
+<li><input type="checkbox" id="c7"><label for="c7">3 ad groups created per campaign (Brand, Fiberglass, Cost)</label></li>
+<li><input type="checkbox" id="c8"><label for="c8">All keywords in exact or phrase match only</label></li>
+<li><input type="checkbox" id="c9"><label for="c9">No broad match keywords</label></li>
+<li><input type="checkbox" id="c10"><label for="c10">Competitor keywords PAUSED (eastgate, premier, sheehan, etc.)</label></li>
+<li><input type="checkbox" id="c11"><label for="c11">Old "Ad group 1" paused after new groups active</label></li>
+
+<li class="section-header">Ad Copy</li>
+<li><input type="checkbox" id="c12"><label for="c12">15 headlines per ad group (all ≤30 chars verified)</label></li>
+<li><input type="checkbox" id="c13"><label for="c13">4 descriptions per ad group (all ≤90 chars verified)</label></li>
+<li><input type="checkbox" id="c14"><label for="c14">Price anchor "$10/Day" pinned to H2 in all ad groups</label></li>
+<li><input type="checkbox" id="c15"><label for="c15">Paths set per ad group (≤15 chars)</label></li>
+<li><input type="checkbox" id="c16"><label for="c16">Geo-specific headlines customized per campaign (NKY/Cincy/Dayton)</label></li>
+
+<li class="section-header">Negative Keywords</li>
+<li><input type="checkbox" id="c17"><label for="c17">Full negative list added to ALL THREE campaigns (73 negatives)</label></li>
+<li><input type="checkbox" id="c18"><label for="c18">"above ground" added to Dayton (currently missing!)</label></li>
+<li><input type="checkbox" id="c19"><label for="c19">No negatives conflict with Leisure Pools model names</label></li>
+<li><input type="checkbox" id="c20"><label for="c20">No negatives contain dealer service area cities</label></li>
+
+<li class="section-header">Extensions</li>
+<li><input type="checkbox" id="c21"><label for="c21">8 sitelinks with both description lines (need dealer URL first)</label></li>
+<li><input type="checkbox" id="c22"><label for="c22">12 callouts added (all unique, all ≤25 chars)</label></li>
+<li><input type="checkbox" id="c23"><label for="c23">Structured snippets: Models + Amenities (verified names)</label></li>
+<li><input type="checkbox" id="c24"><label for="c24">Call extension with dealer phone number</label></li>
+
+<li class="section-header">Audiences</li>
+<li><input type="checkbox" id="c25"><label for="c25">In-Market audiences added (5 segments)</label></li>
+<li><input type="checkbox" id="c26"><label for="c26">Life Events audiences added (2 segments)</label></li>
+<li><input type="checkbox" id="c27"><label for="c27">Affinity audiences added (2 segments)</label></li>
+<li><input type="checkbox" id="c28"><label for="c28">Rental Properties exclusion set</label></li>
+
+<li class="section-header">Bid Adjustments</li>
+<li><input type="checkbox" id="c29"><label for="c29">Device bid adjustments set (Mobile -5%, Tablet -15%)</label></li>
+<li><input type="checkbox" id="c30"><label for="c30">Age range bid adjustments set (18-24 -30%, 35-44 +15%, 45-54 +20%)</label></li>
+<li><input type="checkbox" id="c31"><label for="c31">HHI tier bid adjustments set (Top 10% +20%, Lower 50% -20%)</label></li>
+
+<li class="section-header">Final Checks</li>
+<li><input type="checkbox" id="c32"><label for="c32">All ads approved (no disapprovals or policy issues)</label></li>
+<li><input type="checkbox" id="c33"><label for="c33">Conversion tracking verified and working</label></li>
+<li><input type="checkbox" id="c34"><label for="c34">All campaigns showing SERVING status</label></li>
+</ul>
+</div>
+
+<div class="card" style="text-align:center;color:var(--text-light);font-size:0.85em;padding:15px;">
+Generated by Claude Opus 4.6 — dealer-audit-v2 | Passion Pools (237-536-3197) | March 18, 2026<br>
+Data range: Feb 16 – Mar 18, 2026 | Brand: Leisure Pools | All model names verified from official product registry
+</div>
+
+</div>
+</body>
+</html>

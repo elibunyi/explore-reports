@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Houston — Deep Audit Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fa;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 40px rgba(0,0,0,0.08);
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    padding: 48px 48px 40px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 20px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  .header-meta span { display: flex; align-items: center; gap: 6px; }
+
+  .urgency-banner {
+    background: #fff3e0;
+    border-left: 5px solid #f57c00;
+    padding: 24px 48px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .urgency-score {
+    font-size: 48px;
+    font-weight: 800;
+    color: #e65100;
+    line-height: 1;
+  }
+  .urgency-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    color: #e65100;
+  }
+  .urgency-detail {
+    font-size: 14px;
+    color: #bf360c;
+    margin-top: 2px;
+  }
+  .urgency-breakdown {
+    margin-left: auto;
+    text-align: right;
+    font-size: 13px;
+    color: #6d4c00;
+  }
+
+  .content { padding: 40px 48px; }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e8eaf6;
+  }
+  h2:first-child { margin-top: 0; }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #283593;
+    margin: 24px 0 12px;
+  }
+
+  p { margin-bottom: 12px; color: #37474f; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 13px;
+  }
+  thead th {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #eceff1;
+    vertical-align: top;
+  }
+  tbody tr:hover { background: #f5f7ff; }
+
+  .sev-crit { background: #fce4e4 !important; }
+  .sev-high { background: #fff3e0 !important; }
+  .sev-med { background: #fffde7 !important; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-crit { background: #c62828; color: #fff; }
+  .badge-high { background: #ef6c00; color: #fff; }
+  .badge-med { background: #f9a825; color: #fff; }
+  .badge-pass { background: #2e7d32; color: #fff; }
+  .badge-flag { background: #5c6bc0; color: #fff; }
+
+  .headline-box {
+    background: linear-gradient(135deg, #fce4ec 0%, #fff3e0 100%);
+    border: 2px solid #e57373;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 20px 0 32px;
+  }
+  .headline-box h2 {
+    color: #c62828;
+    border: none;
+    margin: 0 0 16px;
+    padding: 0;
+    font-size: 22px;
+  }
+  .headline-box p { color: #4e342e; }
+
+  .fix-box {
+    background: #e8f5e9;
+    border-left: 4px solid #43a047;
+    padding: 14px 20px;
+    margin: 12px 0 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .fix-box strong { color: #2e7d32; }
+
+  .info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #1976d2;
+    padding: 14px 20px;
+    margin: 12px 0 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .info-box strong { color: #1565c0; }
+
+  .warn-box {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    padding: 14px 20px;
+    margin: 12px 0 20px;
+    border-radius: 0 8px 8px 0;
+  }
+  .warn-box strong { color: #f57f17; }
+
+  .priority-list {
+    counter-reset: priority;
+    list-style: none;
+    padding: 0;
+  }
+  .priority-list li {
+    counter-increment: priority;
+    padding: 14px 20px 14px 56px;
+    margin: 8px 0;
+    border-radius: 8px;
+    position: relative;
+  }
+  .priority-list li::before {
+    content: counter(priority);
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .priority-list li.p-crit { background: #fce4e4; }
+  .priority-list li.p-high { background: #fff3e0; }
+  .priority-list li.p-med { background: #fffde7; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0 28px;
+  }
+  .stat-card {
+    background: #f5f7ff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1a1a2e;
+  }
+  .stat-card .stat-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #78909c;
+    margin-top: 4px;
+  }
+
+  .footer {
+    background: #f5f5f5;
+    padding: 24px 48px;
+    font-size: 12px;
+    color: #90a4ae;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .container { box-shadow: none; }
+    .header, .urgency-banner, thead th, .badge, .sev-crit, .sev-high, .sev-med {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Leisure Pools Houston</h1>
+    <div class="subtitle">Deep Audit Report</div>
+    <div class="header-meta">
+      <span>Account ID: 679-038-2043</span>
+      <span>Date: March 14, 2026</span>
+      <span>Prepared for: Eli Bunyi</span>
+    </div>
+  </div>
+
+  <div class="urgency-banner">
+    <div>
+      <div class="urgency-score">73</div>
+    </div>
+    <div>
+      <div class="urgency-label">High Priority</div>
+      <div class="urgency-detail">Fix within 2 weeks &mdash; conversion tracking is inflating results daily</div>
+    </div>
+    <div class="urgency-breakdown">
+      2 Critical &times; 25 = 50<br>
+      2 High &times; 10 = 20<br>
+      1 Medium &times; 3 = 3<br>
+      <strong>Total: 73 / 100</strong>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2>Account Snapshot (Jan 1 &ndash; Mar 14, 2026)</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">$20,584</div>
+        <div class="stat-label">Total Spend (YTD)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">5,651</div>
+        <div class="stat-label">Total Clicks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">87</div>
+        <div class="stat-label">Reported Conversions</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Status</th>
+          <th>Bid Strategy</th>
+          <th>Daily Budget</th>
+          <th>Spend</th>
+          <th>Clicks</th>
+          <th>Conv</th>
+          <th>CPC</th>
+          <th>IS%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Fiberglass Pools (Primary)</strong></td>
+          <td>Enabled</td>
+          <td>Max Conv (Learning)</td>
+          <td>$175/day</td>
+          <td>$10,463</td>
+          <td>3,378</td>
+          <td>63.5</td>
+          <td>$3.10</td>
+          <td>18.9%</td>
+        </tr>
+        <tr>
+          <td><strong>Pool Builder / Contractor</strong></td>
+          <td>Enabled</td>
+          <td>Max Conv (Learning)</td>
+          <td>$125/day</td>
+          <td>$10,121</td>
+          <td>2,273</td>
+          <td>23.5</td>
+          <td>$4.45</td>
+          <td>18.7%</td>
+        </tr>
+        <tr style="color:#999;">
+          <td>Leisure Pools Houston Search</td>
+          <td>Paused</td>
+          <td>Max Conv</td>
+          <td>&mdash;</td>
+          <td colspan="5" style="text-align:center;">Paused &mdash; no active spend</td>
+        </tr>
+        <tr style="color:#999;">
+          <td>Inground Pools</td>
+          <td>Paused</td>
+          <td>Max Conv</td>
+          <td>&mdash;</td>
+          <td colspan="5" style="text-align:center;">Paused &mdash; no active spend</td>
+        </tr>
+        <tr style="color:#999;">
+          <td>Location-Based (Service Areas)</td>
+          <td>Paused</td>
+          <td>Max Conv</td>
+          <td>&mdash;</td>
+          <td colspan="5" style="text-align:center;">Paused &mdash; no active spend</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      <strong>Bid Strategy Note:</strong> Both active campaigns currently show <em>Maximize Conversions</em> in the API with system status <em>LEARNING</em> &mdash; indicating a recent bid strategy change (around March 10&ndash;12). Stale <code>cpc_bid_ceiling_micros</code> values ($45 and $25) remain from a prior Maximize Clicks configuration. The system is still in learning mode and performance may fluctuate for 1&ndash;2 weeks.
+    </div>
+
+    <div class="headline-box">
+      <h2>Why 50% of Leads Are Unqualified</h2>
+      <p>Three problems are working together to attract budget shoppers looking for $8K pools instead of $40K+ fiberglass installations. The conversion tracking issue is the root cause &mdash; it makes everything else harder to diagnose because the numbers look better than reality.</p>
+    </div>
+
+    <h3>1. Conversion Tracking Is Inflated (Root Cause)</h3>
+
+    <p>The account has <strong>7 conversion actions ALL marked as primary</strong>. Google optimizes toward all of them equally &mdash; a brochure download counts the same as a phone call or quote request.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Conversion Action</th>
+          <th>Category</th>
+          <th>Quality</th>
+          <th>Primary?</th>
+          <th>Should Be Primary?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Phone Call</td>
+          <td>Phone</td>
+          <td><span class="badge badge-pass">HIGH</span></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Request Quote</td>
+          <td>Form Submit</td>
+          <td><span class="badge badge-pass">HIGH</span></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Free Estimate (web)</td>
+          <td>Form Submit</td>
+          <td><span class="badge badge-pass">HIGH</span></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Contact Form (web)</td>
+          <td>Form Submit</td>
+          <td><span class="badge badge-pass">HIGH</span></td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr class="sev-crit">
+          <td>Download Brochure</td>
+          <td>Page View</td>
+          <td><span class="badge badge-crit">LOW</span></td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+        </tr>
+        <tr class="sev-crit">
+          <td>Download Brochure (web)</td>
+          <td>Page View</td>
+          <td><span class="badge badge-crit">LOW</span></td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+        </tr>
+        <tr class="sev-crit">
+          <td>Contact Dealer (brand site)</td>
+          <td>Page View</td>
+          <td><span class="badge badge-crit">LOW</span></td>
+          <td>Yes</td>
+          <td><strong>No</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>The impact:</strong> A price-shopper Googling "how much does a pool cost" who clicks the ad and downloads a brochure registers as a "conversion." The CPA looks acceptable on paper because brochure downloads are cheap &mdash; but those people want an $8K pool and will never buy a $40K+ fiberglass installation.</p>
+
+    <div class="fix-box">
+      <strong>Fix:</strong> Demote "Download Brochure," "Download Brochure (web)," and "Contact Dealer" to secondary (non-biddable). Only Phone Call, Request Quote, Contact Form, and Free Estimate should be primary conversion actions.
+    </div>
+
+    <h3>2. No Target CPA Cap</h3>
+
+    <p>Both active campaigns run Maximize Conversions with <strong>target_cpa_micros = 0</strong> &mdash; no cap. Google has no price signal telling it what a quality lead is worth. It maximizes volume, which means it bids on the cheapest conversions available (brochure downloads).</p>
+
+    <p>With the current bid strategy in learning mode after a recent change, this is the ideal time to set a target CPA before the system exits learning and locks into suboptimal patterns.</p>
+
+    <div class="fix-box">
+      <strong>Fix:</strong> Set target CPA to <strong>$75&ndash;$100</strong> after demoting brochure downloads. Start at $100 for 2 weeks, then tighten to $75 if lead quality improves. If volume drops too far, raise to $125 &mdash; but monitor lead quality, not just quantity.
+    </div>
+
+    <h3>3. Search Term Leakage</h3>
+
+    <p>Top wasted spend on irrelevant search terms (Jan 2025&ndash;present):</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>Problem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="sev-high">
+          <td>how much does a pool cost (variants)</td>
+          <td>$218+</td>
+          <td>0</td>
+          <td>Price shoppers, no buying intent</td>
+        </tr>
+        <tr class="sev-high">
+          <td>leslie pool / leslies pool</td>
+          <td>$198+</td>
+          <td>0</td>
+          <td>Wrong brand (Leslie's pool supplies)</td>
+        </tr>
+        <tr class="sev-high">
+          <td>above ground pools houston</td>
+          <td>$176</td>
+          <td>0</td>
+          <td>Completely different product category</td>
+        </tr>
+        <tr class="sev-high">
+          <td>plunge pool</td>
+          <td>$128+</td>
+          <td>0</td>
+          <td>Not fiberglass, budget product</td>
+        </tr>
+        <tr class="sev-med">
+          <td>pool renovation / remodel</td>
+          <td>$100+</td>
+          <td>0</td>
+          <td>Renovation, not new install</td>
+        </tr>
+        <tr class="sev-med">
+          <td>cocktail pool</td>
+          <td>$95</td>
+          <td>0</td>
+          <td>Small/budget pool concept</td>
+        </tr>
+        <tr class="sev-med">
+          <td>swim spa</td>
+          <td>$67</td>
+          <td>0</td>
+          <td>Different product entirely</td>
+        </tr>
+        <tr class="sev-med">
+          <td>container pools texas</td>
+          <td>$66</td>
+          <td>0</td>
+          <td>Shipping container pools, not fiberglass</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Estimated wasted spend:</strong> $1,300+ on clearly irrelevant terms in this period alone.</p>
+
+    <div class="fix-box">
+      <strong>Fix:</strong> Add as <em>phrase match</em> negatives (not just exact): "plunge," "above ground," "container," "swim spa," "leslie," "cocktail," "stock tank," "renovation," "remodel," "kiddie," "inflatable," "intex," "bestway," "how much does a pool cost"
+    </div>
+
+    <h2>Full Audit Findings</h2>
+
+    <h3>Campaign Settings</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CS-01 Bid Strategy</td>
+          <td><span class="badge badge-flag">FLAG</span></td>
+          <td>Both active campaigns show Maximize Conversions with target CPA = $0 (no cap). System status is LEARNING &mdash; bid strategy was recently changed (Mar 10&ndash;12). Stale Maximize Clicks CPC ceilings remain ($45 / $25). Set a target CPA now while the system is still in learning mode.</td>
+        </tr>
+        <tr>
+          <td>CS-02 CPC Cap</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>N/A &mdash; campaigns are on Maximize Conversions, not Maximize Clicks.</td>
+        </tr>
+        <tr>
+          <td>CS-03 Display Network</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Display Network OFF on both active campaigns. Paused Location-Based campaign had Display ON &mdash; not currently spending.</td>
+        </tr>
+        <tr>
+          <td>CS-04 Search Partners</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Search Partners OFF on both active campaigns.</td>
+        </tr>
+        <tr>
+          <td>CS-05 Budget</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>$300/day combined (~$9,000/month). Appropriate for Houston metro market.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Keywords</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>KW-01 Broad Match</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>4 broad match keywords found, all paused. No active broad match.</td>
+        </tr>
+        <tr>
+          <td>KW-02 City as Negative</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>No negatives blocking service area cities.</td>
+        </tr>
+        <tr>
+          <td>KW-03 Keywords Per Ad Group</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Most ad groups have 5&ndash;20 keywords. Some duplication across ad groups (see note below).</td>
+        </tr>
+        <tr class="sev-med">
+          <td>KW-04 Missing Negatives</td>
+          <td><span class="badge badge-med">MED</span></td>
+          <td>Negatives exist but active campaigns are missing phrase-match negatives for key irrelevant categories: plunge, cocktail, container, swim spa, renovation, remodel.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <strong>Keyword Duplication:</strong> The Fiberglass Pools (Primary) campaign has significant cross-ad-group duplication &mdash; the same keywords appear in multiple ad groups (e.g., "fiberglass pool" in Fiberglass Pools General, Fiberglass vs Concrete, and Fiberglass Pool Installation). This causes internal competition and dilutes performance data.
+    </div>
+
+    <h3>RSA Ad Copy (Active Campaigns Only)</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>RSA-01 Ad Strength Poor</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>No Poor-rated ads in active campaigns.</td>
+        </tr>
+        <tr class="sev-high">
+          <td>RSA-02 Ad Strength Average</td>
+          <td><span class="badge badge-high">HIGH</span></td>
+          <td>"Pool Construction &amp; Installation" ad group has Average ad strength. Limits impression share.</td>
+        </tr>
+        <tr>
+          <td>RSA-07 Path 1 Missing</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>All active campaign ads have Path 1 set.</td>
+        </tr>
+        <tr>
+          <td>RSA-08 Path 2 Missing</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>All active campaign ads have Path 2 set.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Ad strength summary (active campaigns):</strong></p>
+    <table>
+      <thead>
+        <tr><th>Ad Group</th><th>Ad Strength</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Fiberglass vs Concrete</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+        <tr><td>Fiberglass Pools General</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+        <tr><td>Pool Builder General</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+        <tr><td>Pool Contractor</td><td><span class="badge badge-pass">Excellent</span></td></tr>
+        <tr><td>Fiberglass Pool Installation</td><td><span class="badge" style="background:#43a047;color:#fff;">Good</span></td></tr>
+        <tr><td>Fiberglass Pools Cost/Pricing</td><td><span class="badge" style="background:#43a047;color:#fff;">Good</span></td></tr>
+        <tr class="sev-high"><td>Pool Construction &amp; Installation</td><td><span class="badge badge-high">Average</span></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Sitelinks</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr class="sev-crit">
+          <td>SL-01 Description Line 1</td>
+          <td><span class="badge badge-crit">CRIT</span></td>
+          <td>Customer-level sitelinks (5) ALL have blank Description Line 1. Campaign-level sitelinks (7) are fine.</td>
+        </tr>
+        <tr class="sev-crit">
+          <td>SL-02 Description Line 2</td>
+          <td><span class="badge badge-crit">CRIT</span></td>
+          <td>Same &mdash; customer-level sitelinks all blank descriptions.</td>
+        </tr>
+        <tr>
+          <td>SL-03 Sitelink Count</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>7 unique campaign-level sitelinks: Pool Designs, Pool Pricing, Free Estimate, Pool Financing, Pool Colors, Service Areas, Photo Gallery.</td>
+        </tr>
+        <tr>
+          <td>SL-04 Text Over 25</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>All sitelink text under 25 characters.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warn-box">
+      <strong>Customer-level sitelinks are wrong for this account:</strong>
+      <ul style="margin: 8px 0 0 20px; color: #795548;">
+        <li>"Pool Service In Cleveland" &mdash; wrong city entirely</li>
+        <li>"Pool Service In Baytown" &mdash; service, not installation</li>
+        <li>"Pool Service In Conroe" &mdash; service, not installation</li>
+        <li>"Swimming Pool Pricing" &mdash; generic, duplicates campaign-level sitelink</li>
+        <li>"Swimming Pool Equipment" &mdash; not a pool builder service</li>
+      </ul>
+      <p style="margin-top: 8px; color: #795548;">These should be removed or replaced. They serve as fallback when campaign-level sitelinks don't show, actively hurting ad quality.</p>
+    </div>
+
+    <h3>Callouts &amp; Extensions</h3>
+    <table>
+      <thead>
+        <tr><th>Check</th><th>Status</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CO-01 Callout Count</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>8 unique callouts: Free Estimates, Financing Available, 30+ Pool Designs, Lifetime Warranty, Fast Installation, Low Maintenance Pools, Serving Houston Area, Top-Rated Builder</td>
+        </tr>
+        <tr>
+          <td>CO-02 Callout Over 25</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>All under 25 characters.</td>
+        </tr>
+        <tr>
+          <td>CO-03 Call Extension</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Call extension present: (713) 591-8332</td>
+        </tr>
+        <tr>
+          <td>CO-04 Structured Snippets</td>
+          <td><span class="badge badge-pass">PASS</span></td>
+          <td>Structured snippets present at campaign level.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>CPA Cap Recommendation</h2>
+
+    <h3>Current State (all 7 conversions counting)</h3>
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Fiberglass Pools</th><th>Pool Builder</th><th>Combined</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Spend (Jan&ndash;Mar 14)</td>
+          <td>$10,463</td>
+          <td>$10,121</td>
+          <td>$20,584</td>
+        </tr>
+        <tr>
+          <td>Reported Conversions</td>
+          <td>63.5</td>
+          <td>23.5</td>
+          <td>87</td>
+        </tr>
+        <tr>
+          <td>Apparent CPA</td>
+          <td>$165</td>
+          <td>$431</td>
+          <td>$237</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>After Demoting Brochure Downloads</h3>
+    <p>Stripping out brochure downloads and Contact Dealer actions, real qualified conversions (calls + quotes + forms only) are estimated at 40&ndash;55 &mdash; putting the <strong>true qualified CPA at $375&ndash;$515</strong>.</p>
+
+    <h3>Recommended Target CPA: $75&ndash;$100</h3>
+
+    <p>This is aggressive compared to the true CPA, but that's intentional:</p>
+    <ol style="margin: 8px 0 16px 24px; color: #37474f;">
+      <li><strong>Forces Google to shift bidding to higher-intent queries</strong> &mdash; "pool builder near me" converts at much higher rates than "how much does a pool cost"</li>
+      <li><strong>You'll trade volume for quality</strong> &mdash; fewer total leads, but the ones you get actually want a $40K+ fiberglass pool</li>
+      <li><strong>Start at $100 for 2 weeks</strong>, then tighten to $75 if lead quality improves</li>
+      <li><strong>If volume drops too far, raise to $125</strong> &mdash; but monitor lead quality, not just quantity</li>
+    </ol>
+
+    <div class="info-box">
+      <strong>Timing advantage:</strong> The system is currently in LEARNING mode after the recent bid strategy change. Setting a target CPA now &mdash; before learning completes &mdash; means Google will incorporate the CPA constraint from the start rather than having to re-learn after the fact.
+    </div>
+
+    <h3>Impression Share Headroom</h3>
+    <p>Current search impression share is ~19% across both campaigns, with 62&ndash;68% lost to rank. Even with a tighter CPA target, there's plenty of room for Google to find better, higher-intent traffic within the existing budget.</p>
+
+    <h2>Priority Action List</h2>
+
+    <h3>This Week (Critical / High)</h3>
+    <ol class="priority-list">
+      <li class="p-crit"><strong>Demote brochure downloads from primary conversions</strong> &mdash; Change "Download Brochure," "Download Brochure (web)," and "Contact Dealer" to secondary / not included in conversions. This is the single highest-impact change.</li>
+      <li class="p-crit"><strong>Remove or replace customer-level sitelinks</strong> &mdash; The "Pool Service In Cleveland/Baytown/Conroe" and "Swimming Pool Equipment" sitelinks are irrelevant and have blank descriptions. Remove them entirely or replace with relevant, fully-described sitelinks.</li>
+      <li class="p-high"><strong>Set target CPA to $100</strong> on both active campaigns. The system is already in learning mode &mdash; ideal time to set this constraint.</li>
+      <li class="p-high"><strong>Add phrase match negatives</strong> to both active campaigns: plunge, above ground, container, swim spa, leslie, cocktail, stock tank, renovation, remodel, kiddie, inflatable, intex, bestway, how much does a pool cost</li>
+    </ol>
+
+    <h3>Next 2 Weeks (Medium)</h3>
+    <ol class="priority-list" style="counter-reset: priority 4;">
+      <li class="p-med"><strong>Improve "Pool Construction &amp; Installation" RSA</strong> &mdash; Currently Average ad strength. Add more headline/description variations to push toward Good or Excellent.</li>
+      <li class="p-med"><strong>Consolidate duplicate keywords</strong> in Fiberglass Pools (Primary) &mdash; multiple ad groups targeting the same terms causes internal competition and dilutes quality signals.</li>
+      <li class="p-med"><strong>Set up weekly search term review</strong> &mdash; check for new irrelevant terms leaking through and add as phrase negatives.</li>
+    </ol>
+
+    <h3>Monitoring Milestones</h3>
+    <table>
+      <thead>
+        <tr><th>When</th><th>Action</th><th>Success Metric</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>After 2 weeks</td>
+          <td>Compare lead quality with the dealer</td>
+          <td>Qualified lead % improves from ~50% to 70%+</td>
+        </tr>
+        <tr>
+          <td>After 30 days</td>
+          <td>Review target CPA setting</td>
+          <td>Tighten to $75 or loosen to $125 based on volume &amp; quality</td>
+        </tr>
+        <tr>
+          <td>After learning exits</td>
+          <td>Verify bid strategy stabilized correctly</td>
+          <td>System status moves from LEARNING to ELIGIBLE</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="footer">
+    Report generated from live Google Ads API data on March 14, 2026. All recommendations are READ-ONLY &mdash; no changes have been made to the account. &bull; Prepared by Claude (Opus 4.6) for Eli Bunyi, Explore Industries.
+  </div>
+
+</div>
+
+</body>
+</html>

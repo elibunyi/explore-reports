@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Explore Industries Website — Progress Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; color: #1E293B; line-height: 1.6; background: #F8FAFC; }
+.cover {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);
+    color: white; padding: 60px 60px 50px; min-height: 20vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+}
+.cover h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+.cover .sub { font-size: 18px; font-weight: 300; opacity: 0.8; margin-bottom: 16px; }
+.cover .meta { font-size: 13px; opacity: 0.5; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 30px; }
+h2 { font-size: 20px; font-weight: 700; color: #0F172A; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #0057B7; }
+h3 { font-size: 16px; font-weight: 600; color: #334155; margin: 28px 0 12px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 13px; }
+th { background: #0F172A; color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; border-bottom: 1px solid #E2E8F0; vertical-align: top; }
+tr:hover td { background: #F1F5F9; }
+.done td { background: #F0FDF4; }
+.high td { background: #FFFBEB; }
+.status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.status-done { background: #DCFCE7; color: #166534; }
+.status-not-started { background: #FEE2E2; color: #991B1B; }
+.status-needs-input { background: #E0E7FF; color: #3730A3; }
+.status-needs-photos { background: #F3E8FF; color: #6B21A8; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+/* Click-to-copy blocks */
+.copy-block { position: relative; background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 6px; padding: 12px 40px 12px 14px; margin: 8px 0; font-size: 13px; line-height: 1.5; cursor: pointer; transition: border-color 0.2s; }
+.copy-block:hover { border-color: #0057B7; background: #EFF6FF; }
+.copy-block::after { content: "CLICK TO COPY"; position: absolute; top: 6px; right: 8px; font-size: 9px; font-weight: 700; color: #94A3B8; letter-spacing: 0.5px; }
+.copy-block.copied { border-color: #16A34A; background: #F0FDF4; }
+.copy-block.copied::after { content: "COPIED!"; color: #16A34A; }
+.copy-label { font-size: 11px; font-weight: 600; color: #64748B; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.old-text { color: #DC2626; text-decoration: line-through; }
+.new-text { color: #16A34A; font-weight: 500; }
+
+.action-list { background: white; border-radius: 8px; padding: 24px; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.action-list h3 { margin-top: 0; color: #0057B7; }
+.action-list ol { padding-left: 24px; }
+.action-list li { padding: 6px 0; font-size: 14px; }
+
+@media print { .cover { min-height: auto; padding: 30px; } body { background: white; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+    <h1>Explore Industries Website</h1>
+    <div class="sub">Progress Tracker — Live Site Verified</div>
+    <div class="meta">
+        March 17, 2026 | Verified against exploreindustries.com<br>
+        Sources: Action Plan + Audit Report + Q1 Copy Changes + Live Site Check
+    </div>
+</div>
+
+<div class="container">
+
+<div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#DCFCE7;border:1px solid #86EFAC;"></div> Done</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FEE2E2;border:1px solid #FCA5A5;"></div> Not Started</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#E0E7FF;border:1px solid #A5B4FC;"></div> Needs Input</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#F3E8FF;border:1px solid #D8B4FE;"></div> Needs Photos</div>
+</div>
+
+<!-- COMPLETED -->
+<h2 style="border-color:#16A34A;">Verified Complete (10 items)</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Evidence</th></tr>
+<tr class="done"><td>1</td><td>Become a Dealer</td><td>"Join the Explore Industries Family" heading + full SEO copy rewrite</td><td>Live — updated 2/16/2026</td></tr>
+<tr class="done"><td>2</td><td>Become a Dealer</td><td>Product stats updated: 77 designs, 200+ models, 8 colors</td><td>Live — confirmed</td></tr>
+<tr class="done"><td>3</td><td>Become a Dealer</td><td>Support Team copy updated (training, accounting, legal, etc.)</td><td>Live — confirmed</td></tr>
+<tr class="done"><td>4</td><td>Become a Dealer</td><td>Distribution centers updated to all 13 locations</td><td>Live — all 13 listed incl. Lakeland, Toledo, Bakersfield, Surrey</td></tr>
+<tr class="done"><td>5</td><td>Nav + Footer</td><td>UPCS / Pool Care Brands removed from navigation AND footer</td><td>Live — clean</td></tr>
+<tr class="done"><td>6</td><td>Careers</td><td>UPCS dropped from brands listed</td><td>Live — only 5 pool brands + Integra</td></tr>
+<tr class="done"><td>7</td><td>Our Company</td><td>Stat counters displaying correctly (23 / 500+ / 150,000+ / 25+)</td><td>Live — verified working</td></tr>
+<tr class="done"><td>8</td><td>Life at Explore</td><td>Stat counters displaying correctly</td><td>Live — verified working</td></tr>
+<tr class="done"><td>9</td><td>Aviva Brand Page</td><td>Brand page copy updated</td><td>Updated</td></tr>
+<tr class="done"><td>10</td><td>Evo Brand Page</td><td>Brand page copy updated</td><td>Updated</td></tr>
+</table>
+
+<!-- HIGH — REMOVALS -->
+<h2 style="border-color:#DC2626;">High — Remaining UPCS Removals</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr class="high"><td>12</td><td>UPCS Page</td><td>/brands/pool-care-brands/ultra-pool-care-squad/ <strong>STILL LIVE</strong></td><td><span class="status status-not-started">NOT STARTED</span></td><td>Full page — needs deletion + 301 redirect to /brands/</td></tr>
+<tr class="high"><td>13</td><td>Pool Care Brands</td><td>/brands/pool-care-brands/ — parent category still accessible</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Delete + redirect to /brands/</td></tr>
+<tr class="high"><td>14</td><td>Company History</td><td>2021 UPCS timeline entry <strong>STILL PRESENT</strong></td><td><span class="status status-not-started">NOT STARTED</span></td><td>Remove "Ultra Pool Care Squad - 2021" from timeline</td></tr>
+<tr class="high"><td>15</td><td>Company History</td><td>Additional copy &amp; images still being added to page</td><td><span class="status" style="background:#DBEAFE;color:#1E40AF;">IN PROGRESS</span></td><td>2025 Elite entry is live; remaining copy/images being added</td></tr>
+</table>
+
+<!-- HIGH — CONTENT -->
+<h2 style="border-color:#D97706;">High — Content Updates</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th></tr>
+<tr class="high"><td>16</td><td>Homepage</td><td>Portfolio copy still says "franchises"</td><td><span class="status status-not-started">NOT STARTED</span></td></tr>
+</table>
+<div class="copy-label">Find &amp; Replace:</div>
+<div class="copy-block old-text" onclick="copyText(this)" data-copy="pools, spas, pool covers, and franchises">pools, spas, pool covers, and franchises</div>
+<div class="copy-label">Replace with:</div>
+<div class="copy-block new-text" onclick="copyText(this)" data-copy="pools, spas, and pool covers">pools, spas, and pool covers</div>
+
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th></tr>
+<tr class="high"><td>17</td><td>Global Development</td><td>Still shows "130,000 pools" — should be 150,000+</td><td><span class="status status-not-started">NOT STARTED</span></td></tr>
+</table>
+<div class="copy-label">Find &amp; Replace:</div>
+<div class="copy-block old-text" onclick="copyText(this)" data-copy="130,000 pools">130,000 pools</div>
+<div class="copy-label">Replace with:</div>
+<div class="copy-block new-text" onclick="copyText(this)" data-copy="150,000+ pools">150,000+ pools</div>
+
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr class="high"><td>18</td><td>Locations &rarr; ExploreBase Locations</td><td>Page heading still says "EXPLORE INDUSTRIES LOCATIONS" — rebrand to ExploreBase</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Nav rename: "Locations" → "ExploreBase Locations"</td></tr>
+<tr class="high"><td>19</td><td>Locations Table</td><td>Reframe distribution yards table as ExploreBase locations — or remove table and integrate into sections above</td><td><span class="status status-not-started">NOT STARTED</span></td><td>See ExploreBase Nav &amp; Landing Pages Plan</td></tr>
+<tr class="high"><td>20</td><td>Locations Nav</td><td>Nav dropdown only shows 3 US + 1 Aussie — needs all 13+ ExploreBase locations</td><td><span class="status status-not-started">NOT STARTED</span></td><td>See ExploreBase Nav &amp; Landing Pages Plan</td></tr>
+<tr class="high"><td>21</td><td>Homepage</td><td>Need content block for Elite program info</td><td><span class="status status-needs-input">NEEDS INPUT</span></td><td>Decide placement on homepage</td></tr>
+</table>
+
+<!-- HIGH — NEW PAGES -->
+<h2 style="border-color:#D97706;">High — New Pages Required</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr class="high"><td>22</td><td>ExploreBase</td><td>Only 4 location pages exist — need 9+ more individual landing pages</td><td><span class="status status-not-started">NOT STARTED</span></td><td>See ExploreBase Nav &amp; Landing Pages Plan</td></tr>
+<tr class="high"><td>23</td><td>Elite</td><td>Dedicated Elite page needed</td><td><span class="status status-needs-input">NEEDS INPUT</span></td><td>Recommend under Become a Dealer section</td></tr>
+</table>
+
+<!-- MEDIUM — PHOTOS -->
+<h2>Medium — Images &amp; Video (Blocked on Assets)</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr><td>24</td><td>Become a Dealer</td><td>Pool + factory shots needed</td><td><span class="status status-needs-photos">NEEDS PHOTOS</span></td><td>Shots needed</td></tr>
+<tr><td>25</td><td>Become a Dealer</td><td>Tradeshow shot — new booth with current staff</td><td><span class="status status-needs-photos">NEEDS PHOTOS</span></td><td>Shots needed</td></tr>
+<tr><td>26</td><td>Life at Explore</td><td>Update imagery</td><td><span class="status status-needs-photos">NEEDS PHOTOS</span></td><td>Shots needed</td></tr>
+<tr><td>27</td><td>Careers</td><td>Update imagery</td><td><span class="status status-needs-photos">NEEDS PHOTOS</span></td><td>Shots needed</td></tr>
+<tr><td>28</td><td>Pool Brands</td><td>Update images on Leisure and Imagine brand pages</td><td><span class="status status-needs-photos">NEEDS PHOTOS</span></td><td>Evo and Aviva already updated</td></tr>
+</table>
+
+<!-- MEDIUM — OTHER -->
+<h2>Medium — Other Updates</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr><td>29</td><td>/become-a-dealer-contact/</td><td>Page not loading — 301 redirect to /become-a-dealer/</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Legacy page with outdated stats</td></tr>
+<tr><td>30</td><td>Become a Dealer</td><td>Add more dealer videos</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Mar 31 target</td></tr>
+<tr><td>31</td><td>Life at Explore</td><td>Update video</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Mar 31 target</td></tr>
+<tr><td>32</td><td>Pool Brands</td><td>Self-host videos — move off Vimeo so viewers stay on site</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Mar 31 target</td></tr>
+</table>
+
+<!-- LOW -->
+<h2>Low — Later Phase</h2>
+<table>
+<tr><th>#</th><th>Page</th><th>Action</th><th>Status</th><th>Notes</th></tr>
+<tr><td>33</td><td>Visual Redesign</td><td>Update look and feel of entire site</td><td><span class="status status-not-started">NOT STARTED</span></td><td>June 30 target</td></tr>
+<tr><td>34</td><td>ExploreBase Pages</td><td>Updated copy and imagery for ExploreBase pages once live</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Personalized content per location</td></tr>
+<tr><td>35</td><td>Nexus / Partner Brands</td><td>Update copy for Nexus partner brands</td><td><span class="status status-not-started">NOT STARTED</span></td><td>Evaluate status and potential removal</td></tr>
+<tr><td>36</td><td>Blog / Content</td><td>Publish Elite content or ExploreBase posts</td><td><span class="status status-not-started">NOT STARTED</span></td><td>SEO opportunity</td></tr>
+<tr><td>37</td><td>Ontario Address</td><td>Verify — L4L postal code doesn't match Enterprise, ON</td><td><span class="status status-needs-input">NEEDS INPUT</span></td><td>Ops team</td></tr>
+</table>
+
+<!-- ACTION LISTS -->
+<div class="action-list">
+    <h3>Top Actions — Can Implement Now</h3>
+    <ol>
+        <li>Delete UPCS page + Pool Care Brands page (add 301 redirects)</li>
+        <li>Remove 2021 UPCS from Company History timeline</li>
+        <li>Remove "and franchises" from homepage portfolio copy</li>
+        <li>Update Global Development stats (130K &rarr; 150K+)</li>
+        <li>301 redirect /become-a-dealer-contact/ to /become-a-dealer/</li>
+    </ol>
+</div>
+
+<div class="action-list">
+    <h3>Next Phase — ExploreBase Rebrand</h3>
+    <ol start="6">
+        <li>Rename Locations &rarr; ExploreBase Locations (nav + page headings)</li>
+        <li>Reframe or remove distribution yards table</li>
+        <li>Rebuild nav dropdown with full ExploreBase hierarchy</li>
+        <li>Create 9+ new ExploreBase landing pages</li>
+        <li>Add Elite content block to homepage + create dedicated Elite page</li>
+    </ol>
+</div>
+
+</div>
+
+<div style="background:#0F172A;color:white;padding:20px 40px;text-align:center;font-size:12px;opacity:0.7;">
+    Explore Industries — Website Progress Tracker — March 17, 2026 — Prepared by Eli Bunyi
+</div>
+
+<script>
+function copyText(el) {
+    const text = el.getAttribute('data-copy');
+    navigator.clipboard.writeText(text).then(() => {
+        el.classList.add('copied');
+        setTimeout(() => el.classList.remove('copied'), 1500);
+    });
+}
+</script>
+
+</body>
+</html>

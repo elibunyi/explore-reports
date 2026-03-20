@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Houston — Account Evaluation | 2026-03-18</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.6;font-size:15px}
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+header{background:linear-gradient(135deg,#1B3A5C 0%,#0f2840 100%);color:#fff;padding:48px 0 40px}
+header h1{font-size:32px;font-weight:800;margin-bottom:6px}
+header .subtitle{color:rgba(255,255,255,.7);font-size:14px}
+header .brand-tag{display:inline-block;background:#E8913A;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;margin-bottom:12px;letter-spacing:.06em;text-transform:uppercase}
+
+.metrics-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:-28px 0 32px;position:relative;z-index:2}
+.metric-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.metric-card .label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#666;font-weight:600}
+.metric-card .value{font-size:22px;font-weight:800;color:#1B3A5C;margin-top:2px}
+.metric-card .value.bad{color:#E74C3C}
+.metric-card .value.warn{color:#F39C12}
+.metric-card .value.good{color:#27AE60}
+.metric-card .delta{font-size:11px;margin-top:3px;font-weight:600}
+.metric-card .delta.up{color:#27AE60}
+.metric-card .delta.down{color:#E74C3C}
+.metric-card .delta.neutral{color:#999}
+
+.score-banner{background:#fff;border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;align-items:center;gap:24px}
+.score-circle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#fff;flex-shrink:0}
+.score-red{background:linear-gradient(135deg,#E74C3C,#c0392b)}
+.score-yellow{background:linear-gradient(135deg,#F39C12,#d68910)}
+.score-green{background:linear-gradient(135deg,#27AE60,#1e8449)}
+
+section{background:#fff;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
+section .section-header{padding:20px 24px 16px;border-bottom:2px solid #f0f2f5}
+section .section-header h2{font-size:18px;font-weight:700;color:#1B3A5C}
+section .section-body{padding:20px 24px 24px}
+
+.toc{background:#fff;border-radius:12px;margin-bottom:20px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.toc h2{font-size:18px;font-weight:700;color:#1B3A5C;margin-bottom:12px}
+.toc ol{padding-left:24px}
+.toc li{margin-bottom:6px;font-size:14px}
+.toc a{color:#1B3A5C;text-decoration:none;font-weight:500}
+.toc a:hover{color:#E8913A;text-decoration:underline}
+
+.finding{border-left:4px solid;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:14px;background:#fafafa}
+.finding.p1{border-color:#E74C3C;background:#fef2f2}
+.finding.p2{border-color:#F39C12;background:#fffbeb}
+.finding.p3{border-color:#3498DB;background:#eff6ff}
+.finding.ok{border-color:#27AE60;background:#f0fdf4}
+.finding .priority{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.finding.p1 .priority{color:#E74C3C}
+.finding.p2 .priority{color:#F39C12}
+.finding.p3 .priority{color:#3498DB}
+.finding.ok .priority{color:#27AE60}
+.finding .title{font-weight:700;font-size:15px;margin-bottom:6px;color:#1a1a2e}
+.finding .detail{font-size:13px;color:#555;line-height:1.7}
+.finding .reasoning{font-size:12px;color:#777;margin-top:8px;padding-top:8px;border-top:1px solid rgba(0,0,0,.06);font-style:italic}
+.finding .confidence{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;margin-top:4px}
+.conf-high{background:#dcfce7;color:#166534}
+.conf-med{background:#fef9c3;color:#854d0e}
+
+table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+table th{background:#f0f2f5;padding:8px 12px;text-align:left;font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#666}
+table td{padding:8px 12px;border-bottom:1px solid #f0f2f5}
+table tr:hover td{background:#f8f9fb}
+.pass{color:#27AE60;font-weight:600}
+.fail{color:#E74C3C;font-weight:600}
+.warn-text{color:#F39C12;font-weight:600}
+
+.copy-field{margin:8px 0}
+.copy-field label{display:block;font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
+.copy-field input,.copy-field textarea{width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-family:'Courier New',monospace;font-size:13px;background:#f8f9fb;cursor:pointer;resize:vertical}
+.copy-field input:focus,.copy-field textarea:focus{outline:2px solid #1B3A5C;border-color:#1B3A5C}
+.copy-field.bulk label{background:#27AE60;color:#fff;padding:4px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.copy-field.individual label{background:#E8913A;color:#fff;padding:4px 8px;border-radius:3px;display:inline-block;margin-bottom:6px}
+
+.tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:.04em;text-transform:uppercase}
+.tag-p1{background:#E74C3C;color:#fff}
+.tag-p2{background:#F39C12;color:#fff}
+.tag-p3{background:#3498DB;color:#fff}
+.tag-ok{background:#27AE60;color:#fff}
+.tag-watch{background:#8E44AD;color:#fff}
+.tag-new{background:#27AE60;color:#fff}
+.tag-broad{background:#E74C3C;color:#fff}
+.tag-phrase{background:#27AE60;color:#fff}
+.tag-exact{background:#8E44AD;color:#fff}
+
+.warning-box{border-left:4px solid #E74C3C;background:#fef2f2;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.note-box{border-left:4px solid #F39C12;background:#fffbeb;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.success-box{border-left:4px solid #27AE60;background:#f0fdf4;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.info-box{border-left:4px solid #3498DB;background:#eff6ff;padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+
+.waste-row{display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px}
+.waste-row .term{flex:1;font-family:monospace}
+.waste-row .spend{font-weight:700;color:#E74C3C;min-width:70px;text-align:right}
+.waste-row .meta{color:#666;min-width:180px;text-align:right;font-size:12px}
+
+.campaign-card{border:1px solid #e5e7eb;border-radius:10px;padding:18px;margin-bottom:14px}
+.campaign-card.healthy{border-color:#27AE60;background:#f0fdf4}
+.campaign-card.needs-work{border-color:#F39C12;background:#fffbeb}
+.campaign-card h3{font-size:15px;font-weight:700;margin-bottom:10px}
+.campaign-card .kv{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.campaign-card .kv span{font-size:12px;background:#f0f2f5;padding:3px 8px;border-radius:4px}
+.campaign-card .kv span strong{color:#1B3A5C}
+
+.device-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.device-card{border:1px solid #e5e7eb;border-radius:8px;padding:14px;text-align:center}
+.device-card .device-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#666;margin-bottom:8px}
+.device-card .is-val{font-size:22px;font-weight:800;color:#1B3A5C}
+.device-card .is-lost{font-size:12px;color:#E74C3C;font-weight:600;margin-top:3px}
+.device-card.ok-card{border-color:#27AE60;background:#f0fdf4}
+.device-card.warn-card{border-color:#F39C12;background:#fffbeb}
+.device-card.bad-card{border-color:#E74C3C;background:#fef2f2}
+
+.qs-bar{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #f0f2f5;font-size:13px}
+.qs-bar .kw{flex:1;font-family:monospace;font-size:12px}
+.qs-bar .qs-pill{font-weight:800;font-size:13px;min-width:28px;text-align:center;padding:2px 6px;border-radius:4px}
+.qs-10{background:#dcfce7;color:#166534}
+.qs-89{background:#bbf7d0;color:#15803d}
+.qs-67{background:#fef9c3;color:#854d0e}
+.qs-45{background:#fed7aa;color:#9a3412}
+.qs-123{background:#fecaca;color:#991b1b}
+.qs-bar .qs-meta{font-size:11px;color:#666;min-width:120px;text-align:right}
+.qs-bar .qs-is{font-size:12px;font-weight:600;min-width:60px;text-align:right}
+
+footer{text-align:center;padding:32px;color:#999;font-size:12px}
+@media print{body{background:#fff}section{break-inside:avoid;box-shadow:none;border:1px solid #ddd}}
+</style>
+<script>
+document.addEventListener('click',function(e){
+  var el=e.target;
+  if(el.tagName==='INPUT'||el.tagName==='TEXTAREA'){
+    el.select();
+    try{document.execCommand('copy');}catch(err){}
+  }
+});
+</script>
+</head>
+<body>
+
+<header>
+<div class="container">
+  <div class="brand-tag">Leisure Pools</div>
+  <h1>Leisure Pools Houston &mdash; Account Evaluation</h1>
+  <div class="subtitle">Post-Change Analysis &nbsp;&middot;&nbsp; March 18, 2026 &nbsp;&middot;&nbsp; Account ID: 679-038-2043 &nbsp;&middot;&nbsp; Houston, TX &nbsp;&middot;&nbsp; 7-Day Window: Mar 11–18</div>
+</div>
+</header>
+
+<div class="container">
+
+<!-- METRICS BAR -->
+<div class="metrics-bar">
+  <div class="metric-card">
+    <div class="label">Search IS</div>
+    <div class="value good">↑ Improved</div>
+    <div class="delta up">Post-Mar 11</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Lost IS (Rank)</div>
+    <div class="value warn">39.47%</div>
+    <div class="delta up">↓ from 82.25%</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Lost IS (Budget)</div>
+    <div class="value warn">24.71%</div>
+    <div class="delta up">↑ from 1.17%</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Fiberglass IS</div>
+    <div class="value good">~89%</div>
+    <div class="delta neutral">Top keyword</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Pool Builder IS</div>
+    <div class="value bad">~22%</div>
+    <div class="delta neutral">Mobile / structural</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Convs (Since Mon)</div>
+    <div class="value bad">1</div>
+    <div class="delta neutral">Fiberglass only</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Abs. Top IS</div>
+    <div class="value warn">36.95%</div>
+    <div class="delta neutral">vs Limitless 42.78%</div>
+  </div>
+</div>
+
+<!-- HEALTH SCORE -->
+<div class="score-banner">
+  <div class="score-circle score-yellow">66</div>
+  <div>
+    <div style="font-size:20px;font-weight:800;color:#1a1a2e">Account Health: 66/100 &mdash; Stabilizing</div>
+    <div style="font-size:13px;color:#666;margin-top:4px">
+      <strong>1 P1 Watch Item</strong> &nbsp;&middot;&nbsp; <strong>3 P2 Monitor</strong> &nbsp;&middot;&nbsp; <strong>3 P3 Opportunity</strong> &nbsp;&middot;&nbsp; <strong>2 Confirmed Wins</strong>
+    </div>
+    <div style="font-size:12px;color:#999;margin-top:4px">Mar 11 changes are working — rank loss cut in half, Fiberglass campaign structurally sound. Pool Builder IS is low but this is partly structural given the broad competitive landscape it operates in. Jury still out — monitor another 1–2 weeks before further adjustments.</div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<h2>Table of Contents</h2>
+<ol>
+  <li><a href="#s1">Post-Mar 11 Status &amp; What Changed</a></li>
+  <li><a href="#s2">Campaign Health Overview</a></li>
+  <li><a href="#s3">Impression Share by Device</a></li>
+  <li><a href="#s4">Keyword Quality Score Analysis</a></li>
+  <li><a href="#s5">Search Term Waste &amp; Negative Candidates</a></li>
+  <li><a href="#s6">Competitive Intelligence</a></li>
+  <li><a href="#s7">Conversion Status</a></li>
+  <li><a href="#s8">Observations &amp; Watch Items</a></li>
+</ol>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 1: POST-MAR 11 STATUS -->
+<!-- ============================================ -->
+<section id="s1">
+<div class="section-header"><h2>1. Post-Mar 11 Status &amp; What Changed</h2></div>
+<div class="section-body">
+
+<div class="success-box">
+  <strong>The Mar 11 changes are working.</strong> Lost IS to Rank dropped from 82.25% → 39.47% — that's a 43-point improvement in a single week. Budget cap lost IS increased from 1.17% → 24.71%, which signals the account is now winning more auctions and running into the daily spend ceiling, rather than getting suppressed by low Ad Rank before auctions even start.
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Pre-Mar 11 (Baseline)</th>
+      <th>Mar 11–18 (Current)</th>
+      <th>Direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lost IS to Rank (Account)</td>
+      <td class="fail">82.25%</td>
+      <td class="warn-text">39.47%</td>
+      <td class="pass">↓ 43 pts — Positive</td>
+    </tr>
+    <tr>
+      <td>Lost IS to Budget (Account)</td>
+      <td class="pass">1.17%</td>
+      <td class="warn-text">24.71%</td>
+      <td class="warn-text">↑ — Expected (now hitting ceiling)</td>
+    </tr>
+    <tr>
+      <td>Fiberglass "fiberglass pools houston" IS</td>
+      <td>—</td>
+      <td class="pass">89.5%</td>
+      <td class="pass">Strong</td>
+    </tr>
+    <tr>
+      <td>Pool Builder "swimming pool builder" IS</td>
+      <td>—</td>
+      <td class="fail">17.5%</td>
+      <td class="warn-text">Structurally challenged (see §4)</td>
+    </tr>
+    <tr>
+      <td>Search Partners</td>
+      <td>Enabled</td>
+      <td class="pass">Excluded</td>
+      <td class="pass">Done Mar 11</td>
+    </tr>
+    <tr>
+      <td>Negative keywords</td>
+      <td>Partial</td>
+      <td class="warn-text">Improved, gaps remain</td>
+      <td class="warn-text">See §5</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>Budget cap lost IS going up is a good sign, not a problem.</strong> It means the account started competing in auctions it wasn't even entering before. The next question is whether the budget ceiling is suppressing reach we'd want — that's a later conversation after spend quality is confirmed.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 2: CAMPAIGN HEALTH OVERVIEW -->
+<!-- ============================================ -->
+<section id="s2">
+<div class="section-header"><h2>2. Campaign Health Overview</h2></div>
+<div class="section-body">
+
+<div class="campaign-card healthy">
+  <h3>✓ Fiberglass Pools Campaign &mdash; Structurally Sound</h3>
+  <div class="kv">
+    <span><strong>Bidding:</strong> Max Clicks ($25 CPC cap)</span>
+    <span><strong>Core KW IS:</strong> 89.5% ("fiberglass pools houston")</span>
+    <span><strong>Convs (7d):</strong> 2 (both from this campaign)</span>
+    <span><strong>QS:</strong> 8–10 on core keywords</span>
+    <span><strong>Status:</strong> No changes needed this cycle</span>
+  </div>
+  <div class="success-box" style="margin-top:10px">
+    Core fiberglass keywords are performing well. "fiberglass pools houston" at QS 10 / 89.5% IS and "fiberglass pool Houston" at QS 10 / 71.4% IS are strong results in a competitive metro. IS loss on Fiberglass is primarily budget (13.6%), not rank — this means the ad and landing page quality are good and the campaign is doing its job.
+  </div>
+</div>
+
+<div class="campaign-card needs-work">
+  <h3>⚠ Pool Builder Campaign &mdash; Harder Terrain, Not Broken</h3>
+  <div class="kv">
+    <span><strong>Bidding:</strong> Max Clicks ($25 CPC cap)</span>
+    <span><strong>Top KW IS:</strong> ~22% mobile, ~10% tablet</span>
+    <span><strong>Lost IS Rank:</strong> 63–81% by device</span>
+    <span><strong>QS:</strong> QS 2–5 on most keywords</span>
+    <span><strong>Convs (7d):</strong> 0</span>
+  </div>
+  <div class="note-box" style="margin-top:10px">
+    <strong>Context matters here.</strong> Pool Builder terms ("swimming pool builder," "pool contractor") attract every pool type — concrete, vinyl, gunite, fiberglass. This creates a structural disadvantage: Leisure Pools' fiberglass-specific landing pages will always score lower relevance against generic "pool builder" searchers who may want any pool type. Lower QS and IS in this campaign is partly expected, not purely a management failure. The goal is still to compete here — fiberglass is a legitimate answer to "pool builder" — but expectations on IS levels should be different from the Fiberglass campaign.
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 3: IMPRESSION SHARE BY DEVICE -->
+<!-- ============================================ -->
+<section id="s3">
+<div class="section-header"><h2>3. Impression Share by Device</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:14px;font-weight:700;color:#1B3A5C;margin-bottom:12px">Fiberglass Campaign</h3>
+<div class="device-grid">
+  <div class="device-card ok-card">
+    <div class="device-name">Desktop</div>
+    <div class="is-val">—</div>
+    <div class="is-lost">Not segmented (healthy)</div>
+  </div>
+  <div class="device-card warn-card">
+    <div class="device-name">Mobile</div>
+    <div class="is-val">41.6%</div>
+    <div class="is-lost">44.8% lost to rank</div>
+  </div>
+  <div class="device-card warn-card">
+    <div class="device-name">Tablet</div>
+    <div class="is-val">—</div>
+    <div class="is-lost">Low volume segment</div>
+  </div>
+</div>
+
+<h3 style="font-size:14px;font-weight:700;color:#1B3A5C;margin:18px 0 12px">Pool Builder Campaign</h3>
+<div class="device-grid">
+  <div class="device-card warn-card">
+    <div class="device-name">Desktop</div>
+    <div class="is-val">—</div>
+    <div class="is-lost">Data not segmented</div>
+  </div>
+  <div class="device-card warn-card">
+    <div class="device-name">Mobile</div>
+    <div class="is-val">22.5%</div>
+    <div class="is-lost">63.5% lost to rank</div>
+  </div>
+  <div class="device-card bad-card">
+    <div class="device-name">Tablet</div>
+    <div class="is-val">10.0%</div>
+    <div class="is-lost">81.2% lost to rank ← worst</div>
+  </div>
+</div>
+
+<div class="info-box" style="margin-top:14px">
+  <strong>Tablet IS:</strong> 10% / 81.2% lost rank on Pool Builder is the worst segment in the account. Tablet volume is typically low (under 5% of traffic for most dealers), so this isn't causing significant revenue loss, but it does indicate QS suppression is most acute on that device. No action needed now — just context to keep in mind if Pool Builder QS improves and we start expanding.
+</div>
+
+<div class="note-box">
+  <strong>On Max Clicks bidding and device adjustments:</strong> Device bid adjustments (%, like -20% mobile) DO work under Max Clicks. Keyword-level bid adjustments do not. If Pool Builder mobile IS continues to underperform after QS stabilizes, a moderate mobile bid reduction (observe-only for now) could redirect spend toward desktop where QS is likely stronger.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 4: KEYWORD QUALITY SCORE ANALYSIS -->
+<!-- ============================================ -->
+<section id="s4">
+<div class="section-header"><h2>4. Keyword Quality Score Analysis</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:10px">Fiberglass Campaign — Keywords (Healthy)</h3>
+
+<div class="qs-bar">
+  <div class="kw">fiberglass pools houston</div>
+  <div class="qs-pill qs-10">10</div>
+  <div class="qs-is pass">89.5% IS</div>
+  <div class="qs-meta">3 conv (7d) &nbsp;·&nbsp; Top performer</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">fiberglass pool Houston</div>
+  <div class="qs-pill qs-10">10</div>
+  <div class="qs-is pass">71.4% IS</div>
+  <div class="qs-meta">Core keyword, solid</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">fiberglass pool</div>
+  <div class="qs-pill qs-89">8</div>
+  <div class="qs-is warn-text">—</div>
+  <div class="qs-meta">Broad geo intent, acceptable</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">fiberglass swimming pool</div>
+  <div class="qs-pill qs-89">8</div>
+  <div class="qs-is warn-text">—</div>
+  <div class="qs-meta">Solid, no action needed</div>
+</div>
+
+<h3 style="font-size:14px;font-weight:700;color:#F39C12;margin:18px 0 10px">Pool Builder Campaign — Keywords (Structural Challenge)</h3>
+
+<div class="qs-bar">
+  <div class="kw">swimming pool builder</div>
+  <div class="qs-pill qs-123">2</div>
+  <div class="qs-is fail">17.5% IS</div>
+  <div class="qs-meta">72% lost rank &nbsp;·&nbsp; Watch item</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">pool contractor</div>
+  <div class="qs-pill qs-45">5</div>
+  <div class="qs-is fail">10.2% IS</div>
+  <div class="qs-meta">76% lost rank &nbsp;·&nbsp; Lower priority intent</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">pool builder</div>
+  <div class="qs-pill qs-67">N/A</div>
+  <div class="qs-is warn-text">Low data</div>
+  <div class="qs-meta">Insufficient impressions for QS</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">swimming pool companies near me</div>
+  <div class="qs-pill qs-67">N/A</div>
+  <div class="qs-is warn-text">Low data</div>
+  <div class="qs-meta">Insufficient impressions for QS</div>
+</div>
+<div class="qs-bar">
+  <div class="kw">inground pool companies near me</div>
+  <div class="qs-pill qs-67">N/A</div>
+  <div class="qs-is warn-text">Low data</div>
+  <div class="qs-meta">Insufficient impressions for QS</div>
+</div>
+
+<div class="note-box" style="margin-top:14px">
+  <strong>On "swimming pool builder" QS 2:</strong> This is the account's most visible QS gap. A QS 2 keyword with a $25 CPC ceiling means a competitor at QS 6 with a $15 bid will outrank Houston's ads — the Ad Rank math compounds against low-QS keywords at any bid level. That said, the QS reflects the structural reality that "swimming pool builder" attracts all pool types, not fiberglass-specific intent. The landing page and ad copy relevance score will always face a ceiling here.
+  <br><br>
+  <strong>What to watch:</strong> If QS stays at 2 through the end of March with no improvement, revisiting the ad copy &amp; landing page match for Pool Builder terms is worth exploring. But given we're only 7 days post-changes, don't move yet.
+</div>
+
+<div class="info-box">
+  <strong>Ad Rank mechanics (context for Pool Builder):</strong> Ad Rank = QS × bid × context factors. At QS 2 with a $25 cap, effectively competing against QS 6–8 competitors who bid $10–15 is very difficult — their effective rank is 3–4× higher regardless of bid. Improving QS on Pool Builder keywords (via better ad copy match and LP relevance for "builder" intent) would have a multiplicative impact on IS.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 5: SEARCH TERM WASTE -->
+<!-- ============================================ -->
+<section id="s5">
+<div class="section-header"><h2>5. Search Term Waste &amp; Negative Candidates</h2></div>
+<div class="section-body">
+
+<div class="warning-box">
+  The following search terms were found in the 7-day window matching via broad/phrase — none are exact-added keywords. These represent spend on queries with low or zero purchase intent for a fiberglass pool.
+</div>
+
+<h3 style="font-size:14px;font-weight:700;color:#E74C3C;margin:14px 0 10px">Waste Identified</h3>
+
+<div class="waste-row">
+  <div class="term">semi inground pool houston</div>
+  <div class="spend">~$18+</div>
+  <div class="meta">⚠ Nuanced — see note below</div>
+</div>
+<div class="waste-row">
+  <div class="term">semi inground pool near me</div>
+  <div class="spend">~$8+</div>
+  <div class="meta">⚠ Nuanced — see note below</div>
+</div>
+<div class="waste-row">
+  <div class="term">semi inground pool installation</div>
+  <div class="spend">~$3+</div>
+  <div class="meta">⚠ Nuanced — see note below</div>
+</div>
+<div class="note-box" style="margin:8px 0">
+  <strong>Semi-inground nuance:</strong> Leisure Pools carries plunge pools, which some buyers research using "semi inground" language loosely — they're looking for a smaller, lower-cost pool option. A plunge pool sale is still a sale. These terms aren't clean negatives the way "above ground" or "intex pool" are. Options: (1) leave them running and see if any convert to plunge pool leads, (2) add them as negatives on Pool Builder only but leave Fiberglass running for crossover potential, or (3) add them to a shared negative list only after confirming they've produced zero qualified leads over 30 days. Don't negate these yet — watch them first.
+</div>
+<div class="waste-row">
+  <div class="term">ipoolgo</div>
+  <div class="spend">$8.97</div>
+  <div class="meta">Competitor brand — zero conversion probability</div>
+</div>
+<div class="waste-row">
+  <div class="term">pool prices dropping</div>
+  <div class="spend">Est. low</div>
+  <div class="meta">Zero purchase intent — news/info query</div>
+</div>
+<div class="waste-row">
+  <div class="term">backyard pool designs</div>
+  <div class="spend">Est. low</div>
+  <div class="meta">Early research, not ready to buy</div>
+</div>
+
+<h3 style="font-size:14px;font-weight:700;color:#1B3A5C;margin:18px 0 10px">Recommended Negatives to Add</h3>
+<div class="note-box">Click any field to copy. "Semi-inground" terms are the cleanest adds — these are a categorically different product (partial in-ground, not full fiberglass inground). "ipoolgo" is a competitor. "pool prices dropping" is an info query. Add these as phrase match negatives at the campaign level.</div>
+
+<div class="copy-field bulk">
+  <label>Bulk Negative List — Safe Adds (Campaign Level)</label>
+  <textarea rows="8" onclick="this.select()">ipoolgo
+i pool go
+pool prices dropping
+backyard pool designs
+above ground pool
+above-ground pool
+intex pool
+inflatable pool
+pool game
+pool table
+pool stick
+pool cue
+billiards
+swimming lessons
+swim lessons
+pool repair
+pool service
+pool cleaning
+pool cleaner
+pool maintenance</textarea>
+</div>
+
+<div class="copy-field individual">
+  <label>Clean Add — "ipoolgo" (Competitor Brand)</label>
+  <input type="text" value="ipoolgo" onclick="this.select()" readonly>
+</div>
+
+<div class="note-box">
+  <strong>Semi-inground terms held for now.</strong> Watch for 30 days — if zero qualified leads come through on these terms, add as negatives then. If a plunge pool lead converts via one of these searches, leave them running.
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 6: COMPETITIVE INTELLIGENCE -->
+<!-- ============================================ -->
+<section id="s6">
+<div class="section-header"><h2>6. Competitive Intelligence</h2></div>
+<div class="section-body">
+
+<h3 style="font-size:14px;font-weight:700;color:#1B3A5C;margin-bottom:12px">Auction Insights — Last 7 Days</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competitor</th>
+      <th>Impression Share</th>
+      <th>Abs. Top IS</th>
+      <th>Overlap Rate</th>
+      <th>Position Above Rate</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Leisure Pools Houston (you)</strong></td>
+      <td class="warn-text">—</td>
+      <td class="warn-text">36.95%</td>
+      <td>—</td>
+      <td>—</td>
+      <td>Baseline</td>
+    </tr>
+    <tr>
+      <td><strong>Limitless Custom Pools</strong></td>
+      <td class="warn-text">Higher</td>
+      <td class="fail">42.78%</td>
+      <td>High overlap</td>
+      <td class="fail">51.30%</td>
+      <td class="fail">Primary threat</td>
+    </tr>
+    <tr>
+      <td>Other local builders</td>
+      <td>—</td>
+      <td>—</td>
+      <td>Moderate</td>
+      <td>—</td>
+      <td class="warn-text">Monitor</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="finding p2">
+  <div class="priority">P2 — Monitor</div>
+  <div class="title">Limitless Custom Pools Outranking Houston 51% of Overlapping Auctions</div>
+  <div class="detail">
+    <strong>DATA:</strong> Limitless Custom Pools has a 42.78% absolute top of page rate vs. Houston's 36.95%. When they overlap in the same auction, they appear above Houston's ads 51.30% of the time.<br><br>
+    <strong>CONTEXT:</strong> Limitless Custom Pools is likely a general custom pool builder (potentially concrete/gunite) — not strictly a fiberglass competitor. Their higher IS/position may be from broader match coverage across all pool types, which inflates their IS numbers in a way that doesn't map 1:1 to your fiberglass-intent audience.<br><br>
+    <strong>WHAT THIS MEANS NOW:</strong> Nothing immediate. Auction insights data in a 7-day post-change window is noisy. If this pattern holds through late March, it warrants a closer look at Limitless' ad copy and landing page to understand whether they're converting fiberglass-intent traffic at scale.
+  </div>
+  <span class="confidence conf-med">MED CONFIDENCE — Short window, stabilization period</span>
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 7: CONVERSION STATUS -->
+<!-- ============================================ -->
+<section id="s7">
+<div class="section-header"><h2>7. Conversion Status</h2></div>
+<div class="section-body">
+
+<table>
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Campaign</th>
+      <th>Conversions (7d)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>fiberglass pools houston / fiberglass pool</td>
+      <td>Fiberglass</td>
+      <td class="pass">1</td>
+      <td>1 conversion since Monday — Fiberglass campaign</td>
+    </tr>
+    <tr>
+      <td>Pool Builder (all keywords)</td>
+      <td>Pool Builder</td>
+      <td class="fail">0</td>
+      <td>No conversions in window — low QS, structural challenge</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note-box">
+  <strong>1 conversion since Monday is a thin read.</strong> This is post-change stabilization with likely tightened targeting — fewer junk clicks means fewer surface-area conversion opportunities in the short run. Monitor cost-per-conversion as the window extends. If Fiberglass is converting and Pool Builder is not, that's expected given the QS gap — not an alarm until it persists past 3–4 weeks.
+</div>
+
+<div class="info-box">
+  <strong>Conversion tracking note:</strong> Confirm conversions include all action types (form submits, calls, brochure downloads). Brochure downloads on this account are real conversion events — they require a contact form fill. If call tracking duration is configured, verify the minimum call duration threshold is set appropriately (30+ seconds recommended for lead intent).
+</div>
+
+</div>
+</section>
+
+<!-- ============================================ -->
+<!-- SECTION 8: OBSERVATIONS & WATCH ITEMS -->
+<!-- ============================================ -->
+<section id="s8">
+<div class="section-header"><h2>8. Observations &amp; Watch Items</h2></div>
+<div class="section-body">
+
+<div class="note-box" style="margin-bottom:20px">
+  <strong>Framing for this section:</strong> The Mar 11 changes are recent. Most of these items are <em>watch and observe</em> — not calls to action. The account is moving in the right direction. The priority is letting the changes stabilize and gathering clean data before pulling new levers.
+</div>
+
+<div class="finding ok">
+  <div class="priority">✓ Confirmed Win</div>
+  <div class="title">Search Partners Exclusion Working</div>
+  <div class="detail">Excluding search partners (done Mar 11) has contributed to the rank loss improvement. Fewer irrelevant impressions from partner network = better signal quality for the algorithm and better IS calculations. No action needed — this was the right call.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding ok">
+  <div class="priority">✓ Confirmed Win</div>
+  <div class="title">Fiberglass Core Keywords in Excellent Shape</div>
+  <div class="detail">QS 10 on "fiberglass pools houston" and "fiberglass pool Houston" with 71–89% IS is a strong result for a competitive metro. This is the account's revenue engine and it's healthy. Focus here should be maintenance, not change.</div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 — Watch (2 weeks)</div>
+  <div class="title">Pool Builder QS — Will It Move?</div>
+  <div class="detail">
+    "Swimming pool builder" at QS 2 is the account's most visible weakness. The question is whether the post-Mar 11 ad copy and targeting improvements will push QS upward over the next 2–3 weeks. QS changes slowly — it needs impression volume and improved CTR/landing page quality to register.
+    <br><br>
+    <strong>Watch for:</strong> Any upward movement on "swimming pool builder" QS by end of March. If it's still QS 2 by April 1, the ad copy relevance for Pool Builder terms is likely not connecting with search intent — at that point, revisiting the Pool Builder RSA headlines specifically around "builder" language would be warranted.
+    <br><br>
+    <strong>Keep in mind:</strong> Pool Builder will always face a harder QS ceiling than Fiberglass because the landing page relevance scoring penalizes fiberglass-specific pages when the query is generic "pool builder." Competing here is still the right call — just with calibrated expectations on IS levels.
+  </div>
+  <span class="confidence conf-med">MED CONFIDENCE — New data needed</span>
+</div>
+
+<div class="finding p2">
+  <div class="priority">P2 — Watch</div>
+  <div class="title">Budget Cap Starting to Bind (24.71% Lost IS to Budget)</div>
+  <div class="detail">
+    Lost IS to Budget at 24.71% (up from 1.17%) means the daily budget ceiling is now the second-largest constraint after rank. This is actually healthy — it means the account is competing more effectively. But if the budget ceiling is cutting off high-quality fiberglass searches later in the day, it becomes a spend question to raise with the dealer.
+    <br><br>
+    <strong>No action now.</strong> First establish spend quality over the full month (are the conversions real leads?), then if yes, the budget increase conversation becomes straightforward.
+  </div>
+  <span class="confidence conf-med">MED CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 — Opportunity (Future)</div>
+  <div class="title">RLSA Setup — When Remarketing Data Is Available</div>
+  <div class="detail">
+    Once the remarketing tag has accumulated enough visitors (1,000+ cookies, likely 30+ days at current traffic levels), layering website visitor audiences onto Pool Builder campaigns with a +20–30% bid adjustment is a high-value, low-risk move. This lets Max Clicks bid more aggressively for people who've already visited the site — warming Pool Builder auctions where we're currently being outbid.
+    <br><br>
+    <strong>Prerequisite:</strong> Confirm the Google Ads remarketing tag is installed on leisurepoolsusa.com (or relevant landing page) and has been firing since at least early March.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 — Opportunity (Future)</div>
+  <div class="title">Audience Observation Layers (HHI + In-Market)</div>
+  <div class="detail">
+    Once the account has 30+ days of post-change data, adding In-Market Audiences (Pool &amp; Spa, Home Improvement) and Household Income segments in <em>observation mode</em> (no bid adjustments yet) will build demographic performance data. After 60 days of observation data, bid adjustments can be made with confidence.
+    <br><br>
+    These don't change who sees the ads — they just start tracking which segments convert. No risk, just patience.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<div class="finding p3">
+  <div class="priority">P3 — Opportunity (Immediate)</div>
+  <div class="title">Negative Keyword Gaps — Semi-Inground &amp; Competitor Brand</div>
+  <div class="detail">
+    This is the one immediate, low-risk action from this audit. Semi-inground pool terms and "ipoolgo" (competitor brand) are currently matching and consuming spend with zero conversion probability. These are unambiguous negatives — no jury-is-still-out on adding them.
+    <br><br>
+    See Section 5 for the full list and click-to-copy fields.
+  </div>
+  <span class="confidence conf-high">HIGH CONFIDENCE</span>
+</div>
+
+<h3 style="font-size:15px;font-weight:700;color:#1B3A5C;margin:24px 0 12px">Summary: Recommended Order of Operations</h3>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Action</th>
+      <th>Timing</th>
+      <th>Risk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Add semi-inground + ipoolgo negatives (§5)</td>
+      <td class="pass">Now</td>
+      <td class="pass">Very low</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Monitor Pool Builder QS — check again Mar 25</td>
+      <td class="warn-text">Wait 1 week</td>
+      <td class="pass">None</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Add audience observation layers (In-Market, HHI)</td>
+      <td class="warn-text">End of March</td>
+      <td class="pass">Zero (observation only)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>RLSA setup — check remarketing tag &amp; cookie count</td>
+      <td class="warn-text">End of March</td>
+      <td class="pass">Low</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Pool Builder RSA review (if QS still ≤3 at Apr 1)</td>
+      <td class="fail">April (conditional)</td>
+      <td class="warn-text">Low-Medium</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Budget increase conversation (if spend quality confirmed)</td>
+      <td class="fail">April</td>
+      <td class="warn-text">Dealer-dependent</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</section>
+
+<footer>
+  DM - Leisure Pools Houston &nbsp;·&nbsp; Account ID: 679-038-2043 &nbsp;·&nbsp; Evaluation Date: March 18, 2026 &nbsp;·&nbsp; Window: Mar 11–18, 2026 &nbsp;·&nbsp; Generated by Claude Code / Explore Industries
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools San Antonio | Audit & Campaign Rebuild | 2026-03-16</title>
+<style>
+:root{--navy:#1B3A5C;--accent:#E8913A;--bg:#F5F6FA;--card:#FFFFFF;--text:#1E293B;--muted:#64748B;--border:#E2E8F0;--green:#16A34A;--red:#DC2626;--yellow:#CA8A04;--p1:#DC2626;--p2:#E8913A;--p3:#CA8A04;--new:#2563EB;--keep:#16A34A;--remove:#DC2626;--change:#9333EA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:var(--navy);font-size:28px;margin-bottom:4px}
+h2{color:var(--navy);font-size:22px;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+h3{color:var(--navy);font-size:18px;margin:20px 0 12px}
+.subtitle{color:var(--muted);font-size:14px;margin-bottom:24px}
+.card{background:var(--card);border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.1);padding:20px;margin-bottom:16px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.metric-box{background:var(--bg);border-radius:8px;padding:14px;text-align:center}
+.metric-box .value{font-size:24px;font-weight:700;color:var(--navy)}
+.metric-box .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.tag{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600;margin:2px}
+.tag-p1{background:#FEE2E2;color:var(--p1)}.tag-p2{background:#FFF7ED;color:var(--p2)}.tag-p3{background:#FEFCE8;color:var(--p3)}
+.tag-new{background:#DBEAFE;color:var(--new)}.tag-keep{background:#DCFCE7;color:var(--keep)}.tag-remove{background:#FEE2E2;color:var(--remove)}.tag-change{background:#F3E8FF;color:var(--change)}
+.tag-exact{background:#F3E8FF;color:#7C3AED}.tag-phrase{background:#DCFCE7;color:var(--green)}
+.tag-brand{background:#FFF7ED;color:var(--accent)}.tag-geo{background:#DBEAFE;color:var(--new)}.tag-benefit{background:#FEE2E2;color:var(--red)}.tag-cta{background:#FEFCE8;color:var(--yellow)}.tag-product{background:#DCFCE7;color:var(--green)}
+.alert{padding:14px 18px;border-radius:8px;margin-bottom:12px;border-left:4px solid}
+.alert-p1{background:#FEF2F2;border-color:var(--p1)}.alert-p2{background:#FFF7ED;border-color:var(--p2)}.alert-p3{background:#FEFCE8;border-color:var(--p3)}
+.alert strong{display:block;margin-bottom:4px}
+.warning-box{background:#FEF2F2;border:2px solid var(--red);border-radius:8px;padding:14px 18px;margin:12px 0}
+.note-box{background:#FEFCE8;border:2px solid var(--yellow);border-radius:8px;padding:14px 18px;margin:12px 0}
+.success-box{background:#F0FDF4;border:2px solid var(--green);border-radius:8px;padding:14px 18px;margin:12px 0}
+.info-box{background:#EFF6FF;border:2px solid #3B82F6;border-radius:8px;padding:14px 18px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th{background:var(--navy);color:white;padding:10px 12px;text-align:left;font-weight:600}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:#F8FAFC}
+.copy-box{background:#F1F5F9;border:1px dashed var(--border);border-radius:6px;padding:10px 14px;cursor:pointer;position:relative;font-family:monospace;font-size:13px;margin:4px 0;padding-right:90px}
+.copy-box:hover{background:#E2E8F0}
+.copy-box::after{content:'Click to copy';position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--muted);font-family:sans-serif}
+.bulk-paste{background:#F1F5F9;border:1px dashed var(--border);border-radius:6px;padding:14px;cursor:pointer;font-family:monospace;font-size:12px;white-space:pre-wrap;margin:8px 0;line-height:1.8;width:100%;min-height:60px;resize:vertical}
+.bulk-paste:hover{background:#E2E8F0}
+.char-count{font-size:11px;color:var(--muted);margin-left:8px}
+.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.checklist input[type=checkbox]{width:18px;height:18px;accent-color:var(--navy)}
+.toc{background:var(--card);border-radius:12px;padding:20px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.toc a{color:var(--navy);text-decoration:none;display:block;padding:4px 0;font-size:14px}
+.toc a:hover{color:var(--accent)}
+.health-score{display:inline-block;font-size:48px;font-weight:800;padding:10px 20px;border-radius:12px;margin:10px 0}
+.health-bad{background:#FEE2E2;color:var(--red)}.health-ok{background:#FFF7ED;color:var(--accent)}.health-good{background:#DCFCE7;color:var(--green)}
+.device-bar{height:24px;border-radius:4px;display:flex;overflow:hidden;margin:8px 0}
+.device-bar div{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:white}
+.pin-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:700;background:#1B3A5C;color:white;margin-left:6px}
+</style>
+<script>
+document.addEventListener('click',e=>{
+const t=e.target.closest('.copy-box');
+if(t){const txt=t.innerText.replace(/Click to copy$/,'').trim();navigator.clipboard.writeText(txt);t.style.background='#DCFCE7';setTimeout(()=>t.style.background='',800)}
+const bp=e.target.closest('.bulk-paste');
+if(bp){bp.select();document.execCommand('copy');bp.style.background='#DCFCE7';setTimeout(()=>bp.style.background='',800)}
+});
+</script>
+</head>
+<body>
+<div class="container">
+
+<h1>Leisure Pools San Antonio</h1>
+<p class="subtitle">Audit & Campaign Rebuild | Account 972-063-3800 | Generated 2026-03-16 | Brand: Leisure Pools | Market: San Antonio&ndash;New Braunfels DMA</p>
+
+<div class="card" style="text-align:center">
+<div class="health-score health-bad">45/100</div>
+<p style="color:var(--muted);margin-top:8px">Account Health Score &mdash; Poor / Needs Rebuild</p>
+<p style="font-size:13px;color:var(--muted);margin-top:4px">Wrong geo ad copy (Florida &amp; Waco references), typo in active headline, PRESENCE_OR_INTEREST on both campaigns, zero extensions, zero audiences, zero device adjustments. 9 conversions on $1,960 spend ($217.82/conv).</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+<strong style="color:var(--navy);font-size:16px;">Contents</strong>
+<a href="#s1">1. Audit Findings (Priority-Ordered)</a>
+<a href="#s2">2. Current Performance Summary</a>
+<a href="#s3">3. Wasted Spend Analysis</a>
+<a href="#s4">4. Campaign Settings &mdash; Current vs Rebuild</a>
+<a href="#s5">5. Ad Group Structure &mdash; Proposed Rebuild</a>
+<a href="#s6">6. Ad Group 1: Pool Builders San Antonio</a>
+<a href="#s7">7. Ad Group 2: Fiberglass Pools San Antonio</a>
+<a href="#s8">8. Ad Group 3: Pool Cost &amp; Pricing</a>
+<a href="#s9">9. Campaign Negatives</a>
+<a href="#s10">10. Sitelinks</a>
+<a href="#s11">11. Callouts</a>
+<a href="#s12">12. Structured Snippets</a>
+<a href="#s13">13. Call Extension</a>
+<a href="#s14">14. Audience Segments</a>
+<a href="#s15">15. Device Bid Adjustments</a>
+<a href="#s16">16. Demographic Adjustments</a>
+<a href="#s17">17. Pre-Launch Checklist</a>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: AUDIT FINDINGS -->
+<!-- ============================================================ -->
+<h2 id="s1">1. Audit Findings</h2>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> PRESENCE_OR_INTEREST Location Targeting (BOTH Campaigns)</strong>
+Both campaigns use <code>geo_target_type_setting.positive_geo_target_type = 7</code> (PRESENCE_OR_INTEREST) instead of PRESENCE only. This allows ads to show to people "interested in" San Antonio but located anywhere &mdash; bleeding budget to out-of-area searchers who will never become customers.<br>
+<strong>Action:</strong> Change to PRESENCE only on both campaigns immediately.
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> Wrong Geo Ad Copy &mdash; "Florida Fiberglass Experts" Headline</strong>
+Fiberglass Pools General ad group has headline <strong>"Florida Fiberglass Experts"</strong> &mdash; this is a San Antonio account, not Florida. Copy-paste error from another dealer. Undermines credibility and relevance for every impression served with this headline.<br>
+<strong>Action:</strong> Replace with "Texas Fiberglass Experts" or "San Antonio Pool Experts".
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> Wrong Geo Ad Copy &mdash; "Waco's premier fiberglass pool builder" Description</strong>
+Fiberglass Pools General has description <strong>"Waco's premier fiberglass pool builder. 30+ stunning designs. Free estimates!"</strong> &mdash; another copy-paste error from Leisure Pools Waco. San Antonio customers seeing "Waco" will bounce.<br>
+<strong>Action:</strong> Replace with "San Antonio's premier fiberglass pool builder. 30+ stunning designs. Free estimates!"
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> Typo &mdash; "Ger Your Free Estimate"</strong>
+Fiberglass Pools General has headline <strong>"Ger Your Free Estimate"</strong> &mdash; missing "t" in "Get". Active typo hurting ad strength and credibility.<br>
+<strong>Action:</strong> Fix to "Get Your Free Estimate".
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> ZERO Extensions (Sitelinks, Callouts, Snippets, Call)</strong>
+No sitelinks, callouts, structured snippets, or call extensions found at customer or campaign level. Extensions significantly improve CTR and ad rank. Their absence directly contributes to the <strong>62.4% impression share lost to rank</strong> on Pool Builder campaign.<br>
+<strong>Action:</strong> Add 8 sitelinks, 12 callouts, structured snippets (Models + Amenities), and call extension.
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> ZERO Customer-Level Assets (No Logo, No Business Name)</strong>
+No customer-level assets found &mdash; no business name, no logo, no marketing images. Missing assets hurt ad rank and prevent auto-generated ad formats from displaying properly.<br>
+<strong>Action:</strong> Upload business name, logo, and marketing images.
+</div>
+
+<div class="alert alert-p1">
+<strong><span class="tag tag-p1">P1 CRITICAL</span> Cost/Pricing Landing Page Conversion Failure</strong>
+Fiberglass Pools Cost/Pricing: <strong>$395.91 spend, 97 clicks, 20.6% CTR, ZERO conversions.</strong> The 20.6% CTR proves strong ad relevance &mdash; people WANT pricing info. But zero conversions after 97 clicks means the <strong>landing page is failing to convert</strong>, not the ads. LP likely doesn't show pricing or has a poor conversion path.<br>
+<strong>Action:</strong> This is a landing page issue, NOT an ads issue. Do NOT change keywords or bids. Flag for Eli to investigate LP. The LP needs a clear pricing range and prominent CTA.
+</div>
+
+<div class="alert alert-p2">
+<strong><span class="tag tag-p2">P2</span> Pool Builder Campaign &mdash; 62.4% IS Lost to Rank</strong>
+Pool Builder / Contractor losing 62.4% of impressions to rank, only 20% impression share. Combination of missing extensions (reduce ad rank), no price anchor (lower expected CTR), and SA market competition. Extensions alone could recover significant IS.<br>
+<strong>Action:</strong> Add all extensions (improves ad rank), add price anchor headline, consider increasing CPC cap to $18&ndash;20 for SA market.
+</div>
+
+<div class="alert alert-p2">
+<strong><span class="tag tag-p2">P2</span> No Price Anchor in Headlines</strong>
+No headline across any ad group contains a price starting point (e.g., "Pools Starting at $45,000"). Price anchor pinned to H2 is standard for pool dealers &mdash; it filters unqualified clicks and improves lead quality.<br>
+<strong>Action:</strong> Add "Pools Starting at $45,000" pinned to H2 on all ad groups.
+</div>
+
+<div class="alert alert-p2">
+<strong><span class="tag tag-p2">P2</span> ZERO Audience Segments</strong>
+No In-Market, Life Events, Affinity, or Custom Intent audiences configured. Audience segments allow bid adjustments for high-value prospects (new homeowners, home improvement shoppers).<br>
+<strong>Action:</strong> Add audiences in observation mode with bid adjustments.
+</div>
+
+<div class="alert alert-p2">
+<strong><span class="tag tag-p2">P2</span> ZERO Device Bid Adjustments</strong>
+No device bid modifiers set despite clear performance disparity. <strong>ALL 9 conversions from mobile.</strong> Desktop: $270 spend, 0 conversions. Tablet: $46 spend, 0 conversions.<br>
+<strong>Action:</strong> Desktop &minus;25%, Tablet &minus;30%, Mobile +0% (base).
+</div>
+
+<div class="alert alert-p2">
+<strong><span class="tag tag-p2">P2</span> No Headline Pinning Strategy</strong>
+All pinned_field values are 0 (no pinning) across all ad groups. Without pinning, headlines appear in random positions. Price anchor must be pinned to H2, keyword anchors should be pinned to H1.<br>
+<strong>Action:</strong> Implement full pinning strategy in rebuild.
+</div>
+
+<div class="alert alert-p3">
+<strong><span class="tag tag-p3">P3</span> ZERO Demographic / HHI Bid Adjustments</strong>
+No age or household income bid adjustments set. Standard pool buyer demographic adjustments should be applied.<br>
+<strong>Action:</strong> Set age and HHI bid adjustments per Section 16.
+</div>
+
+<div class="alert alert-p3">
+<strong><span class="tag tag-p3">P3</span> Consider Consolidating to 1 Campaign</strong>
+2 campaigns splitting the $100/day budget. Could consolidate for better signal aggregation. Not urgent &mdash; current structure works, but rebuild below consolidates into 1 campaign with 3 themed ad groups.<br>
+<strong>Action:</strong> Rebuild consolidates to 1 campaign.
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: PERFORMANCE SUMMARY -->
+<!-- ============================================================ -->
+<h2 id="s2">2. Current Performance Summary</h2>
+
+<div class="card">
+<h3>Account Overview &mdash; Last 30 Days (Feb 14 &ndash; Mar 16, 2026)</h3>
+<div class="metric-grid">
+<div class="metric-box"><div class="value">3,989</div><div class="label">Impressions</div></div>
+<div class="metric-box"><div class="value">411</div><div class="label">Clicks</div></div>
+<div class="metric-box"><div class="value">10.3%</div><div class="label">CTR</div></div>
+<div class="metric-box"><div class="value">$1,960</div><div class="label">Total Cost</div></div>
+<div class="metric-box"><div class="value">9</div><div class="label">Conversions</div></div>
+<div class="metric-box"><div class="value">$217.82</div><div class="label">Cost/Conv</div></div>
+</div>
+
+<h3>Campaign Breakdown</h3>
+<table>
+<tr><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>Cost/Conv</th><th>Avg CPC</th><th>IS</th><th>Lost (Budget)</th><th>Lost (Rank)</th></tr>
+<tr><td>Pool Builder / Contractor</td><td>2,194</td><td>169</td><td>7.7%</td><td>$973.93</td><td>6</td><td>$162.32</td><td>$5.76</td><td>20.0%</td><td>17.5%</td><td class="bad">62.4%</td></tr>
+<tr><td>Fiberglass Pools (Primary)</td><td>1,795</td><td>242</td><td>13.5%</td><td>$986.47</td><td>3</td><td>$328.82</td><td>$4.08</td><td>56.4%</td><td>10.4%</td><td>33.2%</td></tr>
+</table>
+
+<h3>Ad Group Breakdown</h3>
+<table>
+<tr><th>Ad Group</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>Avg CPC</th></tr>
+<tr><td>Pool Builder General</td><td>Pool Builder / Contractor</td><td>1,726</td><td>134</td><td>7.8%</td><td>$770.00</td><td>4</td><td>$5.75</td></tr>
+<tr><td>Pool Contractor</td><td>Pool Builder / Contractor</td><td>468</td><td>35</td><td>7.5%</td><td>$203.93</td><td>2</td><td>$5.83</td></tr>
+<tr><td>Fiberglass Pools Cost/Pricing</td><td>Fiberglass Pools (Primary)</td><td>472</td><td>97</td><td class="warn">20.6%</td><td>$395.91</td><td class="bad">0</td><td>$4.08</td></tr>
+<tr><td>Fiberglass vs Concrete</td><td>Fiberglass Pools (Primary)</td><td>102</td><td>17</td><td>16.7%</td><td>$64.81</td><td>1</td><td>$3.81</td></tr>
+<tr><td>Fiberglass Pool Installation</td><td>Fiberglass Pools (Primary)</td><td>22</td><td>2</td><td>9.1%</td><td>$8.69</td><td>0</td><td>$4.35</td></tr>
+<tr><td>Fiberglass Pools General</td><td>Fiberglass Pools (Primary)</td><td>1,199</td><td>126</td><td>10.5%</td><td>$517.06</td><td>2</td><td>$4.10</td></tr>
+</table>
+
+<h3>Device Performance</h3>
+<div class="device-bar">
+<div style="width:84%;background:var(--navy)" title="Mobile: $1,644 / 9 conv">Mobile 84%</div>
+<div style="width:14%;background:var(--accent)" title="Desktop: $270 / 0 conv">Desktop 14%</div>
+<div style="width:2%;background:var(--muted)" title="Tablet: $46 / 0 conv">Tab 2%</div>
+</div>
+
+<table>
+<tr><th>Device</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Cost</th><th>Conv</th><th>Cost/Conv</th></tr>
+<tr><td>Mobile</td><td>Pool Builder / Contractor</td><td>1,787</td><td>141</td><td>7.9%</td><td>$818.18</td><td>6</td><td>$136.36</td></tr>
+<tr><td>Desktop</td><td>Pool Builder / Contractor</td><td>351</td><td>25</td><td>7.1%</td><td>$139.91</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>Tablet</td><td>Pool Builder / Contractor</td><td>56</td><td>3</td><td>5.4%</td><td>$15.84</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>Mobile</td><td>Fiberglass Pools (Primary)</td><td>1,426</td><td>204</td><td>14.3%</td><td>$826.40</td><td>3</td><td>$275.47</td></tr>
+<tr><td>Desktop</td><td>Fiberglass Pools (Primary)</td><td>348</td><td>31</td><td>8.9%</td><td>$130.23</td><td>0</td><td>&mdash;</td></tr>
+<tr><td>Tablet</td><td>Fiberglass Pools (Primary)</td><td>21</td><td>7</td><td>33.3%</td><td>$29.84</td><td>0</td><td>&mdash;</td></tr>
+</table>
+
+<div class="warning-box">
+<strong>ALL 9 conversions came from mobile.</strong> Desktop spent $270 with 0 conversions. Tablet spent $46 with 0 conversions. Device bid adjustments are critical.
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: WASTED SPEND -->
+<!-- ============================================================ -->
+<h2 id="s3">3. Wasted Spend Analysis</h2>
+
+<div class="card">
+<div class="metric-grid">
+<div class="metric-box"><div class="value" style="color:var(--green)">~$85</div><div class="label">Est. Wasted Spend (30d)</div></div>
+<div class="metric-box"><div class="value" style="color:var(--green)">4.3%</div><div class="label">Waste Rate (Low)</div></div>
+<div class="metric-box"><div class="value">961</div><div class="label">Search Terms</div></div>
+<div class="metric-box"><div class="value">171</div><div class="label">Terms w/ Clicks</div></div>
+</div>
+
+<div class="success-box">
+<strong>Existing negatives are strong.</strong> Both campaigns have ~87 well-organized negatives covering employment, service/maintenance, wrong product, DIY, competitors, geo, and retail. Waste rate is only 4.3% &mdash; well below average.
+</div>
+
+<h3>Waste by Category</h3>
+<table>
+<tr><th>Category</th><th>Est. Spend</th><th>Terms</th><th>Action</th></tr>
+<tr><td>Competitors (aqua pools, keith zars, premier, cody pools, latham)</td><td>$48.17</td><td>9 terms</td><td class="bad">Add as negatives</td></tr>
+<tr><td>Above-ground (stock tank)</td><td>$15.35</td><td>1 term</td><td class="bad">Add "stock tank" as negative</td></tr>
+<tr><td>Service (replaster, renovation)</td><td>$12.19</td><td>2 terms</td><td class="bad">Add as negatives</td></tr>
+<tr><td>Wrong product (hot tub)</td><td>$9.01</td><td>1 term</td><td class="bad">Add "hot tub" as negative</td></tr>
+<tr><td><strong>Total</strong></td><td><strong>~$85</strong></td><td></td><td></td></tr>
+</table>
+
+<h3>Top Converting Search Terms</h3>
+<table>
+<tr><th>Search Term</th><th>Spend</th><th>Conv</th><th>Cost/Conv</th></tr>
+<tr><td>"fiberglass pools"</td><td>$125.30</td><td>1</td><td>$125.30</td></tr>
+<tr><td>"container pools texas"</td><td>$8.99</td><td>1</td><td>$8.99</td></tr>
+</table>
+
+<h3>Additional Negatives to Add (Not Currently in Account)</h3>
+<table>
+<tr><th>Negative Keyword</th><th>Reason</th><th>Est. Waste</th></tr>
+<tr><td>"pool designer"</td><td>Design intent, not buyer intent</td><td>$24.15</td></tr>
+<tr><td>"replaster" / "replastering"</td><td>Service &mdash; not new pool</td><td>$4.92+</td></tr>
+<tr><td>"renovation"</td><td>Service &mdash; "pool renovation" triggered clicks</td><td>$4.92</td></tr>
+<tr><td>"hot tub"</td><td>Wrong product</td><td>$9.01</td></tr>
+<tr><td>"indoor pool"</td><td>Wrong product</td><td>&mdash;</td></tr>
+<tr><td>"swimming lessons"</td><td>Irrelevant</td><td>&mdash;</td></tr>
+<tr><td>"public pool"</td><td>Irrelevant</td><td>&mdash;</td></tr>
+<tr><td>"hotel pool"</td><td>Irrelevant</td><td>&mdash;</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: CAMPAIGN SETTINGS -->
+<!-- ============================================================ -->
+<h2 id="s4">4. Campaign Settings &mdash; Current vs Rebuild</h2>
+
+<div class="card">
+<table>
+<tr><th>Setting</th><th>Current</th><th>Rebuild</th></tr>
+<tr><td>Campaign Structure</td><td>2 campaigns (Pool Builder + Fiberglass)</td><td><span class="tag tag-change">CHANGE</span> Consolidate to 1 campaign with 3 ad groups</td></tr>
+<tr><td>Campaign Name</td><td>Pool Builder / Contractor + Fiberglass Pools (Primary)</td><td><div class="copy-box">Leisure Pools San Antonio</div></td></tr>
+<tr><td>Networks</td><td>Google Search ONLY &mdash; <span class="ok">PASS</span></td><td>No change needed</td></tr>
+<tr><td>Bid Strategy</td><td>Maximize Clicks w/ $15 CPC cap &mdash; <span class="ok">OK</span></td><td>Keep Maximize Clicks, raise cap to $18</td></tr>
+<tr><td>Max CPC Cap</td><td>$15.00</td><td><div class="copy-box">$18.00</div> (SA is competitive, IS lost to rank is high)</td></tr>
+<tr><td>Daily Budget</td><td>2 &times; $50/day ($3,000/mo total)</td><td><div class="copy-box">$100.00</div> /day ($3,000/mo combined)</td></tr>
+<tr><td>Location</td><td>San Antonio&ndash;New Braunfels DMA &mdash; <span class="ok">PASS</span></td><td>No change needed</td></tr>
+<tr><td>Location Targeting</td><td>PRESENCE_OR_INTEREST &mdash; <span class="bad">FAIL</span></td><td><span class="tag tag-change">CHANGE</span> PRESENCE only</td></tr>
+<tr><td>Ad Schedule</td><td>Not set (24/7)</td><td><div class="copy-box">Mon-Sun 6AM-10PM</div></td></tr>
+<tr><td>Ad Rotation</td><td>Optimize</td><td>Optimize (no change)</td></tr>
+<tr><td>Ad Groups</td><td>6 ad groups across 2 campaigns</td><td>3 themed ad groups in 1 campaign</td></tr>
+<tr><td>Extensions</td><td>ZERO &mdash; <span class="bad">FAIL</span></td><td>8 sitelinks, 12 callouts, 2 snippets, call</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: AD GROUP STRUCTURE -->
+<!-- ============================================================ -->
+<h2 id="s5">5. Ad Group Structure &mdash; Proposed Rebuild</h2>
+
+<div class="card">
+<p>Consolidate from 2 campaigns / 6 ad groups into <strong>1 campaign / 3 ad groups</strong>. Each ad group has a clear theme, dedicated keywords, unique RSA copy, and proper pinning.</p>
+
+<table>
+<tr><th>Ad Group</th><th>Theme</th><th>Keywords</th><th>Match Types</th><th>Paths</th></tr>
+<tr><td>AG1: Pool Builders San Antonio</td><td>Brand + installer intent</td><td>11 keywords</td><td><span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></td><td>Pool-Builders / San-Antonio</td></tr>
+<tr><td>AG2: Fiberglass Pools San Antonio</td><td>Product + geo intent</td><td>10 keywords</td><td><span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></td><td>Fiberglass / San-Antonio</td></tr>
+<tr><td>AG3: Pool Cost &amp; Pricing</td><td>Cost / pricing intent</td><td>11 keywords</td><td><span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></td><td>Pool-Pricing / Free-Quote</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: AD GROUP 1 -->
+<!-- ============================================================ -->
+<h2 id="s6">6. Ad Group 1: Pool Builders San Antonio</h2>
+
+<div class="card">
+<h3>Keywords <span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></h3>
+<textarea class="bulk-paste" rows="13" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"pool builders san antonio"
+"pool builder san antonio"
+[pool builders san antonio]
+[san antonio pool builders]
+"swimming pool builder san antonio"
+"pool builders near me"
+[pool builders near me]
+"pool builder near me"
+"leisure pools san antonio"
+[leisure pools san antonio]
+"best pool builder san antonio"</textarea>
+
+<h3>RSA &mdash; 15 Headlines</h3>
+<table>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Pin</th><th>Category</th></tr>
+<tr><td>1</td><td><div class="copy-box">Pool Builders San Antonio</div></td><td>25 <span class="ok">OK</span></td><td><span class="pin-tag">H1</span></td><td><span class="tag tag-geo">Geo+KW</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Pools Starting at $45,000</div></td><td>25 <span class="ok">OK</span></td><td><span class="pin-tag">H2</span></td><td><span class="tag tag-product">Price Anchor</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Leisure Pools San Antonio</div></td><td>25 <span class="ok">OK</span></td><td></td><td><span class="tag tag-brand">Brand</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Top-Rated Pool Builder</div></td><td>22 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>5</td><td><div class="copy-box">Get Your Free Estimate</div></td><td>22 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>6</td><td><div class="copy-box">Licensed Pool Builders</div></td><td>22 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>7</td><td><div class="copy-box">30+ Fiberglass Pool Models</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">Product</span></td></tr>
+<tr><td>8</td><td><div class="copy-box">Award-Winning Pool Builder</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>9</td><td><div class="copy-box">Trusted SA Pool Builders</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-geo">Geo+Trust</span></td></tr>
+<tr><td>10</td><td><div class="copy-box">Expert Pool Installation</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>11</td><td><div class="copy-box">Request a Free Quote Today</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>12</td><td><div class="copy-box">Your Dream Pool Awaits</div></td><td>22 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Desire</span></td></tr>
+<tr><td>13</td><td><div class="copy-box">Premium Pool Builders</div></td><td>21 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>14</td><td><div class="copy-box">Financing Available</div></td><td>19 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>15</td><td><div class="copy-box">{KEYWORD:Pool Builders}</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">DKI</span></td></tr>
+</table>
+
+<h3>Bulk Paste &mdash; All 15 Headlines</h3>
+<textarea class="bulk-paste" rows="17" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Pool Builders San Antonio
+Pools Starting at $45,000
+Leisure Pools San Antonio
+Top-Rated Pool Builder
+Get Your Free Estimate
+Licensed Pool Builders
+30+ Fiberglass Pool Models
+Award-Winning Pool Builder
+Trusted SA Pool Builders
+Expert Pool Installation
+Request a Free Quote Today
+Your Dream Pool Awaits
+Premium Pool Builders
+Financing Available
+{KEYWORD:Pool Builders}</textarea>
+
+<h3>RSA &mdash; 4 Descriptions</h3>
+<table>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+<tr><td>1</td><td><div class="copy-box">San Antonio's trusted pool builder. 30+ fiberglass designs. Get your free estimate today!</div></td><td>89 <span class="ok">OK</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Expert pool builders serving San Antonio. Quality craftsmanship & lifetime warranty.</div></td><td>84 <span class="ok">OK</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Licensed pool builder with 30+ designs. Fast installation, lifetime warranty. Free quotes!</div></td><td>90 <span class="ok">OK</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Looking for a pool builder? Leisure Pools San Antonio delivers quality pools you'll love.</div></td><td>89 <span class="ok">OK</span></td></tr>
+</table>
+
+<h3>Paths</h3>
+<div class="copy-box">Path 1: Pool-Builders</div> <span class="char-count">13 chars <span class="ok">OK</span></span>
+<div class="copy-box">Path 2: San-Antonio</div> <span class="char-count">11 chars <span class="ok">OK</span></span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: AD GROUP 2 -->
+<!-- ============================================================ -->
+<h2 id="s7">7. Ad Group 2: Fiberglass Pools San Antonio</h2>
+
+<div class="card">
+<h3>Keywords <span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></h3>
+<textarea class="bulk-paste" rows="12" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"fiberglass pools san antonio"
+[fiberglass pools san antonio]
+"fiberglass pool san antonio"
+"fiberglass swimming pools"
+"fiberglass pools near me"
+[fiberglass pools near me]
+"fiberglass pool"
+"fiberglass pools"
+[fiberglass pools]
+"fiberglass swimming pool"</textarea>
+
+<h3>RSA &mdash; 15 Headlines</h3>
+<table>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Pin</th><th>Category</th></tr>
+<tr><td>1</td><td><div class="copy-box">Fiberglass Pools San Antonio</div></td><td>28 <span class="ok">OK</span></td><td><span class="pin-tag">H1</span></td><td><span class="tag tag-geo">Geo+KW</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Pools Starting at $45,000</div></td><td>25 <span class="ok">OK</span></td><td><span class="pin-tag">H2</span></td><td><span class="tag tag-product">Price Anchor</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Leisure Pools San Antonio</div></td><td>25 <span class="ok">OK</span></td><td></td><td><span class="tag tag-brand">Brand</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Premium Fiberglass Pools</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">Product</span></td></tr>
+<tr><td>5</td><td><div class="copy-box">Get a Free Pool Quote</div></td><td>21 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>6</td><td><div class="copy-box">30+ Pool Designs Available</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">Product</span></td></tr>
+<tr><td>7</td><td><div class="copy-box">Fiberglass Pool Experts</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>8</td><td><div class="copy-box">Low Maintenance Pools</div></td><td>21 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>9</td><td><div class="copy-box">Fast 2-4 Week Installation</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>10</td><td><div class="copy-box">Transform Your Backyard</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Desire</span></td></tr>
+<tr><td>11</td><td><div class="copy-box">Lifetime Structural Warranty</div></td><td>28 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>12</td><td><div class="copy-box">San Antonio Pool Experts</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-geo">Geo+Trust</span></td></tr>
+<tr><td>13</td><td><div class="copy-box">Award-Winning Fiberglass</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>14</td><td><div class="copy-box">Request a Free Estimate</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>15</td><td><div class="copy-box">{KEYWORD:Fiberglass Pools}</div></td><td>26 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">DKI</span></td></tr>
+</table>
+
+<h3>Bulk Paste &mdash; All 15 Headlines</h3>
+<textarea class="bulk-paste" rows="17" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Fiberglass Pools San Antonio
+Pools Starting at $45,000
+Leisure Pools San Antonio
+Premium Fiberglass Pools
+Get a Free Pool Quote
+30+ Pool Designs Available
+Fiberglass Pool Experts
+Low Maintenance Pools
+Fast 2-4 Week Installation
+Transform Your Backyard
+Lifetime Structural Warranty
+San Antonio Pool Experts
+Award-Winning Fiberglass
+Request a Free Estimate
+{KEYWORD:Fiberglass Pools}</textarea>
+
+<h3>RSA &mdash; 4 Descriptions</h3>
+<table>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+<tr><td>1</td><td><div class="copy-box">San Antonio's premier fiberglass pool builder. 30+ stunning designs. Free estimates today!</div></td><td>90 <span class="ok">OK</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Fiberglass pools install faster than concrete. Low maintenance. Lifetime warranty.</div></td><td>82 <span class="ok">OK</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Browse 30+ Leisure Pools fiberglass models. Transform your backyard. Request a free quote!</div></td><td>90 <span class="ok">OK</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Premium fiberglass pools with lifetime warranty. Financing available. Free consult.</div></td><td>83 <span class="ok">OK</span></td></tr>
+</table>
+
+<h3>Paths</h3>
+<div class="copy-box">Path 1: Fiberglass</div> <span class="char-count">10 chars <span class="ok">OK</span></span>
+<div class="copy-box">Path 2: San-Antonio</div> <span class="char-count">11 chars <span class="ok">OK</span></span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: AD GROUP 3 -->
+<!-- ============================================================ -->
+<h2 id="s8">8. Ad Group 3: Pool Cost &amp; Pricing</h2>
+
+<div class="card">
+<h3>Keywords <span class="tag tag-phrase">Phrase</span> + <span class="tag tag-exact">Exact</span></h3>
+<textarea class="bulk-paste" rows="13" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"fiberglass pool cost"
+[fiberglass pool cost]
+"fiberglass pool cost san antonio"
+"how much does a fiberglass pool cost"
+"fiberglass pool price"
+[fiberglass pool price]
+"fiberglass pool pricing"
+"inground pool cost"
+"pool cost san antonio"
+"fiberglass vs concrete pool"
+"fiberglass vs gunite pool"</textarea>
+
+<h3>RSA &mdash; 15 Headlines</h3>
+<table>
+<tr><th>#</th><th>Headline</th><th>Chars</th><th>Pin</th><th>Category</th></tr>
+<tr><td>1</td><td><div class="copy-box">Fiberglass Pool Cost</div></td><td>20 <span class="ok">OK</span></td><td><span class="pin-tag">H1</span></td><td><span class="tag tag-product">KW Anchor</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Pools Starting at $45,000</div></td><td>25 <span class="ok">OK</span></td><td><span class="pin-tag">H2</span></td><td><span class="tag tag-product">Price Anchor</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Leisure Pools San Antonio</div></td><td>25 <span class="ok">OK</span></td><td></td><td><span class="tag tag-brand">Brand</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Transparent Pool Pricing</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Trust</span></td></tr>
+<tr><td>5</td><td><div class="copy-box">Get a Free Pool Quote</div></td><td>21 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>6</td><td><div class="copy-box">Affordable Fiberglass Pools</div></td><td>27 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">Product</span></td></tr>
+<tr><td>7</td><td><div class="copy-box">Flexible Pool Financing</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>8</td><td><div class="copy-box">Compare Pool Costs Today</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>9</td><td><div class="copy-box">See Pool Pricing Online</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>10</td><td><div class="copy-box">Pools for Every Budget</div></td><td>22 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>11</td><td><div class="copy-box">Finance Your Dream Pool</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Desire</span></td></tr>
+<tr><td>12</td><td><div class="copy-box">Low Cost Pool Ownership</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-benefit">Benefit</span></td></tr>
+<tr><td>13</td><td><div class="copy-box">Request a Free Estimate</div></td><td>23 <span class="ok">OK</span></td><td></td><td><span class="tag tag-cta">CTA</span></td></tr>
+<tr><td>14</td><td><div class="copy-box">San Antonio Pool Pricing</div></td><td>24 <span class="ok">OK</span></td><td></td><td><span class="tag tag-geo">Geo</span></td></tr>
+<tr><td>15</td><td><div class="copy-box">{KEYWORD:Pool Cost}</div></td><td>19 <span class="ok">OK</span></td><td></td><td><span class="tag tag-product">DKI</span></td></tr>
+</table>
+
+<h3>Bulk Paste &mdash; All 15 Headlines</h3>
+<textarea class="bulk-paste" rows="17" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Fiberglass Pool Cost
+Pools Starting at $45,000
+Leisure Pools San Antonio
+Transparent Pool Pricing
+Get a Free Pool Quote
+Affordable Fiberglass Pools
+Flexible Pool Financing
+Compare Pool Costs Today
+See Pool Pricing Online
+Pools for Every Budget
+Finance Your Dream Pool
+Low Cost Pool Ownership
+Request a Free Estimate
+San Antonio Pool Pricing
+{KEYWORD:Pool Cost}</textarea>
+
+<h3>RSA &mdash; 4 Descriptions</h3>
+<table>
+<tr><th>#</th><th>Description</th><th>Chars</th></tr>
+<tr><td>1</td><td><div class="copy-box">Fiberglass pool pricing for San Antonio. Affordable options & flexible financing.</div></td><td>81 <span class="ok">OK</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Fiberglass costs less to maintain than concrete. Get transparent pricing and a free quote.</div></td><td>90 <span class="ok">OK</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Quality pools for every budget. Financing available. Request your free estimate today!</div></td><td>86 <span class="ok">OK</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">How much does a fiberglass pool cost? Free consultation from Leisure Pools San Antonio.</div></td><td>87 <span class="ok">OK</span></td></tr>
+</table>
+
+<h3>Paths</h3>
+<div class="copy-box">Path 1: Pool-Pricing</div> <span class="char-count">12 chars <span class="ok">OK</span></span>
+<div class="copy-box">Path 2: Free-Quote</div> <span class="char-count">10 chars <span class="ok">OK</span></span>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: CAMPAIGN NEGATIVES -->
+<!-- ============================================================ -->
+<h2 id="s9">9. Campaign Negatives</h2>
+
+<div class="card">
+<div class="success-box">
+<strong>Existing negatives are strong (~87 per campaign).</strong> The lists below contain only the <strong>additional negatives to add</strong> &mdash; these are NOT already in the account.
+</div>
+
+<h3>Service / Maintenance (NEW)</h3>
+<textarea class="bulk-paste" rows="6" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"replaster"
+"replastering"
+"resurface"
+"renovation"</textarea>
+
+<h3>Wrong Product (NEW)</h3>
+<textarea class="bulk-paste" rows="5" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"hot tub"
+"jacuzzi"
+"indoor pool"</textarea>
+
+<h3>Irrelevant (NEW)</h3>
+<textarea class="bulk-paste" rows="7" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"swimming lessons"
+"public pool"
+"hotel pool"
+"apartment pool"
+"pool designer"</textarea>
+
+<h3>Competitors (NEW)</h3>
+<textarea class="bulk-paste" rows="7" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"cody pools"
+"riverbend pools"
+"blue world pools"
+"city view pools"
+"build with you pools"</textarea>
+
+<h3>Complete NEW Negatives &mdash; Bulk Paste (All in One)</h3>
+<textarea class="bulk-paste" rows="20" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">"replaster"
+"replastering"
+"resurface"
+"renovation"
+"hot tub"
+"jacuzzi"
+"indoor pool"
+"swimming lessons"
+"public pool"
+"hotel pool"
+"apartment pool"
+"pool designer"
+"cody pools"
+"riverbend pools"
+"blue world pools"
+"city view pools"
+"build with you pools"</textarea>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: SITELINKS -->
+<!-- ============================================================ -->
+<h2 id="s10">10. Sitelinks (8 Required)</h2>
+
+<div class="card">
+<p>Currently: <strong>ZERO sitelinks.</strong> Add all 8 below at customer level.</p>
+
+<table>
+<tr><th>#</th><th>Link Text</th><th>Chars</th><th>Description 1</th><th>Chars</th><th>Description 2</th><th>Chars</th><th>URL</th></tr>
+<tr>
+<td>1</td>
+<td><div class="copy-box">Our Fiberglass Pools</div></td><td>20 <span class="ok">OK</span></td>
+<td><div class="copy-box">Browse 30+ pool designs to find</div></td><td>31 <span class="ok">OK</span></td>
+<td><div class="copy-box">your perfect match today</div></td><td>24 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/pools</div></td>
+</tr>
+<tr>
+<td>2</td>
+<td><div class="copy-box">Pool Cost & Financing</div></td><td>21 <span class="ok">OK</span></td>
+<td><div class="copy-box">Transparent pricing & flexible</div></td><td>30 <span class="ok">OK</span></td>
+<td><div class="copy-box">financing options available</div></td><td>27 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/pool-cost</div></td>
+</tr>
+<tr>
+<td>3</td>
+<td><div class="copy-box">Pool Photo Gallery</div></td><td>18 <span class="ok">OK</span></td>
+<td><div class="copy-box">See stunning completed pools in</div></td><td>31 <span class="ok">OK</span></td>
+<td><div class="copy-box">San Antonio area homes</div></td><td>22 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/gallery</div></td>
+</tr>
+<tr>
+<td>4</td>
+<td><div class="copy-box">Request a Free Quote</div></td><td>20 <span class="ok">OK</span></td>
+<td><div class="copy-box">Get your no-obligation estimate</div></td><td>31 <span class="ok">OK</span></td>
+<td><div class="copy-box">Fast response within 24 hours</div></td><td>29 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/contact</div></td>
+</tr>
+<tr>
+<td>5</td>
+<td><div class="copy-box">Why Fiberglass?</div></td><td>15 <span class="ok">OK</span></td>
+<td><div class="copy-box">Lower maintenance than concrete</div></td><td>31 <span class="ok">OK</span></td>
+<td><div class="copy-box">Lifetime warranty included</div></td><td>26 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/why-fiberglass</div></td>
+</tr>
+<tr>
+<td>6</td>
+<td><div class="copy-box">Pool Models & Sizes</div></td><td>19 <span class="ok">OK</span></td>
+<td><div class="copy-box">From cocktail to large family</div></td><td>29 <span class="ok">OK</span></td>
+<td><div class="copy-box">30+ shapes and sizes available</div></td><td>30 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/models</div></td>
+</tr>
+<tr>
+<td>7</td>
+<td><div class="copy-box">About Our Company</div></td><td>17 <span class="ok">OK</span></td>
+<td><div class="copy-box">San Antonio trusted pool builder</div></td><td>32 <span class="ok">OK</span></td>
+<td><div class="copy-box">Licensed, insured & experienced</div></td><td>31 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/about</div></td>
+</tr>
+<tr>
+<td>8</td>
+<td><div class="copy-box">Customer Reviews</div></td><td>16 <span class="ok">OK</span></td>
+<td><div class="copy-box">See what happy customers say</div></td><td>28 <span class="ok">OK</span></td>
+<td><div class="copy-box">5-star rated pool builder</div></td><td>25 <span class="ok">OK</span></td>
+<td><div class="copy-box">leisurepoolsusa.com/reviews</div></td>
+</tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 11: CALLOUTS -->
+<!-- ============================================================ -->
+<h2 id="s11">11. Callouts (12 Required)</h2>
+
+<div class="card">
+<p>Currently: <strong>ZERO callouts.</strong> Add all 12 below at customer level.</p>
+
+<table>
+<tr><th>#</th><th>Callout Text</th><th>Chars</th><th>Status</th></tr>
+<tr><td>1</td><td><div class="copy-box">Free Quotes</div></td><td>11 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>2</td><td><div class="copy-box">Licensed & Insured</div></td><td>18 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>3</td><td><div class="copy-box">Financing Available</div></td><td>19 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>4</td><td><div class="copy-box">Lifetime Warranty</div></td><td>17 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>5</td><td><div class="copy-box">Fast 2-4 Week Install</div></td><td>21 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>6</td><td><div class="copy-box">30+ Pool Designs</div></td><td>16 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>7</td><td><div class="copy-box">Award-Winning Pools</div></td><td>19 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>8</td><td><div class="copy-box">Family-Owned Business</div></td><td>21 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>9</td><td><div class="copy-box">Free Backyard Consult</div></td><td>21 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>10</td><td><div class="copy-box">Low Maintenance Pools</div></td><td>21 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>11</td><td><div class="copy-box">Premium Fiberglass</div></td><td>18 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+<tr><td>12</td><td><div class="copy-box">San Antonio's Best</div></td><td>18 <span class="ok">OK</span></td><td><span class="tag tag-new">NEW</span></td></tr>
+</table>
+
+<h3>Bulk Paste &mdash; All 12 Callouts</h3>
+<textarea class="bulk-paste" rows="14" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Free Quotes
+Licensed & Insured
+Financing Available
+Lifetime Warranty
+Fast 2-4 Week Install
+30+ Pool Designs
+Award-Winning Pools
+Family-Owned Business
+Free Backyard Consult
+Low Maintenance Pools
+Premium Fiberglass
+San Antonio's Best</textarea>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 12: STRUCTURED SNIPPETS -->
+<!-- ============================================================ -->
+<h2 id="s12">12. Structured Snippets</h2>
+
+<div class="card">
+<p>Currently: <strong>ZERO structured snippets.</strong> Add both headers below at customer level.</p>
+
+<h3>Header: Models</h3>
+<textarea class="bulk-paste" rows="9" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Monaco
+Elegance
+Riviera
+Tuscany
+Moroccan
+Spirit
+Limitless</textarea>
+
+<h3>Header: Amenities</h3>
+<textarea class="bulk-paste" rows="8" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">Built-In Spa
+Tanning Ledge
+LED Lighting
+Water Features
+Bench Seating
+Auto Cover Ready</textarea>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 13: CALL EXTENSION -->
+<!-- ============================================================ -->
+<h2 id="s13">13. Call Extension</h2>
+
+<div class="card">
+<div class="warning-box">
+<strong>DEALER PHONE NUMBER NEEDED.</strong> No call extension exists and no phone number is on file for Leisure Pools San Antonio. Eli must obtain the dealer's phone number before adding the call extension.
+</div>
+
+<table>
+<tr><th>Campaign</th><th>Phone Number</th><th>Status</th></tr>
+<tr><td>Leisure Pools San Antonio (rebuild)</td><td><strong style="color:var(--red)">NEEDS DEALER PHONE NUMBER</strong></td><td><span class="bad">Missing</span></td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 14: AUDIENCE SEGMENTS -->
+<!-- ============================================================ -->
+<h2 id="s14">14. Audience Segments</h2>
+
+<div class="card">
+<p>Currently: <strong>ZERO audience segments.</strong> Add all below as <strong>Observation</strong> (not Targeting) with bid adjustments.</p>
+
+<h3>In-Market Audiences</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj.</th></tr>
+<tr><td>Swimming Pools & Spas</td><td><div class="copy-box">+20%</div></td></tr>
+<tr><td>Home Improvement</td><td><div class="copy-box">+15%</div></td></tr>
+<tr><td>Residential Properties for Sale</td><td><div class="copy-box">+15%</div></td></tr>
+<tr><td>Kitchen & Bath Remodeling</td><td><div class="copy-box">+10%</div></td></tr>
+<tr><td>Landscape Services</td><td><div class="copy-box">+10%</div></td></tr>
+</table>
+
+<h3>Life Events</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj.</th></tr>
+<tr><td>Recently Moved</td><td><div class="copy-box">+20%</div></td></tr>
+<tr><td>Recently Purchased Home</td><td><div class="copy-box">+20%</div></td></tr>
+</table>
+
+<h3>Affinity</h3>
+<table>
+<tr><th>Audience</th><th>Bid Adj.</th></tr>
+<tr><td>Home & Garden Enthusiasts</td><td><div class="copy-box">+10%</div></td></tr>
+<tr><td>Luxury Shoppers</td><td><div class="copy-box">+10%</div></td></tr>
+<tr><td>Do-It-Yourselfers</td><td><div class="copy-box">+0%</div> (observation only)</td></tr>
+</table>
+
+<h3>Custom Intent (Recommended)</h3>
+<p>Create a custom intent audience with the following keywords and URLs:</p>
+<textarea class="bulk-paste" rows="8" readonly onclick="this.select();document.execCommand('copy');this.style.background='#DCFCE7';setTimeout(()=>this.style.background='',800)">fiberglass pool cost
+fiberglass pool installation
+leisure pools dealer
+fiberglass vs concrete pool
+backyard pool ideas
+pool financing options</textarea>
+<p style="margin-top:8px">Bid adjustment: <strong>+15%</strong></p>
+
+<h3>Exclusions</h3>
+<table>
+<tr><th>Audience to Exclude</th></tr>
+<tr><td>Renters</td></tr>
+<tr><td>Apartment Dwellers</td></tr>
+<tr><td>In-Market for Rental Properties</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 15: DEVICE BID ADJUSTMENTS -->
+<!-- ============================================================ -->
+<h2 id="s15">15. Device Bid Adjustments</h2>
+
+<div class="card">
+<p>Currently: <strong>no device bid adjustments set.</strong> Mobile drives ALL 9 conversions. Desktop and tablet are burning budget.</p>
+
+<table>
+<tr><th>Device</th><th>Current Adj.</th><th>Recommended</th><th>30d Spend</th><th>30d Conv</th><th>Reasoning</th></tr>
+<tr><td>Mobile</td><td>0%</td><td><div class="copy-box">+0%</div></td><td>$1,644</td><td><span class="ok">9</span></td><td>All conversions from mobile. Keep as base.</td></tr>
+<tr><td>Desktop</td><td>0%</td><td><div class="copy-box">-25%</div></td><td>$270</td><td><span class="bad">0</span></td><td>$270 spent, zero conversions. Significant reduction.</td></tr>
+<tr><td>Tablet</td><td>0%</td><td><div class="copy-box">-30%</div></td><td>$46</td><td><span class="bad">0</span></td><td>$46 spent, zero conversions. Aggressive reduction.</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 16: DEMOGRAPHIC ADJUSTMENTS -->
+<!-- ============================================================ -->
+<h2 id="s16">16. Demographic Adjustments</h2>
+
+<div class="card">
+<h3>Age Range</h3>
+<table>
+<tr><th>Age Range</th><th>Recommended Adj.</th><th>Reasoning</th></tr>
+<tr><td>18&ndash;24</td><td><div class="copy-box">-30%</div></td><td>Very unlikely pool buyers</td></tr>
+<tr><td>25&ndash;34</td><td><div class="copy-box">+0%</div></td><td>First-time homebuyers &mdash; possible</td></tr>
+<tr><td>35&ndash;44</td><td><div class="copy-box">+15%</div></td><td>Peak pool buying age</td></tr>
+<tr><td>45&ndash;54</td><td><div class="copy-box">+20%</div></td><td>Peak pool buying age, highest income</td></tr>
+<tr><td>55&ndash;64</td><td><div class="copy-box">+10%</div></td><td>Good buyers, established homeowners</td></tr>
+<tr><td>65+</td><td><div class="copy-box">-10%</div></td><td>Some buyers, slight reduction</td></tr>
+<tr><td>Unknown</td><td><div class="copy-box">+0%</div></td><td>No data to act on</td></tr>
+</table>
+
+<h3>Household Income (HHI)</h3>
+<table>
+<tr><th>Income Tier</th><th>Recommended Adj.</th><th>Reasoning</th></tr>
+<tr><td>Top 10%</td><td><div class="copy-box">+20%</div></td><td>High likelihood of $45K+ pool purchase</td></tr>
+<tr><td>11&ndash;20%</td><td><div class="copy-box">+10%</div></td><td>Strong pool buyer demographic</td></tr>
+<tr><td>21&ndash;30%</td><td><div class="copy-box">+0%</div></td><td>Baseline</td></tr>
+<tr><td>31&ndash;40%</td><td><div class="copy-box">-5%</div></td><td>Below average for $45K+ purchase</td></tr>
+<tr><td>41&ndash;50%</td><td><div class="copy-box">-10%</div></td><td>Less likely to afford fiberglass pool</td></tr>
+<tr><td>Lower 50%</td><td><div class="copy-box">-20%</div></td><td>Least likely to convert</td></tr>
+<tr><td>Unknown</td><td><div class="copy-box">+0%</div></td><td>No data to act on</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 17: PRE-LAUNCH CHECKLIST -->
+<!-- ============================================================ -->
+<h2 id="s17">17. Pre-Launch Checklist</h2>
+
+<div class="card">
+<h3><span class="tag tag-p1">P1 CRITICAL</span> &mdash; Do First</h3>
+<ul class="checklist">
+<li><input type="checkbox"> Fix location targeting to PRESENCE ONLY on both current campaigns (until rebuild)</li>
+<li><input type="checkbox"> Remove "Florida Fiberglass Experts" headline from Fiberglass Pools General</li>
+<li><input type="checkbox"> Remove "Waco's premier fiberglass pool builder..." description from Fiberglass Pools General</li>
+<li><input type="checkbox"> Fix "Ger Your Free Estimate" typo to "Get Your Free Estimate"</li>
+<li><input type="checkbox"> Investigate Cost/Pricing landing page &mdash; 97 clicks, 0 conversions (LP issue, not ads)</li>
+<li><input type="checkbox"> Upload business name + logo as customer-level assets</li>
+</ul>
+
+<h3><span class="tag tag-p1">P1</span> Campaign Rebuild</h3>
+<ul class="checklist">
+<li><input type="checkbox"> Create new campaign "Leisure Pools San Antonio" with $100/day budget</li>
+<li><input type="checkbox"> Set bid strategy: Maximize Clicks with $18.00 CPC cap</li>
+<li><input type="checkbox"> Set location: San Antonio&ndash;New Braunfels DMA, PRESENCE only</li>
+<li><input type="checkbox"> Set ad schedule: Mon&ndash;Sun 6AM&ndash;10PM</li>
+<li><input type="checkbox"> Create AG1: Pool Builders San Antonio (11 keywords, Section 6)</li>
+<li><input type="checkbox"> Create AG2: Fiberglass Pools San Antonio (10 keywords, Section 7)</li>
+<li><input type="checkbox"> Create AG3: Pool Cost & Pricing (11 keywords, Section 8)</li>
+<li><input type="checkbox"> Build RSAs: 15 headlines + 4 descriptions per ad group with pinning</li>
+<li><input type="checkbox"> Set paths on all 3 RSAs</li>
+<li><input type="checkbox"> Pin keyword anchor to H1 on all ad groups</li>
+<li><input type="checkbox"> Pin price anchor "Pools Starting at $45,000" to H2 on all ad groups</li>
+</ul>
+
+<h3><span class="tag tag-p1">P1</span> Extensions</h3>
+<ul class="checklist">
+<li><input type="checkbox"> Add 8 sitelinks at customer level (Section 10)</li>
+<li><input type="checkbox"> Add 12 callouts at customer level (Section 11)</li>
+<li><input type="checkbox"> Add structured snippets: Models + Amenities (Section 12)</li>
+<li><input type="checkbox"> Get dealer phone number and add call extension (Section 13)</li>
+</ul>
+
+<h3><span class="tag tag-p2">P2</span> Targeting & Bid Adjustments</h3>
+<ul class="checklist">
+<li><input type="checkbox"> Add 17 new negative keywords (Section 9)</li>
+<li><input type="checkbox"> Add audience segments in Observation mode (Section 14)</li>
+<li><input type="checkbox"> Set device bid adjustments: Desktop &minus;25%, Tablet &minus;30% (Section 15)</li>
+<li><input type="checkbox"> Set age bid adjustments (Section 16)</li>
+<li><input type="checkbox"> Set HHI bid adjustments (Section 16)</li>
+</ul>
+
+<h3><span class="tag tag-p2">P2</span> Launch & Monitor</h3>
+<ul class="checklist">
+<li><input type="checkbox"> Pause old "Pool Builder / Contractor" campaign</li>
+<li><input type="checkbox"> Pause old "Fiberglass Pools (Primary)" campaign</li>
+<li><input type="checkbox"> Enable new "Leisure Pools San Antonio" campaign</li>
+<li><input type="checkbox"> Verify ads are serving correctly (check ad preview)</li>
+<li><input type="checkbox"> Monitor search terms weekly &mdash; add new negatives as needed</li>
+<li><input type="checkbox"> After 30 days: review CPA trend and consider tCPA bid strategy if 30+ conv/mo</li>
+</ul>
+</div>
+
+<div class="card" style="text-align:center;margin-top:32px;padding:30px">
+<p style="color:var(--muted);font-size:13px">Generated by Claude Code Audit System | Leisure Pools San Antonio | Account 972-063-3800 | 2026-03-16</p>
+<p style="color:var(--muted);font-size:12px;margin-top:4px">Brand: Leisure Pools | Market: San Antonio&ndash;New Braunfels DMA, TX</p>
+</div>
+
+</div>
+</body>
+</html>

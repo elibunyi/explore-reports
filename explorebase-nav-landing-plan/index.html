@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ExploreBase — Nav Hierarchy & Landing Page Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; color: #1E293B; line-height: 1.6; background: #F8FAFC; }
+.cover {
+    background: linear-gradient(135deg, #0057B7 0%, #003D82 50%, #0F172A 100%);
+    color: white; padding: 60px 60px 50px; min-height: 20vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+}
+.cover h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+.cover .sub { font-size: 18px; font-weight: 300; opacity: 0.8; margin-bottom: 16px; }
+.cover .meta { font-size: 13px; opacity: 0.5; }
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 30px; }
+h2 { font-size: 22px; font-weight: 700; color: #0F172A; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 3px solid #0057B7; }
+h3 { font-size: 16px; font-weight: 600; color: #334155; margin: 28px 0 12px; }
+h4 { font-size: 14px; font-weight: 600; color: #0057B7; margin: 20px 0 8px; }
+p.desc { font-size: 13px; color: #64748B; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 13px; }
+th { background: #0F172A; color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+td { padding: 9px 12px; border-bottom: 1px solid #E2E8F0; vertical-align: top; }
+tr:hover td { background: #F1F5F9; }
+.exists td { background: #F0FDF4; }
+.tbd { color: #DC2626; font-weight: 600; }
+.confirmed { color: #16A34A; }
+.flag { color: #D97706; font-weight: 600; }
+
+/* NAV TREE */
+.nav-tree { background: #0F172A; color: #E2E8F0; border-radius: 8px; padding: 30px; margin: 20px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; line-height: 2; overflow-x: auto; }
+.nav-tree .level1 { color: #60A5FA; font-weight: 700; font-size: 16px; }
+.nav-tree .level2 { color: #FBBF24; font-weight: 600; margin-left: 24px; }
+.nav-tree .level3 { color: #A78BFA; font-weight: 600; margin-left: 48px; font-size: 12px; letter-spacing: 0.5px; }
+.nav-tree .level4 { color: #E2E8F0; margin-left: 72px; }
+.nav-tree .label { color: #94A3B8; font-size: 11px; }
+.nav-tree .new { color: #4ADE80; }
+.nav-tree .hq { color: #F97316; }
+.nav-tree .mfg { color: #F472B6; }
+.nav-tree .unknown { color: #FBBF24; font-style: italic; }
+
+/* MEGA MENU */
+.mega-menu { background: white; border: 2px solid #E2E8F0; border-radius: 12px; padding: 0; margin: 20px 0; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.07); }
+.mega-header { background: #0F172A; color: white; padding: 14px 24px; font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.mega-header .hint { font-size: 11px; font-weight: 400; opacity: 0.5; }
+.mega-tabs { display: flex; background: #F1F5F9; border-bottom: 2px solid #E2E8F0; }
+.mega-tab { padding: 10px 20px; font-size: 13px; font-weight: 600; color: #64748B; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
+.mega-tab.active { color: #0057B7; border-bottom-color: #0057B7; background: white; }
+.mega-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+.mega-col { padding: 20px 24px; border-right: 1px solid #E2E8F0; }
+.mega-col:last-child { border-right: none; }
+.mega-col h4 { color: #0057B7; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 12px; padding-bottom: 6px; border-bottom: 1px solid #E2E8F0; }
+.mega-col ul { list-style: none; padding: 0; }
+.mega-col li { padding: 5px 0; font-size: 13px; color: #334155; display: flex; align-items: center; gap: 6px; }
+.mega-col li:hover { color: #0057B7; cursor: pointer; }
+.mega-col li.hq { font-weight: 600; }
+.mega-col .section-label { color: #94A3B8; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 16px; margin-bottom: 6px; font-weight: 600; }
+.badge { display: inline-block; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; letter-spacing: 0.3px; vertical-align: middle; }
+.badge-mfg { background: #FCE7F3; color: #9D174D; }
+.badge-new { background: #DCFCE7; color: #166534; }
+.badge-flag { background: #FEF3C7; color: #92400E; }
+
+/* Legend */
+.menu-legend { background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 16px 20px; margin: 12px 0 20px; font-size: 12px; color: #64748B; display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center; }
+.menu-legend strong { color: #334155; }
+
+/* TEMPLATE */
+.template { background: white; border: 2px solid #E2E8F0; border-radius: 12px; overflow: hidden; margin: 20px 0; }
+.template-hero { background: linear-gradient(135deg, #1E3A5F 0%, #334155 100%); color: white; padding: 40px 30px; text-align: center; }
+.template-hero h3 { color: white; font-size: 20px; margin: 0; }
+.template-hero p { opacity: 0.7; margin-top: 4px; font-size: 13px; }
+.template-sections { padding: 24px 30px; }
+.template-section { padding: 16px 0; border-bottom: 1px solid #F1F5F9; }
+.template-section:last-child { border-bottom: none; }
+.template-section h4 { margin: 0 0 8px; }
+.template-section ul { padding-left: 20px; font-size: 13px; color: #64748B; }
+.template-section li { padding: 3px 0; }
+
+/* PHASES */
+.phase { background: white; border-radius: 8px; padding: 24px; margin: 12px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #0057B7; }
+.phase h4 { margin: 0 0 12px; }
+.phase ul { padding-left: 20px; font-size: 14px; }
+.phase li { padding: 4px 0; }
+.phase.p1 { border-left-color: #16A34A; }
+.phase.p2 { border-left-color: #0057B7; }
+.phase.p3 { border-left-color: #D97706; }
+.phase.p4 { border-left-color: #7C3AED; }
+
+.note { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 6px; padding: 12px 16px; font-size: 13px; margin: 16px 0; }
+.note strong { color: #92400E; }
+
+.flag-box { background: #FFF7ED; border: 1px solid #FDBA74; border-radius: 6px; padding: 12px 16px; font-size: 13px; margin: 16px 0; }
+.flag-box strong { color: #C2410C; }
+
+@media print { .cover { min-height: auto; padding: 30px; } body { background: white; } }
+</style>
+</head>
+<body>
+
+<div class="cover" style="background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 100%);">
+    <h1>ExploreBase Locations</h1>
+    <div class="sub">Navigation Dropdown Hierarchy &amp; Landing Page Plan</div>
+    <div class="meta">March 17, 2026 | For: exploreindustries.com | Prepared by Eli Bunyi<br>Updated with David Pain's location list</div>
+</div>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- PART 1: NAV HIERARCHY -->
+<!-- ============================================ -->
+
+<h2>Part 1: Navigation Dropdown Hierarchy</h2>
+
+<h3>Current Navigation (What's Live Now)</h3>
+<div class="nav-tree">
+    <div class="level1">Locations</div>
+    <div class="level2">North America</div>
+    <div class="level4">Knoxville, Tennessee <span class="label">&#8592; has page</span></div>
+    <div class="level4">Marion, South Carolina <span class="label">&#8592; has page</span></div>
+    <div class="level4">New Braunfels, Texas <span class="label">&#8592; has page</span></div>
+    <div class="level2">Australasia</div>
+    <div class="level4">Gold Coast, Queensland <span class="label">&#8592; has page</span></div>
+    <div class="level2">Europe</div>
+    <div class="level2">Global Development</div>
+</div>
+<div class="note"><strong>Problems:</strong> Only 3 US clickable pages. "Locations" not rebranded. Missing all distribution ExploreBase locations. No Australia ExploreBase locations. No Europe locations. No Canada.</div>
+
+<h3>Proposed Main Navigation</h3>
+<div class="nav-tree" style="line-height:2.5;">
+    <div style="color:#60A5FA;font-weight:700;font-size:15px;display:flex;gap:40px;flex-wrap:wrap;">
+        <span>Our Company</span>
+        <span>Brands</span>
+        <span style="border-bottom:2px solid #60A5FA;">ExploreBase Locations</span>
+        <span>Become a Dealer</span>
+    </div>
+    <div style="color:#94A3B8;font-size:11px;margin-top:4px;">Resources content moves to footer or under Our Company</div>
+</div>
+
+<h3>Proposed Dropdown — "ExploreBase Locations"</h3>
+<p class="desc">"ExploreBase Locations" replaces "Locations" in the main nav. Single mega menu shows all regions at once — no tabs. Global Development moves to a content block + link on the /explorebase/ overview page.</p>
+
+<div class="nav-tree">
+    <div class="level1">ExploreBase Locations <span class="label">&#8592; replaces "Locations" in main nav</span></div>
+    <br>
+    <div class="level2">North America</div>
+    <div class="level3">MANUFACTURING &amp; DISTRIBUTION</div>
+    <div class="level4 hq">Knoxville, Tennessee (HQ)</div>
+    <div class="level4">Marion, South Carolina</div>
+    <div class="level4">New Braunfels, Texas</div>
+    <div class="level3">EXPLOREBASE — US</div>
+    <div class="level4 new">Millville, New Jersey <span class="label">NEW</span></div>
+    <div class="level4 new">Lakeland, Florida <span class="label">NEW</span></div>
+    <div class="level4 new">Toledo, Ohio <span class="label">NEW</span></div>
+    <div class="level4 new">Dix, Illinois <span class="label">NEW</span></div>
+    <div class="level4 new">Picayune, Mississippi <span class="label">NEW</span></div>
+    <div class="level4 new">Bakersfield, California <span class="label">NEW</span></div>
+    <div class="level3">EXPLOREBASE — CANADA</div>
+    <div class="level4 new">Surrey, British Columbia <span class="label">NEW</span></div>
+    <br>
+    <div class="level2">Europe</div>
+    <div class="level4 new">Aarschot, Belgium <span class="label">NEW</span></div>
+    <div class="level4 new">Levekrusen, Germany <span class="label">NEW</span></div>
+    <br>
+    <div class="level2">Australia &amp; New Zealand</div>
+    <div class="level3">MANUFACTURING &amp; DISTRIBUTION</div>
+    <div class="level4 mfg">Gold Coast, Queensland</div>
+    <div class="level3">EXPLOREBASE</div>
+    <div class="level4 new">Goullburn, New South Wales <span class="label">NEW</span></div>
+    <div class="level4 new">Wagga Wagga, New South Wales <span class="label">NEW</span></div>
+    <div class="level4 new">Melbourne, Victoria <span class="label">NEW</span></div>
+    <div class="level4 new">Adelaide, South Australia <span class="label">NEW</span></div>
+    <div class="level4 unknown">New Zealand — TBD</div>
+</div>
+
+<div class="note"><strong>Global Development</strong> — Removed from nav dropdown. Will be a content block with link on the /explorebase/ overview page instead.</div>
+
+<div class="flag-box"><strong>⚠ Parked for later:</strong>
+<ul style="margin:8px 0 0 20px;font-size:13px;">
+<li><strong>New Zealand</strong> — Location TBD per David's email.</li>
+<li><strong>Pioneer Valley &amp; Paul/Leanne Farm</strong> — In David's email but ignoring for now until locations are identified.</li>
+</ul>
+</div>
+
+<h3>Mega Menu Mockup — All Regions Visible</h3>
+
+<div class="menu-legend">
+    <strong>How to read:</strong> <span></span>
+    <strong>Dark bar =</strong> <span>"ExploreBase Locations" in the main nav — user hovers to open this dropdown</span>
+    <strong>Column headers =</strong> <span>Non-clickable section labels that organize the dropdown</span>
+    <strong>List items =</strong> <span>Clickable links — each goes to that location's landing page</span>
+    <span class="badge badge-mfg" style="margin-right:4px;">MFG</span> <span>= Manufacturing + Distribution (badges are for this doc only, not on actual site)</span>
+    <span class="badge badge-new" style="margin-right:4px;">NEW</span> <span>= Page needs to be created (badges are for this doc only)</span>
+</div>
+
+<div class="mega-menu">
+    <div class="mega-header">ExploreBase Locations <span class="hint">← user hovers this in the nav bar</span></div>
+    <div class="mega-body" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+        <div class="mega-col">
+            <h4>North America — Manufacturing</h4>
+            <ul>
+                <li class="hq">Knoxville, TN (HQ) <span class="badge badge-mfg">MFG</span></li>
+                <li>Marion, SC <span class="badge badge-mfg">MFG</span></li>
+                <li>New Braunfels, TX <span class="badge badge-mfg">MFG</span></li>
+            </ul>
+            <div class="section-label" style="margin-top:20px;">ExploreBase — Canada</div>
+            <ul>
+                <li>Surrey, BC <span class="badge badge-new">NEW</span></li>
+            </ul>
+        </div>
+        <div class="mega-col">
+            <h4>North America — ExploreBase US</h4>
+            <ul>
+                <li>Millville, NJ <span class="badge badge-new">NEW</span></li>
+                <li>Lakeland, FL <span class="badge badge-new">NEW</span></li>
+                <li>Toledo, OH <span class="badge badge-new">NEW</span></li>
+                <li>Dix, IL <span class="badge badge-new">NEW</span></li>
+                <li>Picayune, MS <span class="badge badge-new">NEW</span></li>
+                <li>Bakersfield, CA <span class="badge badge-new">NEW</span></li>
+            </ul>
+        </div>
+        <div class="mega-col">
+            <h4>Europe</h4>
+            <ul>
+                <li>Aarschot, Belgium <span class="badge badge-new">NEW</span></li>
+                <li>Levekrusen, Germany <span class="badge badge-new">NEW</span></li>
+            </ul>
+        </div>
+        <div class="mega-col" style="border:none;">
+            <h4>Australia — Manufacturing</h4>
+            <ul>
+                <li>Gold Coast, QLD <span class="badge badge-mfg">MFG</span></li>
+            </ul>
+            <div class="section-label" style="margin-top:20px;">Australia — ExploreBase</div>
+            <ul>
+                <li>Goullburn, NSW <span class="badge badge-new">NEW</span></li>
+                <li>Wagga Wagga, NSW <span class="badge badge-new">NEW</span></li>
+                <li>Melbourne, VIC <span class="badge badge-new">NEW</span></li>
+                <li>Adelaide, SA <span class="badge badge-new">NEW</span></li>
+            </ul>
+            <div class="section-label" style="margin-top:12px;">New Zealand</div>
+            <ul>
+                <li style="color:#94A3B8;font-style:italic;">TBD</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="note"><strong>Avada Implementation:</strong> The current site uses a two-column flyout dropdown (region on the left, locations on the right). Avada supports mega menus — toggle "Enable Mega Menu" on the ExploreBase Locations menu item in Appearance → Menus. Either format works; mega menu shows everything at once, flyout keeps the current feel but expanded.</div>
+
+<h3>URL Structure &amp; Redirects</h3>
+<p class="desc">Set up all 301 redirects BEFORE changing nav or moving pages.</p>
+<table>
+<tr><th>Old URL</th><th>New URL</th><th>Type</th></tr>
+<tr><td>/locations/</td><td>/explorebase/</td><td>301 Redirect</td></tr>
+<tr><td>/locations/north-america/</td><td>/explorebase/</td><td>301 Redirect</td></tr>
+<tr><td>/locations/north-america/knoxville-tn/</td><td>/explorebase/knoxville-tennessee/</td><td>301 Redirect</td></tr>
+<tr><td>/locations/north-america/marion-south-carolina/</td><td>/explorebase/marion-south-carolina/</td><td>301 Redirect</td></tr>
+<tr><td>/locations/north-america/new-braunfels-texas/</td><td>/explorebase/new-braunfels-texas/</td><td>301 Redirect</td></tr>
+<tr><td>/locations/australasia/gold-coast-queensland/</td><td>/explorebase/gold-coast-queensland/</td><td>301 Redirect</td></tr>
+</table>
+<div class="note"><strong>Important:</strong> Audit all internal site links pointing to old /locations/ URLs and update them. Submit updated sitemap to Google Search Console after redirects are live.</div>
+
+<!-- ============================================ -->
+<!-- PART 2: LANDING PAGE PLAN -->
+<!-- ============================================ -->
+
+<h2>Part 2: ExploreBase Landing Page Plan</h2>
+
+<h3>Existing Pages (Rebrand + Refresh)</h3>
+<table>
+<tr><th>Location</th><th>Type</th><th>Current URL</th><th>Action Needed</th></tr>
+<tr class="exists"><td>Knoxville, TN (HQ)</td><td>Manufacturing</td><td>/locations/north-america/knoxville-tn/</td><td>Rebrand heading to ExploreBase, update URL</td></tr>
+<tr class="exists"><td>Marion, SC</td><td>Manufacturing</td><td>/locations/north-america/marion-south-carolina/</td><td>Rebrand heading, update URL</td></tr>
+<tr class="exists"><td>New Braunfels, TX</td><td>Manufacturing</td><td>/locations/north-america/new-braunfels-texas/</td><td>Rebrand heading, update URL</td></tr>
+<tr class="exists"><td>Gold Coast, QLD</td><td>Manufacturing</td><td>/locations/australasia/gold-coast-queensland/</td><td>Rebrand heading, update URL</td></tr>
+</table>
+
+<h3>New Pages Needed — North America</h3>
+<table>
+<tr><th>#</th><th>Location</th><th>Type</th><th>New URL</th><th>Address</th></tr>
+<tr><td>1</td><td>Millville, NJ</td><td>ExploreBase</td><td>/explorebase/millville-new-jersey/</td><td class="confirmed">525 Orange St., Millville, NJ 08332</td></tr>
+<tr><td>2</td><td>Lakeland, FL</td><td>ExploreBase</td><td>/explorebase/lakeland-florida/</td><td class="tbd">TBD — need from ops</td></tr>
+<tr><td>3</td><td>Toledo, OH</td><td>ExploreBase</td><td>/explorebase/toledo-ohio/</td><td class="tbd">TBD — need from ops</td></tr>
+<tr><td>4</td><td>Dix, IL</td><td>ExploreBase</td><td>/explorebase/dix-illinois/</td><td class="confirmed">312 Duncan Rd., Dix, IL 62830</td></tr>
+<tr><td>5</td><td>Picayune, MS</td><td>ExploreBase</td><td>/explorebase/picayune-mississippi/</td><td class="confirmed">1203 MLK Jr. Blvd., Picayune, MS 39466</td></tr>
+<tr><td>6</td><td>Bakersfield, CA</td><td>ExploreBase</td><td>/explorebase/bakersfield-california/</td><td class="tbd">TBD — need from ops</td></tr>
+<tr><td>7</td><td>Surrey, BC</td><td>ExploreBase</td><td>/explorebase/surrey-british-columbia/</td><td class="tbd">TBD — need from ops</td></tr>
+</table>
+
+
+<h3>New Pages Needed — Europe</h3>
+<table>
+<tr><th>#</th><th>Location</th><th>Type</th><th>New URL</th><th>Address</th></tr>
+<tr><td>8</td><td>Aarschot, Belgium</td><td>ExploreBase</td><td>/explorebase/aarschot-belgium/</td><td class="tbd">TBD</td></tr>
+<tr><td>9</td><td>Levekrusen, Germany</td><td>ExploreBase</td><td>/explorebase/levekrusen-germany/</td><td class="tbd">TBD</td></tr>
+</table>
+
+<h3>New Pages Needed — Australia</h3>
+<table>
+<tr><th>#</th><th>Location</th><th>Type</th><th>New URL</th><th>Address</th></tr>
+<tr><td>10</td><td>Goullburn, NSW</td><td>ExploreBase</td><td>/explorebase/goullburn-nsw/</td><td class="tbd">TBD</td></tr>
+<tr><td>11</td><td>Wagga Wagga, NSW</td><td>ExploreBase</td><td>/explorebase/wagga-wagga-nsw/</td><td class="tbd">TBD</td></tr>
+<tr><td>12</td><td>Melbourne, VIC</td><td>ExploreBase</td><td>/explorebase/melbourne-victoria/</td><td class="tbd">TBD</td></tr>
+<tr><td>13</td><td>Adelaide, SA</td><td>ExploreBase</td><td>/explorebase/adelaide-south-australia/</td><td class="tbd">TBD</td></tr>
+</table>
+
+<h3>New Pages Needed — New Zealand</h3>
+<table>
+<tr><th>#</th><th>Location</th><th>Type</th><th>New URL</th><th>Address</th></tr>
+<tr><td>14</td><td>TBD</td><td>ExploreBase</td><td>TBD</td><td class="tbd">Contact team for location</td></tr>
+</table>
+
+<h3>Landing Page Template</h3>
+<p class="desc">Each ExploreBase page follows this layout. Section 1 uses generic copy that's the same across all pages.</p>
+
+<div class="template">
+    <div class="template-hero">
+        <h3>ExploreBase &mdash; [City, State/Country]</h3>
+        <p>[Hero image — use generic ExploreBase imagery initially, swap for location photos later]</p>
+    </div>
+    <div class="template-sections">
+        <div class="template-section">
+            <h4>Section 1: About ExploreBase</h4>
+            <ul>
+                <li>Generic copy about what ExploreBase facilities do — same across all pages</li>
+                <li>Role of ExploreBase in the Explore Industries network</li>
+                <li>How ExploreBase supports dealers in the region</li>
+            </ul>
+        </div>
+        <div class="template-section">
+            <h4>Section 2: Service Area</h4>
+            <ul>
+                <li>States/provinces/regions this ExploreBase serves</li>
+                <li>Delivery radius or coverage map</li>
+                <li>Can potentially pull from territory maps for each ExploreBase</li>
+            </ul>
+        </div>
+        <div class="template-section">
+            <h4>Section 3: Address &amp; Contact</h4>
+            <ul>
+                <li>Full street address</li>
+                <li>Google Maps embed</li>
+                <li>Phone number</li>
+                <li>ExploreBase GM name + contact info</li>
+            </ul>
+        </div>
+        <div class="template-section">
+            <h4>Section 4: Brands Available</h4>
+            <ul>
+                <li>Standard brand portfolio content block (same as used on other pages)</li>
+            </ul>
+        </div>
+        <div class="template-section">
+            <h4>Section 5: CTA</h4>
+            <ul>
+                <li>"Become a Dealer" button</li>
+                <li>"Contact Us" form or link</li>
+            </ul>
+        </div>
+        <div class="template-section">
+            <h4>Section 6: Image Gallery / Carousel</h4>
+            <ul>
+                <li>Generic ExploreBase imagery initially</li>
+                <li>Swap in personalized location photos as they become available</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART 3: PHASED ROLLOUT -->
+<!-- ============================================ -->
+
+<h2>Part 3: Phased Rollout</h2>
+
+<div class="phase p1">
+    <h4 style="color:#16A34A;">Phase 1 — Build &amp; Launch</h4>
+    <ul>
+        <li>Set up all 301 redirects from /locations/* to /explorebase/* <strong>(do this first)</strong></li>
+        <li>Rebrand existing 4 pages (Knoxville, Marion, New Braunfels, Gold Coast)</li>
+        <li>Build new landing pages for all confirmed locations using template</li>
+        <li>Reorganize nav: rename "Locations" → "ExploreBase Locations" with single mega menu (all regions visible)</li>
+        <li>Move Global Development off dropdown → content block + link on /explorebase/ overview page</li>
+        <li>Consider moving Resources off main nav (content to footer or under Our Company)</li>
+        <li>Ensure all locations are reflected in nav and on overview page</li>
+        <li>Audit and update internal site links pointing to old /locations/ URLs</li>
+        <li>Submit updated sitemap to Google Search Console</li>
+    </ul>
+</div>
+
+<div class="phase p2">
+    <h4 style="color:#0057B7;">Phase 2 — Personalized Copy</h4>
+    <ul>
+        <li>Write unique copy for each ExploreBase location</li>
+        <li>Define and publish service areas per location</li>
+        <li>Add GM names and direct contact info</li>
+    </ul>
+</div>
+
+<div class="phase p3">
+    <h4 style="color:#D97706;">Phase 3 — GM Photos &amp; Maps</h4>
+    <ul>
+        <li>Get professional photos of each ExploreBase GM</li>
+        <li>Update service area maps with accurate coverage zones</li>
+        <li>Add Google Maps embeds where missing</li>
+    </ul>
+</div>
+
+<div class="phase p4">
+    <h4 style="color:#7C3AED;">Phase 4 — Location-Specific Imagery</h4>
+    <ul>
+        <li>Replace generic ExploreBase imagery with photos from each location</li>
+        <li>Hero images, facility photos, gallery/carousel content</li>
+        <li>This is the final polish step</li>
+    </ul>
+</div>
+
+<!-- ============================================ -->
+<!-- PART 4: DECISIONS NEEDED -->
+<!-- ============================================ -->
+
+<h2>Part 4: Decisions &amp; Input Needed</h2>
+
+<table>
+<tr><th>Question</th><th>Who to Ask</th><th>Why It Matters</th></tr>
+<tr><td>What service areas does each ExploreBase cover?</td><td>Ops team</td><td>Needed for landing pages — can potentially use territory maps</td></tr>
+<tr><td>Should we create a Google Business Profile for each ExploreBase?</td><td>Team decision</td><td>Would improve local SEO and give each location a Maps presence</td></tr>
+<tr><td>Lakeland FL address?</td><td>Ops team</td><td>Can't build page without it</td></tr>
+<tr><td>Toledo OH address?</td><td>Ops team</td><td>Can't build page without it</td></tr>
+<tr><td>Bakersfield CA address?</td><td>Ops team</td><td>Can't build page without it</td></tr>
+<tr><td>All Australia + Europe addresses?</td><td>Ops team / AU team</td><td>No addresses for any international ExploreBase locations</td></tr>
+<tr><td>New Zealand ExploreBase location?</td><td>Ops team</td><td>David says "contact team" — no location identified yet</td></tr>
+<tr><td>Does each ExploreBase have its own phone number?</td><td>Ops team</td><td>Or do all route to HQ?</td></tr>
+<tr><td>Does each ExploreBase have public hours?</td><td>Ops team</td><td>Some may be distribution-only, not public-facing</td></tr>
+<tr><td>Individual ExploreBase email addresses?</td><td>Ops team</td><td>e.g., knoxville@exploreindustries.com</td></tr>
+<tr><td>GM names for each ExploreBase?</td><td>Ops team</td><td>Contact info for landing pages</td></tr>
+</table>
+
+</div>
+
+<div style="background:#0F172A;color:white;padding:20px 40px;text-align:center;font-size:12px;opacity:0.7;">
+    Explore Industries — ExploreBase Nav &amp; Landing Page Plan — March 17, 2026 — Prepared by Eli Bunyi
+</div>
+
+</body>
+</html>

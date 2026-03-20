@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asset Coverage & Policy/Serving Status Sweep — 2026-03-16</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f6fa; color: #2d3436; line-height: 1.5; padding: 24px; }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  .subtitle { color: #636e72; font-size: 0.95rem; margin-bottom: 24px; }
+  .summary-box { background: #fff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .summary-box h2 { font-size: 1.15rem; margin-bottom: 12px; }
+  .stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+  .stat { background: #f0f0f0; border-radius: 8px; padding: 12px 18px; min-width: 160px; }
+  .stat .num { font-size: 1.8rem; font-weight: 700; }
+  .stat .label { font-size: 0.82rem; color: #636e72; }
+  .stat.red { background: #ffe0e0; }
+  .stat.red .num { color: #d63031; }
+  .stat.green { background: #e0ffe0; }
+  .stat.green .num { color: #00b894; }
+  .stat.yellow { background: #fff8e0; }
+  .stat.yellow .num { color: #e17055; }
+
+  .needs-attention { background: #fff0f0; border: 2px solid #d63031; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+  .needs-attention h2 { color: #d63031; font-size: 1.15rem; margin-bottom: 10px; }
+  .needs-attention ul { padding-left: 20px; }
+  .needs-attention li { margin-bottom: 6px; }
+  .needs-attention .acct-name { font-weight: 600; }
+
+  .account-section { background: #fff; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .account-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; cursor: pointer; }
+  .account-header h3 { font-size: 1.05rem; }
+  .account-header .spend { font-size: 0.9rem; color: #636e72; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-left: 8px; }
+  .badge.clean { background: #e0ffe0; color: #00b894; }
+  .badge.issues { background: #ffe0e0; color: #d63031; }
+  .badge.warn { background: #fff8e0; color: #e17055; }
+  .badge.pmax { background: #e0e8ff; color: #6c5ce7; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .detail-grid { grid-template-columns: 1fr; } }
+  .detail-card { background: #f9f9f9; border-radius: 8px; padding: 14px 16px; }
+  .detail-card h4 { font-size: 0.88rem; color: #636e72; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .check { color: #00b894; } .cross { color: #d63031; } .warn-icon { color: #e17055; }
+  .item-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+  .item-row:last-child { border-bottom: none; }
+  .campaign-issue { background: #fff0f0; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 0.88rem; }
+  .click-copy { cursor: pointer; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 2px 8px; font-size: 0.8rem; margin-left: 6px; }
+  .click-copy:hover { background: #e0e0e0; }
+  .click-copy:active { background: #d0d0d0; }
+  .copied-msg { color: #00b894; font-size: 0.75rem; margin-left: 4px; display: none; }
+
+  .footer { text-align: center; color: #b2bec3; font-size: 0.82rem; margin-top: 32px; }
+</style>
+<script>
+function copyText(text, el) {
+  navigator.clipboard.writeText(text).then(() => {
+    const msg = el.nextElementSibling;
+    if (msg) { msg.style.display = 'inline'; setTimeout(() => msg.style.display = 'none', 1500); }
+  });
+}
+</script>
+</head>
+<body>
+
+<h1>Asset Coverage & Policy/Serving Status Sweep</h1>
+<p class="subtitle">Explore Industries MCC (836-765-6694) — March 1-16, 2026 — 34 Active Accounts</p>
+
+<!-- SUMMARY -->
+<div class="summary-box">
+  <h2>Overall Summary</h2>
+  <div class="stat-row">
+    <div class="stat"><div class="num">34</div><div class="label">Accounts with Spend</div></div>
+    <div class="stat"><div class="num">9</div><div class="label">Accounts $0 Spend (Excluded)</div></div>
+    <div class="stat green"><div class="num">19</div><div class="label">Fully Clean Accounts</div></div>
+    <div class="stat red"><div class="num">15</div><div class="label">Accounts Need Attention</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat red"><div class="num">14</div><div class="label">Misconfigured Campaigns</div></div>
+    <div class="stat yellow"><div class="num">2</div><div class="label">Limited Status Campaigns</div></div>
+    <div class="stat green"><div class="num">0</div><div class="label">Policy Disapprovals</div></div>
+    <div class="stat yellow"><div class="num">27</div><div class="label">Accounts Missing Customer Assets</div></div>
+  </div>
+</div>
+
+<!-- NEEDS ATTENTION -->
+<div class="needs-attention">
+  <h2>Needs Attention</h2>
+  <p style="margin-bottom:10px; font-size:0.9rem;">The following accounts have campaigns with non-ELIGIBLE primary_status (MISCONFIGURED or LIMITED) despite still serving. Review campaign settings.</p>
+  <ul>
+    <li><span class="acct-name">Blue Orca Pools</span> (978-079-6043) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('9780796043', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Bluefin Contracting & Design</span> (249-441-5491) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('2494415491', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Athens</span> (354-541-4886) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('3545414886', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Beaufort</span> (999-920-3572) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('9999203572', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Coastal Mississippi</span> (244-459-5956) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('2444595956', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Columbus OH</span> (500-052-3507) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('5000523507', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Sarasota</span> (477-640-7725) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('4776407725', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite LP Savannah</span> (530-802-1719) — 2 campaigns MISCONFIGURED <button class="click-copy" onclick="copyText('5308021719', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Elite Passion Pools</span> (237-536-3197) — 1 campaign MISCONFIGURED (Cincinnati) <button class="click-copy" onclick="copyText('2375363197', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Leisure Pools Europe</span> (958-165-2837) — 2 campaigns MISCONFIGURED (Basel, Owl) <button class="click-copy" onclick="copyText('9581652837', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Leisure Pools Houston</span> (679-038-2043) — 2 campaigns LIMITED (primary_status=9) <button class="click-copy" onclick="copyText('6790382043', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Leisure Pools OK</span> (232-235-2945) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('2322352945', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Leisure Pools Waco</span> (615-393-4758) — 2 campaigns MISCONFIGURED <button class="click-copy" onclick="copyText('6153934758', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+    <li><span class="acct-name">Tri County Pools</span> (673-602-5219) — 1 campaign MISCONFIGURED <button class="click-copy" onclick="copyText('6736025219', this)">Copy ID</button><span class="copied-msg">Copied</span></li>
+  </ul>
+  <p style="margin-top:14px; font-size:0.85rem; color:#636e72;"><strong>Note:</strong> 3 accounts with spend show no enabled standard ads/campaigns (Aviva Pools, Elite Aviva Nashville, Elite LP Wabash Valley) — likely running PMax-only campaigns.</p>
+</div>
+
+<!-- PER-ACCOUNT SECTIONS -->
+
+<!-- 1. All American Pools & Spas -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>All American Pools & Spas <span class="badge clean">Clean</span></h3>
+    <span class="spend">$440.88 | ID: 1603614892</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Business Name (11)</span><span class="cross">None</span></div>
+      <div class="item-row"><span>Logo (12)</span><span class="cross">None</span></div>
+      <div class="item-row"><span>Marketing Image (16)</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>All ads REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All American campaign</span><span class="check">ELIGIBLE / SERVING</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Aviva Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Aviva Pools <span class="badge pmax">PMax Only</span></h3>
+    <span class="spend">$338.32 | ID: 1977611142</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets found</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>No enabled standard ads</span><span class="warn-icon">--</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>No enabled standard campaigns</span><span class="warn-icon">--</span></div>
+      <div class="item-row"><span style="font-size:0.82rem;color:#636e72;">Likely PMax-only</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Backyard Pool and Patio -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Backyard Pool and Patio <span class="badge clean">Clean</span></h3>
+    <span class="spend">$863.00 | ID: 7117812876</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Blue Orca Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Blue Orca Pools <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$724.48 | ID: 9780796043</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Blue Orca Pools Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Bluefin Contracting & Design -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Bluefin Contracting & Design <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$414.47 | ID: 2494415491</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Bluefin Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Cajun Pools and Spas -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Cajun Pools and Spas <span class="badge clean">Clean</span></h3>
+    <span class="spend">$510.97 | ID: 6486053029</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. Elite Aviva Nashville South -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite Aviva Nashville South <span class="badge pmax">PMax Only</span></h3>
+    <span class="spend">$208.14 | ID: 6361104793</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>No enabled standard ads</span><span class="warn-icon">--</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>No enabled standard campaigns</span><span class="warn-icon">--</span></div>
+      <div class="item-row"><span style="font-size:0.82rem;color:#636e72;">Likely PMax-only</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Elite Aviva Terre Haute -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite Aviva Terre Haute <span class="badge clean">Clean</span></h3>
+    <span class="spend">$443.87 | ID: 9225188086</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. Elite LP Athens -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Athens <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$249.33 | ID: 3545414886</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Athens Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. Elite LP Beaufort -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Beaufort <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$636.87 | ID: 9999203572</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Beaufort Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 11. Elite LP Coastal Mississippi -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Coastal Mississippi <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$266.13 | ID: 2444595956</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Coastal Mississippi Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 12. Elite LP Columbus OH -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Columbus OH <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$1,033.85 | ID: 5000523507</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Columbus OH Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 13. Elite LP Jacksonville -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Jacksonville <span class="badge clean">Clean</span></h3>
+    <span class="spend">$833.70 | ID: 6592795595</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 14. Elite LP Lake City -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Lake City <span class="badge clean">Clean</span></h3>
+    <span class="spend">$267.62 | ID: 5818535707</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 15. Elite LP Northwest Ohio -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Northwest Ohio <span class="badge clean">Clean</span></h3>
+    <span class="spend">$256.93 | ID: 3868160717</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>All campaigns ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 16. Elite LP Sarasota -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Sarasota <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$264.09 | ID: 4776407725</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Sarasota Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 17. Elite LP Savannah -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Savannah <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$252.16 | ID: 5308021719</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Field Type 16 asset (enabled)</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>All ads APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Savannah Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Elite LP Savannah Hilton Head Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 18. Elite LP Wabash Valley -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite LP Wabash Valley <span class="badge pmax">PMax Only</span></h3>
+    <span class="spend">$50.37 | ID: 1987093378</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>No enabled standard ads</span><span class="warn-icon">--</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>No enabled standard campaigns</span><span class="warn-icon">--</span></div>
+      <div class="item-row"><span style="font-size:0.82rem;color:#636e72;">Likely PMax-only</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 19. Elite Passion Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Elite Passion Pools <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$4,113.65 | ID: 2375363197</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Business Name (11)</span><span class="check">6 (3 enabled, 3 removed)</span></div>
+      <div class="item-row"><span>Logo (12)</span><span class="check">3 (1 enabled, 2 removed)</span></div>
+      <div class="item-row"><span>Callout (13)</span><span class="check">5 enabled</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>3 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>LP Northern Kentucky — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> LP Cincinnati — <strong>MISCONFIGURED</strong> (still serving)</div>
+      <div class="item-row"><span>LP Dayton — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 20. Integrity Built Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Integrity Built Pools <span class="badge clean">Clean</span></h3>
+    <span class="spend">$1,118.52 | ID: 5537276145</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Callout (13)</span><span class="check">5 enabled</span></div>
+      <div class="item-row"><span>No Business Name / Logo</span><span class="cross">Missing</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Integrity Built Pools campaign — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 21. Leisure Pools Boston North -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Boston North <span class="badge clean">Clean</span></h3>
+    <span class="spend">$530.67 | ID: 1867578797</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>LP Boston North Campaign — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 22. Leisure Pools DFW -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools DFW <span class="badge clean">Clean</span></h3>
+    <span class="spend">$2,048.26 | ID: 7966555131</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>6 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Fiberglass Pools (Primary) — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>Pool Builder / Contractor — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 23. Leisure Pools Europe -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Europe <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$1,312.91 | ID: 9581652837</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Callout (13)</span><span class="check">4 enabled</span></div>
+      <div class="item-row"><span>No Business Name / Logo</span><span class="cross">Missing</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>6 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> LP Basel Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+      <div class="item-row"><span>LP Muenchen — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>LP Duesseldorf — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>LP Wien — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>LP Sauerland — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> LP Owl Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 24. Leisure Pools Front Range -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Front Range <span class="badge clean">Clean</span></h3>
+    <span class="spend">$1,226.45 | ID: 7619645742</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Logo (12)</span><span class="check">1 enabled</span></div>
+      <div class="item-row"><span>Callout (13)</span><span class="check">5 enabled</span></div>
+      <div class="item-row"><span>No Business Name</span><span class="cross">Missing</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>LP Front Range Search — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 25. Leisure Pools Houston -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Houston <span class="badge warn">Limited</span></h3>
+    <span class="spend">$4,695.30 | ID: 6790382043</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Business Name (11)</span><span class="warn-icon">3 (all removed/not eligible)</span></div>
+      <div class="item-row"><span>Logo (12)</span><span class="warn-icon">1 (removed/not eligible)</span></div>
+      <div class="item-row"><span>Callout (13)</span><span class="check">5 enabled</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>7 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="warn-icon">!</span> Fiberglass Pools (Primary) — <strong>LIMITED</strong> (primary_status=9, still serving)</div>
+      <div class="campaign-issue"><span class="warn-icon">!</span> Pool Builder / Contractor — <strong>LIMITED</strong> (primary_status=9, still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 26. Leisure Pools OK -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools OK <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$1,774.28 | ID: 2322352945</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>2 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> LP OK Search Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+      <div class="item-row"><span>LP OK Tulsa Reboot — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 27. Leisure Pools San Antonio -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools San Antonio <span class="badge clean">Clean</span></h3>
+    <span class="spend">$1,572.07 | ID: 9720633800</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>6 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Pool Builder / Contractor — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>Fiberglass Pools (Primary) — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 28. Leisure Pools Waco -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Waco <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$1,132.79 | ID: 6153934758</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>6 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Pool Builder / Contractor — <strong>MISCONFIGURED</strong> (still serving)</div>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Fiberglass Pools (Primary) — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 29. Precision Fiberglass Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Precision Fiberglass Pools <span class="badge clean">Clean</span></h3>
+    <span class="spend">$327.02 | ID: 8173063391</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Callout (13)</span><span class="check">4 enabled</span></div>
+      <div class="item-row"><span>No Business Name / Logo</span><span class="cross">Missing</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>No enabled standard ads</span><span class="warn-icon">--</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>No enabled standard campaigns</span><span class="warn-icon">--</span></div>
+      <div class="item-row"><span style="font-size:0.82rem;color:#636e72;">May be PMax-only</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 30. Pronto Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Pronto Pools <span class="badge clean">Clean</span></h3>
+    <span class="spend">$436.04 | ID: 8599322758</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>Callout (13)</span><span class="check">4 enabled</span></div>
+      <div class="item-row"><span>No Business Name / Logo</span><span class="cross">Missing</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Pronto Pools Campaign — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 31. Tri County Pools -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Tri County Pools <span class="badge issues">Misconfigured</span></h3>
+    <span class="spend">$372.45 | ID: 6736025219</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="campaign-issue"><span class="cross">&#10007;</span> Tri County Pools Campaign — <strong>MISCONFIGURED</strong> (still serving)</div>
+    </div>
+  </div>
+</div>
+
+<!-- 32. Poolux Builders -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Poolux Builders <span class="badge clean">Clean</span></h3>
+    <span class="spend">$263.55 | ID: 3095208045</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>1 ad — APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Poolux Builders Campaign — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 33. Aqua Pools Corpus Christi -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Aqua Pools Corpus Christi <span class="badge clean">Clean</span></h3>
+    <span class="spend">$815.41 | ID: 7340450319</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>8 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Fiberglass Pools (Primary) — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>Pool Builder / Contractor — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 34. Leisure Pools Austin -->
+<div class="account-section">
+  <div class="account-header">
+    <h3>Leisure Pools Austin <span class="badge clean">Clean</span></h3>
+    <span class="spend">$1,926.76 | ID: 6185629903</span>
+  </div>
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h4>Customer Assets</h4>
+      <div class="item-row"><span>No customer-level assets</span><span class="cross">None</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Ad Policy</h4>
+      <div class="item-row"><span>6 ads — All APPROVED & REVIEWED</span><span class="check">&#10003;</span></div>
+    </div>
+    <div class="detail-card">
+      <h4>Campaign Serving</h4>
+      <div class="item-row"><span>Pool Builder / Contractor — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+      <div class="item-row"><span>Fiberglass Pools (Primary) — ELIGIBLE / SERVING</span><span class="check">&#10003;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXCLUDED ACCOUNTS -->
+<div class="summary-box" style="margin-top: 32px;">
+  <h2>Excluded Accounts ($0 March Spend)</h2>
+  <p style="color:#636e72; font-size:0.9rem; margin-top:6px;">
+    1994712376, 2990982200, 9211120791, 6434019356, 1320797549, 3281527794, 6887313574, 6684008990, 2701494593
+  </p>
+</div>
+
+<!-- ENUM KEY -->
+<div class="summary-box">
+  <h2>API Enum Reference</h2>
+  <div style="font-size:0.88rem; color:#636e72; columns:2; column-gap:24px;">
+    <p><strong>campaign.primary_status:</strong> 2=ELIGIBLE, 8=MISCONFIGURED, 9=LIMITED</p>
+    <p><strong>campaign.serving_status:</strong> 2=SERVING</p>
+    <p><strong>ad approval_status:</strong> 4=APPROVED</p>
+    <p><strong>ad review_status:</strong> 3=REVIEWED</p>
+    <p><strong>customer_asset.field_type:</strong> 11=Business Name, 12=Logo, 13=Callout, 16=Other</p>
+    <p><strong>customer_asset.status:</strong> 2=ENABLED, 3=REMOVED</p>
+    <p><strong>customer_asset.primary_status:</strong> 2=ELIGIBLE, 4=NOT_ELIGIBLE</p>
+  </div>
+</div>
+
+<div class="footer">
+  Generated by Claude Code for Explore Industries — 2026-03-16 — READ-ONLY sweep, no changes made
+</div>
+
+</body>
+</html>

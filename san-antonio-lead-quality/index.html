@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pools 123 San Antonio — Lead Quality Deep Dive</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+header { background: #1a1a2e; color: white; padding: 32px 40px; }
+header h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+header p { color: #a0a0c0; font-size: 14px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+.card { background: white; border-radius: 10px; padding: 28px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.card h2 { font-size: 20px; color: #1a1a2e; margin-bottom: 16px; border-bottom: 2px solid #e74c3c; padding-bottom: 8px; display: inline-block; }
+.card h2.green { border-bottom-color: #27ae60; }
+.card h2.blue { border-bottom-color: #2980b9; }
+.card h2.orange { border-bottom-color: #e67e22; }
+.card h2.purple { border-bottom-color: #8e44ad; }
+table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+th { background: #1a1a2e; color: white; padding: 10px 12px; text-align: left; font-weight: 600; }
+td { padding: 9px 12px; border-bottom: 1px solid #eee; }
+tr:hover td { background: #f8f9fa; }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.metric-box { background: #f8f9fa; border-radius: 8px; padding: 16px; text-align: center; border-left: 4px solid #1a1a2e; }
+.metric-box .value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+.metric-box .label { font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: 0.5px; }
+.bad { color: #e74c3c; font-weight: 600; }
+.good { color: #27ae60; font-weight: 600; }
+.warn { color: #e67e22; font-weight: 600; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; margin: 2px; }
+.tag-red { background: #fde8e8; color: #c0392b; }
+.tag-green { background: #e8fde8; color: #27ae60; }
+.tag-yellow { background: #fdf8e8; color: #d4a017; }
+.tag-blue { background: #e8f0fd; color: #2980b9; }
+.copy-block { background: #f8f9fa; border: 1px solid #ddd; border-radius: 6px; padding: 16px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; cursor: pointer; white-space: pre-wrap; transition: background 0.3s; margin-top: 8px; }
+.copy-block:hover { background: #eef1f5; }
+.copy-hint { font-size: 12px; color: #999; margin-top: 4px; font-style: italic; }
+.priority { display: inline-block; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; font-size: 14px; color: white; margin-right: 8px; }
+.p1 { background: #e74c3c; }
+.p2 { background: #e67e22; }
+.p3 { background: #f1c40f; color: #333; }
+.action-item { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; align-items: flex-start; }
+.action-item:last-child { border-bottom: none; }
+.action-text { flex: 1; }
+.action-text strong { color: #1a1a2e; }
+.gap-section { margin-top: 12px; }
+.gap-list { columns: 2; column-gap: 24px; list-style: none; }
+.gap-list li { padding: 3px 0; font-size: 14px; }
+.gap-list li::before { content: "\2717 "; color: #e74c3c; font-weight: bold; }
+.has-it::before { content: "\2713 " !important; color: #27ae60 !important; }
+footer { text-align: center; padding: 20px; color: #999; font-size: 12px; }
+.summary-callout { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; border-radius: 10px; padding: 24px 28px; margin-bottom: 24px; }
+.summary-callout h3 { font-size: 18px; margin-bottom: 8px; color: #f39c12; }
+.summary-callout p { color: #ccc; font-size: 14px; line-height: 1.7; }
+.summary-callout strong { color: white; }
+@media (max-width: 768px) { .gap-list { columns: 1; } .metric-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Pools 123 San Antonio &mdash; Lead Quality Deep Dive</h1>
+    <p>Account 972-063-3800 &nbsp;|&nbsp; Leisure Pools &nbsp;|&nbsp; March 1&ndash;16, 2026 &nbsp;|&nbsp; Compared to Houston (679-038-2043) baseline</p>
+</header>
+
+<div class="container">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="summary-callout">
+    <h3>Bottom Line</h3>
+    <p>San Antonio is leaking budget on <strong>competitor searches</strong> (Aqua Pools, Premier Pools, Gary Pools, Keith Zars, Blue Haven), <strong>non-product pool types</strong> (stock tank, container, shipping container, plunge pools), and <strong>service/renovation queries</strong> (pool liner replacement, pool painting, renovations). Houston fixed these exact problems on March 11 and is now converting well. SA needs the same negative keyword package &mdash; <strong>40+ negatives are missing</strong> vs. the Houston baseline, plus SA-specific competitors that should be blocked.</p>
+</div>
+
+<!-- CAMPAIGN PERFORMANCE -->
+<div class="card">
+    <h2>Campaign Performance Summary</h2>
+    <div class="metric-grid">
+        <div class="metric-box">
+            <div class="value">3,099</div>
+            <div class="label">Total Impressions</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">327</div>
+            <div class="label">Total Clicks</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">7</div>
+            <div class="label">Conversions</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">$1,572.07</div>
+            <div class="label">Total Spend</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">$224.58</div>
+            <div class="label">Cost / Conversion</div>
+        </div>
+        <div class="metric-box">
+            <div class="value">2.14%</div>
+            <div class="label">Conversion Rate</div>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr><th>Campaign</th><th>Impr</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Conv</th><th>Cost</th><th>Cost/Conv</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Pool Builder / Contractor</strong></td>
+                <td>1,791</td>
+                <td>136</td>
+                <td>7.59%</td>
+                <td>$5.79</td>
+                <td>5</td>
+                <td>$786.93</td>
+                <td>$157.39</td>
+            </tr>
+            <tr>
+                <td><strong>Fiberglass Pools (Primary)</strong></td>
+                <td>1,308</td>
+                <td>191</td>
+                <td>14.60%</td>
+                <td>$4.11</td>
+                <td>2</td>
+                <td>$785.14</td>
+                <td class="bad">$392.57</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="margin-top:12px;font-size:13px;color:#777;"><strong>Note:</strong> Fiberglass Pools (Primary) has a high CTR (14.6%) but terrible conversion rate (1.05%) &mdash; people are clicking but not converting, suggesting the traffic quality is poor. The "Pool Builder / Contractor" campaign converts at 3.68% which is acceptable but still diluted by junk clicks.</p>
+</div>
+
+<!-- PROBLEMATIC SEARCH TERMS -->
+<div class="card">
+    <h2>Top Problematic Search Terms</h2>
+    <p style="margin-bottom:12px;font-size:13px;color:#666;">Search terms triggering ads that indicate non-buyer intent, competitor research, or wrong product type. These are wasting budget.</p>
+    <table>
+        <thead>
+            <tr><th>Search Term</th><th>Campaign</th><th>Impr</th><th>Clicks</th><th>Cost</th><th>Conv</th><th>Issue</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="bad">premier pools and spas</td>
+                <td>Pool Builder / Contractor</td>
+                <td>21</td>
+                <td>1</td>
+                <td>$5.73</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">aqua pools san antonio</td>
+                <td>FG Primary + PB/C</td>
+                <td>35</td>
+                <td>2</td>
+                <td>$11.93</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">aqua pools new braunfels</td>
+                <td>FG Primary + PB/C</td>
+                <td>16</td>
+                <td>1</td>
+                <td>$6.26</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">gary pools san antonio</td>
+                <td>Both Campaigns</td>
+                <td>28</td>
+                <td>1</td>
+                <td>$7.28</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">keith zars pools san antonio</td>
+                <td>Pool Builder / Contractor</td>
+                <td>12</td>
+                <td>2</td>
+                <td>$11.12</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">blue haven pools san antonio</td>
+                <td>Pool Builder / Contractor</td>
+                <td>5</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="bad">stock tank pools san antonio</td>
+                <td>Pool Builder / Contractor</td>
+                <td>13</td>
+                <td>1</td>
+                <td>$8.76</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">container pools texas</td>
+                <td>Pool Builder / Contractor</td>
+                <td>5</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">container pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">shipping container pool cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">texas pocket pools</td>
+                <td>Pool Builder / Contractor</td>
+                <td>10</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">prefab plunge pool near me</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>1</td>
+                <td>$5.40</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Wrong Product</span></td>
+            </tr>
+            <tr>
+                <td class="bad">pool liner replacement cost</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-blue">Service/Reno</span></td>
+            </tr>
+            <tr>
+                <td class="bad">swimming pool painting contractors</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-blue">Service/Reno</span></td>
+            </tr>
+            <tr>
+                <td class="bad">total swimming pool renovations</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-blue">Service/Reno</span></td>
+            </tr>
+            <tr>
+                <td class="bad">fiberglass pool shell</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>11</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Shell Only</span></td>
+            </tr>
+            <tr>
+                <td class="bad">fiberglass pool shells for sale</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>5</td>
+                <td>1</td>
+                <td>$3.49</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Shell Only</span></td>
+            </tr>
+            <tr>
+                <td class="bad">pool shell inground</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>5</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Shell Only</span></td>
+            </tr>
+            <tr>
+                <td class="warn">latham pools cost</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>5</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">latham pools price list</td>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">pila pool</td>
+                <td>Pool Builder / Contractor</td>
+                <td>13</td>
+                <td>3</td>
+                <td>$15.92</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">pila pools</td>
+                <td>Pool Builder / Contractor</td>
+                <td>7</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">pila pools texas</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">hill country lagoons</td>
+                <td>Pool Builder / Contractor</td>
+                <td>4</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-red">Competitor</span></td>
+            </tr>
+            <tr>
+                <td class="warn">average cost of inground vinyl pool</td>
+                <td>Pool Builder / Contractor</td>
+                <td>3</td>
+                <td>0</td>
+                <td>$0.00</td>
+                <td>0</td>
+                <td><span class="tag tag-yellow">Vinyl &ndash; Not FG</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- CURRENT NEGATIVE KEYWORDS -->
+<div class="card">
+    <h2 class="blue">Current Negative Keywords</h2>
+    <p style="margin-bottom:12px;font-size:13px;color:#666;">Both campaigns share the same negative keyword set. Match types: <span class="tag tag-blue">BROAD</span> = broad match, <span class="tag tag-green">PHRASE</span> = phrase match, <span class="tag tag-yellow">EXACT</span> = exact match.</p>
+    <table>
+        <thead>
+            <tr><th>Keyword</th><th>Match Type</th><th>Applied To</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>repair</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>used</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>jobs</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>portable</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>employment</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>service</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>hiring</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>cleaning</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>resale</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>maintenance</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>plans</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>inflatable</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>diy</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>careers</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>salary</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>kits</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>wage</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>self install</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>Austin</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>above ground</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>intex</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>aboveground</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>how to build ourself</td><td><span class="tag tag-blue">BROAD</span></td><td>Both</td></tr>
+            <tr><td>leslie</td><td><span class="tag tag-green">PHRASE</span></td><td>Both</td></tr>
+            <tr><td>pinch</td><td><span class="tag tag-green">PHRASE</span></td><td>Both</td></tr>
+            <tr><td>leslie pool</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie's pools</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie swimming pool supplies</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie's pool supply</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie's pool near me</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie store near me</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>leslie's near me</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+            <tr><td>scp poolcorp</td><td><span class="tag tag-yellow">EXACT</span></td><td>PB/C only</td></tr>
+        </tbody>
+    </table>
+    <p style="margin-top:12px;font-size:13px;color:#e74c3c;font-weight:600;">Only 25 unique negative keywords. Houston has 60+. San Antonio is severely under-protected.</p>
+</div>
+
+<!-- GAP ANALYSIS -->
+<div class="card">
+    <h2 class="orange">Gap Analysis vs. Houston Baseline</h2>
+    <p style="margin-bottom:16px;font-size:13px;color:#666;">Houston (679-038-2043) was updated March 11 with a comprehensive negative keyword package. Below is what San Antonio is <strong>missing</strong>.</p>
+
+    <h3 style="font-size:16px;color:#1a1a2e;margin-bottom:8px;">Competitor Negatives &mdash; MISSING</h3>
+    <ul class="gap-list" style="margin-bottom:20px;">
+        <li>cowboy pool</li>
+        <li>cowboy pools</li>
+        <li>plungie pool</li>
+        <li>plungie pool cost</li>
+        <li>plungie pools</li>
+        <li>aqua pools</li>
+        <li>premier pools and spas</li>
+        <li>ipoolgo prices</li>
+        <li>doughboy pool</li>
+        <li>soake pools cost</li>
+    </ul>
+
+    <h3 style="font-size:16px;color:#1a1a2e;margin-bottom:8px;">Wrong Product Type &mdash; MISSING</h3>
+    <ul class="gap-list" style="margin-bottom:20px;">
+        <li>texas pocket pools</li>
+        <li>container pool</li>
+        <li>container pools</li>
+        <li>container pools texas</li>
+        <li>shipping container pool</li>
+        <li>semi inground pool</li>
+        <li>semi inground pools</li>
+        <li>semi-inground pool</li>
+        <li>semi-inground pools</li>
+        <li>semi inground pool cost</li>
+        <li>semi inground pools cost</li>
+        <li>stock tank pool</li>
+        <li>swim spa</li>
+        <li>swim spas</li>
+        <li>swim spa cost</li>
+        <li>swim spas cost</li>
+        <li>prefab pools</li>
+        <li>cold plunge pool</li>
+        <li>dipping pool</li>
+        <li>liner pool cost</li>
+        <li>pool plastering cost</li>
+    </ul>
+
+    <h3 style="font-size:16px;color:#1a1a2e;margin-bottom:8px;">Pool Supply Store Negatives &mdash; MISSING</h3>
+    <ul class="gap-list" style="margin-bottom:20px;">
+        <li>pool supply near me</li>
+        <li>pool supplies near me</li>
+        <li>pool store near me</li>
+        <li>pinch a penny</li>
+        <li>pinch a penny pool supplies</li>
+    </ul>
+
+    <h3 style="font-size:16px;color:#1a1a2e;margin-bottom:8px;">Leslie's Variants &mdash; PARTIALLY COVERED</h3>
+    <p style="font-size:13px;color:#666;margin-bottom:8px;">SA has "leslie" as phrase match and several exact match variants on PB/C only. Houston has more granular coverage. The phrase match "leslie" should catch most, but these are missing from the Fiberglass Pools (Primary) campaign:</p>
+    <ul class="gap-list" style="margin-bottom:20px;">
+        <li class="has-it">leslie's (covered by phrase "leslie")</li>
+        <li class="has-it">leslies (covered by phrase "leslie")</li>
+        <li>leslie's pool supplies near me <span style="color:#e74c3c;font-size:12px;">(exact variants missing on FG Primary)</span></li>
+        <li>leslies near me <span style="color:#e74c3c;font-size:12px;">(exact variants missing on FG Primary)</span></li>
+    </ul>
+
+    <h3 style="font-size:16px;color:#1a1a2e;margin-bottom:8px;">SA-Specific Competitors Found in Search Terms &mdash; NEED TO ADD</h3>
+    <p style="font-size:13px;color:#666;margin-bottom:8px;">These competitors are unique to the San Antonio market and appeared in search term data. Houston wouldn't have these.</p>
+    <ul class="gap-list">
+        <li>gary pools</li>
+        <li>keith zars pools</li>
+        <li>blue haven pools</li>
+        <li>pila pool</li>
+        <li>pila pools</li>
+        <li>hill country lagoons</li>
+        <li>latham pools</li>
+    </ul>
+</div>
+
+<!-- CLICK TO COPY: HOUSTON BASELINE NEGATIVES -->
+<div class="card">
+    <h2>Houston Baseline Negatives &mdash; Add to Both Campaigns</h2>
+    <p style="margin-bottom:8px;font-size:13px;color:#666;">Click to copy. Add as <strong>phrase match</strong> negatives to both campaigns.</p>
+    <p class="copy-hint">Click the block below to copy all keywords to clipboard</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pool cost
+plungie pools
+texas pocket pools
+container pool
+container pools
+container pools texas
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+pool supply near me
+pool supplies near me
+pool store near me
+pinch a penny
+pinch a penny pool supplies
+liner pool cost
+pool plastering cost
+soake pools cost
+ipoolgo prices
+doughboy pool
+prefab pools
+cold plunge pool
+dipping pool
+aqua pools
+premier pools and spas</pre>
+</div>
+
+<!-- CLICK TO COPY: SA-SPECIFIC COMPETITORS -->
+<div class="card">
+    <h2 class="purple">SA-Specific Competitor Negatives &mdash; Add to Both Campaigns</h2>
+    <p style="margin-bottom:8px;font-size:13px;color:#666;">Click to copy. Add as <strong>phrase match</strong> negatives. These are San Antonio local competitors appearing in search terms.</p>
+    <p class="copy-hint">Click the block below to copy all keywords to clipboard</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">gary pools
+keith zars
+keith zars pools
+blue haven pools
+blue haven
+pila pool
+pila pools
+hill country lagoons
+latham pools</pre>
+</div>
+
+<!-- CLICK TO COPY: SERVICE/RENO NEGATIVES -->
+<div class="card">
+    <h2>Additional Service & Renovation Negatives</h2>
+    <p style="margin-bottom:8px;font-size:13px;color:#666;">Click to copy. Add as <strong>phrase match</strong> negatives. Triggered by search terms showing service/renovation intent, not new pool buyers.</p>
+    <p class="copy-hint">Click the block below to copy all keywords to clipboard</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">pool liner replacement
+pool painting
+pool renovations
+pool shell
+pool shells for sale
+pool shell inground
+precast concrete pool
+vinyl pool</pre>
+</div>
+
+<!-- RECOMMENDED ACTIONS -->
+<div class="card">
+    <h2 class="green">Recommended Actions &mdash; Prioritized</h2>
+
+    <div class="action-item">
+        <span class="priority p1">1</span>
+        <div class="action-text">
+            <strong>Add Houston baseline negatives immediately (36 keywords)</strong><br>
+            These are proven negatives that fixed Houston's lead quality. Copy the block above and add as phrase match to both "Pool Builder / Contractor" and "Fiberglass Pools (Primary)" campaigns. <em>Estimated wasted spend saved: $50&ndash;80/month.</em>
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="priority p1">2</span>
+        <div class="action-text">
+            <strong>Add SA-specific competitor negatives (9 keywords)</strong><br>
+            Gary Pools, Keith Zars, Blue Haven, Pila, Hill Country Lagoons, and Latham are all showing up in search terms. These are people searching for <em>other builders</em> &mdash; not Pools 123. Block them on both campaigns. <em>"Pila pool" alone cost $15.92 with zero conversions.</em>
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="priority p2">3</span>
+        <div class="action-text">
+            <strong>Add service/renovation negatives (8 keywords)</strong><br>
+            Pool liner replacement, pool painting, pool renovations, pool shell queries &mdash; these are people looking for existing pool work, not new fiberglass pool installations. Block to keep traffic focused on buyers.
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="priority p2">4</span>
+        <div class="action-text">
+            <strong>Mirror the Leslie's exact match negatives to Fiberglass Pools (Primary)</strong><br>
+            The PB/C campaign has 7 exact-match Leslie's variants that are missing from the FG Primary campaign. The phrase match "leslie" should catch most, but add the exact matches to FG Primary for consistency.
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="priority p3">5</span>
+        <div class="action-text">
+            <strong>Review "Fiberglass Pools (Primary)" conversion rate</strong><br>
+            14.6% CTR but only 1.05% conversion rate suggests the ad copy or landing page isn't qualifying visitors well enough. Compare landing pages to Houston's setup. Consider whether ad copy is too broad or if the landing page needs stronger qualifying language for SA market.
+        </div>
+    </div>
+
+    <div class="action-item">
+        <span class="priority p3">6</span>
+        <div class="action-text">
+            <strong>Schedule a follow-up review in 2 weeks</strong><br>
+            After adding negatives, let the campaigns run for 14 days and re-pull search terms. Expect to see improved conversion rates and lower cost/conversion. Houston saw results within the first week of the March 11 update.
+        </div>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    Generated by Claude Code &nbsp;|&nbsp; March 16, 2026 &nbsp;|&nbsp; Explore Industries &nbsp;|&nbsp; Google Ads Account 972-063-3800
+</footer>
+
+</body>
+</html>

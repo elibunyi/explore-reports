@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Industries Website Content Audit — March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #0F172A;
+    --accent: #0057B7;
+    --accent-light: #E0F2FE;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #1E293B;
+    --text-light: #64748B;
+    --critical: #DC2626;
+    --high: #EA580C;
+    --medium: #CA8A04;
+    --low: #2563EB;
+    --success: #16A34A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+.header {
+    background: linear-gradient(135deg, var(--primary) 0%, #1E3A5F 100%);
+    color: white;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+}
+.header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: rgba(0,87,183,0.15);
+}
+.header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+.header .subtitle {
+    font-size: 16px;
+    opacity: 0.8;
+    font-weight: 300;
+}
+.header .meta {
+    margin-top: 16px;
+    font-size: 13px;
+    opacity: 0.6;
+}
+.nav {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.nav-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+}
+.nav a {
+    display: block;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+}
+.nav a:hover, .nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 32px 40px; }
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+.summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.summary-card .number {
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+.summary-card .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+h2:first-of-type { margin-top: 0; }
+
+/* Finding cards */
+.finding-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.finding-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.severity-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.finding-id {
+    font-family: monospace;
+    font-size: 13px;
+    color: var(--text-light);
+    background: var(--bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+.finding-page {
+    font-weight: 600;
+    font-size: 15px;
+}
+.finding-section {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.finding-body {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+.finding-action {
+    font-size: 13px;
+    background: #F0FDF4;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #BBF7D0;
+    margin-bottom: 8px;
+}
+.finding-url {
+    font-size: 12px;
+}
+.finding-url a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Copy cards */
+.copy-card {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+.copy-header {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+.copy-page { color: var(--accent); }
+.copy-section { color: var(--text); }
+.copy-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+.copy-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+.copy-current .copy-label { color: var(--critical); }
+.copy-new .copy-label { color: var(--success); }
+.copy-current .copy-text {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+.copy-new .copy-text {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    line-height: 1.7;
+}
+.copy-note {
+    font-size: 13px;
+    color: var(--text-light);
+    background: var(--bg);
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+
+/* Gap cards */
+.gap-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+.gap-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.gap-title { font-weight: 600; font-size: 15px; }
+.gap-detail {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+.gap-rec {
+    font-size: 13px;
+    background: var(--accent-light);
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #BAE6FD;
+}
+
+/* Directive table */
+.directive-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+.directive-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.directive-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+.directive-table tr:nth-child(even) { background: #F8FAFC; }
+.directive-table tr:hover { background: #EFF6FF; }
+.status-pending {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #FEF3C7;
+    color: #92400E;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.status-done {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #D1FAE5;
+    color: #065F46;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+@media print {
+    .nav { display: none; }
+    .header { padding: 24px; }
+    .container { padding: 16px; }
+    .finding-card, .copy-card, .gap-card { break-inside: avoid; }
+    .copy-columns { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>exploreindustries.com — Content Audit</h1>
+    <div class="subtitle">Comprehensive content review, directive compliance check, and replacement copy</div>
+    <div class="meta">Prepared for David Pain (CEO) &amp; Clint McClain | March 13, 2026 | Prepared by Eli Bunyi</div>
+</div>
+
+<div class="nav">
+    <div class="nav-inner">
+        <a href="#summary">Executive Summary</a>
+        <a href="#directives">Directives</a>
+        <a href="#findings">Audit Findings</a>
+        <a href="#copy">Replacement Copy</a>
+        <a href="#gaps">Gap Analysis</a>
+        <a href="#sitemap">Site Map</a>
+    </div>
+</div>
+
+<div class="container">
+
+<a id="summary"></a>
+<h2>Executive Summary</h2>
+
+<div class="summary-grid">
+    <div class="summary-card">
+        <div class="number" style="color: var(--critical);">2</div>
+        <div class="label">Critical Issues</div>
+    </div>
+    <div class="summary-card">
+        <div class="number" style="color: var(--high);">6</div>
+        <div class="label">High Priority</div>
+    </div>
+    <div class="summary-card">
+        <div class="number" style="color: var(--medium);">12</div>
+        <div class="label">Medium Priority</div>
+    </div>
+    <div class="summary-card">
+        <div class="number" style="color: var(--low);">3</div>
+        <div class="label">Low / Verified OK</div>
+    </div>
+</div>
+
+<div class="finding-card" style="border-left: 4px solid var(--accent);">
+    <div class="finding-body" style="font-size: 15px;">
+        <strong>Bottom line:</strong> The site has <strong>2 critical broken elements</strong> (stat counters showing zeros on two pages),
+        <strong>4 high-priority removals</strong> (Ultra Pool Care Squad still appears in nav, footer, and has two live pages),
+        and <strong>multiple content gaps</strong> including the missing 2025 Elite brand timeline entry, 9 missing ExploreBase location pages,
+        and outdated stats on the legacy dealer contact page. The main Become a Dealer page and homepage hero stats appear to have been
+        recently updated and are largely compliant with directives.
+    </div>
+</div>
+
+<a id="directives"></a>
+<h2>CEO Directives — Compliance Status</h2>
+
+<p style="margin-bottom: 16px; color: var(--text-light); font-size: 14px;">
+    23 directives extracted from 5 source documents (Jan 28 — Mar 11, 2026). All originated from Clint McClain.
+</p>
+
+<table class="directive-table">
+<thead>
+<tr><th>#</th><th>Source</th><th>Page</th><th>Directive</th><th>Status</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Website Changes.docx</td><td>Homepage</td><td>Update hero stats to 150,000+ installs, 25 years</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>2</td><td>Website Changes.docx</td><td>Homepage</td><td>Update portfolio section — add Elite</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>3</td><td>Website Changes.docx</td><td>Sitewide</td><td>Remove Pool Care Brands / UPCS from nav, footer, all pages</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>4</td><td>Website Changes.docx</td><td>Sitewide</td><td>Change 'Locations' to 'ExploreBase'</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>5</td><td>Website Changes.docx</td><td>Aviva Brand Page</td><td>Update with current info</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>6</td><td>Website Changes.docx</td><td>Evo Brand Page</td><td>Update with current info</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>7</td><td>Website Changes.docx</td><td>ExploreBase Pages</td><td>Add pages for all 13 distribution centers</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>8</td><td>Website Changes.docx</td><td>History Timeline</td><td>Add 2025 Elite launch</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>9</td><td>Website Changes.docx</td><td>Sitewide</td><td>Visual redesign by June 30, 2026</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>10</td><td>Website Changes.docx</td><td>Sitewide</td><td>Update photos with current imagery</td><td><span class="status-pending">REVIEW</span></td></tr>
+<tr><td>11</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>New heading: 'Join the Explore Industries Family'</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>12</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>Update stats: 77 designs, 200+ models, 8 colors</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>13</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>Add 13 distribution center list</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>14</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>Update support team copy</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>15</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>Add lifetime warranties messaging</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>16</td><td>Copy Changes Q1.docx</td><td>Become a Dealer</td><td>New product portfolio section</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>17</td><td>Company History.pptx</td><td>History Timeline</td><td>Add 2022 Evo Pools entry</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>18</td><td>Company History.pptx</td><td>History Timeline</td><td>Add 2022 Nexus Pools entry</td><td><span class="status-done">DONE</span></td></tr>
+<tr><td>19</td><td>Company History.pptx</td><td>History Timeline</td><td>Add 2025 Elite launch</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>20</td><td>Company History.pptx</td><td>History Timeline</td><td>Update all stats to current figures</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>21</td><td>Email (Jan 28)</td><td>Aviva & Evo Pages</td><td>Update photos</td><td><span class="status-pending">REVIEW</span></td></tr>
+<tr><td>22</td><td>Email (Jan 28)</td><td>ExploreBase</td><td>Update locations</td><td><span class="status-pending">PENDING</span></td></tr>
+<tr><td>23</td><td>Email (Mar 11)</td><td>Full Site</td><td>Full site review for needed changes</td><td><span class="status-done">THIS AUDIT</span></td></tr>
+</tbody>
+</table>
+
+<a id="findings"></a>
+<h2>Audit Findings (23 Issues)</h2>
+
+        <div class="finding-card" style="border-left: 4px solid #DC2626;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #DC2626;">CRITICAL</span>
+                <span class="finding-id">F01</span>
+                <span class="finding-page">Our Company</span>
+            </div>
+            <div class="finding-section">Worldwide Presence Stats</div>
+            <div class="finding-body">All four stat counters display '0' — Countries, Independent Dealers, Installations, Years in Business all show zero</div>
+            <div class="finding-action"><strong>Action:</strong> Fix counter animation/data. Should show: 23 Countries, 500+ Independent Dealers, 150,000+ Installations, 25+ Years</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/our-company/">https://exploreindustries.com/our-company/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #DC2626;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #DC2626;">CRITICAL</span>
+                <span class="finding-id">F02</span>
+                <span class="finding-page">Life at Explore</span>
+            </div>
+            <div class="finding-section">Global Footprint Stats</div>
+            <div class="finding-body">Same counter issue — all stats show '0'</div>
+            <div class="finding-action"><strong>Action:</strong> Fix counter animation/data. Should show same stats as Our Company page</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/our-company/life-at-explore/">https://exploreindustries.com/our-company/life-at-explore/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F03</span>
+                <span class="finding-page">Sitewide — Navigation</span>
+            </div>
+            <div class="finding-section">Main Navigation</div>
+            <div class="finding-body">'Pool Care Brands > Ultra Pool Care Squad' still appears in navigation menu across ALL pages</div>
+            <div class="finding-action"><strong>Action:</strong> Remove 'Pool Care Brands' submenu and 'Ultra Pool Care Squad' link from navigation</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F04</span>
+                <span class="finding-page">Sitewide — Footer</span>
+            </div>
+            <div class="finding-section">Footer — Family Brands</div>
+            <div class="finding-body">'Pool Care Brands: Ultra Pool Care Squad' still listed in footer across ALL pages</div>
+            <div class="finding-action"><strong>Action:</strong> Remove 'Pool Care Brands' section and 'Ultra Pool Care Squad' from footer</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F05</span>
+                <span class="finding-page">Ultra Pool Care Squad</span>
+            </div>
+            <div class="finding-section">Full Page</div>
+            <div class="finding-body">UPCS brand page still live and accessible</div>
+            <div class="finding-action"><strong>Action:</strong> Remove page entirely or redirect to /brands/</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/brands/pool-care-brands/ultra-pool-care-squad/">https://exploreindustries.com/brands/pool-care-brands/ultra-pool-care-squad/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F06</span>
+                <span class="finding-page">Pool Care Brands</span>
+            </div>
+            <div class="finding-section">Category Page</div>
+            <div class="finding-body">Pool Care Brands category page still live</div>
+            <div class="finding-action"><strong>Action:</strong> Remove page entirely or redirect to /brands/</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/brands/pool-care-brands/">https://exploreindustries.com/brands/pool-care-brands/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F07</span>
+                <span class="finding-page">Company History</span>
+            </div>
+            <div class="finding-section">Timeline</div>
+            <div class="finding-body">2025 Elite brand launch is MISSING from timeline. Timeline ends at 2022 (Evo Pools).</div>
+            <div class="finding-action"><strong>Action:</strong> Add 2025 timeline entry for Elite brand launch</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/our-company/history/">https://exploreindustries.com/our-company/history/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #EA580C;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="finding-id">F08</span>
+                <span class="finding-page">Homepage</span>
+            </div>
+            <div class="finding-section">Portfolio Section</div>
+            <div class="finding-body">Elite brand is NOT listed in the Portfolio of Brands section. Only 6 brands shown (Leisure, Imagine, Aviva, Nexus, Evo, Integra).</div>
+            <div class="finding-action"><strong>Action:</strong> Add Elite brand card to portfolio section if Elite is a separate consumer brand</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F09</span>
+                <span class="finding-page">Sitewide — Navigation</span>
+            </div>
+            <div class="finding-section">Navigation</div>
+            <div class="finding-body">Navigation still uses 'Locations' instead of 'ExploreBase'</div>
+            <div class="finding-action"><strong>Action:</strong> Rename 'Locations' to 'ExploreBase' in navigation</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F10</span>
+                <span class="finding-page">Locations</span>
+            </div>
+            <div class="finding-section">Page Heading</div>
+            <div class="finding-body">Page heading says 'EXPLORE INDUSTRIES LOCATIONS' — should be 'ExploreBase'</div>
+            <div class="finding-action"><strong>Action:</strong> Change heading to 'EXPLOREBASE LOCATIONS' or 'EXPLOREBASE'</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/locations/">https://exploreindustries.com/locations/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F11</span>
+                <span class="finding-page">Locations — North America</span>
+            </div>
+            <div class="finding-section">Page & URLs</div>
+            <div class="finding-body">All location sub-pages use /locations/ URL structure and 'Locations' terminology</div>
+            <div class="finding-action"><strong>Action:</strong> Update all location page titles and headings to use 'ExploreBase' terminology</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/locations/north-america/">https://exploreindustries.com/locations/north-america/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F12</span>
+                <span class="finding-page">Become a Dealer Contact (Legacy)</span>
+            </div>
+            <div class="finding-section">Product Stats</div>
+            <div class="finding-body">SEVERELY OUTDATED: Shows '47 Designs, 124 Models, 7 Gelcoat Colors, 60,000+ pools in 20 years'. Current figures: 77 designs, 200+ models, 8 colors, 150,000+ pools in 25 years.</div>
+            <div class="finding-action"><strong>Action:</strong> Update all stats to match current Become a Dealer page OR redirect this legacy page</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/become-a-dealer-contact/">https://exploreindustries.com/become-a-dealer-contact/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F13</span>
+                <span class="finding-page">Become a Dealer Contact (Legacy)</span>
+            </div>
+            <div class="finding-section">Distribution Centers</div>
+            <div class="finding-body">Shows outdated distribution list (missing Lakeland FL, Toledo OH, Bakersfield CA; lists Burlington IA and Vancouver BC instead of Surrey BC; says 'Folsom NJ' instead of 'Millville NJ')</div>
+            <div class="finding-action"><strong>Action:</strong> Update distribution centers to match current list of 13 locations</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/become-a-dealer-contact/">https://exploreindustries.com/become-a-dealer-contact/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F14</span>
+                <span class="finding-page">Global Development</span>
+            </div>
+            <div class="finding-section">Stats</div>
+            <div class="finding-body">Shows '130,000 pools' — should be '150,000+' per current directive</div>
+            <div class="finding-action"><strong>Action:</strong> Update to '150,000+ pools installed globally'</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/global-developments/">https://exploreindustries.com/global-developments/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F15</span>
+                <span class="finding-page">Locations</span>
+            </div>
+            <div class="finding-section">Distribution Yards</div>
+            <div class="finding-body">Distribution yard table missing several current locations: Lakeland FL, Toledo OH, Bakersfield CA. Only shows 11 yards but there should be 13+.</div>
+            <div class="finding-action"><strong>Action:</strong> Add all 13 distribution center locations with full addresses</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/locations/">https://exploreindustries.com/locations/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F16</span>
+                <span class="finding-page">Locations</span>
+            </div>
+            <div class="finding-section">ExploreBase Pages</div>
+            <div class="finding-body">Only 4 location detail pages exist (Knoxville, Marion, New Braunfels, Toronto). Need individual pages for all 13 distribution centers.</div>
+            <div class="finding-action"><strong>Action:</strong> Create individual ExploreBase pages for: Millville NJ, Picayune MS, Dix IL, Lakeland FL, Toledo OH, Tucson AZ, Woodland CA, Bakersfield CA, Surrey BC</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/locations/">https://exploreindustries.com/locations/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F17</span>
+                <span class="finding-page">Aviva Pools Brand Page</span>
+            </div>
+            <div class="finding-section">Brand Description</div>
+            <div class="finding-body">Aviva brand page is sparse — generic description about luxury/elegance but lacks current product info. Does not mention HydroShield technology, 8 color options (Santorini Sky, Tahiti Blue, etc.), or current dealer count.</div>
+            <div class="finding-action"><strong>Action:</strong> Update with current Aviva brand info from avivapools.com: HydroShield technology, 8 color options, current pool styles, updated imagery</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/brands/pool-brands/aviva-pools/">https://exploreindustries.com/brands/pool-brands/aviva-pools/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F18</span>
+                <span class="finding-page">Evo Pools Brand Page</span>
+            </div>
+            <div class="finding-section">Brand Description</div>
+            <div class="finding-body">Evo brand page is minimal — just says 'home builder partnerships' without featuring the nature-inspired brand positioning, 10 pool models, 8 color finishes, or ViPoxy construction.</div>
+            <div class="finding-action"><strong>Action:</strong> Update with current Evo brand info from evopools.com: nature-inspired messaging, 10 models (Aurora, Amazon, etc.), 8 colors, ViPoxy technology</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/brands/pool-brands/evo-pools/">https://exploreindustries.com/brands/pool-brands/evo-pools/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F19</span>
+                <span class="finding-page">Homepage</span>
+            </div>
+            <div class="finding-section">Portfolio Body Copy</div>
+            <div class="finding-body">Portfolio intro mentions 'franchises' (referring to UPCS which is being removed). Copy says 'pools, spas, pool covers, and franchises'.</div>
+            <div class="finding-action"><strong>Action:</strong> Remove 'and franchises' from portfolio description. Update to 'pools, spas, and pool covers'.</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #2563EB;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="finding-id">F20</span>
+                <span class="finding-page">Company History</span>
+            </div>
+            <div class="finding-section">2021 Entry</div>
+            <div class="finding-body">2021 Ultra Pool Care Squad entry still in timeline — should be removed if UPCS is being removed from site</div>
+            <div class="finding-action"><strong>Action:</strong> Remove 2021 UPCS timeline entry or replace with different 2021 milestone</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/our-company/history/">https://exploreindustries.com/our-company/history/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #2563EB;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="finding-id">F21</span>
+                <span class="finding-page">Homepage</span>
+            </div>
+            <div class="finding-section">Hero Stats</div>
+            <div class="finding-body">Hero copy mentions '150,000 Explore manufactured fiberglass pools' — this IS correct per directive. Also '25+ Years' and '23 countries' — all match.</div>
+            <div class="finding-action"><strong>Action:</strong> NO CHANGE NEEDED — homepage hero stats are already updated and correct</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #2563EB;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="finding-id">F22</span>
+                <span class="finding-page">Become a Dealer</span>
+            </div>
+            <div class="finding-section">Stats & Content</div>
+            <div class="finding-body">Main Become a Dealer page appears to already have updated stats: 77 designs, 200+ models, 8 gelcoat colors, 13 distribution centers listed.</div>
+            <div class="finding-action"><strong>Action:</strong> MOSTLY COMPLETE — verify 'Join the Explore Industries Family' heading is live and all new copy from Q1 2026 doc is implemented</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/become-a-dealer/">https://exploreindustries.com/become-a-dealer/</a></div>
+        </div>
+        
+        <div class="finding-card" style="border-left: 4px solid #CA8A04;">
+            <div class="finding-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="finding-id">F23</span>
+                <span class="finding-page">Sitewide</span>
+            </div>
+            <div class="finding-section">Photos/Imagery</div>
+            <div class="finding-body">Cannot programmatically verify photo currency. Directive requires updated photos across site, especially Aviva and Evo brand pages.</div>
+            <div class="finding-action"><strong>Action:</strong> MANUAL REVIEW REQUIRED — verify all brand photography is current, especially Aviva and Evo pages</div>
+            <div class="finding-url"><a href="https://exploreindustries.com/">https://exploreindustries.com/</a></div>
+        </div>
+        
+
+<a id="copy"></a>
+<h2>Replacement Copy (15 Blocks)</h2>
+
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Sitewide — Navigation</span> &rarr; <span class="copy-section">Main Navigation</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Brands > Pool Brands (Leisure, Aviva, Imagine, Nexus, Evo) > Pool Cover Brands (Integra) > Pool Care Brands (Ultra Pool Care Squad)</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Brands > Pool Brands (Leisure Pools, Aviva Pools, Imagine Pools, Nexus Pools, Evo Pools) > Pool Cover Brands (Integra Pool Covers)</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Remove entire 'Pool Care Brands' submenu. Remove UPCS link.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Sitewide — Navigation</span> &rarr; <span class="copy-section">Locations Menu</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Locations > North America > ...</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">ExploreBase > North America > Knoxville, Tennessee | Marion, South Carolina | New Braunfels, Texas | Millville, New Jersey | Picayune, Mississippi | Dix, Illinois | Lakeland, Florida | Toledo, Ohio | Tucson, Arizona | Woodland, California | Bakersfield, California > Canada > Toronto, Ontario | Surrey, British Columbia > Australasia > Gold Coast, Queensland > Europe > Global Development</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Rename 'Locations' to 'ExploreBase'. Add all 13 distribution centers as sub-links.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Sitewide — Footer</span> &rarr; <span class="copy-section">Family Brands</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Pool Brands: Leisure Pools, Aviva Pools, Imagine Pools, Nexus Pools, Evo Pools | Pool Cover Brands: Integra Pool Covers | Pool Care Brands: Ultra Pool Care Squad</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Pool Brands: Leisure Pools, Aviva Pools, Imagine Pools, Nexus Pools, Evo Pools | Pool Cover Brands: Integra Pool Covers</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Remove 'Pool Care Brands' line and Ultra Pool Care Squad entirely.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Homepage</span> &rarr; <span class="copy-section">Portfolio Body Copy</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Supported by our portfolio of industry-leading brands in pools, spas, pool covers, and franchises, Explore Industries doesn't just think differently; we do differently.</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Supported by our portfolio of industry-leading brands in pools, spas, and pool covers, Explore Industries doesn't just think differently; we do differently.</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Remove 'and franchises' — UPCS franchise is being removed.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Our Company</span> &rarr; <span class="copy-section">Worldwide Presence Stats</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">0 Countries | 0+ Independent Dealers | 0+ Installations | 0 Years in Business</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">23 Countries | 500+ Independent Dealers | 150,000+ Installations | 25+ Years in Business</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Fix broken counter animation. These stats should dynamically count up to these values.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Life at Explore</span> &rarr; <span class="copy-section">Global Footprint Stats</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">0 Countries | 0+ Independent Dealers | 0+ Installations | 0 Years in Business</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">23 Countries | 500+ Independent Dealers | 150,000+ Installations | 25+ Years in Business</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Same fix as Our Company page — broken counter widget.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Company History</span> &rarr; <span class="copy-section">2025 Timeline Entry (NEW)</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">[DOES NOT EXIST]</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">2025 — ELITE<br>In 2025, Explore Industries launched Elite, a new premium brand representing the pinnacle of fiberglass pool design and innovation. Building on 25 years of manufacturing excellence and over 150,000 pools installed worldwide, Elite sets a new standard for luxury composite fiberglass swimming pools.</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Add as newest timeline entry after 2022 Evo Pools.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Company History</span> &rarr; <span class="copy-section">2021 UPCS Entry</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">2021 - ULTRA POOL CARE SQUAD<br>Fighting Grime one Pool at a Time! Explore Industries launched a new pool service franchise under the brand Ultra Pool Care Squad, with a focus on developing an international network of pool service experts via a franchised business model.</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">[REMOVE THIS ENTRY]</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Remove UPCS timeline entry. UPCS is being removed from site entirely.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Locations</span> &rarr; <span class="copy-section">Page Heading</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">EXPLORE INDUSTRIES LOCATIONS</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">EXPLOREBASE</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Rebrand from 'Locations' to 'ExploreBase'</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Locations</span> &rarr; <span class="copy-section">Distribution Yards Table</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">11 locations listed (missing Lakeland FL, Toledo OH, Bakersfield CA)</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">| ExploreBase Location | Address |<br>|---|---|<br>| Millville, New Jersey | 525 Orange St., Millville, NJ 08332 |<br>| Marion, South Carolina | 1313 US 76, Marion, SC 29571 |<br>| Picayune, Mississippi | 1203 Martin Luther King Jr. Blvd., Picayune, MS 39466 |<br>| Knoxville, Tennessee (HQ) | 2901 Leisure Island Way, Knoxville, TN 37914 |<br>| Dix, Illinois | 312 Duncan Rd., Dix, IL 62830 |<br>| Lakeland, Florida | [Address TBD] |<br>| New Braunfels, Texas | [Address from existing page] |<br>| Toledo, Ohio | [Address TBD] |<br>| Tucson, Arizona | 4600 E Tazarv St., Tucson, AZ 85706 |<br>| Woodland, California | 1510 Tanforan Ave., Woodland, CA 95776 |<br>| Bakersfield, California | [Address TBD] |<br>| Toronto, Ontario | 2295 County Road 14, Enterprise, ON L4L 1A5 |<br>| Surrey, British Columbia | [Updated from 1775 Mt Lehman Rd., Abbotsford] |</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Complete distribution table with all 13 locations. Some addresses TBD — confirm with ops team.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Global Development</span> &rarr; <span class="copy-section">Stats</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">over 130,000 pools across 23 countries since 2000</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">over 150,000 pools installed across 23 countries since 2000</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Update pool count from 130,000 to 150,000+</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Aviva Pools Brand Page</span> &rarr; <span class="copy-section">Full Brand Description</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Aviva Pools offers luxury and elegance... [generic description]</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Aviva Pools — Elevate Your Lifestyle<br><br>Aviva Pools delivers a premier collection of in-ground composite fiberglass swimming pools built with state-of-the-art technology. Each pool is carefully crafted, designed with integrity, care and love.<br><br>Our exclusive line offers a beautiful selection of designs to fit your personal aesthetic — from sleek modern rectangles to graceful freeform shapes, complete with integrated spas and tanning ledges.<br><br>COLOR COLLECTION<br>The Aviva Pools color range was inspired by the shimmering waters of tropical paradise:<br>&bull; Santorini Sky — Bright, Clean and Modern<br>&bull; Tahiti Blue — Crisp, Vivid Blue Tone<br>&bull; Maldives Blue — Refreshing Island Vibes<br>&bull; Amalfi Turquoise — Lush Tropical Lagoon<br>&bull; Seychelles Sand — Serene Shoreline Relaxation<br>&bull; Exuma Silver — Dreamy and Understated<br>&bull; Gibraltar Grey — Natural and Refined<br>&bull; Bora Bora Black — Mysterious and Indulgent<br><br>HYDROSHIELD™ TECHNOLOGY<br>At the heart of our pools' strength is HydroShield™, a proprietary quadraxial fiberglass fabric engineered for maximum durability. Unlike standard fiberglass mats, HydroShield™ creates a structural backbone that's both flexible and unyielding.<br><br>LIFETIME GUARANTEE<br>Aviva Pools protects your investment with a Lifetime Structural Warranty and a Lifetime Structural Osmosis Warranty.</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Complete rewrite using actual content from avivapools.com. Reflects current brand positioning, colors, and technology.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Evo Pools Brand Page</span> &rarr; <span class="copy-section">Full Brand Description</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Evo Pools partners with home builders... [minimal description]</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Evo Pools — Luxury Fiberglass Pools That Echo Nature<br><br>Inspired by the most beautiful places on Earth, Evo Pools transforms backyards into destinations. Rooted in timeless landscapes, every pool design draws from natural wonders — from cascading waterfalls to serene coastlines.<br><br>POOL COLLECTION (10 Models)<br>Aurora &bull; Amazon &bull; Sacred &bull; Sequoia &bull; Niagara &bull; El Capitan &bull; Mariana &bull; Everest &bull; Falls &bull; Maldives<br><br>COLOR FINISHES (8 Options)<br>&bull; Abyss Blue &bull; Glacier Blue &bull; Summit Silver &bull; Tropic Cyan<br>&bull; Drift Sand &bull; Illuminating Sky &bull; Surge Grey &bull; Stellar Black<br><br>VIPOXY® CONSTRUCTION<br>Every Evo pool is built with 100% ViPoxy® Vinyl Ester Resin and finished with our AquaGuard® X Gelcoat system, passing 100+ inspection points before delivery.<br><br>WARRANTY COVERAGE<br>&bull; Lifetime Structural Warranty<br>&bull; Lifetime Structural Osmosis Warranty<br>&bull; 10-Year Gelcoat Warranty<br><br>Where nature meets precision — with Evo Pools, every backyard becomes a destination.</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Complete rewrite using actual content from evopools.com. Features nature-inspired positioning, all 10 models, 8 colors, ViPoxy technology.</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Become a Dealer Contact (Legacy)</span> &rarr; <span class="copy-section">Stats</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">47 Designs | 124 Models and Sizes | 7 Gelcoat Color Options | 60,000+ pools in the last 20 years</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">77 Unique Pool Designs | 200+ Models and Sizes | 8 Premium Gelcoat Color Options | 150,000+ Pools Installed in 25+ Years</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Update to match current Become a Dealer page. Consider redirecting this legacy page to /become-a-dealer/</div>
+        </div>
+        
+        <div class="copy-card">
+            <div class="copy-header">
+                <span class="copy-page">Become a Dealer Contact (Legacy)</span> &rarr; <span class="copy-section">Distribution Centers</span>
+            </div>
+            <div class="copy-columns">
+                <div class="copy-current">
+                    <div class="copy-label">CURRENT COPY</div>
+                    <div class="copy-text">Folsom NJ, Marion SC, Picayune MS, Burlington IA, Knoxville TN, Dix IL, New Braunfels TX, Tucson AZ, Woodland CA, Toronto ON, Vancouver BC</div>
+                </div>
+                <div class="copy-new">
+                    <div class="copy-label">REPLACEMENT COPY</div>
+                    <div class="copy-text">Millville NJ, Marion SC, Picayune MS, Knoxville TN, Dix IL, Lakeland FL, New Braunfels TX, Toledo OH, Tucson AZ, Woodland CA, Bakersfield CA, Toronto ON, Surrey BC</div>
+                </div>
+            </div>
+            <div class="copy-note"><strong>Note:</strong> Update to current 13-location list. Note: 'Folsom NJ' was likely 'Millville NJ', 'Burlington IA' removed, 'Vancouver BC' updated to 'Surrey BC', added Lakeland FL, Toledo OH, Bakersfield CA.</div>
+        </div>
+        
+
+<a id="gaps"></a>
+<h2>Gap Analysis (10 Gaps)</h2>
+
+        <div class="gap-card" style="border-left: 4px solid #EA580C;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="gap-title">Elite Brand — No Dedicated Page</span>
+            </div>
+            <div class="gap-detail">The 2025 Elite brand launch is referenced in the Company History PowerPoint but there is NO /brands/pool-brands/elite/ page on the site. If Elite is a consumer-facing brand like Leisure/Aviva/Evo, it needs its own brand page, homepage portfolio card, and navigation entry.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Confirm with leadership whether Elite needs a full brand page. If yes, create /brands/pool-brands/elite/ with brand description, product info, and imagery.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #EA580C;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #EA580C;">HIGH</span>
+                <span class="gap-title">ExploreBase — No Individual Location Pages for 9 of 13 Centers</span>
+            </div>
+            <div class="gap-detail">Only 4 location pages exist (Knoxville, Marion, New Braunfels, Toronto). The remaining 9 distribution centers (Millville NJ, Picayune MS, Dix IL, Lakeland FL, Toledo OH, Tucson AZ, Woodland CA, Bakersfield CA, Surrey BC) have no dedicated pages.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Create templated ExploreBase pages for each distribution center with: address, map embed, hours, contact info, and service area.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #CA8A04;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="gap-title">Become a Dealer — Two Competing Pages</span>
+            </div>
+            <div class="gap-detail">Two separate dealer signup pages exist: /become-a-dealer/ (updated) and /become-a-dealer-contact/ (severely outdated with wrong stats). This creates confusion and SEO cannibalization.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> 301 redirect /become-a-dealer-contact/ to /become-a-dealer/. Consolidate all dealer signup to one page.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #CA8A04;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="gap-title">State-Specific Dealer Pages May Be Outdated</span>
+            </div>
+            <div class="gap-detail">Pages exist for /become-a-dealer-in-california/ and /become-a-dealer-in-florida/. These were not addressed in any directive but may contain outdated stats/copy from the same era as the legacy contact page.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Audit both state-specific pages for outdated stats. Update or redirect to main Become a Dealer page.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #2563EB;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="gap-title">Nexus Pools — Australasia-Only but Listed on US Site</span>
+            </div>
+            <div class="gap-detail">Nexus Pools is positioned for the Australasia market (nexuspools.com.au) but is prominently featured on the US-focused exploreindustries.com. May confuse US dealers/consumers.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Add clarifying copy: 'Available in Australia and New Zealand' or consider whether Nexus should appear in US navigation.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #2563EB;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="gap-title">Blog/Resources Section — Stale Content</span>
+            </div>
+            <div class="gap-detail">Blog has 46 posts but the most recent ones are training/SEO content from 2025. No recent news about Elite launch, new ExploreBase locations, or brand updates.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Publish blog posts announcing: Elite launch, new ExploreBase locations, updated distribution network. This supports SEO and keeps content fresh.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #CA8A04;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #CA8A04;">MEDIUM</span>
+                <span class="gap-title">Missing Location Detail Pages — Ontario Address Incorrect</span>
+            </div>
+            <div class="gap-detail">Ontario distribution yard address shows '2295 County Road 14, Enterprise, ON L4L 1A5' — Enterprise, ON is near Kingston, but L4L postal code is Woodbridge/Vaughan (near Toronto). Address may be incorrect.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Verify Ontario distribution center address with operations team.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #2563EB;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="gap-title">Partner Brands Section — No Context</span>
+            </div>
+            <div class="gap-detail">Partner brands (Hayward, PAL, CMP, etc.) are listed with logos but no description of what each partner provides. The Our Company page has one line of copy but individual partner details are missing.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Add brief one-line descriptions for each partner brand explaining their role (e.g., 'Hayward — Pool pumps, filters, and automation').</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #2563EB;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="gap-title">Awards & Recognition — Last Updated March 2024</span>
+            </div>
+            <div class="gap-detail">Awards page hasn't been updated in nearly a year. If Explore Industries has won any awards in 2025-2026, they're not reflected.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Update with any recent industry awards or recognition.</div>
+        </div>
+        
+        <div class="gap-card" style="border-left: 4px solid #2563EB;">
+            <div class="gap-header">
+                <span class="severity-badge" style="background: #2563EB;">LOW</span>
+                <span class="gap-title">Mobile Experience / Page Speed — Not Audited</span>
+            </div>
+            <div class="gap-detail">This content audit covers text/copy only. No performance or mobile UX audit was performed.</div>
+            <div class="gap-rec"><strong>Recommendation:</strong> Run Google PageSpeed Insights and mobile-friendly test separately.</div>
+        </div>
+        
+
+<a id="sitemap"></a>
+<h2>Site Map — Pages Audited</h2>
+<div class="finding-card" style="border-left: 4px solid var(--accent);">
+    <div class="finding-body" style="font-size: 13px;">
+        <strong>51 pages</strong> in page sitemap + <strong>46 blog posts</strong> in post sitemap.<br><br>
+        <strong>Core pages audited in this report:</strong><br>
+        &bull; Homepage (exploreindustries.com/)<br>
+        &bull; Our Company (/our-company/)<br>
+        &bull; History (/our-company/history/)<br>
+        &bull; Life at Explore (/our-company/life-at-explore/)<br>
+        &bull; Explore Technology (/explore-technology/)<br>
+        &bull; Pool Brands Overview (/brands/pool-brands/)<br>
+        &bull; Leisure Pools (/brands/pool-brands/leisure-pools/)<br>
+        &bull; Aviva Pools (/brands/pool-brands/aviva-pools/)<br>
+        &bull; Imagine Pools (/brands/pool-brands/imagine-pools/)<br>
+        &bull; Nexus Pools (/brands/pool-brands/nexus-pools/)<br>
+        &bull; Evo Pools (/brands/pool-brands/evo-pools/)<br>
+        &bull; Integra Pool Covers (/brands/pool-cover-brands/integra-pool-covers/)<br>
+        &bull; Ultra Pool Care Squad (/brands/pool-care-brands/ultra-pool-care-squad/)<br>
+        &bull; Pool Care Brands (/brands/pool-care-brands/)<br>
+        &bull; Locations (/locations/)<br>
+        &bull; North America (/locations/north-america/)<br>
+        &bull; Become a Dealer (/become-a-dealer/)<br>
+        &bull; Become a Dealer Contact (/become-a-dealer-contact/)<br>
+        &bull; Global Development (/global-developments/)<br>
+        &bull; Awards & Recognition (/resources/awards-recognition/)<br><br>
+        <strong>Brand reference sites crawled:</strong><br>
+        &bull; leisurepoolsusa.com<br>
+        &bull; avivapools.com<br>
+        &bull; imaginepools.com<br>
+        &bull; evopools.com
+    </div>
+</div>
+
+</div>
+
+<div style="background: var(--primary); color: white; padding: 24px 40px; text-align: center; font-size: 13px; opacity: 0.8;">
+    Explore Industries Website Content Audit &mdash; Confidential &mdash; March 2026
+</div>
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Columbus OH — Lead Quality Deep Dive</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #333; line-height: 1.6; }
+.header { background: #1a1a2e; color: #fff; padding: 40px 30px 30px; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { color: #a0a0c0; font-size: 14px; }
+.header .meta { display: flex; gap: 30px; margin-top: 16px; flex-wrap: wrap; }
+.header .meta-item { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 20px; }
+.header .meta-item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #8888aa; }
+.header .meta-item .value { font-size: 22px; font-weight: 700; color: #fff; }
+.container { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+.card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); padding: 28px; margin-bottom: 24px; }
+.card h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; color: #1a1a2e; border-bottom: 2px solid #f0f2f5; padding-bottom: 10px; }
+.card h3 { font-size: 16px; font-weight: 600; margin: 18px 0 10px; color: #333; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f8f9fa; text-align: left; padding: 10px 12px; font-weight: 600; color: #555; border-bottom: 2px solid #e9ecef; }
+td { padding: 9px 12px; border-bottom: 1px solid #f0f2f5; }
+tr:hover td { background: #fafbfc; }
+.tag-red { background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-yellow { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-green { background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag-blue { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.copy-block { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 16px; font-family: 'SF Mono', Monaco, Consolas, monospace; font-size: 12px; line-height: 1.8; cursor: pointer; transition: background 0.2s; white-space: pre-wrap; word-break: break-word; }
+.copy-block:hover { background: #e9ecef; }
+.copy-hint { font-size: 11px; color: #888; margin-bottom: 6px; font-style: italic; }
+.gap-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.gap-item { background: #fee2e2; border-left: 3px solid #ef4444; padding: 6px 12px; border-radius: 0 4px 4px 0; font-size: 13px; }
+.present-item { background: #d1fae5; border-left: 3px solid #10b981; padding: 6px 12px; border-radius: 0 4px 4px 0; font-size: 13px; }
+.priority-list { counter-reset: priority; list-style: none; }
+.priority-list li { counter-increment: priority; padding: 12px 16px; margin-bottom: 8px; background: #f8f9fa; border-radius: 8px; font-size: 14px; position: relative; padding-left: 50px; }
+.priority-list li::before { content: counter(priority); position: absolute; left: 12px; top: 12px; background: #1a1a2e; color: #fff; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat-box { background: #f8f9fa; border-radius: 8px; padding: 16px; text-align: center; }
+.stat-box .stat-val { font-size: 24px; font-weight: 700; color: #1a1a2e; }
+.stat-box .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-top: 4px; }
+.alert-banner { background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; }
+.alert-banner strong { color: #991b1b; }
+.section-note { font-size: 13px; color: #666; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Leisure Pools Columbus OH — Lead Quality Deep Dive</h1>
+    <div class="subtitle">Account 500-052-3507 &nbsp;|&nbsp; Pools 123 Dealer Group &nbsp;|&nbsp; March 1–16, 2026 &nbsp;|&nbsp; Baseline: Houston TX</div>
+    <div class="meta">
+        <div class="meta-item">
+            <div class="label">Spend</div>
+            <div class="value">$1,033.85</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Clicks</div>
+            <div class="value">170</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Conversions</div>
+            <div class="value">7</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">CTR</div>
+            <div class="value">8.74%</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Avg CPC</div>
+            <div class="value">$6.08</div>
+        </div>
+        <div class="meta-item">
+            <div class="label">Neg Keywords</div>
+            <div class="value" style="color:#ef4444">4 only</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- ALERT -->
+    <div class="alert-banner">
+        <strong>Critical Finding:</strong> Columbus has only <strong>4 negative keywords</strong> vs Houston's 40+ baseline. This account is bleeding budget on competitor, DIY, pool supply, and non-fiberglass search terms. Estimated 15–20% of clicks are wasted on non-buyer intent queries.
+    </div>
+
+    <!-- CAMPAIGN PERFORMANCE -->
+    <div class="card">
+        <h2>Campaign Performance Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campaign</th>
+                    <th>Status</th>
+                    <th>Impressions</th>
+                    <th>Clicks</th>
+                    <th>CTR</th>
+                    <th>Avg CPC</th>
+                    <th>Cost</th>
+                    <th>Conv.</th>
+                    <th>Cost/Conv</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Leisure Pools Columbus OH Search Campaign</strong></td>
+                    <td><span class="tag-green">ENABLED</span></td>
+                    <td>1,945</td>
+                    <td>170</td>
+                    <td>8.74%</td>
+                    <td>$6.08</td>
+                    <td>$1,033.85</td>
+                    <td>7</td>
+                    <td>$147.69</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="stat-grid" style="margin-top: 20px;">
+            <div class="stat-box">
+                <div class="stat-val">$147.69</div>
+                <div class="stat-label">Cost per Conversion</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">4.12%</div>
+                <div class="stat-label">Conversion Rate</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">8.74%</div>
+                <div class="stat-label">Click-Through Rate</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val">$64.62/day</div>
+                <div class="stat-label">Avg Daily Spend</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROBLEMATIC SEARCH TERMS -->
+    <div class="card">
+        <h2>Problematic Search Terms — Non-Buyer Intent</h2>
+        <p class="section-note">Search terms that indicate competitor lookups, pool service/repair, DIY, non-fiberglass product types, or pool supply shopping — none of which convert for a fiberglass pool dealer.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Search Term</th>
+                    <th>Issue</th>
+                    <th>Impr.</th>
+                    <th>Clicks</th>
+                    <th>Cost</th>
+                    <th>Conv.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>premier pools and spas</td>
+                    <td><span class="tag-red">COMPETITOR</span></td>
+                    <td>9</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>leslies pool</td>
+                    <td><span class="tag-red">POOL SUPPLY</span></td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>plunge pool</td>
+                    <td><span class="tag-yellow">NON-FIBERGLASS</span></td>
+                    <td>17</td>
+                    <td>2</td>
+                    <td>$4.75</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>plunge pool columbus ohio</td>
+                    <td><span class="tag-yellow">NON-FIBERGLASS</span></td>
+                    <td>15</td>
+                    <td>1</td>
+                    <td>$2.92</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>plunge pools</td>
+                    <td><span class="tag-yellow">NON-FIBERGLASS</span></td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>diy plunge pool</td>
+                    <td><span class="tag-red">DIY</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>latham plunge pools</td>
+                    <td><span class="tag-red">COMPETITOR</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>radiant semi inground pool</td>
+                    <td><span class="tag-yellow">SEMI-INGROUND</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>semi inground pool columbus ohio</td>
+                    <td><span class="tag-yellow">SEMI-INGROUND</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>semi inground pools near me</td>
+                    <td><span class="tag-yellow">SEMI-INGROUND</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>pool service companies near me</td>
+                    <td><span class="tag-red">SERVICE/REPAIR</span></td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>pool repair columbus ohio</td>
+                    <td><span class="tag-red">SERVICE/REPAIR</span></td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>pool service near me</td>
+                    <td><span class="tag-red">SERVICE/REPAIR</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>doughboy pool installers near me</td>
+                    <td><span class="tag-yellow">NON-FIBERGLASS</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>fiberglass pools diy</td>
+                    <td><span class="tag-red">DIY</span></td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>$13.96</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>inground pool liner installation</td>
+                    <td><span class="tag-yellow">VINYL LINER</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>average cost of vinyl inground pool</td>
+                    <td><span class="tag-yellow">VINYL LINER</span></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>scioto valley pools</td>
+                    <td><span class="tag-blue">LOCAL COMPETITOR</span></td>
+                    <td>44</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>rainbow pools lancaster ohio</td>
+                    <td><span class="tag-blue">LOCAL COMPETITOR</span></td>
+                    <td>15</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>marzetti pools</td>
+                    <td><span class="tag-blue">LOCAL COMPETITOR</span></td>
+                    <td>5</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>quality pools</td>
+                    <td><span class="tag-blue">LOCAL COMPETITOR</span></td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>how to pay for an inground pool</td>
+                    <td><span class="tag-yellow">FINANCE/INFO</span></td>
+                    <td>3</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>cheapest inground pool options</td>
+                    <td><span class="tag-yellow">BUDGET SHOPPER</span></td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>$0.00</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CURRENT NEGATIVES -->
+    <div class="card">
+        <h2>Current Negative Keywords</h2>
+        <p class="section-note">Columbus currently has only 4 campaign-level negatives. This is dangerously thin for a pool dealer account.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keyword</th>
+                    <th>Match Type</th>
+                    <th>Campaign</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cheap</td>
+                    <td>BROAD</td>
+                    <td>Leisure Pools Columbus OH Search Campaign</td>
+                </tr>
+                <tr>
+                    <td>above</td>
+                    <td>BROAD</td>
+                    <td>Leisure Pools Columbus OH Search Campaign</td>
+                </tr>
+                <tr>
+                    <td>leslie</td>
+                    <td>BROAD</td>
+                    <td>Leisure Pools Columbus OH Search Campaign</td>
+                </tr>
+                <tr>
+                    <td>above ground</td>
+                    <td>BROAD</td>
+                    <td>Leisure Pools Columbus OH Search Campaign</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top:12px; font-size:13px; color:#991b1b; font-weight:600;">Note: "leslie" broad match should block "leslies pool" but it still appeared 6 times in search terms — may indicate the negative isn't applying correctly or the term is matching via a different path. Verify in the UI.</p>
+    </div>
+
+    <!-- GAP ANALYSIS -->
+    <div class="card">
+        <h2>Gap Analysis vs Houston TX Baseline</h2>
+        <p class="section-note">Houston has a proven negative keyword list that prevents wasted spend. Below shows which of those keywords Columbus already has vs what's missing.</p>
+
+        <h3>Already Present in Columbus (4 of 40+)</h3>
+        <div class="gap-list" style="margin-bottom: 20px;">
+            <div class="present-item">cheap <span class="tag-green">COVERED</span></div>
+            <div class="present-item">above / above ground <span class="tag-green">COVERED</span></div>
+            <div class="present-item">leslie <span class="tag-green">PARTIAL</span></div>
+        </div>
+
+        <h3>Missing from Columbus — Must Add</h3>
+        <div class="gap-list">
+            <div class="gap-item">cowboy pool</div>
+            <div class="gap-item">cowboy pools</div>
+            <div class="gap-item">plungie pool</div>
+            <div class="gap-item">plungie pool cost</div>
+            <div class="gap-item">plungie pools</div>
+            <div class="gap-item">container pool</div>
+            <div class="gap-item">container pools</div>
+            <div class="gap-item">shipping container pool</div>
+            <div class="gap-item">semi inground pool</div>
+            <div class="gap-item">semi inground pools</div>
+            <div class="gap-item">semi-inground pool</div>
+            <div class="gap-item">semi-inground pools</div>
+            <div class="gap-item">semi inground pool cost</div>
+            <div class="gap-item">semi inground pools cost</div>
+            <div class="gap-item">stock tank pool</div>
+            <div class="gap-item">swim spa</div>
+            <div class="gap-item">swim spas</div>
+            <div class="gap-item">swim spa cost</div>
+            <div class="gap-item">swim spas cost</div>
+            <div class="gap-item">leslies</div>
+            <div class="gap-item">leslie's</div>
+            <div class="gap-item">leslie's pool</div>
+            <div class="gap-item">leslies pool</div>
+            <div class="gap-item">leslie pool</div>
+            <div class="gap-item">leslie's pool supplies</div>
+            <div class="gap-item">leslie's pool supply</div>
+            <div class="gap-item">leslie pool supplies</div>
+            <div class="gap-item">leslie pool supply</div>
+            <div class="gap-item">leslie's near me</div>
+            <div class="gap-item">leslies near me</div>
+            <div class="gap-item">leslie's pool supplies near me</div>
+            <div class="gap-item">pinch a penny</div>
+            <div class="gap-item">pinch a penny pool supplies</div>
+            <div class="gap-item">pool supply near me</div>
+            <div class="gap-item">pool supplies near me</div>
+            <div class="gap-item">pool store near me</div>
+            <div class="gap-item">liner pool cost</div>
+            <div class="gap-item">pool plastering cost</div>
+            <div class="gap-item">soake pools cost</div>
+            <div class="gap-item">ipoolgo prices</div>
+            <div class="gap-item">doughboy pool</div>
+            <div class="gap-item">prefab pools</div>
+            <div class="gap-item">cold plunge pool</div>
+            <div class="gap-item">dipping pool</div>
+            <div class="gap-item">aqua pools</div>
+            <div class="gap-item">premier pools and spas</div>
+        </div>
+    </div>
+
+    <!-- CLICK-TO-COPY BLOCKS -->
+    <div class="card">
+        <h2>Click-to-Copy Negative Keyword Blocks</h2>
+        <p class="section-note">Click any block below to copy the full list to your clipboard. Paste directly into Google Ads negative keyword lists.</p>
+
+        <h3>Block 1: Houston Baseline Negatives (Missing from Columbus)</h3>
+        <p class="copy-hint">Click to copy — 46 keywords, phrase match format</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pool cost
+plungie pools
+container pool
+container pools
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+leslies
+leslie's
+leslie's pool
+leslies pool
+leslie pool
+leslie's pool supplies
+leslie's pool supply
+leslie pool supplies
+leslie pool supply
+leslie's near me
+leslies near me
+leslie's pool supplies near me
+pinch a penny
+pinch a penny pool supplies
+pool supply near me
+pool supplies near me
+pool store near me
+liner pool cost
+pool plastering cost
+soake pools cost
+ipoolgo prices
+doughboy pool
+prefab pools
+cold plunge pool
+dipping pool
+aqua pools
+premier pools and spas</pre>
+
+        <h3>Block 2: Columbus-Specific Additions (From Search Term Analysis)</h3>
+        <p class="copy-hint">Click to copy — Ohio-market negatives based on observed search terms</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">pool repair
+pool service
+pool service near me
+pool repair near me
+pool service companies
+pool liner
+vinyl pool
+vinyl inground pool
+liner installation
+plunge pool
+plunge pools
+diy pool
+diy plunge pool
+diy fiberglass
+how to pay for
+pool financing
+radiant pool
+radiant semi inground
+doughboy pool installers
+precast concrete pools
+okeanos pools
+latham plunge
+river pools
+moore brothers pools
+scioto valley pools
+marzetti pools
+rainbow pools
+chevron pools
+outdoor fx</pre>
+
+        <h3>Block 3: Full Combined List (All Recommended Negatives)</h3>
+        <p class="copy-hint">Click to copy — Complete recommended negative keyword list for Columbus</p>
+<pre class="copy-block" onclick="navigator.clipboard.writeText(this.innerText).then(()=>{this.style.background='#d4edda';setTimeout(()=>this.style.background='#f8f9fa',1000)})">cowboy pool
+cowboy pools
+plungie pool
+plungie pool cost
+plungie pools
+container pool
+container pools
+shipping container pool
+semi inground pool
+semi inground pools
+semi-inground pool
+semi-inground pools
+semi inground pool cost
+semi inground pools cost
+stock tank pool
+swim spa
+swim spas
+swim spa cost
+swim spas cost
+leslies
+leslie's
+leslie's pool
+leslies pool
+leslie pool
+leslie's pool supplies
+leslie's pool supply
+leslie pool supplies
+leslie pool supply
+leslie's near me
+leslies near me
+leslie's pool supplies near me
+pinch a penny
+pinch a penny pool supplies
+pool supply near me
+pool supplies near me
+pool store near me
+liner pool cost
+pool plastering cost
+soake pools cost
+ipoolgo prices
+doughboy pool
+prefab pools
+cold plunge pool
+dipping pool
+aqua pools
+premier pools and spas
+pool repair
+pool service
+pool service near me
+pool repair near me
+pool service companies
+pool liner
+vinyl pool
+vinyl inground pool
+liner installation
+plunge pool
+plunge pools
+diy pool
+diy plunge pool
+diy fiberglass
+how to pay for
+radiant pool
+radiant semi inground
+doughboy pool installers
+precast concrete pools
+okeanos pools
+latham plunge
+river pools
+moore brothers pools
+scioto valley pools
+marzetti pools
+rainbow pools
+chevron pools
+outdoor fx</pre>
+    </div>
+
+    <!-- RECOMMENDED ACTIONS -->
+    <div class="card">
+        <h2>Recommended Actions — Prioritized</h2>
+        <ol class="priority-list">
+            <li><strong>Add Houston baseline negatives immediately.</strong> Columbus is missing 46 of Houston's proven negative keywords. This is the single highest-impact change — copy Block 1 and add as phrase match negatives to the campaign. Estimated savings: $50–80/month in wasted clicks.</li>
+            <li><strong>Add Columbus-specific negatives from Block 2.</strong> Search term data reveals local competitor names (Scioto Valley, Marzetti, Rainbow Pools, Chevron Pools), pool service/repair intent, and vinyl/liner queries that waste impressions. These are Ohio-market adaptations Houston wouldn't need.</li>
+            <li><strong>Investigate "leslie" negative not blocking "leslies pool."</strong> The broad match negative "leslie" should theoretically block "leslies pool" but it appeared 6 times. Check if the negative is paused, if there's a match type issue, or if it's coming through a different campaign path.</li>
+            <li><strong>Monitor plunge pool / cold plunge queries.</strong> "Plunge pool" drove 2 paid clicks with $4.75 spend and zero conversions. While some fiberglass dealers do sell small plunge models, the search intent is usually for cold plunge tubs or DIY setups — not a $40K+ fiberglass install. Negative it unless Pools 123 Columbus explicitly sells plunge-style fiberglass models.</li>
+            <li><strong>Review "precast concrete pools" conversion.</strong> This term drove 1 conversion at $2.87 CPC — investigate whether that conversion was a real lead or a mismatch. "Precast concrete" is not fiberglass, so either the searcher was confused or the conversion action is broad.</li>
+            <li><strong>Consider adding competitor names as negatives.</strong> Scioto Valley Pools (44 impressions), Rainbow Pools (15 impressions), Quality Pools (8 impressions), and Marzetti Pools (5 impressions) are all competitor brand searches. None converted. Add as exact or phrase match negatives to prevent future impression/click waste.</li>
+            <li><strong>Set up a shared negative keyword list at MCC level.</strong> Since Pools 123 operates multiple accounts (Houston + Columbus), create an MCC-level shared negative list with the common baseline so future accounts start protected.</li>
+        </ol>
+    </div>
+
+    <!-- TOP SEARCH TERMS -->
+    <div class="card">
+        <h2>Top 30 Search Terms by Impressions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Search Term</th>
+                    <th>Impr.</th>
+                    <th>Clicks</th>
+                    <th>CTR</th>
+                    <th>Cost</th>
+                    <th>Conv.</th>
+                    <th>Assessment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>scioto valley pools</td><td>44</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-blue">LOCAL COMPETITOR</span></td></tr>
+                <tr><td>2</td><td>fiberglass pools</td><td>31</td><td>5</td><td>16.1%</td><td>$21.93</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>3</td><td>inground pool</td><td>20</td><td>2</td><td>10%</td><td>$6.66</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>4</td><td>plunge pool</td><td>17</td><td>2</td><td>11.8%</td><td>$4.75</td><td>0</td><td><span class="tag-yellow">CAUTION</span></td></tr>
+                <tr><td>5</td><td>plunge pool columbus ohio</td><td>15</td><td>1</td><td>6.7%</td><td>$2.92</td><td>0</td><td><span class="tag-yellow">CAUTION</span></td></tr>
+                <tr><td>6</td><td>rainbow pools lancaster ohio</td><td>15</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-blue">LOCAL COMPETITOR</span></td></tr>
+                <tr><td>7</td><td>inground pool cost</td><td>14</td><td>3</td><td>21.4%</td><td>$18.07</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>8</td><td>in ground pool</td><td>12</td><td>2</td><td>16.7%</td><td>$7.15</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>9</td><td>inground pool cost ohio</td><td>12</td><td>1</td><td>8.3%</td><td>$3.50</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>10</td><td>pool installation</td><td>11</td><td>1</td><td>9.1%</td><td>$1.49</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>11</td><td>fiberglass pools near me</td><td>10</td><td>3</td><td>30%</td><td>$43.36</td><td>0</td><td><span class="tag-green">GREAT INTENT</span></td></tr>
+                <tr><td>12</td><td>in ground pools</td><td>10</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>13</td><td>fiberglass pool</td><td>9</td><td>1</td><td>11.1%</td><td>$4.02</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>14</td><td>pool installation near me</td><td>9</td><td>2</td><td>22.2%</td><td>$17.43</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>15</td><td>pools and spas</td><td>9</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-yellow">BROAD</span></td></tr>
+                <tr><td>16</td><td>premier pools and spas</td><td>9</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-red">COMPETITOR</span></td></tr>
+                <tr><td>17</td><td>pool companies near me</td><td>8</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>18</td><td>quality pools</td><td>8</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-blue">LOCAL COMPETITOR</span></td></tr>
+                <tr><td>19</td><td>in ground pool cost ohio</td><td>7</td><td>3</td><td>42.9%</td><td>$11.96</td><td>1</td><td><span class="tag-green">CONVERTING</span></td></tr>
+                <tr><td>20</td><td>cocktail pool</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>21</td><td>fiberglass pool shell</td><td>6</td><td>3</td><td>50%</td><td>$9.62</td><td>0</td><td><span class="tag-green">GREAT INTENT</span></td></tr>
+                <tr><td>22</td><td>leslies pool</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-red">POOL SUPPLY</span></td></tr>
+                <tr><td>23</td><td>plunge pools</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-yellow">CAUTION</span></td></tr>
+                <tr><td>24</td><td>pool builders near me</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+                <tr><td>25</td><td>pool service companies near me</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-red">SERVICE/REPAIR</span></td></tr>
+                <tr><td>26</td><td>pools and spas near me</td><td>6</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-yellow">BROAD</span></td></tr>
+                <tr><td>27</td><td>fiberglass pools columbus ohio</td><td>5</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-green">GREAT INTENT</span></td></tr>
+                <tr><td>28</td><td>fiberglass pools diy</td><td>5</td><td>2</td><td>40%</td><td>$13.96</td><td>0</td><td><span class="tag-red">DIY</span></td></tr>
+                <tr><td>29</td><td>marzetti pools</td><td>5</td><td>0</td><td>0%</td><td>$0.00</td><td>0</td><td><span class="tag-blue">LOCAL COMPETITOR</span></td></tr>
+                <tr><td>30</td><td>the summit fiberglass pool</td><td>5</td><td>3</td><td>60%</td><td>$5.64</td><td>0</td><td><span class="tag-green">GOOD INTENT</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="text-align:center; padding: 24px; color: #999; font-size: 12px;">
+        Generated March 16, 2026 &nbsp;|&nbsp; Explore Industries &nbsp;|&nbsp; Account 500-052-3507 &nbsp;|&nbsp; Data: Google Ads API
+    </div>
+
+</div>
+
+</body>
+</html>

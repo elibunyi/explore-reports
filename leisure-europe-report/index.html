@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Europe — Google Ads Report</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background:#f5f6f8; color:#1a1a2e; line-height:1.5; }
+
+.header { background: linear-gradient(135deg, #0a1628 0%, #1a2d50 100%); color:white; padding:28px 40px; display:flex; justify-content:space-between; align-items:center; }
+.header-left h1 { font-size:22px; font-weight:700; letter-spacing:-0.3px; }
+.header-left .subtitle { font-size:13px; color:#8899b4; margin-top:2px; }
+.header-right { text-align:right; }
+.header-right .date { font-size:13px; color:#8899b4; }
+.header-right .generated { font-size:11px; color:#556b8a; margin-top:2px; }
+
+.container { max-width:1200px; margin:0 auto; padding:24px; }
+
+/* KPI Row */
+.kpi-row { display:grid; grid-template-columns: repeat(5, 1fr); gap:16px; margin-bottom:24px; }
+.kpi { background:white; border-radius:10px; padding:20px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.kpi .value { font-size:26px; font-weight:700; color:#1a1a2e; }
+.kpi .label { font-size:12px; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-top:4px; }
+
+/* Location Cards */
+.cards-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:16px; margin-bottom:24px; }
+.location-card { background:white; border-radius:10px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,.06); cursor:pointer; transition: all .15s; border:2px solid transparent; }
+.location-card:hover { border-color:#3b82f6; box-shadow:0 4px 12px rgba(59,130,246,.15); transform:translateY(-1px); }
+.card-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.card-flag { font-size:28px; }
+.card-title { font-size:16px; font-weight:700; }
+.card-subtitle { font-size:12px; color:#666; }
+.card-metrics { display:grid; grid-template-columns: repeat(5, 1fr); gap:8px; }
+.card-metric { text-align:center; }
+.card-metric-value { font-size:15px; font-weight:700; color:#1a1a2e; }
+.card-metric-label { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.3px; }
+
+.status-badge { padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600; }
+.status-eligible { background:#e0f2fe; color:#0369a1; }
+.status-learning { background:#fef3c7; color:#92400e; }
+
+/* Overview Table */
+.overview-table-wrap { background:white; border-radius:10px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-bottom:24px; }
+.overview-table-wrap h3 { font-size:16px; font-weight:700; margin-bottom:16px; }
+.overview-table { width:100%; border-collapse:collapse; font-size:13px; }
+.overview-table th { background:#f8f9fb; padding:10px 12px; text-align:right; font-weight:600; color:#555; border-bottom:2px solid #e5e7eb; font-size:11px; text-transform:uppercase; letter-spacing:0.3px; }
+.overview-table th:first-child { text-align:left; }
+.overview-table td { padding:10px 12px; text-align:right; border-bottom:1px solid #f0f1f3; }
+.overview-table td:first-child { text-align:left; font-weight:600; }
+.overview-table .clickable-row { cursor:pointer; transition:background .1s; }
+.overview-table .clickable-row:hover { background:#f0f7ff; }
+.overview-table .total-row { background:#f8f9fb; font-weight:600; border-top:2px solid #e5e7eb; }
+.overview-table .total-row td { border-bottom:none; }
+.inactive-cell { color:#ccc; }
+.table-flag { margin-right:6px; }
+
+/* Month group header */
+.month-group { text-align:center !important; }
+
+/* Detail Pages */
+.location-page { animation: fadeIn .2s; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.back-btn { background:none; border:none; color:#3b82f6; font-size:14px; cursor:pointer; padding:8px 0; margin-bottom:16px; font-weight:500; }
+.back-btn:hover { color:#1d4ed8; }
+
+.page-header { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.page-flag { font-size:40px; }
+.page-title { font-size:24px; font-weight:700; }
+.page-subtitle { font-size:13px; color:#666; }
+
+.detail-kpis { display:grid; grid-template-columns: repeat(6, 1fr); gap:12px; margin-bottom:24px; }
+.kpi-card { background:white; border-radius:8px; padding:16px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,.06); }
+.kpi-value { font-size:22px; font-weight:700; }
+.kpi-label { font-size:11px; color:#666; text-transform:uppercase; letter-spacing:0.3px; margin-top:2px; }
+
+.detail-section { background:white; border-radius:10px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,.06); margin-bottom:16px; }
+.detail-section h3 { font-size:16px; font-weight:700; margin-bottom:16px; }
+.term-count { font-weight:400; color:#888; font-size:13px; }
+
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#f8f9fb; padding:8px 12px; text-align:right; font-weight:600; color:#555; border-bottom:2px solid #e5e7eb; font-size:11px; text-transform:uppercase; letter-spacing:0.3px; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:8px 12px; text-align:right; border-bottom:1px solid #f0f1f3; }
+.data-table td:first-child { text-align:left; }
+.data-table .total-row { background:#f8f9fb; font-weight:600; border-top:2px solid #e5e7eb; }
+.term-cell { text-align:left !important; font-size:12px; max-width:280px; }
+
+.settings-row { display:flex; flex-wrap:wrap; gap:24px; }
+.setting-item { font-size:13px; }
+.setting-label { font-weight:600; color:#555; }
+
+.mini-chart { height:180px; margin-bottom:16px; display:flex; align-items:flex-end; gap:4px; padding:8px 0; }
+.chart-group { display:flex; flex-direction:column; align-items:center; flex:1; }
+.chart-bars { display:flex; align-items:flex-end; gap:4px; height:140px; }
+.chart-bar { width:36px; border-radius:4px 4px 0 0; transition:height .3s; position:relative; }
+.chart-bar.clicks { background:#3b82f6; }
+.chart-bar.cost { background:#f59e0b; }
+.chart-bar-label { font-size:10px; color:#666; margin-top:6px; font-weight:600; }
+.chart-bar-value { position:absolute; top:-18px; left:50%; transform:translateX(-50%); font-size:10px; font-weight:600; white-space:nowrap; }
+.chart-legend { display:flex; gap:16px; justify-content:center; margin-bottom:8px; font-size:11px; color:#666; }
+.legend-dot { width:10px; height:10px; border-radius:2px; display:inline-block; margin-right:4px; vertical-align:middle; }
+
+.section-title { font-size:18px; font-weight:700; margin-bottom:16px; color:#1a1a2e; }
+
+.notes-box { background:#fffbeb; border:1px solid #fcd34d; border-radius:8px; padding:16px; margin-bottom:24px; font-size:13px; color:#92400e; }
+.notes-box strong { display:block; margin-bottom:4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <h1>Leisure Pools Europe</h1>
+        <div class="subtitle">Google Ads Performance Report</div>
+    </div>
+    <div class="header-right">
+        <div class="date">January 1 – March 11, 2026</div>
+        <div class="generated">Generated Mar 11, 2026</div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- OVERVIEW PAGE -->
+<div id="overview-page">
+    
+    <div class="kpi-row">
+        <div class="kpi">
+            <div class="value">$2,748.42</div>
+            <div class="label">Total Spend</div>
+        </div>
+        <div class="kpi">
+            <div class="value">2,061</div>
+            <div class="label">Total Clicks</div>
+        </div>
+        <div class="kpi">
+            <div class="value">47,930</div>
+            <div class="label">Impressions</div>
+        </div>
+        <div class="kpi">
+            <div class="value">4.30%</div>
+            <div class="label">Avg CTR</div>
+        </div>
+        <div class="kpi">
+            <div class="value">$1.33</div>
+            <div class="label">Avg CPC</div>
+        </div>
+    </div>
+    
+    <div class="notes-box">
+        <strong>Account Notes</strong>
+        All 6 campaigns running on Maximize Clicks at $17/day each ($102/day total). 0 conversions tracked — conversion tracking may not be configured. Basel was the only campaign active in January; remaining locations launched in February. Owl and Sauerland still in Learning status.
+    </div>
+    
+    <div class="section-title">Locations</div>
+    <div class="cards-grid">
+        
+        <div class="location-card" onclick="showLocation('Basel')">
+            <div class="card-header">
+                <span class="card-flag">🇨🇭</span>
+                <div>
+                    <div class="card-title">Basel</div>
+                    <div class="card-subtitle">Switzerland</div>
+                </div>
+                <span class="status-badge status-eligible">Eligible</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$1,067.66</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">923</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">27,242</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">3.4%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.16</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-card" onclick="showLocation('Muenchen')">
+            <div class="card-header">
+                <span class="card-flag">🇩🇪</span>
+                <div>
+                    <div class="card-title">Muenchen</div>
+                    <div class="card-subtitle">Germany</div>
+                </div>
+                <span class="status-badge status-eligible">Eligible</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$520.88</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">311</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">6,610</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">4.7%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.67</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-card" onclick="showLocation('Duesseldorf')">
+            <div class="card-header">
+                <span class="card-flag">🇩🇪</span>
+                <div>
+                    <div class="card-title">Duesseldorf</div>
+                    <div class="card-subtitle">Germany</div>
+                </div>
+                <span class="status-badge status-eligible">Eligible</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$466.24</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">311</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">5,300</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">5.9%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.50</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-card" onclick="showLocation('Wien')">
+            <div class="card-header">
+                <span class="card-flag">🇦🇹</span>
+                <div>
+                    <div class="card-title">Wien</div>
+                    <div class="card-subtitle">Austria</div>
+                </div>
+                <span class="status-badge status-eligible">Eligible</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$452.24</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">366</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">6,648</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">5.5%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.24</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-card" onclick="showLocation('Sauerland')">
+            <div class="card-header">
+                <span class="card-flag">🇩🇪</span>
+                <div>
+                    <div class="card-title">Sauerland</div>
+                    <div class="card-subtitle">Germany</div>
+                </div>
+                <span class="status-badge status-learning">Learning</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$234.53</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">146</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">2,093</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">7.0%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.61</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+        <div class="location-card" onclick="showLocation('Owl')">
+            <div class="card-header">
+                <span class="card-flag">🇩🇪</span>
+                <div>
+                    <div class="card-title">Owl</div>
+                    <div class="card-subtitle">Germany</div>
+                </div>
+                <span class="status-badge status-learning">Learning</span>
+            </div>
+            <div class="card-metrics">
+                <div class="card-metric">
+                    <div class="card-metric-value">$6.87</div>
+                    <div class="card-metric-label">Spend</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">4</div>
+                    <div class="card-metric-label">Clicks</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">37</div>
+                    <div class="card-metric-label">Impr.</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">10.8%</div>
+                    <div class="card-metric-label">CTR</div>
+                </div>
+                <div class="card-metric">
+                    <div class="card-metric-value">$1.72</div>
+                    <div class="card-metric-label">Avg CPC</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overview-table-wrap">
+        <h3>Monthly Comparison by Location</h3>
+        <table class="overview-table">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th colspan="2" class="month-group">Jan 2026</th>
+                    <th colspan="2" class="month-group">Feb 2026</th>
+                    <th colspan="2" class="month-group">Mar 2026</th>
+                    <th>Total Clicks</th>
+                    <th>Total Cost</th>
+                    <th>CTR</th>
+                    <th>Avg CPC</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Clicks</th><th>Cost</th>
+                    <th>Clicks</th><th>Cost</th>
+                    <th>Clicks</th><th>Cost</th>
+                    <th></th><th></th><th></th><th></th>
+                </tr>
+            </thead>
+            <tbody>
+                
+        <tr class="clickable-row" onclick="showLocation('Basel')">
+            <td><span class="table-flag">🇨🇭</span> Basel</td>
+            <td>532</td><td>$517.14</td><td>303</td><td>$381.66</td><td>88</td><td>$168.86</td>
+            <td style="font-weight:600">923</td>
+            <td style="font-weight:600">$1067.66</td>
+            <td>3.4%</td>
+            <td>$1.16</td>
+        </tr>
+        <tr class="clickable-row" onclick="showLocation('Muenchen')">
+            <td><span class="table-flag">🇩🇪</span> Muenchen</td>
+            <td class="inactive-cell">--</td><td class="inactive-cell">--</td><td>201</td><td>$341.22</td><td>110</td><td>$179.66</td>
+            <td style="font-weight:600">311</td>
+            <td style="font-weight:600">$520.88</td>
+            <td>4.7%</td>
+            <td>$1.67</td>
+        </tr>
+        <tr class="clickable-row" onclick="showLocation('Duesseldorf')">
+            <td><span class="table-flag">🇩🇪</span> Duesseldorf</td>
+            <td class="inactive-cell">--</td><td class="inactive-cell">--</td><td>190</td><td>$305.90</td><td>121</td><td>$160.34</td>
+            <td style="font-weight:600">311</td>
+            <td style="font-weight:600">$466.24</td>
+            <td>5.9%</td>
+            <td>$1.50</td>
+        </tr>
+        <tr class="clickable-row" onclick="showLocation('Wien')">
+            <td><span class="table-flag">🇦🇹</span> Wien</td>
+            <td class="inactive-cell">--</td><td class="inactive-cell">--</td><td>216</td><td>$271.71</td><td>150</td><td>$180.53</td>
+            <td style="font-weight:600">366</td>
+            <td style="font-weight:600">$452.24</td>
+            <td>5.5%</td>
+            <td>$1.24</td>
+        </tr>
+        <tr class="clickable-row" onclick="showLocation('Sauerland')">
+            <td><span class="table-flag">🇩🇪</span> Sauerland</td>
+            <td class="inactive-cell">--</td><td class="inactive-cell">--</td><td>82</td><td>$116.26</td><td>64</td><td>$118.27</td>
+            <td style="font-weight:600">146</td>
+            <td style="font-weight:600">$234.53</td>
+            <td>7.0%</td>
+            <td>$1.61</td>
+        </tr>
+        <tr class="clickable-row" onclick="showLocation('Owl')">
+            <td><span class="table-flag">🇩🇪</span> Owl</td>
+            <td class="inactive-cell">--</td><td class="inactive-cell">--</td><td class="inactive-cell">--</td><td class="inactive-cell">--</td><td>4</td><td>$6.87</td>
+            <td style="font-weight:600">4</td>
+            <td style="font-weight:600">$6.87</td>
+            <td>10.8%</td>
+            <td>$1.72</td>
+        </tr>
+    <tr class="total-row">
+        <td>All Locations</td>
+        <td>532</td><td>$517.14</td>
+        <td>992</td><td>$1416.75</td>
+        <td>537</td><td>$814.53</td>
+        <td style="font-weight:700">2,061</td>
+        <td style="font-weight:700">$2748.42</td>
+        <td>4.3%</td>
+        <td>$1.33</td>
+    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- LOCATION DETAIL PAGES -->
+
+        <div id="page-Basel" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇨🇭</span>
+                <div>
+                    <h2 class="page-title">Basel</h2>
+                    <div class="page-subtitle">Leisure Pools Basel Campaign &bull; Switzerland</div>
+                </div>
+                <span class="status-badge status-eligible" style="font-size:13px;padding:6px 14px">Eligible</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$1,067.66</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">923</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">27,242</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">3.39%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.16</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Basel"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>19,188</td>
+                <td>532</td>
+                <td>2.77%</td>
+                <td>$0.97</td>
+                <td>$517.14</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>6,838</td>
+                <td>303</td>
+                <td>4.43%</td>
+                <td>$1.26</td>
+                <td>$381.66</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>1,216</td>
+                <td>88</td>
+                <td>7.24%</td>
+                <td>$1.92</td>
+                <td>$168.86</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>27,242</td>
+                            <td>923</td>
+                            <td>3.39%</td>
+                            <td>$1.16</td>
+                            <td>$1067.66</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 74%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">außenpool garten</td>
+                <td>110</td>
+                <td>56</td>
+                <td>50.91%</td>
+                <td>$51.42</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">pool preise</td>
+                <td>141</td>
+                <td>40</td>
+                <td>28.37%</td>
+                <td>$43.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">pool komplettset mit einbau preis</td>
+                <td>56</td>
+                <td>22</td>
+                <td>39.29%</td>
+                <td>$29.30</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">fertigpool kunststoff</td>
+                <td>74</td>
+                <td>32</td>
+                <td>43.24%</td>
+                <td>$27.85</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">gartenpools der neuen generation</td>
+                <td>138</td>
+                <td>30</td>
+                <td>21.74%</td>
+                <td>$25.85</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">pool kaufen</td>
+                <td>192</td>
+                <td>11</td>
+                <td>5.73%</td>
+                <td>$21.08</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">pools für kleine gärten</td>
+                <td>56</td>
+                <td>18</td>
+                <td>32.14%</td>
+                <td>$18.89</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">pool komplettangebot mit montage</td>
+                <td>50</td>
+                <td>16</td>
+                <td>32.00%</td>
+                <td>$18.07</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">pool preise</td>
+                <td>31</td>
+                <td>12</td>
+                <td>38.71%</td>
+                <td>$16.46</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">gartenpools neue generation</td>
+                <td>30</td>
+                <td>18</td>
+                <td>60.00%</td>
+                <td>$14.80</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">fertigpool günstig kaufen</td>
+                <td>29</td>
+                <td>12</td>
+                <td>41.38%</td>
+                <td>$14.32</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">pool laufen</td>
+                <td>30</td>
+                <td>7</td>
+                <td>23.33%</td>
+                <td>$13.88</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">pool becken preise</td>
+                <td>10</td>
+                <td>7</td>
+                <td>70.00%</td>
+                <td>$13.52</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">fertigpool komplettset</td>
+                <td>33</td>
+                <td>9</td>
+                <td>27.27%</td>
+                <td>$13.51</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">container pool preise</td>
+                <td>36</td>
+                <td>11</td>
+                <td>30.56%</td>
+                <td>$12.06</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">günstige pools zum eingraben</td>
+                <td>22</td>
+                <td>10</td>
+                <td>45.45%</td>
+                <td>$11.58</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">pool bauen</td>
+                <td>52</td>
+                <td>6</td>
+                <td>11.54%</td>
+                <td>$11.09</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">18</td>
+                <td class="term-cell">poolbauer schweiz</td>
+                <td>18</td>
+                <td>5</td>
+                <td>27.78%</td>
+                <td>$9.52</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">19</td>
+                <td class="term-cell">edelstahl pool fertigbecken preise</td>
+                <td>20</td>
+                <td>9</td>
+                <td>45.00%</td>
+                <td>$9.47</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">20</td>
+                <td class="term-cell">riviera pool schweiz</td>
+                <td>46</td>
+                <td>5</td>
+                <td>10.87%</td>
+                <td>$9.35</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">21</td>
+                <td class="term-cell">eco pool badebrunnen</td>
+                <td>20</td>
+                <td>4</td>
+                <td>20.00%</td>
+                <td>$7.94</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">22</td>
+                <td class="term-cell">pool selber bauen</td>
+                <td>59</td>
+                <td>4</td>
+                <td>6.78%</td>
+                <td>$7.66</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">23</td>
+                <td class="term-cell">pool bauen schweiz</td>
+                <td>17</td>
+                <td>4</td>
+                <td>23.53%</td>
+                <td>$7.28</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">24</td>
+                <td class="term-cell">poolwanne zum eingraben</td>
+                <td>8</td>
+                <td>4</td>
+                <td>50.00%</td>
+                <td>$7.11</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">25</td>
+                <td class="term-cell">mini inground pools</td>
+                <td>4</td>
+                <td>4</td>
+                <td>100.00%</td>
+                <td>$6.23</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Basel', [{"month": "Jan", "clicks": 532, "cost": 517.14, "impressions": 19188}, {"month": "Feb", "clicks": 303, "cost": 381.66, "impressions": 6838}, {"month": "Mar", "clicks": 88, "cost": 168.86, "impressions": 1216}]);
+            </script>
+        </div>
+        <div id="page-Duesseldorf" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇩🇪</span>
+                <div>
+                    <h2 class="page-title">Duesseldorf</h2>
+                    <div class="page-subtitle">Leisure Pools Duesseldorf  Campaign &bull; Germany</div>
+                </div>
+                <span class="status-badge status-eligible" style="font-size:13px;padding:6px 14px">Eligible</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$466.24</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">311</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">5,300</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">5.87%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.50</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Duesseldorf"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>3,325</td>
+                <td>190</td>
+                <td>5.71%</td>
+                <td>$1.61</td>
+                <td>$305.90</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>1,975</td>
+                <td>121</td>
+                <td>6.13%</td>
+                <td>$1.33</td>
+                <td>$160.34</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>5,300</td>
+                            <td>311</td>
+                            <td>5.87%</td>
+                            <td>$1.50</td>
+                            <td>$466.24</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 75%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">pool</td>
+                <td>93</td>
+                <td>6</td>
+                <td>6.45%</td>
+                <td>$8.97</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">ipoolgo pool preis</td>
+                <td>41</td>
+                <td>6</td>
+                <td>14.63%</td>
+                <td>$8.84</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">gartengestaltung mit pool ideen bilder</td>
+                <td>14</td>
+                <td>5</td>
+                <td>35.71%</td>
+                <td>$7.90</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">ipoolgo deutschland kaufen</td>
+                <td>15</td>
+                <td>3</td>
+                <td>20.00%</td>
+                <td>$4.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">ipoolgo deutschland</td>
+                <td>34</td>
+                <td>3</td>
+                <td>8.82%</td>
+                <td>$4.78</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">gartenpool</td>
+                <td>29</td>
+                <td>3</td>
+                <td>10.34%</td>
+                <td>$4.04</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">runde pools für den garten</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$3.96</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">ipoolgo kaufen</td>
+                <td>75</td>
+                <td>3</td>
+                <td>4.00%</td>
+                <td>$3.95</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">ipoolgo pool</td>
+                <td>11</td>
+                <td>2</td>
+                <td>18.18%</td>
+                <td>$3.86</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">plunge pool</td>
+                <td>9</td>
+                <td>2</td>
+                <td>22.22%</td>
+                <td>$3.86</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">kleiner pool im garten</td>
+                <td>11</td>
+                <td>3</td>
+                <td>27.27%</td>
+                <td>$3.84</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">leisure pool</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$3.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">stahlwandpool</td>
+                <td>34</td>
+                <td>2</td>
+                <td>5.88%</td>
+                <td>$3.40</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">schwimmbecken</td>
+                <td>13</td>
+                <td>2</td>
+                <td>15.38%</td>
+                <td>$3.39</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">pools zum aufstellen</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$3.33</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">schwimmbecken für garten kaufen</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$3.22</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">luxus pool garten</td>
+                <td>4</td>
+                <td>2</td>
+                <td>50.00%</td>
+                <td>$3.12</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">18</td>
+                <td class="term-cell">poolsana komplettset</td>
+                <td>4</td>
+                <td>2</td>
+                <td>50.00%</td>
+                <td>$3.09</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">19</td>
+                <td class="term-cell">pool bauen</td>
+                <td>9</td>
+                <td>2</td>
+                <td>22.22%</td>
+                <td>$2.96</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">20</td>
+                <td class="term-cell">was kostet ein pool im garten komplett</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$2.70</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">21</td>
+                <td class="term-cell">stahlwandpool komplettset winterfest</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$2.66</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">22</td>
+                <td class="term-cell">schwimmbad bauen im garten</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$2.66</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">23</td>
+                <td class="term-cell">pool aus polen kosten</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$2.62</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">24</td>
+                <td class="term-cell">phoebe sun pools</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$2.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">25</td>
+                <td class="term-cell">container pool mit gegenstromanlage</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$2.54</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Duesseldorf', [{"month": "Jan", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Feb", "clicks": 190, "cost": 305.9, "impressions": 3325}, {"month": "Mar", "clicks": 121, "cost": 160.34, "impressions": 1975}]);
+            </script>
+        </div>
+        <div id="page-Muenchen" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇩🇪</span>
+                <div>
+                    <h2 class="page-title">Muenchen</h2>
+                    <div class="page-subtitle">Leisure Pools Muenchen Campaign &bull; Germany</div>
+                </div>
+                <span class="status-badge status-eligible" style="font-size:13px;padding:6px 14px">Eligible</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$520.88</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">311</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">6,610</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">4.70%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.67</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Muenchen"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>4,078</td>
+                <td>201</td>
+                <td>4.93%</td>
+                <td>$1.70</td>
+                <td>$341.22</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>2,532</td>
+                <td>110</td>
+                <td>4.34%</td>
+                <td>$1.63</td>
+                <td>$179.66</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>6,610</td>
+                            <td>311</td>
+                            <td>4.70%</td>
+                            <td>$1.67</td>
+                            <td>$520.88</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 75%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">pool</td>
+                <td>151</td>
+                <td>8</td>
+                <td>5.30%</td>
+                <td>$11.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">pool garten</td>
+                <td>92</td>
+                <td>4</td>
+                <td>4.35%</td>
+                <td>$6.46</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">leisure pool</td>
+                <td>4</td>
+                <td>4</td>
+                <td>100.00%</td>
+                <td>$6.32</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">ipoolgo deutschland</td>
+                <td>12</td>
+                <td>4</td>
+                <td>33.33%</td>
+                <td>$6.12</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">mini pool mit gegenstromanlage</td>
+                <td>2</td>
+                <td>3</td>
+                <td>150.00%</td>
+                <td>$5.76</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">gartengestaltung mit pool ideen bilder</td>
+                <td>12</td>
+                <td>3</td>
+                <td>25.00%</td>
+                <td>$5.76</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">ipoolgo kaufen</td>
+                <td>61</td>
+                <td>3</td>
+                <td>4.92%</td>
+                <td>$5.12</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">pool selber bauen günstig</td>
+                <td>4</td>
+                <td>3</td>
+                <td>75.00%</td>
+                <td>$4.71</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">ipoolgo pool preis</td>
+                <td>23</td>
+                <td>3</td>
+                <td>13.04%</td>
+                <td>$4.32</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">gartenpool kaufen amazon</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$4.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">pool regensburg</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$3.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">schwimmingpools</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$3.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">stahlwandpool</td>
+                <td>27</td>
+                <td>2</td>
+                <td>7.41%</td>
+                <td>$3.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">stahlwand pool 1 50 tief komplettset</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$3.92</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">pool bauen</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$3.84</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">pool</td>
+                <td>7</td>
+                <td>2</td>
+                <td>28.57%</td>
+                <td>$3.61</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">aufstellpool garten</td>
+                <td>12</td>
+                <td>2</td>
+                <td>16.67%</td>
+                <td>$3.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">18</td>
+                <td class="term-cell">acrylpool</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$3.55</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">19</td>
+                <td class="term-cell">aufstellpool neue generation</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$3.54</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">20</td>
+                <td class="term-cell">outdoor pool</td>
+                <td>5</td>
+                <td>2</td>
+                <td>40.00%</td>
+                <td>$3.38</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">21</td>
+                <td class="term-cell">laghetto pool gebraucht</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$3.36</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">22</td>
+                <td class="term-cell">phoebe sun pool kaufen</td>
+                <td>6</td>
+                <td>2</td>
+                <td>33.33%</td>
+                <td>$3.34</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">23</td>
+                <td class="term-cell">pools</td>
+                <td>9</td>
+                <td>2</td>
+                <td>22.22%</td>
+                <td>$3.10</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">24</td>
+                <td class="term-cell">aufstellpool rund</td>
+                <td>10</td>
+                <td>2</td>
+                <td>20.00%</td>
+                <td>$2.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">25</td>
+                <td class="term-cell">ipoolgo deutschland kaufen</td>
+                <td>14</td>
+                <td>2</td>
+                <td>14.29%</td>
+                <td>$2.89</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Muenchen', [{"month": "Jan", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Feb", "clicks": 201, "cost": 341.22, "impressions": 4078}, {"month": "Mar", "clicks": 110, "cost": 179.66, "impressions": 2532}]);
+            </script>
+        </div>
+        <div id="page-Owl" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇩🇪</span>
+                <div>
+                    <h2 class="page-title">Owl</h2>
+                    <div class="page-subtitle">Leisure Pools Owl Campaign &bull; Germany</div>
+                </div>
+                <span class="status-badge status-learning" style="font-size:13px;padding:6px 14px">Learning</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$6.87</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">4</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">37</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">10.81%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.72</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Owl"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>37</td>
+                <td>4</td>
+                <td>10.81%</td>
+                <td>$1.72</td>
+                <td>$6.87</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>37</td>
+                            <td>4</td>
+                            <td>10.81%</td>
+                            <td>$1.72</td>
+                            <td>$6.87</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 84%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible (Learning)</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">ipoolgo deutsch</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.73</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">gfk pool in der nähe</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.71</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">pp pool polen</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.65</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">sitzpool garten</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">pool 3 x 6 meter stahlwandbecken</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">polyfaser pool</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">polyfaser pool kosten</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">teichmeister naturpool kosten</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">rechteckig ipoolgo pool preis</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">pool gfk</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">pool rechteckig</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">polyfaser pool erfahrung</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">pool stahlwand 150 tief</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">halb eingelassener pool rechteckig</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">achtformpool</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">ipoolgo pool preis</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">costway pool</td>
+                <td>3</td>
+                <td>0</td>
+                <td>0.00%</td>
+                <td>$0.00</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Owl', [{"month": "Jan", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Feb", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Mar", "clicks": 4, "cost": 6.87, "impressions": 37}]);
+            </script>
+        </div>
+        <div id="page-Sauerland" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇩🇪</span>
+                <div>
+                    <h2 class="page-title">Sauerland</h2>
+                    <div class="page-subtitle">Leisure Pools Sauerland Campaign &bull; Germany</div>
+                </div>
+                <span class="status-badge status-learning" style="font-size:13px;padding:6px 14px">Learning</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$234.53</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">146</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">2,093</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">6.98%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.61</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Sauerland"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>1,123</td>
+                <td>82</td>
+                <td>7.30%</td>
+                <td>$1.42</td>
+                <td>$116.26</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>970</td>
+                <td>64</td>
+                <td>6.60%</td>
+                <td>$1.85</td>
+                <td>$118.27</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>2,093</td>
+                            <td>146</td>
+                            <td>6.98%</td>
+                            <td>$1.61</td>
+                            <td>$234.53</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 75%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible (Learning)</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">bio design pool</td>
+                <td>4</td>
+                <td>2</td>
+                <td>50.00%</td>
+                <td>$3.78</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">poolbau</td>
+                <td>5</td>
+                <td>2</td>
+                <td>40.00%</td>
+                <td>$3.69</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">pool selber bauen</td>
+                <td>7</td>
+                <td>2</td>
+                <td>28.57%</td>
+                <td>$3.62</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">styropor pool deutschland</td>
+                <td>4</td>
+                <td>2</td>
+                <td>50.00%</td>
+                <td>$3.35</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">gestaltung um den pool</td>
+                <td>2</td>
+                <td>2</td>
+                <td>100.00%</td>
+                <td>$3.34</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">was kostet ein pool im garten</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$2.88</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">ipoolgo pool deutschland</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$2.69</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">gartenpool zum aufblasen</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$2.57</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">pool</td>
+                <td>42</td>
+                <td>2</td>
+                <td>4.76%</td>
+                <td>$2.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">effektvolle poolgestaltung pool ideen garten</td>
+                <td>1</td>
+                <td>2</td>
+                <td>200.00%</td>
+                <td>$2.46</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">rundpool fertigbecken</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$2.00</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">bio spa pool kosten</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.99</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">pe pool</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">intex pool abverkauf</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">schalen pool</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.97</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">pool im garten bauen</td>
+                <td>4</td>
+                <td>1</td>
+                <td>25.00%</td>
+                <td>$1.97</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">gfk pool günstig</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.95</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">18</td>
+                <td class="term-cell">naturpool bausatz</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.95</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">19</td>
+                <td class="term-cell">pool komplettset</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">20</td>
+                <td class="term-cell">infinity pool kaufen</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.92</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">21</td>
+                <td class="term-cell">gfk pool in der nähe</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.92</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">22</td>
+                <td class="term-cell">stock tank pool</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.91</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">23</td>
+                <td class="term-cell">aufstellpool pool kaufen</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.91</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">24</td>
+                <td class="term-cell">stahlwandpool inklusive einbau</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50.00%</td>
+                <td>$1.90</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">25</td>
+                <td class="term-cell">pool tief</td>
+                <td>1</td>
+                <td>1</td>
+                <td>100.00%</td>
+                <td>$1.90</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Sauerland', [{"month": "Jan", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Feb", "clicks": 82, "cost": 116.26, "impressions": 1123}, {"month": "Mar", "clicks": 64, "cost": 118.27, "impressions": 970}]);
+            </script>
+        </div>
+        <div id="page-Wien" class="location-page" style="display:none">
+            <button class="back-btn" onclick="showOverview()">← Back to Overview</button>
+            
+            <div class="page-header">
+                <span class="page-flag">🇦🇹</span>
+                <div>
+                    <h2 class="page-title">Wien</h2>
+                    <div class="page-subtitle">Leisure Pools Wien Campaign &bull; Austria</div>
+                </div>
+                <span class="status-badge status-eligible" style="font-size:13px;padding:6px 14px">Eligible</span>
+            </div>
+            
+            <div class="detail-kpis">
+                <div class="kpi-card">
+                    <div class="kpi-value">$452.24</div>
+                    <div class="kpi-label">Total Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">366</div>
+                    <div class="kpi-label">Total Clicks</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">6,648</div>
+                    <div class="kpi-label">Impressions</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">5.51%</div>
+                    <div class="kpi-label">CTR</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">$1.24</div>
+                    <div class="kpi-label">Avg CPC</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-value">0</div>
+                    <div class="kpi-label">Conversions</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Monthly Performance</h3>
+                <div class="mini-chart" id="chart-Wien"></div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>Avg CPC</th><th>Cost</th><th>Conv.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="font-weight:600">Jan 2026</td>
+                <td>0</td>
+                <td>0</td>
+                <td>--</td>
+                <td>$0.00</td>
+                <td>$0.00</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Feb 2026</td>
+                <td>3,515</td>
+                <td>216</td>
+                <td>6.15%</td>
+                <td>$1.26</td>
+                <td>$271.71</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td style="font-weight:600">Mar 2026</td>
+                <td>3,133</td>
+                <td>150</td>
+                <td>4.79%</td>
+                <td>$1.20</td>
+                <td>$180.53</td>
+                <td>0</td>
+            </tr>
+                        <tr class="total-row">
+                            <td style="font-weight:700">Total</td>
+                            <td>6,648</td>
+                            <td>366</td>
+                            <td>5.51%</td>
+                            <td>$1.24</td>
+                            <td>$452.24</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="detail-section">
+                <div class="settings-row">
+                    <div class="setting-item"><span class="setting-label">Daily Budget:</span> $17.00</div>
+                    <div class="setting-item"><span class="setting-label">Bid Strategy:</span> Maximize clicks</div>
+                    <div class="setting-item"><span class="setting-label">Opt. Score:</span> 75%</div>
+                    <div class="setting-item"><span class="setting-label">Status:</span> Eligible</div>
+                </div>
+            </div>
+            
+            <div class="detail-section">
+                <h3>Top Search Terms <span class="term-count">(by spend)</span></h3>
+                <table class="data-table search-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">#</th><th>Search Term</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+            <tr>
+                <td style="text-align:center;color:#666">1</td>
+                <td class="term-cell">aufstellpool rechteckig</td>
+                <td>37</td>
+                <td>5</td>
+                <td>13.51%</td>
+                <td>$6.99</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">2</td>
+                <td class="term-cell">pool abverkauf österreich</td>
+                <td>35</td>
+                <td>5</td>
+                <td>14.29%</td>
+                <td>$5.98</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">3</td>
+                <td class="term-cell">aufstellpool</td>
+                <td>96</td>
+                <td>3</td>
+                <td>3.13%</td>
+                <td>$4.77</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">4</td>
+                <td class="term-cell">pool kaufen</td>
+                <td>43</td>
+                <td>4</td>
+                <td>9.30%</td>
+                <td>$4.71</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">5</td>
+                <td class="term-cell">stahlwandpool eckig</td>
+                <td>14</td>
+                <td>4</td>
+                <td>28.57%</td>
+                <td>$4.63</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">6</td>
+                <td class="term-cell">pool</td>
+                <td>18</td>
+                <td>3</td>
+                <td>16.67%</td>
+                <td>$4.46</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">7</td>
+                <td class="term-cell">stahlwandpool</td>
+                <td>39</td>
+                <td>4</td>
+                <td>10.26%</td>
+                <td>$4.45</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">8</td>
+                <td class="term-cell">hornbach pool abverkauf</td>
+                <td>9</td>
+                <td>3</td>
+                <td>33.33%</td>
+                <td>$3.91</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">9</td>
+                <td class="term-cell">pool komplettangebot mit montage österreich</td>
+                <td>20</td>
+                <td>3</td>
+                <td>15.00%</td>
+                <td>$3.70</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">10</td>
+                <td class="term-cell">ipoolgo kaufen</td>
+                <td>13</td>
+                <td>3</td>
+                <td>23.08%</td>
+                <td>$3.69</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">11</td>
+                <td class="term-cell">containerpool kaufen</td>
+                <td>12</td>
+                <td>3</td>
+                <td>25.00%</td>
+                <td>$3.57</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">12</td>
+                <td class="term-cell">ipoolgo österreich</td>
+                <td>29</td>
+                <td>3</td>
+                <td>10.34%</td>
+                <td>$3.32</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">13</td>
+                <td class="term-cell">pool komplettset mit einbau preis</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$3.15</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">14</td>
+                <td class="term-cell">schwimmbecken 2m durchmesser</td>
+                <td>2</td>
+                <td>3</td>
+                <td>150.00%</td>
+                <td>$2.97</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">15</td>
+                <td class="term-cell">holzpool</td>
+                <td>23</td>
+                <td>2</td>
+                <td>8.70%</td>
+                <td>$2.93</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">16</td>
+                <td class="term-cell">biodesign pool österreich</td>
+                <td>9</td>
+                <td>2</td>
+                <td>22.22%</td>
+                <td>$2.81</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">17</td>
+                <td class="term-cell">mini pool fertigbecken kaufen</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$2.76</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">18</td>
+                <td class="term-cell">poolfolie verlegen stahlwandpool</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$2.74</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">19</td>
+                <td class="term-cell">schwimmbecken</td>
+                <td>8</td>
+                <td>2</td>
+                <td>25.00%</td>
+                <td>$2.73</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">20</td>
+                <td class="term-cell">pool komplettset österreich</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$2.66</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">21</td>
+                <td class="term-cell">naturpool selber bauen</td>
+                <td>21</td>
+                <td>2</td>
+                <td>9.52%</td>
+                <td>$2.60</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">22</td>
+                <td class="term-cell">pool</td>
+                <td>79</td>
+                <td>2</td>
+                <td>2.53%</td>
+                <td>$2.59</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">23</td>
+                <td class="term-cell">pool kaufen österreich</td>
+                <td>10</td>
+                <td>2</td>
+                <td>20.00%</td>
+                <td>$2.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">24</td>
+                <td class="term-cell">poolgestaltung ideen</td>
+                <td>3</td>
+                <td>2</td>
+                <td>66.67%</td>
+                <td>$2.56</td>
+            </tr>
+            <tr>
+                <td style="text-align:center;color:#666">25</td>
+                <td class="term-cell">mini pool freistehend</td>
+                <td>4</td>
+                <td>2</td>
+                <td>50.00%</td>
+                <td>$2.55</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <script>
+                drawMiniChart('chart-Wien', [{"month": "Jan", "clicks": 0, "cost": 0.0, "impressions": 0}, {"month": "Feb", "clicks": 216, "cost": 271.71, "impressions": 3515}, {"month": "Mar", "clicks": 150, "cost": 180.53, "impressions": 3133}]);
+            </script>
+        </div>
+
+</div>
+
+<script>
+function showLocation(loc) {
+    document.getElementById('overview-page').style.display = 'none';
+    document.querySelectorAll('.location-page').forEach(p => p.style.display = 'none');
+    const page = document.getElementById('page-' + loc);
+    if (page) {
+        page.style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+}
+
+function showOverview() {
+    document.querySelectorAll('.location-page').forEach(p => p.style.display = 'none');
+    document.getElementById('overview-page').style.display = 'block';
+    window.scrollTo(0, 0);
+}
+
+function drawMiniChart(containerId, data) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    const maxClicks = Math.max(...data.map(d => d.clicks), 1);
+    const maxCost = Math.max(...data.map(d => d.cost), 1);
+    const maxVal = Math.max(maxClicks, maxCost);
+    const chartHeight = 140;
+    
+    let html = '<div class="chart-legend"><span><span class="legend-dot" style="background:#3b82f6"></span>Clicks</span><span><span class="legend-dot" style="background:#f59e0b"></span>Cost ($)</span></div>';
+    html += '<div style="display:flex;align-items:flex-end;gap:16px;height:' + chartHeight + 'px;width:100%;justify-content:center">';
+    
+    data.forEach(d => {
+        const clickH = maxClicks > 0 ? Math.max((d.clicks / maxClicks) * (chartHeight - 24), d.clicks > 0 ? 8 : 0) : 0;
+        const costH = maxCost > 0 ? Math.max((d.cost / maxCost) * (chartHeight - 24), d.cost > 0 ? 8 : 0) : 0;
+        
+        html += '<div class="chart-group">';
+        html += '<div class="chart-bars">';
+        html += '<div class="chart-bar clicks" style="height:' + clickH + 'px"><span class="chart-bar-value" style="color:#3b82f6">' + (d.clicks > 0 ? d.clicks : '') + '</span></div>';
+        html += '<div class="chart-bar cost" style="height:' + costH + 'px"><span class="chart-bar-value" style="color:#b45309">' + (d.cost > 0 ? '$' + d.cost.toFixed(0) : '') + '</span></div>';
+        html += '</div>';
+        html += '<div class="chart-bar-label">' + d.month + '</div>';
+        html += '</div>';
+    });
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+</script>
+
+</body>
+</html>

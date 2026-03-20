@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit &amp; Campaign Rebuild — Elite / Leisure Pools Beaufort — 2026-03-20</title>
+<style>
+  :root {
+    --blue: #0057B7;
+    --gold: #FFB81C;
+    --sky: #0095C8;
+    --red: #CC2200;
+    --orange: #E07000;
+    --green: #1A7A1A;
+    --light-bg: #F5F7FA;
+    --border: #D0D7E2;
+    --text: #1A1A2E;
+    --muted: #6B7280;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #EEF2F7; color: var(--text); font-size: 14px; line-height: 1.6; }
+  .page-wrap { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
+
+  /* Header */
+  .report-header { background: var(--blue); color: white; border-radius: 10px 10px 0 0; padding: 28px 32px; margin-bottom: 0; }
+  .report-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.3px; }
+  .report-header .meta { font-size: 13px; opacity: 0.85; margin-top: 6px; }
+  .report-header .meta span { margin-right: 18px; }
+
+  /* Health Score Bar */
+  .health-bar-section { background: white; border: 1px solid var(--border); border-top: none; padding: 20px 32px; display: flex; align-items: center; gap: 24px; }
+  .health-score-big { font-size: 52px; font-weight: 800; color: var(--red); line-height: 1; }
+  .health-label { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .health-bar-track { flex: 1; height: 14px; background: #E5E7EB; border-radius: 7px; overflow: hidden; }
+  .health-bar-fill { height: 100%; width: 32%; background: linear-gradient(90deg, var(--red), var(--orange)); border-radius: 7px; }
+  .health-context { font-size: 12px; color: var(--muted); }
+  .prev-score { font-size: 13px; color: var(--muted); }
+
+  /* Nav */
+  .toc { background: white; border: 1px solid var(--border); border-top: none; padding: 14px 32px; font-size: 13px; }
+  .toc a { color: var(--blue); text-decoration: none; margin-right: 16px; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* Section */
+  .section { background: white; border: 1px solid var(--border); border-top: none; padding: 24px 32px; }
+  .section:last-child { border-radius: 0 0 10px 10px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--blue); border-bottom: 2px solid var(--gold); padding-bottom: 6px; margin-bottom: 16px; }
+  .section-subtitle { font-size: 13px; font-weight: 700; color: var(--text); margin-top: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  /* Finding badges */
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+  .p1 { background: #FFE4E4; color: var(--red); }
+  .p2 { background: #FFF3CD; color: #7A4F00; }
+  .p3 { background: #E8F5E9; color: #1A5C1A; }
+  .pass { background: #E3F2FD; color: #004085; }
+  .warn { background: #FFF3CD; color: #7A4F00; }
+
+  /* Finding rows */
+  .finding { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid #F0F2F5; }
+  .finding:last-child { border-bottom: none; }
+  .finding-body { flex: 1; }
+  .finding-title { font-weight: 600; font-size: 13px; }
+  .finding-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .finding-action { font-size: 12px; color: var(--blue); font-style: italic; margin-top: 3px; }
+
+  /* Metrics table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--light-bg); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 8px 10px; text-align: left; border-bottom: 2px solid var(--border); }
+  td { padding: 8px 10px; border-bottom: 1px solid #F0F2F5; }
+  tr:last-child td { border-bottom: none; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .highlight-row td { background: #FFF8E1; }
+  .warn-row td { background: #FFF3F3; }
+
+  /* Copy blocks */
+  .copy-block { background: var(--light-bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; margin-top: 8px; position: relative; font-size: 12px; font-family: monospace; white-space: pre-wrap; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; background: var(--blue); color: white; border: none; border-radius: 4px; padding: 4px 10px; font-size: 11px; cursor: pointer; }
+  .copy-btn:hover { background: #004A9F; }
+  .copy-btn:active { background: #003580; }
+
+  /* Keyword list */
+  .kw-pill { display: inline-block; background: #EEF2F7; border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; margin: 2px; font-size: 12px; font-family: monospace; }
+  .kw-neg { background: #FFE4E4; border-color: #FFBABA; }
+  .kw-warn { background: #FFF3CD; border-color: #FFD966; }
+
+  /* Callout */
+  .callout { border-left: 4px solid var(--gold); background: #FFFDF0; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 12px 0; font-size: 13px; }
+  .callout.red { border-color: var(--red); background: #FFF5F5; }
+  .callout.blue { border-color: var(--blue); background: #F0F6FF; }
+  .callout.green { border-color: var(--green); background: #F0FFF0; }
+
+  /* RSA block */
+  .rsa-box { border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 10px; background: var(--light-bg); }
+  .rsa-headlines { color: #1A0DAB; font-size: 14px; font-weight: 600; }
+  .rsa-url { color: #006621; font-size: 12px; margin: 4px 0; }
+  .rsa-desc { font-size: 13px; color: #545454; }
+  .rsa-headline-list { list-style: none; }
+  .rsa-headline-list li { padding: 3px 0; font-size: 13px; border-bottom: 1px dashed #E0E0E0; }
+  .rsa-headline-list li:last-child { border-bottom: none; }
+  .hl-num { color: var(--muted); font-size: 11px; width: 24px; display: inline-block; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li { padding: 6px 0; border-bottom: 1px solid #F0F2F5; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { width: 18px; height: 18px; border: 2px solid var(--border); border-radius: 4px; flex-shrink: 0; }
+
+  /* Grid summary */
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .summary-card { background: var(--light-bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .summary-card .label { font-size: 11px; text-transform: uppercase; color: var(--muted); letter-spacing: 0.5px; font-weight: 600; }
+  .summary-card .value { font-size: 22px; font-weight: 800; color: var(--text); margin-top: 2px; }
+  .summary-card .sub { font-size: 11px; color: var(--muted); }
+  .summary-card.red-card .value { color: var(--red); }
+  .summary-card.gold-card .value { color: #7A5200; }
+  .summary-card.green-card .value { color: var(--green); }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- HEADER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <h1>Google Ads Audit &amp; Campaign Rebuild</h1>
+  <div class="meta">
+    <span>📍 Elite / Leisure Pools Beaufort</span>
+    <span>Account: 999-920-3572</span>
+    <span>MCC: 836-765-6694</span>
+    <span>Audit Date: March 20, 2026</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: HEALTH SCORE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="health-bar-section" id="health">
+  <div>
+    <div class="health-label">Health Score</div>
+    <div class="health-score-big">32<span style="font-size:24px;color:#999">/100</span></div>
+    <div class="prev-score">Prior audit (2026-03-16): 30/100 — no meaningful improvement</div>
+  </div>
+  <div style="flex:1">
+    <div class="health-bar-track"><div class="health-bar-fill"></div></div>
+    <div class="health-context" style="margin-top:6px">
+      <strong>Critical failures:</strong> Geo target type (presence-or-interest), conversion cliff (87% drop since Dec), 'above ground' keyword STILL enabled, single ad group with 47 keywords, Max Conversions with only 3 conv/month, no RSA headline data retrievable.
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <a href="#snapshot">1. Snapshot</a>
+  <a href="#findings">2. P1 Findings</a>
+  <a href="#p2">3. P2 Findings</a>
+  <a href="#p3">4. P3 Notes</a>
+  <a href="#keywords">5. Keywords</a>
+  <a href="#search-terms">6. Search Terms</a>
+  <a href="#structure">7. Structure</a>
+  <a href="#assets">8. Assets</a>
+  <a href="#negatives">9. Negatives</a>
+  <a href="#rebuild-spec">10. Rebuild Spec</a>
+  <a href="#rsa-copy">11. RSA Copy</a>
+  <a href="#extensions">12. Extensions</a>
+  <a href="#bidding">13. Bidding</a>
+  <a href="#geo">14. Geo</a>
+  <a href="#audiences">15. Audiences</a>
+  <a href="#conversion">16. Conversion</a>
+  <a href="#checklist">17. Pre-Launch</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 1: ACCOUNT SNAPSHOT -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="snapshot">
+  <div class="section-title">1. Account Snapshot — Last 30 Days</div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">Spend</div>
+      <div class="value">$1,253</div>
+      <div class="sub">Budget: $32.25/day ($967/mo)</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">Clicks</div>
+      <div class="value">249</div>
+      <div class="sub">CTR: ~9.6%</div>
+    </div>
+    <div class="summary-card red-card">
+      <div class="label">Conversions</div>
+      <div class="value">3</div>
+      <div class="sub">CPA: $417 — CRITICAL</div>
+    </div>
+    <div class="summary-card red-card">
+      <div class="label">Search IS</div>
+      <div class="value">30%</div>
+      <div class="sub">Losing 70% of eligible auctions</div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <strong>Conversion Cliff Alert:</strong> Oct–Nov 2025 averaged 21.5 conv/mo. Dec 2025–Mar 2026 averaged 2.75 conv/mo — an 87% drop. This account was converting well, then fell off a cliff. Root cause unconfirmed — conversion tracking failure, landing page break, or seasonal trough all possible. <strong>Must investigate before any budget increase.</strong>
+  </div>
+
+  <table style="margin-top:14px">
+    <thead>
+      <tr><th>Campaign</th><th>Status</th><th>Budget/Day</th><th>Network</th><th>Bid Strategy</th><th>Search IS</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Fiberglass Pools</td>
+        <td><span class="badge pass">Enabled</span></td>
+        <td>$32.25</td>
+        <td>Google Search only ✓</td>
+        <td>Max Conversions (type=9) <span class="badge warn">Verify</span></td>
+        <td class="num">30.16%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-subtitle">Dealer Context</div>
+  <table>
+    <tbody>
+      <tr><td><strong>Legal Entity</strong></td><td>The Pool Company LLC (DBA: Leisure Pools Beaufort)</td></tr>
+      <tr><td><strong>Owners</strong></td><td>Graham Jones, Tony Greco</td></tr>
+      <tr><td><strong>Website</strong></td><td>leisurepoolsbeaufort.com</td></tr>
+      <tr><td><strong>Phone</strong></td><td>(843) 948-2589</td></tr>
+      <tr><td><strong>Address</strong></td><td>56A Savannah Hwy, Beaufort, SC 29906</td></tr>
+      <tr><td><strong>Models offered</strong></td><td>The Eclipse™ 40, The Supreme™ 30, The Pinnacle™ 40 &amp; 35, The Precision™ 26, The Reflection™ 26</td></tr>
+      <tr><td><strong>Note</strong></td><td>Won't rebrand from "The Pool Company" — branding conflict with Elite program. Also runs Leisure Pools Savannah (same owners, separate account).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 2: P1 FINDINGS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="findings">
+  <div class="section-title">2. Priority 1 Findings — Fix Immediately</div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">'above ground' [EXACT] is STILL enabled — recurring from 3/16 audit</div>
+      <div class="finding-desc">This keyword was flagged as a P1 on the prior audit (2026-03-16). It remains ENABLED with status=2. Zero impressions/clicks in 30 days but is active and signals poor QA process. It was not paused or removed after the last audit.</div>
+      <div class="finding-action">→ PAUSE or REMOVE immediately. Add 'above ground' as a negative exact at campaign level.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Geo targeting mode = PRESENCE_OR_INTEREST (type 7) — should be PRESENCE only</div>
+      <div class="finding-desc">campaign.geo_target_type_setting.positive_geo_target_type returned value 7. In the Google Ads API, value 6 = PRESENCE (people physically in your targeted areas), value 7 = PRESENCE_OR_INTEREST (also targets people who have searched for or expressed interest in your areas). This means budget is being spent on users outside Beaufort SC / Hilton Head area who simply searched for "Beaufort pool" — high irrelevance risk. <strong>Verify in account UI and correct to PRESENCE only.</strong></div>
+      <div class="finding-action">→ In campaign settings → Locations → Location options → change to "People in or regularly in your targeted locations."</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Max Conversions with only 3 conv/month — strategy mismatch</div>
+      <div class="finding-desc">Max Conversions requires approximately 30+ conversions/month to learn effectively. This account has 3 in 30 days. Google's algorithm has insufficient signal and is likely overbidding on low-value traffic. The conversion cliff since Dec 2025 makes this worse — the algorithm is learning from a broken conversion environment. Target CPA = $0 (not set), leaving Google with no guard rails.</div>
+      <div class="finding-action">→ Switch to Maximize Clicks with a CPC cap of $8–10 until conversions recover to 20+/month. Set CPC cap immediately to stop runaway spend on zero-conversion clicks.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Conversion cliff — 87% drop since December 2025, unresolved</div>
+      <div class="finding-desc">Oct–Nov 2025: avg 21.5 conv/mo. Dec 2025–Mar 2026: avg 2.75 conv/mo. Three possible causes: (1) conversion tracking broken or misattributed, (2) landing page form broken or slow, (3) genuine seasonal slowdown compounded by geo/bid issues. This has persisted 4 months without resolution.</div>
+      <div class="finding-action">→ Check Google Ads conversion tag firing in Tag Assistant. Test contact form on leisurepoolsbeaufort.com. Check Google Analytics goal completions for same period. If tracking is confirmed working, investigate landing page quality and load speed.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">All 47 keywords in one generic ad group — no thematic structure</div>
+      <div class="finding-desc">Single ad group "Ad group 1" with 47 keywords spanning brand terms, pool type terms, city-specific terms, and construction terms. This destroys ad relevance, Quality Score, and Google's ability to serve contextually appropriate RSAs. A single RSA is serving all 47 intent signals.</div>
+      <div class="finding-action">→ Full restructure required. See Section 10 (Rebuild Spec) for proposed 5-ad-group architecture.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Competitor &amp; irrelevant search terms burning budget</div>
+      <div class="finding-desc">Top waste in last 30 days: "latham pools" competitor ($35 spend, 0 conv), "pool and construction" ($334.65, 1 conv), "inground swimming pools" ($225.87, 0 conv), "pool companies" ($185.37, 0 conv), "cowboy pool," "container pools," "pool suppliers near me," "fiberglass pool shell," "pool decking ideas," "over ground pool ideas," "6x6 pool tile ideas," "blue haven pools charleston" (competitor). Estimated wasted spend: $400+/month.</div>
+      <div class="finding-action">→ Add negative keywords immediately. See Section 9 for full negative list.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p1">P1</span></div>
+    <div class="finding-body">
+      <div class="finding-title">No CPC cap — no bid ceiling on Max Conversions</div>
+      <div class="finding-desc">campaign.maximize_conversions.target_cpa_micros = 0 and campaign.target_spend.cpc_bid_ceiling_micros = 0. No upper bound on cost-per-click. With Max Conversions and insufficient conversion data, Google can freely bid extremely high CPCs on any keyword.</div>
+      <div class="finding-action">→ Set CPC ceiling of $10.00 immediately regardless of bid strategy. If switching to Max Clicks, set CPC cap at $8–10.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 3: P2 FINDINGS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="p2">
+  <div class="section-title">3. Priority 2 Findings — Fix Within 2 Weeks</div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">RSA headlines/descriptions unreadable via API — content quality unknown</div>
+      <div class="finding-desc">The ad_group_ad query returned ad_strength=6 (likely GOOD), approval_status=4 (APPROVED), primary_status=2 (SERVING). However, headlines and descriptions could not be retrieved due to API serialization errors on array fields. Ad strength "Good" suggests some optimization but not Excellent. With 47 keywords in one ad group, pinning or headline relevance is unlikely optimized.</div>
+      <div class="finding-action">→ Review RSA content manually in account UI. Ensure 15 headlines, 4 descriptions. Use Section 11 RSA copy as replacement framework for the rebuild.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">High-spend / zero-conversion keywords — $900+ burned with minimal return</div>
+      <div class="finding-desc">Top spenders with poor conversion efficiency: "pool and construction" $334.65 (1 conv = $335 CPA), "inground swimming pools" $225.87 (0 conv), "pool companies" $185.37 (0 conv), "beaufort pool" $137.31 (0 conv), "inground pool" $121.13 (0 conv). These 5 keywords alone = $1,004 spend with 1 confirmed conversion.</div>
+      <div class="finding-action">→ Pause or restrict match type on zero-conv high-spend keywords. Consider exact-only for "pool companies" and "inground swimming pools" to limit broad intent waste.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Search IS at 30% — losing 70% of eligible impressions</div>
+      <div class="finding-desc">Low Search Impression Share typically indicates budget constraints, low Quality Scores, or bid strategy under-bidding. With Max Conversions and no conversion data, Google's bidding is erratic. The account is likely missing the majority of high-intent queries.</div>
+      <div class="finding-action">→ Fix bid strategy first (P1), then reassess IS. Once Max Clicks is running with CPC cap, IS should stabilize. May need budget increase after conversion tracking is confirmed.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Multiple paused assets at customer and campaign level</div>
+      <div class="finding-desc">Customer-level: field_type 11 (likely callouts) — 3 assets PAUSED, 0 enabled. Campaign-level: multiple paused assets across field types. Some critical extension types may have reduced active coverage. Without confirmed enum mappings for all field_types, this is flagged as verify-in-account.</div>
+      <div class="finding-action">→ In account UI: check Extensions tab → confirm ≥6 active sitelinks with description lines, ≥8 active callouts, structured snippet, call extension active.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Geo coverage includes Savannah GA metro — may be outside intended service area</div>
+      <div class="finding-desc">Locations targeted include Savannah, Garden City, Port Wentworth, Wilmington Island (all Georgia), and Tybee Island GA. While Savannah is nearby, these overlap with Leisure Pools Savannah (same owners, separate account). This could create internal cannibalization between the two accounts and inflate costs.</div>
+      <div class="finding-action">→ Confirm with Eli/dealer whether Beaufort and Savannah accounts should have overlapping geo or if Savannah GA should be excluded from the Beaufort account.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p2">P2</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Shared negative set content unverifiable via API</div>
+      <div class="finding-desc">Shared set 12012201802 is confirmed applied to the Fiberglass Pools campaign (ENABLED). However, the actual negative keyword list content could not be retrieved due to API errors. The set exists and is linked, but we cannot confirm what negatives it contains or whether it covers the waste terms identified in search terms.</div>
+      <div class="finding-action">→ Open shared negative list 12012201802 in account UI. Verify it contains at minimum: above ground, inflatable, intex, bestway, coleman, above-ground, used pool, pool liner, pool repair, cheap pool, diy pool.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 4: P3 NOTES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="p3">
+  <div class="section-title">4. Priority 3 — Monitor / Nice to Fix</div>
+
+  <div class="finding">
+    <div><span class="badge p3">P3</span></div>
+    <div class="finding-body">
+      <div class="finding-title">No audience targeting applied</div>
+      <div class="finding-desc">No remarketing audiences, customer match, or in-market audience layers found. For a high-CPA product like fiberglass pools, layering in-market audiences (Home Improvement, Outdoor Remodeling) as observation can provide better signal and optional bid modifiers.</div>
+      <div class="finding-action">→ Add in-market audiences in observation mode post-rebuild. See Section 15.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p3">P3</span></div>
+    <div class="finding-body">
+      <div class="finding-title">Zero ad scheduling / dayparting</div>
+      <div class="finding-desc">No ad schedule restrictions found. Ads run 24/7. Pool buyers are unlikely to convert at 2AM — dayparting to business hours + evenings could improve conversion rate and reduce wasted impressions.</div>
+      <div class="finding-action">→ Post-stabilization, add dayparting: Mon–Fri 7am–9pm, Sat–Sun 8am–8pm. Reduce bids 50% for overnight hours.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div><span class="badge p3">P3</span></div>
+    <div class="finding-body">
+      <div class="finding-title">No city-specific keywords for full service area</div>
+      <div class="finding-desc">Keywords include "beaufort pool" and "beaufort pool company" but missing Hilton Head, Bluffton, Port Royal, Lady's Island, Okatie, Fripp Island. These are confirmed service area cities per dealer profile.</div>
+      <div class="finding-action">→ Add city-specific keywords in the Geographic ad group (see Section 10).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 5: KEYWORD ANALYSIS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="keywords">
+  <div class="section-title">5. Keyword Analysis</div>
+
+  <div class="callout">
+    <strong>Structure:</strong> 47 keywords, 1 ad group. Match types: EXACT and PHRASE only (no broad match — PASS). "above ground" [exact] ENABLED = P1 carry-over.
+  </div>
+
+  <div class="section-subtitle">High-Spend Keywords (Last 30 Days)</div>
+  <table>
+    <thead>
+      <tr><th>Keyword</th><th>Match</th><th>Status</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Conv</th><th class="num">CPA</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr class="warn-row">
+        <td>pool and construction</td><td>Phrase</td><td>Enabled</td>
+        <td class="num">$334.65</td><td class="num">—</td><td class="num">1</td><td class="num">$335</td>
+        <td><span class="badge p2">Monitor</span></td>
+      </tr>
+      <tr class="warn-row">
+        <td>inground swimming pools</td><td>Phrase</td><td>Enabled</td>
+        <td class="num">$225.87</td><td class="num">—</td><td class="num">0</td><td class="num">∞</td>
+        <td><span class="badge p2">Pause/Exact</span></td>
+      </tr>
+      <tr class="warn-row">
+        <td>pool companies</td><td>Phrase</td><td>Enabled</td>
+        <td class="num">$185.37</td><td class="num">—</td><td class="num">0</td><td class="num">∞</td>
+        <td><span class="badge p2">Restrict</span></td>
+      </tr>
+      <tr class="warn-row">
+        <td>beaufort pool</td><td>Phrase</td><td>Enabled</td>
+        <td class="num">$137.31</td><td class="num">—</td><td class="num">0</td><td class="num">∞</td>
+        <td><span class="badge p3">Keep/Monitor</span></td>
+      </tr>
+      <tr class="warn-row">
+        <td>inground pool</td><td>Phrase</td><td>Enabled</td>
+        <td class="num">$121.13</td><td class="num">—</td><td class="num">0</td><td class="num">∞</td>
+        <td><span class="badge p2">Restrict</span></td>
+      </tr>
+      <tr class="highlight-row">
+        <td>above ground</td><td>Exact</td><td><strong style="color:var(--red)">ENABLED</strong></td>
+        <td class="num">$0</td><td class="num">0</td><td class="num">0</td><td class="num">—</td>
+        <td><span class="badge p1">PAUSE NOW</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 6: SEARCH TERMS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="search-terms">
+  <div class="section-title">6. Search Term Waste — Add as Negatives</div>
+
+  <div class="callout red">
+    Estimated wasted spend on irrelevant/competitor search terms: <strong>$400–600/month</strong>. These are queries that triggered ads but will never result in a fiberglass pool purchase from this dealer.
+  </div>
+
+  <div class="section-subtitle">Add These as Negatives Immediately</div>
+  <table>
+    <thead>
+      <tr><th>Search Term</th><th>Why Waste</th><th>Negative Type</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>latham pools</td><td>Direct competitor brand</td><td>Exact match campaign negative</td></tr>
+      <tr><td>blue haven pools charleston</td><td>Competitor + wrong city</td><td>Phrase match campaign negative</td></tr>
+      <tr><td>cowboy pool</td><td>Stock tank / livestock pools, not fiberglass</td><td>Exact campaign negative</td></tr>
+      <tr><td>container pools</td><td>DIY shipping container pools — different product</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool suppliers near me</td><td>Supply/material buyer, not installer customer</td><td>Phrase campaign negative</td></tr>
+      <tr><td>fiberglass pool shell</td><td>Shell buyer — buying wholesale, not from a dealer</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool decking ideas</td><td>Research/inspiration, not pool buyer</td><td>Phrase campaign negative</td></tr>
+      <tr><td>over ground pool ideas</td><td>Above-ground intent</td><td>Phrase campaign negative</td></tr>
+      <tr><td>6x6 pool tile ideas</td><td>Existing pool owner, not new pool buyer</td><td>Phrase campaign negative</td></tr>
+      <tr><td>above ground pool</td><td>Wrong product type</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool liner</td><td>Vinyl liner repair/replacement buyer</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool repair</td><td>Existing pool service, not new install</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool opening</td><td>Seasonal service, not install</td><td>Phrase campaign negative</td></tr>
+      <tr><td>pool closing</td><td>Seasonal service, not install</td><td>Phrase campaign negative</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-subtitle">Click-to-Copy: Negative Keyword List</div>
+  <div class="copy-block" id="neg-copy">[latham pools]
+[blue haven pools]
+[cowboy pool]
+"container pools"
+"pool suppliers"
+"fiberglass pool shell"
+"pool decking"
+"over ground pool"
+"above ground pool"
+"pool liner"
+"pool repair"
+"pool opening"
+"pool closing"
+"pool tile ideas"</div>
+  <button class="copy-btn" onclick="copyText('neg-copy', this)">Copy</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 7: CAMPAIGN STRUCTURE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="structure">
+  <div class="section-title">7. Current Structure Assessment</div>
+
+  <table>
+    <thead>
+      <tr><th>Element</th><th>Current State</th><th>Standard</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Campaigns</td><td>1 ("Fiberglass Pools")</td><td>1–2 for this account size</td><td><span class="badge pass">OK</span></td></tr>
+      <tr><td>Ad Groups</td><td>1 ("Ad group 1")</td><td>4–6 themed groups</td><td><span class="badge p1">CRITICAL</span></td></tr>
+      <tr><td>Keywords per Ad Group</td><td>47 (all in one)</td><td>8–15 per group</td><td><span class="badge p1">CRITICAL</span></td></tr>
+      <tr><td>RSAs</td><td>1 total</td><td>1–2 per ad group</td><td><span class="badge p1">CRITICAL</span></td></tr>
+      <tr><td>Match Types</td><td>Exact + Phrase only</td><td>No broad match ✓</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>Networks</td><td>Google Search only</td><td>No Display/Partners ✓</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>Bid Strategy</td><td>Max Conversions (likely type 9)</td><td>Max Clicks + CPC cap at this conv volume</td><td><span class="badge p1">WRONG</span></td></tr>
+      <tr><td>CPC Cap</td><td>$0.01 ad group bid / no campaign ceiling</td><td>$8–10 cap on Max Clicks</td><td><span class="badge p1">MISSING</span></td></tr>
+      <tr><td>Geo Type</td><td>Presence-or-Interest (type 7)</td><td>Presence only (type 6)</td><td><span class="badge p1">WRONG</span></td></tr>
+      <tr><td>Shared Negative Set</td><td>Set 12012201802 applied ✓</td><td>Applied — content unverified</td><td><span class="badge warn">Verify Content</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 8: ASSETS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="assets">
+  <div class="section-title">8. Asset Coverage</div>
+
+  <div class="callout">
+    <strong>Note:</strong> Google Ads API returns asset field_type as integers. Exact enum mappings are listed as likely interpretations based on standard API documentation. Verify actual asset content in account UI.
+  </div>
+
+  <div class="section-subtitle">Campaign-Level Assets (Confirmed Enabled)</div>
+  <table>
+    <thead>
+      <tr><th>Field Type (Int)</th><th>Likely Asset Type</th><th>Enabled</th><th>Paused</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>13</td><td>Sitelinks</td><td>4</td><td>—</td><td><span class="badge p2">Low — need ≥6</span></td></tr>
+      <tr><td>11</td><td>Callouts</td><td>7</td><td>—</td><td><span class="badge pass">Good — need ≥8</span></td></tr>
+      <tr><td>18</td><td>Structured Snippets</td><td>1</td><td>—</td><td><span class="badge pass">Present ✓</span></td></tr>
+      <tr><td>16</td><td>Call Extension</td><td>1</td><td>—</td><td><span class="badge pass">Present ✓</span></td></tr>
+      <tr><td>27</td><td>Logo (likely)</td><td>2</td><td>—</td><td><span class="badge pass">Present ✓</span></td></tr>
+      <tr><td>26</td><td>Marketing Images (likely)</td><td>12</td><td>—</td><td><span class="badge pass">Good ✓</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-subtitle">Customer-Level Assets</div>
+  <table>
+    <thead>
+      <tr><th>Field Type (Int)</th><th>Likely Type</th><th>Enabled</th><th>Paused</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>12</td><td>Likely Business Name/Structured</td><td>1</td><td>1</td><td><span class="badge warn">Verify</span></td></tr>
+      <tr><td>11</td><td>Callouts</td><td>0</td><td>3</td><td><span class="badge p2">All Paused — check</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout red" style="margin-top:12px">
+    <strong>Action:</strong> All 3 customer-level callouts are PAUSED. Verify this is intentional and campaign-level callouts are fully covering. Sitelinks at 4 — need at least 2 more. See Section 12 for sitelink recommendations.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 9: NEGATIVES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="negatives">
+  <div class="section-title">9. Negative Keyword Recommendations</div>
+
+  <div class="section-subtitle">Campaign-Level Negatives to Add Now</div>
+  <div>
+    <span class="kw-pill kw-neg">[above ground]</span>
+    <span class="kw-pill kw-neg">[latham pools]</span>
+    <span class="kw-pill kw-neg">[cowboy pool]</span>
+    <span class="kw-pill kw-neg">"above ground pool"</span>
+    <span class="kw-pill kw-neg">"pool liner"</span>
+    <span class="kw-pill kw-neg">"pool repair"</span>
+    <span class="kw-pill kw-neg">"pool opening"</span>
+    <span class="kw-pill kw-neg">"pool closing"</span>
+    <span class="kw-pill kw-neg">"container pool"</span>
+    <span class="kw-pill kw-neg">"pool suppliers"</span>
+    <span class="kw-pill kw-neg">"fiberglass pool shell"</span>
+    <span class="kw-pill kw-neg">"pool decking ideas"</span>
+    <span class="kw-pill kw-neg">"pool tile ideas"</span>
+    <span class="kw-pill kw-neg">"blue haven"</span>
+    <span class="kw-pill kw-neg">"over ground pool"</span>
+    <span class="kw-pill kw-neg">"stock tank pool"</span>
+    <span class="kw-pill kw-neg">"intex pool"</span>
+    <span class="kw-pill kw-neg">"bestway pool"</span>
+    <span class="kw-pill kw-neg">"coleman pool"</span>
+    <span class="kw-pill kw-neg">"diy pool"</span>
+    <span class="kw-pill kw-neg">"used pool"</span>
+    <span class="kw-pill kw-neg">"pool chemicals"</span>
+    <span class="kw-pill kw-neg">"swimming pool parts"</span>
+    <span class="kw-pill kw-neg">"swimming pool accessories"</span>
+  </div>
+
+  <div class="section-subtitle">Verify Shared Set 12012201802 Contains At Minimum</div>
+  <div>
+    <span class="kw-pill kw-warn">above ground</span>
+    <span class="kw-pill kw-warn">inflatable</span>
+    <span class="kw-pill kw-warn">intex</span>
+    <span class="kw-pill kw-warn">bestway</span>
+    <span class="kw-pill kw-warn">used pool</span>
+    <span class="kw-pill kw-warn">pool liner</span>
+    <span class="kw-pill kw-warn">pool repair</span>
+    <span class="kw-pill kw-warn">cheap pool</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 10: REBUILD SPEC -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="rebuild-spec">
+  <div class="section-title">10. Campaign Rebuild Specification</div>
+
+  <div class="callout blue">
+    <strong>Architecture:</strong> Keep single campaign "Fiberglass Pools." Break 1 ad group into 5 themed ad groups below. Each gets its own RSA. Bid strategy: Max Clicks + $10 CPC cap until 20+ conv/month restored. Geo: Presence only.
+  </div>
+
+  <div class="section-subtitle">Ad Group 1: Fiberglass Pool — Core Intent</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Target: High-intent buyers actively searching for fiberglass pool installation.</p>
+  <div>
+    <span class="kw-pill">"fiberglass pool" [phrase]</span>
+    <span class="kw-pill">[fiberglass pool] [exact]</span>
+    <span class="kw-pill">"fiberglass swimming pool" [phrase]</span>
+    <span class="kw-pill">"fiberglass inground pool" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool installation" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool company" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool contractor" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool builder" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool cost" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool price" [phrase]</span>
+  </div>
+
+  <div class="section-subtitle">Ad Group 2: Inground Pool — General Intent</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Target: Pool buyers not yet committed to fiberglass — convert them.</p>
+  <div>
+    <span class="kw-pill">"inground pool" [phrase]</span>
+    <span class="kw-pill">"inground swimming pool" [phrase]</span>
+    <span class="kw-pill">"pool installation" [phrase]</span>
+    <span class="kw-pill">"pool builder" [phrase]</span>
+    <span class="kw-pill">"pool contractor" [phrase]</span>
+    <span class="kw-pill">"swimming pool installation" [phrase]</span>
+    <span class="kw-pill">"pool company near me" [phrase]</span>
+    <span class="kw-pill">"backyard pool" [phrase]</span>
+    <span class="kw-pill">"custom pool" [phrase]</span>
+  </div>
+
+  <div class="section-subtitle">Ad Group 3: Leisure Pools Brand</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Target: In-market buyers who already know the brand.</p>
+  <div>
+    <span class="kw-pill">[leisure pools] [exact]</span>
+    <span class="kw-pill">"leisure pools" [phrase]</span>
+    <span class="kw-pill">"leisure pools beaufort" [phrase]</span>
+    <span class="kw-pill">[leisure pool] [exact]</span>
+    <span class="kw-pill">"leisure pool dealer" [phrase]</span>
+    <span class="kw-pill">"the pool company beaufort" [phrase]</span>
+    <span class="kw-pill">"pool company beaufort sc" [phrase]</span>
+  </div>
+
+  <div class="section-subtitle">Ad Group 4: Geographic — Beaufort &amp; Service Area</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Target: City-specific searches in service area. High intent + high relevance.</p>
+  <div>
+    <span class="kw-pill">"beaufort pool" [phrase]</span>
+    <span class="kw-pill">"beaufort sc pool" [phrase]</span>
+    <span class="kw-pill">"beaufort pool company" [phrase]</span>
+    <span class="kw-pill">"hilton head pool" [phrase]</span>
+    <span class="kw-pill">"hilton head pool company" [phrase]</span>
+    <span class="kw-pill">"bluffton pool" [phrase]</span>
+    <span class="kw-pill">"bluffton pool company" [phrase]</span>
+    <span class="kw-pill">"port royal pool" [phrase]</span>
+    <span class="kw-pill">"okatie pool" [phrase]</span>
+    <span class="kw-pill">"lady's island pool" [phrase]</span>
+    <span class="kw-pill">"pool company near beaufort" [phrase]</span>
+    <span class="kw-pill">"pool installer beaufort" [phrase]</span>
+  </div>
+
+  <div class="section-subtitle">Ad Group 5: Pool Cost &amp; Comparison</div>
+  <p style="font-size:12px;color:var(--muted);margin-bottom:6px">Target: Research-phase buyers comparing options — education-to-close opportunity.</p>
+  <div>
+    <span class="kw-pill">"pool cost" [phrase]</span>
+    <span class="kw-pill">"how much does a pool cost" [phrase]</span>
+    <span class="kw-pill">"pool quote" [phrase]</span>
+    <span class="kw-pill">"pool estimate" [phrase]</span>
+    <span class="kw-pill">"fiberglass vs concrete pool" [phrase]</span>
+    <span class="kw-pill">"fiberglass pool benefits" [phrase]</span>
+    <span class="kw-pill">"inground pool cost" [phrase]</span>
+    <span class="kw-pill">"pool financing" [phrase]</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 11: RSA COPY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="rsa-copy">
+  <div class="section-title">11. RSA Copy — Full 15 Headlines + 4 Descriptions</div>
+
+  <div class="callout blue">
+    Brand: Leisure Pools. Voice: confident, warm, investment-framed. Never say "affordable" — frame as investment. Paths: Fiberglass-Pool | Beaufort-SC. Final URL: https://leisurepoolsbeaufort.com
+  </div>
+
+  <!-- RSA 1: Ad Group 1 — Fiberglass Core -->
+  <div class="section-subtitle">RSA 1 — Fiberglass Pool (Ad Group 1: Core Intent)</div>
+  <div class="rsa-box">
+    <div class="rsa-headlines">Fiberglass Pool Beaufort SC | Leisure Pools Dealer</div>
+    <div class="rsa-url">leisurepoolsbeaufort.com/fiberglass-pool/beaufort-sc</div>
+    <div class="rsa-desc">Installed in weeks — not months. Lifetime structural warranty. Get a free quote from Beaufort's Leisure Pools dealer.</div>
+  </div>
+
+  <ul class="rsa-headline-list" style="margin-top:10px">
+    <li><span class="hl-num">H1</span>Fiberglass Pools — Beaufort SC</li>
+    <li><span class="hl-num">H2</span>Installed in Weeks, Not Months</li>
+    <li><span class="hl-num">H3</span>Lifetime Structural Warranty</li>
+    <li><span class="hl-num">H4</span>150,000+ Pools Installed Worldwide</li>
+    <li><span class="hl-num">H5</span>Leisure Pools Certified Dealer</li>
+    <li><span class="hl-num">H6</span>Fiberglass Pool Installation Experts</li>
+    <li><span class="hl-num">H7</span>Free Quote — No Obligation</li>
+    <li><span class="hl-num">H8</span>Serving Beaufort &amp; Hilton Head Island</li>
+    <li><span class="hl-num">H9</span>Low Maintenance — More Time Swimming</li>
+    <li><span class="hl-num">H10</span>Own a Pool From ~$10 a Day</li>
+    <li><span class="hl-num">H11</span>Fiberglass Pool vs. Concrete — We Win</li>
+    <li><span class="hl-num">H12</span>25+ Years. 150K+ Pools. Built Right.</li>
+    <li><span class="hl-num">H13</span>Pool Installation — Beaufort, SC</li>
+    <li><span class="hl-num">H14</span>AquaGuard Color System — 40+ Options</li>
+    <li><span class="hl-num">H15</span>Start Your Backyard Transformation</li>
+  </ul>
+
+  <div class="section-subtitle" style="margin-top:14px">Descriptions</div>
+  <ul class="rsa-headline-list">
+    <li><span class="hl-num">D1</span>Leisure Pools fiberglass pools are installed in weeks — not months like concrete. Lifetime structural warranty. Serving Beaufort, Bluffton &amp; Hilton Head Island.</li>
+    <li><span class="hl-num">D2</span>The Pool Company LLC is Beaufort's certified Leisure Pools installer. Over 150,000 pools delivered worldwide. Get a free, no-pressure quote today.</li>
+    <li><span class="hl-num">D3</span>Low-maintenance fiberglass pool. Smooth surface. AquaGuard color system. Installed faster than you think — contact us to get your install on the calendar.</li>
+    <li><span class="hl-num">D4</span>Pool ownership is closer than you think. Fiberglass installs in weeks. Less upkeep than concrete. More time enjoying the water. Free quote at leisurepoolsbeaufort.com.</li>
+  </ul>
+
+  <div class="copy-block" id="rsa1-copy">HEADLINES (15):
+H1: Fiberglass Pools — Beaufort SC
+H2: Installed in Weeks, Not Months
+H3: Lifetime Structural Warranty
+H4: 150,000+ Pools Installed Worldwide
+H5: Leisure Pools Certified Dealer
+H6: Fiberglass Pool Installation Experts
+H7: Free Quote — No Obligation
+H8: Serving Beaufort & Hilton Head Island
+H9: Low Maintenance — More Time Swimming
+H10: Own a Pool From ~$10 a Day
+H11: Fiberglass Pool vs. Concrete — We Win
+H12: 25+ Years. 150K+ Pools. Built Right.
+H13: Pool Installation — Beaufort, SC
+H14: AquaGuard Color System — 40+ Options
+H15: Start Your Backyard Transformation
+
+DESCRIPTIONS (4):
+D1: Leisure Pools fiberglass pools are installed in weeks — not months like concrete. Lifetime structural warranty. Serving Beaufort, Bluffton & Hilton Head Island.
+D2: The Pool Company LLC is Beaufort's certified Leisure Pools installer. Over 150,000 pools delivered worldwide. Get a free, no-pressure quote today.
+D3: Low-maintenance fiberglass pool. Smooth surface. AquaGuard color system. Installed faster than you think — contact us to get your install on the calendar.
+D4: Pool ownership is closer than you think. Fiberglass installs in weeks. Less upkeep than concrete. More time enjoying the water. Free quote at leisurepoolsbeaufort.com.
+
+PATH1: Fiberglass-Pool
+PATH2: Beaufort-SC
+FINAL URL: https://leisurepoolsbeaufort.com</div>
+  <button class="copy-btn" onclick="copyText('rsa1-copy', this)">Copy RSA 1</button>
+
+  <!-- RSA 2: Ad Group 4 — Geographic -->
+  <div class="section-subtitle" style="margin-top:20px">RSA 2 — Geographic Ad Group (Ad Group 4)</div>
+
+  <ul class="rsa-headline-list">
+    <li><span class="hl-num">H1</span>Pool Company Near Beaufort SC</li>
+    <li><span class="hl-num">H2</span>Serving Hilton Head, Bluffton &amp; Beaufort</li>
+    <li><span class="hl-num">H3</span>Fiberglass Pools — Beaufort County</li>
+    <li><span class="hl-num">H4</span>Installed in Weeks, Not Months</li>
+    <li><span class="hl-num">H5</span>Leisure Pools — Local Beaufort Dealer</li>
+    <li><span class="hl-num">H6</span>Lifetime Structural Warranty</li>
+    <li><span class="hl-num">H7</span>Free Quote — Beaufort SC</li>
+    <li><span class="hl-num">H8</span>Hilton Head Island Pool Company</li>
+    <li><span class="hl-num">H9</span>Bluffton Pool Installation Experts</li>
+    <li><span class="hl-num">H10</span>150,000+ Pools — 25+ Years Experience</li>
+    <li><span class="hl-num">H11</span>Backyard Pool — Beaufort &amp; Surrounding</li>
+    <li><span class="hl-num">H12</span>Port Royal Pool Builder</li>
+    <li><span class="hl-num">H13</span>Pool Installation — Lady's Island SC</li>
+    <li><span class="hl-num">H14</span>Get Your Pool on the Calendar Today</li>
+    <li><span class="hl-num">H15</span>Low Maintenance. Fast Install. Local.</li>
+  </ul>
+
+  <div class="copy-block" id="rsa2-copy">HEADLINES (15):
+H1: Pool Company Near Beaufort SC
+H2: Serving Hilton Head, Bluffton & Beaufort
+H3: Fiberglass Pools — Beaufort County
+H4: Installed in Weeks, Not Months
+H5: Leisure Pools — Local Beaufort Dealer
+H6: Lifetime Structural Warranty
+H7: Free Quote — Beaufort SC
+H8: Hilton Head Island Pool Company
+H9: Bluffton Pool Installation Experts
+H10: 150,000+ Pools — 25+ Years Experience
+H11: Backyard Pool — Beaufort & Surrounding
+H12: Port Royal Pool Builder
+H13: Pool Installation — Lady's Island SC
+H14: Get Your Pool on the Calendar Today
+H15: Low Maintenance. Fast Install. Local.
+
+DESCRIPTIONS (4):
+D1: Beaufort County's trusted fiberglass pool installer. Leisure Pools dealer serving Bluffton, Hilton Head, Port Royal & surrounding areas. Free consultation.
+D2: We install custom fiberglass pools across Beaufort SC, Hilton Head Island, and Bluffton — typically in a few weeks. Lifetime structural warranty. Call (843) 948-2589.
+D3: Skip the months-long concrete wait. Fiberglass pool installation in Beaufort County in weeks. The Pool Company LLC — Leisure Pools certified dealer.
+D4: From Lady's Island to Hilton Head — if you're in Beaufort County and ready for a pool, we're ready to build it. Start with a free quote today.
+
+PATH1: Pool-Company
+PATH2: Beaufort-SC
+FINAL URL: https://leisurepoolsbeaufort.com</div>
+  <button class="copy-btn" onclick="copyText('rsa2-copy', this)">Copy RSA 2</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 12: EXTENSIONS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="extensions">
+  <div class="section-title">12. Extension Recommendations</div>
+
+  <div class="callout">
+    Current: 4 sitelinks (need ≥6), 7 callouts, 1 structured snippet, 1 call. Add 2 more sitelinks minimum. All sitelinks must link to <strong>leisurepoolsbeaufort.com</strong> — NOT leisurepoolsusa.com.
+  </div>
+
+  <div class="section-subtitle">Recommended Sitelinks (Add 2+ to reach 6 minimum)</div>
+  <table>
+    <thead>
+      <tr><th>Link Text</th><th>Desc Line 1</th><th>Desc Line 2</th><th>URL</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Get a Free Quote</td><td>No pressure. No obligation.</td><td>We'll come to you.</td><td>leisurepoolsbeaufort.com/contact</td></tr>
+      <tr><td>Our Pool Models</td><td>Eclipse, Pinnacle, Supreme &amp; more</td><td>View styles and sizes</td><td>leisurepoolsbeaufort.com/pools</td></tr>
+      <tr><td>How It Works</td><td>From design to swim-ready</td><td>Faster than you think</td><td>leisurepoolsbeaufort.com/process</td></tr>
+      <tr><td>Financing Options</td><td>Own a pool from ~$10/day</td><td>Flexible payment options</td><td>leisurepoolsbeaufort.com/financing</td></tr>
+      <tr><td>About Our Team</td><td>Local. Experienced. Certified.</td><td>Graham Jones &amp; Tony Greco</td><td>leisurepoolsbeaufort.com/about</td></tr>
+      <tr><td>Fiberglass vs Concrete</td><td>Why fiberglass wins</td><td>Faster install. Less maintenance.</td><td>leisurepoolsbeaufort.com/fiberglass-vs-concrete</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-subtitle" style="margin-top:14px">Recommended Callouts (Verify existing 7, add if missing)</div>
+  <div>
+    <span class="kw-pill">Lifetime Structural Warranty</span>
+    <span class="kw-pill">Installed in Weeks</span>
+    <span class="kw-pill">Low Maintenance</span>
+    <span class="kw-pill">150,000+ Pools Worldwide</span>
+    <span class="kw-pill">Free Quote</span>
+    <span class="kw-pill">Serving Beaufort County</span>
+    <span class="kw-pill">AquaGuard Color System</span>
+    <span class="kw-pill">Family-Owned Local Business</span>
+  </div>
+
+  <div class="section-subtitle" style="margin-top:14px">Structured Snippet</div>
+  <p style="font-size:13px"><strong>Header:</strong> Pool Models &nbsp;|&nbsp; <strong>Values:</strong> The Eclipse, The Pinnacle, The Supreme, The Precision, The Reflection, Fiberglass Spas</p>
+
+  <div class="section-subtitle">Call Extension</div>
+  <p style="font-size:13px"><strong>(843) 948-2589</strong> — confirm call reporting is enabled and call duration threshold is set to ≥60 seconds.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 13: BIDDING STRATEGY -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="bidding">
+  <div class="section-title">13. Bid Strategy Recommendation</div>
+
+  <table>
+    <thead>
+      <tr><th>Phase</th><th>Strategy</th><th>Condition</th><th>CPC Cap</th></tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td><strong>Now (Phase 1)</strong></td>
+        <td>Maximize Clicks</td>
+        <td>Active immediately — while conversion tracking is verified and conv volume is &lt;20/mo</td>
+        <td>$10.00</td>
+      </tr>
+      <tr>
+        <td>Phase 2</td>
+        <td>Max Conversions (no tCPA)</td>
+        <td>Once 20+ conv/month confirmed over 2 consecutive months</td>
+        <td>$15.00</td>
+      </tr>
+      <tr>
+        <td>Phase 3</td>
+        <td>Max Conversions with tCPA</td>
+        <td>Once 30+ conv/month and stable CPA established (&lt;$300)</td>
+        <td>Set tCPA at $250–$300</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout red" style="margin-top:12px">
+    <strong>Critical:</strong> Do NOT operate Max Conversions with fewer than 20 conv/month. The algorithm will not have enough signal and will waste budget chasing phantom conversions. Switch to Maximize Clicks + CPC cap now.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 14: GEO TARGETING -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="geo">
+  <div class="section-title">14. Geo Targeting</div>
+
+  <div class="callout red">
+    <strong>P1 Issue:</strong> Positive geo target type = 7 (PRESENCE_OR_INTEREST). Should be 6 (PRESENCE only). Change immediately in campaign settings → Location options.
+  </div>
+
+  <div class="section-subtitle">Current Targeted Locations (18 total)</div>
+  <table>
+    <thead>
+      <tr><th>Location Name</th><th>Type</th><th>State</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Beaufort County</td><td>County</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Bluffton</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Hardeeville</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Hilton Head Island</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Port Royal</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Ridgeland</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Burton</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Yemassee</td><td>City</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>ZIPs: 29906, 29907, 29909, 29920, 29940</td><td>Postal</td><td>SC</td><td><span class="badge pass">Core ✓</span></td></tr>
+      <tr><td>Savannah</td><td>City</td><td>GA</td><td><span class="badge warn">Overlap w/ Savannah account — verify</span></td></tr>
+      <tr><td>Tybee Island</td><td>City</td><td>GA</td><td><span class="badge warn">Savannah metro — verify</span></td></tr>
+      <tr><td>Garden City</td><td>City</td><td>GA</td><td><span class="badge warn">Savannah metro — verify</span></td></tr>
+      <tr><td>Port Wentworth</td><td>City</td><td>GA</td><td><span class="badge warn">Savannah metro — verify</span></td></tr>
+      <tr><td>Wilmington Island</td><td>City</td><td>GA</td><td><span class="badge warn">Savannah metro — verify</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:12px">
+    <strong>Missing from geo:</strong> Lady's Island, Saint Helena Island, Okatie, Fripp Island, Seabrook — all confirmed in dealer service area per Obsidian vault. Add these as positive geo targets.
+  </div>
+
+  <div class="section-subtitle">Geo Locations to Add</div>
+  <div>
+    <span class="kw-pill">Lady's Island, SC</span>
+    <span class="kw-pill">Saint Helena Island, SC</span>
+    <span class="kw-pill">Okatie, SC</span>
+    <span class="kw-pill">Fripp Island, SC</span>
+    <span class="kw-pill">Seabrook, SC</span>
+    <span class="kw-pill">Sheldon, SC</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 15: AUDIENCES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="audiences">
+  <div class="section-title">15. Audience Recommendations</div>
+
+  <div class="callout">
+    No audiences currently applied. Add in <strong>Observation mode</strong> — this will not restrict delivery but will enable performance data by audience segment and allow bid modifiers later.
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Audience</th><th>Type</th><th>Mode</th><th>Rationale</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Home Improvement (In-Market)</td><td>Google In-Market</td><td>Observation</td><td>Active home improvement consideration — pool buyer signal</td></tr>
+      <tr><td>Luxury Goods &amp; Services</td><td>Google In-Market</td><td>Observation</td><td>Higher-income segment, more likely pool buyer</td></tr>
+      <tr><td>Real Estate (Recently moved)</td><td>Life Event</td><td>Observation</td><td>New homeowners setting up backyard — ideal Beaufort buyer</td></tr>
+      <tr><td>Website Remarketing</td><td>Custom — Remarketing</td><td>Observation (Target later)</td><td>Past site visitors showing intent — highest conversion potential</td></tr>
+      <tr><td>Customer Match (Past leads)</td><td>Customer Match</td><td>Target</td><td>Upload contact list from CRM for warm remarketing</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 16: CONVERSION TRACKING -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="conversion">
+  <div class="section-title">16. Conversion Tracking Investigation</div>
+
+  <div class="callout red">
+    <strong>This is the most important issue in this account.</strong> The 87% conversion drop since December 2025 is either a tracking failure or a genuine performance collapse. Until root cause is identified, every optimization decision is built on unreliable data.
+  </div>
+
+  <div class="section-subtitle">Investigation Checklist</div>
+  <ol style="font-size:13px;padding-left:18px;line-height:2">
+    <li>Open <strong>Tag Assistant</strong> on leisurepoolsbeaufort.com — confirm Google Ads conversion tag fires on contact form submit page</li>
+    <li>Check Google Analytics (or GA4) — do form completions/goal completions also show a drop starting Dec 2025?</li>
+    <li>Test the contact form manually — submit a test lead and confirm (a) thank-you page loads, (b) tag fires in Tag Assistant</li>
+    <li>Check "Conversion actions" in Google Ads — confirm conversion window, counting method (one vs. all), and that the action is set to "primary" for bidding</li>
+    <li>Check Google Search Console for traffic anomalies Dec 2025 — organic also dropping?</li>
+    <li>Check if leisurepoolsbeaufort.com had any site changes, CMS updates, or form plugin changes in Nov–Dec 2025</li>
+    <li>If tracking is confirmed working: conversion cliff is real — assess landing page load speed (Core Web Vitals), mobile form UX, and phone call tracking threshold</li>
+  </ol>
+
+  <div class="section-subtitle" style="margin-top:12px">Conversion Setup Requirements</div>
+  <table>
+    <thead>
+      <tr><th>Setting</th><th>Required Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Conversion window</td><td>30 days (pool consideration cycle)</td></tr>
+      <tr><td>View-through window</td><td>1 day</td></tr>
+      <tr><td>Counting method</td><td>One per click (not all — prevents double-counting from multiple page visits)</td></tr>
+      <tr><td>Call threshold</td><td>≥60 seconds to count as conversion</td></tr>
+      <tr><td>Attribution model</td><td>Data-driven (if available) or linear</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECTION 17: PRE-LAUNCH CHECKLIST -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="checklist">
+  <div class="section-title">17. Pre-Launch Checklist — Rebuild Verification</div>
+
+  <ul class="checklist">
+    <li><div class="check-icon"></div> Conversion tracking verified firing correctly on live site</li>
+    <li><div class="check-icon"></div> Geo target type changed to PRESENCE only (type 6) in campaign settings</li>
+    <li><div class="check-icon"></div> 'above ground' [exact] keyword PAUSED or REMOVED</li>
+    <li><div class="check-icon"></div> 'above ground' added as negative exact at campaign level</li>
+    <li><div class="check-icon"></div> Bid strategy changed from Max Conversions → Max Clicks</li>
+    <li><div class="check-icon"></div> CPC cap set to $10.00</li>
+    <li><div class="check-icon"></div> Negative keyword list from Section 9 added to campaign</li>
+    <li><div class="check-icon"></div> Shared set 12012201802 content verified in account UI</li>
+    <li><div class="check-icon"></div> 5 themed ad groups created per Section 10 spec</li>
+    <li><div class="check-icon"></div> RSA 1 created in Ad Group 1 (Fiberglass Core) with 15 headlines + 4 descriptions</li>
+    <li><div class="check-icon"></div> RSA 2 created in Ad Group 4 (Geographic) with 15 headlines + 4 descriptions</li>
+    <li><div class="check-icon"></div> RSAs for Ad Groups 2, 3, 5 created with appropriate themed copy</li>
+    <li><div class="check-icon"></div> Sitelinks at ≥6 active, all pointing to leisurepoolsbeaufort.com (NOT leisurepoolsusa.com)</li>
+    <li><div class="check-icon"></div> Callouts at ≥8 active</li>
+    <li><div class="check-icon"></div> Structured snippet present (Pool Models header)</li>
+    <li><div class="check-icon"></div> Call extension active — (843) 948-2589</li>
+    <li><div class="check-icon"></div> Missing service area geos added (Lady's Island, Saint Helena, Okatie, Fripp Island, Seabrook, Sheldon)</li>
+    <li><div class="check-icon"></div> Savannah GA geo overlap confirmed with dealer (include/exclude decision made)</li>
+    <li><div class="check-icon"></div> In-market audiences added in observation mode (Home Improvement, Luxury, Recently Moved)</div></li>
+    <li><div class="check-icon"></div> Remarketing tag installed on leisurepoolsbeaufort.com — audience building started</li>
+    <li><div class="check-icon"></div> Budget reviewed — $32.25/day ($967/mo) may need increase after structural fixes stabilize</li>
+    <li><div class="check-icon"></div> 2-week check-in scheduled to review IS, CTR by ad group, conversion rate post-fix</li>
+  </ul>
+
+  <div class="callout green" style="margin-top:16px">
+    <strong>Expected outcome after rebuild + fixes:</strong> Search IS should improve from 30% → 50%+. CPA should drop as Max Clicks + CPC cap removes the erratic bidding. Ad relevance per ad group should increase Quality Scores, reducing average CPC. Full conversion recovery depends on tracking/landing page investigation.
+  </div>
+
+  <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--border);font-size:12px;color:var(--muted)">
+    <strong>Report generated:</strong> 2026-03-20 by Claude Code (Sonnet 4.6) &nbsp;|&nbsp;
+    <strong>Account:</strong> 999-920-3572 &nbsp;|&nbsp;
+    <strong>MCC:</strong> 836-765-6694 &nbsp;|&nbsp;
+    <strong>Data period:</strong> Last 30 days &nbsp;|&nbsp;
+    <strong>Dealer Skill:</strong> leisure-pools-brand v2026-03 &nbsp;|&nbsp;
+    <strong>Audit Skill:</strong> dealer-audit-v2 &nbsp;|&nbsp;
+    <strong>Note:</strong> Enum integers (bidding_strategy_type=9, geo_target_type=7) flagged as "verify in account UI" per audit protocol. No write operations performed.
+  </div>
+</div>
+
+</div><!-- end page-wrap -->
+
+<script>
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = 'Copied!';
+    btn.style.background = '#1A7A1A';
+    setTimeout(() => {
+      btn.innerText = orig;
+      btn.style.background = '';
+    }, 2000);
+  }).catch(() => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+}
+</script>
+</body>
+</html>
