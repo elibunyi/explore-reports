@@ -3,210 +3,261 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elite - Aviva Pools Terre Haute Audit - 2026-03-20</title>
+<title>Elite - Aviva Pools Terre Haute Audit</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-    color: #1a1a1a;
-    background: #f5f5f5;
-  }
-  .header {
-    background: #1a365d;
-    color: white;
-    padding: 16px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .container {
-    max-width: 900px;
-    margin: 24px auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    padding: 32px 40px;
-  }
-  h1 { font-size: 1.8em; margin: 0.5em 0 0.3em; color: #1a365d; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-  h2 { font-size: 1.4em; margin: 1.2em 0 0.4em; color: #2d3748; }
-  h3 { font-size: 1.15em; margin: 1em 0 0.3em; color: #4a5568; }
-  h4 { font-size: 1em; margin: 0.8em 0 0.2em; color: #4a5568; font-weight: 600; }
-  p { margin: 0.5em 0; }
-  a { color: #2b6cb0; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  strong { color: #1a202c; }
-  hr { border: none; border-top: 1px solid #e2e8f0; margin: 1.5em 0; }
-  ul, ol { margin: 0.5em 0 0.5em 1.5em; }
-  li { margin: 0.2em 0; }
-  li.task { list-style: none; margin-left: -1.5em; }
-  li.task.checked { color: #276749; }
-  li.task.unchecked { color: #c53030; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-    font-size: 0.9em;
-  }
-  th {
-    background: #2d3748;
-    color: white;
-    padding: 10px 12px;
-    text-align: left;
-    font-weight: 600;
-  }
-  td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #e2e8f0;
-  }
-  tr:nth-child(even) td { background: #f7fafc; }
-  tr:hover td { background: #edf2f7; }
-  code {
-    background: #f1f5f9;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 0.9em;
-    font-family: 'SF Mono', Menlo, monospace;
-  }
-  pre {
-    background: #1a202c;
-    color: #e2e8f0;
-    padding: 16px;
-    border-radius: 6px;
-    overflow-x: auto;
-    margin: 1em 0;
-  }
-  pre code {
-    background: none;
-    padding: 0;
-    color: inherit;
-  }
-  blockquote {
-    border-left: 4px solid #2b6cb0;
-    padding: 8px 16px;
-    margin: 1em 0;
-    background: #ebf8ff;
-    color: #2c5282;
-  }
-  @media (max-width: 640px) {
-    .container { margin: 12px; padding: 20px 16px; }
-    table { font-size: 0.8em; }
-    th, td { padding: 6px 8px; }
-  }
+
+:root {
+  --navy: #1B3A5C;
+  --navy-light: #2A5080;
+  --accent: #E8913A;
+  --accent-light: #FFF3E6;
+  --green: #2E8B57;
+  --green-light: #E8F5EE;
+  --red: #C0392B;
+  --red-light: #FDEDEB;
+  --yellow: #F39C12;
+  --yellow-light: #FEF9E7;
+  --blue-light: #EBF5FB;
+  --gray-bg: #F4F6F8;
+  --gray-border: #D5D8DC;
+  --text: #2C3E50;
+  --text-light: #5D6D7E;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--gray-bg); color: var(--text); line-height: 1.6; }
+.header { background: linear-gradient(135deg, var(--navy), var(--navy-light)); color: #fff; padding: 40px 0; }
+.header-inner { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { font-size: 15px; opacity: 0.85; margin-bottom: 16px; }
+.header-meta { display: flex; flex-wrap: wrap; gap: 24px; font-size: 13px; opacity: 0.8; }
+.header-meta span { display: flex; align-items: center; gap: 6px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+.card { background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 30px; margin-bottom: 24px; }
+.card h2 { color: var(--navy); font-size: 20px; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+.card h3 { color: var(--navy-light); font-size: 16px; margin: 20px 0 10px 0; }
+.card h4 { color: var(--text); font-size: 14px; margin: 14px 0 8px 0; font-weight: 600; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 6px; }
+.tag-p1 { background: var(--red-light); color: var(--red); }
+.tag-critical { background: var(--red-light); color: var(--red); }
+.tag-p2 { background: var(--yellow-light); color: #B7950B; }
+.tag-high { background: var(--yellow-light); color: #B7950B; }
+.tag-p3 { background: var(--blue-light); color: #2471A3; }
+.tag-medium { background: var(--blue-light); color: #2471A3; }
+.tag-low { background: var(--green-light); color: var(--green); }
+.tag-new { background: var(--green-light); color: var(--green); }
+.tag-keep { background: var(--blue-light); color: #2471A3; }
+.tag-remove { background: var(--red-light); color: var(--red); }
+.tag-exact { background: #E8DAEF; color: #6C3483; }
+.tag-phrase { background: #D5F5E3; color: #1E8449; }
+.tag-brand { background: var(--accent-light); color: #B7700A; }
+.tag-geo { background: #D6EAF8; color: #21618C; }
+.tag-pass { background: var(--green-light); color: var(--green); }
+.tag-fail { background: var(--red-light); color: var(--red); }
+.tag-urgent { background: var(--red-light); color: var(--red); }
+.tag-healthy { background: var(--green-light); color: var(--green); }
+.tag-moderate { background: var(--blue-light); color: #2471A3; }
+
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 16px 0; }
+.info-item { background: var(--gray-bg); padding: 14px; border-radius: 8px; text-align: center; }
+.info-item .label { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
+.info-item .value { font-size: 22px; font-weight: 700; color: var(--navy); margin-top: 2px; }
+.info-item .sub { font-size: 11px; color: var(--text-light); }
+
+.warning-box { background: var(--red-light); border-left: 4px solid var(--red); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 14px; }
+.note-box { background: var(--yellow-light); border-left: 4px solid var(--yellow); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 14px; }
+.success-box { background: var(--green-light); border-left: 4px solid var(--green); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 14px; }
+.info-box { background: var(--blue-light); border-left: 4px solid #2980B9; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 14px; }
+
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+th { background: var(--navy); color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+td { padding: 9px 12px; border-bottom: 1px solid #EEE; }
+tr:hover { background: #F8F9FA; }
+tr.flagged { background: var(--red-light); }
+tr.flagged:hover { background: #F5C6CB; }
+
+.copy-box { background: #F8F9FA; border: 1px solid var(--gray-border); border-radius: 6px; padding: 12px 16px; font-family: 'Courier New', monospace; font-size: 13px; user-select: all; -webkit-user-select: all; margin: 10px 0; white-space: pre-wrap; word-break: break-all; cursor: pointer; position: relative; }
+.copy-box:hover { border-color: var(--navy); background: #F0F3F6; }
+.copy-box::after { content: 'Click to select all'; position: absolute; top: 4px; right: 8px; font-size: 10px; color: var(--text-light); font-family: 'Segoe UI', sans-serif; }
+
+.bulk-paste { background: var(--accent-light); border: 2px dashed var(--accent); border-radius: 8px; padding: 18px 20px; font-family: 'Courier New', monospace; font-size: 13px; user-select: all; -webkit-user-select: all; margin: 14px 0; white-space: pre-wrap; cursor: pointer; position: relative; line-height: 1.8; }
+.bulk-paste::before { content: 'BULK PASTE \2014 Click to select all'; display: block; font-family: 'Segoe UI', sans-serif; font-size: 11px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+
+.checklist { list-style: none; padding: 0; }
+.checklist li { padding: 8px 0; border-bottom: 1px solid #EEE; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border-bottom: none; }
+.check-pass { color: var(--green); font-size: 18px; flex-shrink: 0; }
+.check-fail { color: var(--red); font-size: 18px; flex-shrink: 0; }
+
+.section-divider { text-align: center; margin: 40px 0 30px 0; font-size: 13px; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; position: relative; }
+.section-divider::before, .section-divider::after { content: ''; position: absolute; top: 50%; width: 30%; height: 1px; background: var(--gray-border); }
+.section-divider::before { left: 0; }
+.section-divider::after { right: 0; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+.finding-item { margin-bottom: 16px; padding: 12px 16px; border-radius: 8px; }
+.finding-critical { background: var(--red-light); border-left: 4px solid var(--red); }
+.finding-high { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+.finding-medium { background: var(--blue-light); border-left: 4px solid #2980B9; }
+.finding-low { background: var(--green-light); border-left: 4px solid var(--green); }
+.finding-item strong { display: block; margin-bottom: 4px; }
+.finding-detail { font-size: 13px; color: var(--text-light); margin-top: 4px; padding-left: 16px; }
+
 </style>
 </head>
 <body>
-<div class="header">Explore Industries &mdash; Dealer Audit Report</div>
+<div class="header">
+<div class="header-inner">
+<h1>Elite - Aviva Pools Terre Haute Audit</h1>
+<div class="subtitle">Google Ads Audit &mdash; 2026-03-20</div>
+<div class="header-meta">
+<span><strong>Account Name:</strong> DM - Elite - Aviva Pools Terre Haute</span>
+<span><strong>Customer ID:</strong> 9225188086</span>
+<span><strong>Brand:</strong> Aviva Pools</span>
+<span><strong>Market:</strong> Terre Haute, Indiana</span>
+<span><strong>Window:</strong> LAST_30_DAYS</span>
+<span><strong>Prepared by:</strong> Eli Bunyi / Claude Opus 4.6</span>
+</div>
+</div>
+</div>
 <div class="container">
-<h1>Elite - Aviva Pools Terre Haute Audit - 2026-03-20</h1>
-<h2>Human Attention</h2>
-<ul>
-<li>[AN-TYPO] Critical: 1 active ad text lines matched typo heuristics.</li>
-<li>[RSA-02] High: 1 active RSAs have Average ad strength.</li>
-</ul>
+<div class="card">
+<h2>Human Attention Required</h2>
+<div class="warning-box">[AN-TYPO] Critical: 1 active ad text lines matched typo heuristics.</div>
+<div class="note-box"><strong>[RSA-02] High:</strong> 1 active RSAs have Average ad strength.</div>
+</div>
+<div class="card">
 <h2>Account Summary</h2>
-<ul>
-<li>Account Name: DM - Elite - Aviva Pools Terre Haute</li>
-<li>Customer ID: 9225188086</li>
-<li>Brand: Aviva Pools</li>
-<li>Market: Terre Haute, Indiana</li>
-<li>Window: LAST_30_DAYS</li>
-<li>Spend: $809.11</li>
-<li>Clicks: 131</li>
-<li>Impressions: 1365</li>
-<li>Conversions: 1.0</li>
-<li>Urgency Score: 52</li>
-<li>Urgency Tier: high</li>
-</ul>
+<div class="info-grid">
+<div class="info-item">
+<div class="label">Spend</div>
+<div class="value">$809.11</div>
+</div>
+<div class="info-item">
+<div class="label">Clicks</div>
+<div class="value">131</div>
+</div>
+<div class="info-item">
+<div class="label">Impressions</div>
+<div class="value">1365</div>
+</div>
+<div class="info-item">
+<div class="label">Conversions</div>
+<div class="value">1.0</div>
+</div>
+<div class="info-item">
+<div class="label">Urgency Score</div>
+<div class="value">52</div>
+</div>
+<div class="info-item">
+<div class="label">Urgency Tier</div>
+<div class="value">high</div>
+</div>
+</div>
+<table>
+<tr><td><strong>Account Name</strong></td><td>DM - Elite - Aviva Pools Terre Haute</td></tr>
+<tr><td><strong>Customer ID</strong></td><td>9225188086</td></tr>
+<tr><td><strong>Brand</strong></td><td>Aviva Pools</td></tr>
+<tr><td><strong>Market</strong></td><td>Terre Haute, Indiana</td></tr>
+<tr><td><strong>Window</strong></td><td>LAST_30_DAYS</td></tr>
+</table>
+</div>
+<div class="card">
 <h2>Campaign Snapshot</h2>
 <table>
-<thead>
 <tr>
 <th>Campaign</th>
 <th>Status</th>
 <th>Bid Strategy</th>
-<th style="text-align: right;">CPC Cap</th>
+<th>CPC Cap</th>
 <th>Search Partners</th>
 <th>Display</th>
 <th>Geo Mode</th>
-<th style="text-align: right;">Budget</th>
-<th style="text-align: right;">Clicks</th>
-<th style="text-align: right;">Cost</th>
-<th style="text-align: right;">Conv.</th>
+<th>Budget</th>
+<th>Clicks</th>
+<th>Cost</th>
+<th>Conv.</th>
 </tr>
-</thead>
-<tbody>
 <tr>
 <td>Aviva Pools Terre Haute Campaign</td>
 <td>ENABLED</td>
 <td>TARGET_SPEND</td>
-<td style="text-align: right;">$250.00</td>
+<td>$250.00</td>
 <td>OFF</td>
 <td>OFF</td>
 <td>PRESENCE</td>
-<td style="text-align: right;">$32.25</td>
-<td style="text-align: right;">131</td>
-<td style="text-align: right;">$809.11</td>
-<td style="text-align: right;">1.0</td>
+<td>$32.25</td>
+<td>131</td>
+<td>$809.11</td>
+<td>1.0</td>
 </tr>
-</tbody>
 </table>
+</div>
+<div class="card">
 <h2>Checklist Status</h2>
-<ul>
-<li>[KW-01] Pass: no live broad match exposure found</li>
-<li>[KW-02] Pass: no bare service-area city negatives detected</li>
-<li>[KW-04] Fail: 0 active negative keyword rows found</li>
-<li>[RSA-01] Pass: no active RSAs with Poor ad strength</li>
-<li>[RSA-03] Pass: all active RSAs have exactly 15 headlines</li>
-<li>[RSA-04] Pass: all active RSAs have exactly 4 descriptions</li>
-<li>[RSA-05] Pass: all active RSA headlines are 30 characters or fewer</li>
-<li>[RSA-06] Pass: all active RSA descriptions are 90 characters or fewer</li>
-<li>[RSA-07] Fail: 1 active RSAs are missing Path 1</li>
-<li>[RSA-08] Fail: 1 active RSAs are missing Path 2</li>
-<li>[RSA-10] Pass: no active RSA headlines matched the brand-claim heuristic</li>
-<li>[SL-03] Fail: 4 enabled sitelinks found</li>
-<li>[SL-04] Pass: all enabled sitelink text is 25 characters or fewer</li>
-<li>[CO-01] Fail: 5 unique enabled callouts found</li>
-<li>[CO-02] Pass: all enabled callouts are 25 characters or fewer</li>
-<li>[CO-03] Pass: enabled call extension with phone number found</li>
-<li>[CO-04] Fail: no enabled structured snippet assets found</li>
+<ul class="checklist">
+<li><span class="check-pass">&#10003;</span><span><strong>[KW-01]</strong> no live broad match exposure found</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[KW-02]</strong> no bare service-area city negatives detected</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[KW-04]</strong> 0 active negative keyword rows found</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-01]</strong> no active RSAs with Poor ad strength</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-03]</strong> all active RSAs have exactly 15 headlines</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-04]</strong> all active RSAs have exactly 4 descriptions</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-05]</strong> all active RSA headlines are 30 characters or fewer</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-06]</strong> all active RSA descriptions are 90 characters or fewer</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[RSA-07]</strong> 1 active RSAs are missing Path 1</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[RSA-08]</strong> 1 active RSAs are missing Path 2</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[RSA-10]</strong> no active RSA headlines matched the brand-claim heuristic</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[SL-03]</strong> 4 enabled sitelinks found</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[SL-04]</strong> all enabled sitelink text is 25 characters or fewer</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[CO-01]</strong> 5 unique enabled callouts found</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[CO-02]</strong> all enabled callouts are 25 characters or fewer</span></li>
+<li><span class="check-pass">&#10003;</span><span><strong>[CO-03]</strong> enabled call extension with phone number found</span></li>
+<li><span class="check-fail">&#10007;</span><span><strong>[CO-04]</strong> no enabled structured snippet assets found</span></li>
 </ul>
+</div>
+<div class="card">
 <h2>Findings By Category</h2>
-<h3>KW</h3>
-<ul>
-<li>[KW-04] Medium (3 pts): Only 0 active negative keyword rows were found across enabled campaigns/ad groups.</li>
-<li>[KW-03] Low (1 pts): 1 active ad groups sit outside the 5-20 keyword target.</li>
-<li>Aviva Pools Terre Haute Campaign / Ad group 1: 21 enabled keywords</li>
-</ul>
-<h3>RSA</h3>
-<ul>
-<li>[RSA-02] High (10 pts): 1 active RSAs have Average ad strength.</li>
-<li>Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</li>
-<li>[RSA-07] Medium (3 pts): 1 active RSAs are missing Path 1.</li>
-<li>Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</li>
-<li>[RSA-08] Medium (3 pts): 1 active RSAs are missing Path 2.</li>
-<li>Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</li>
-</ul>
-<h3>SL</h3>
-<ul>
-<li>[SL-03] Medium (3 pts): Only 4 enabled sitelinks were found.</li>
-</ul>
-<h3>CO</h3>
-<ul>
-<li>[CO-01] Medium (3 pts): Only 5 unique enabled callouts were found.</li>
-<li>[CO-04] Low (1 pts): No enabled structured snippet asset was found.</li>
-</ul>
-<h3>AN</h3>
-<ul>
-<li>[AN-TYPO] Critical (25 pts): 1 active ad text lines matched typo heuristics.</li>
-<li>Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670: Trusted Pool Builders in IN</li>
-</ul>
+<h3>Keywords</h3>
+<div class="finding-item finding-medium">
+<strong><span class="tag tag-medium">Medium (3 pts)</span> [KW-04] Only 0 active negative keyword rows were found across enabled campaigns/ad groups.</strong>
+</div>
+<div class="finding-item finding-low">
+<strong><span class="tag tag-low">Low (1 pts)</span> [KW-03] 1 active ad groups sit outside the 5-20 keyword target.</strong>
+<div class="finding-detail">&bull; Aviva Pools Terre Haute Campaign / Ad group 1: 21 enabled keywords</div>
+</div>
+<h3>Responsive Search Ads</h3>
+<div class="finding-item finding-high">
+<strong><span class="tag tag-high">High (10 pts)</span> [RSA-02] 1 active RSAs have Average ad strength.</strong>
+<div class="finding-detail">&bull; Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</div>
+</div>
+<div class="finding-item finding-medium">
+<strong><span class="tag tag-medium">Medium (3 pts)</span> [RSA-07] 1 active RSAs are missing Path 1.</strong>
+<div class="finding-detail">&bull; Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</div>
+</div>
+<div class="finding-item finding-medium">
+<strong><span class="tag tag-medium">Medium (3 pts)</span> [RSA-08] 1 active RSAs are missing Path 2.</strong>
+<div class="finding-detail">&bull; Aviva Pools Terre Haute Campaign / Ad group 1 / ad 768756811670</div>
+</div>
+<h3>Sitelinks</h3>
+<div class="finding-item finding-medium">
+<strong><span class="tag tag-medium">Medium (3 pts)</span> [SL-03] Only 4 enabled sitelinks were found.</strong>
+</div>
+<h3>Callouts &amp; Extensions</h3>
+<div class="finding-item finding-medium">
+<strong><span class="tag tag-medium">Medium (3 pts)</span> [CO-01] Only 5 unique enabled callouts were found.</strong>
+</div>
+<div class="finding-item finding-low">
+<strong><span class="tag tag-low">Low (1 pts)</span> [CO-04] No enabled structured snippet asset was found.</strong>
+</div>
+<h3>Ad Copy &amp; Annotations</h3>
+</div>
+<div class="card">
 <h2>Notes</h2>
-<ul>
-<li>Effective serving-state logic is applied where the check requires live exposure: campaign ENABLED + ad group ENABLED + entity ENABLED.</li>
-<li>Asset checks are based on enabled customer, campaign, and ad group asset associations.</li>
-<li>Dealer context source: /Users/eli.bunyi/Documents/ExploreHQ/Dealers/Elite - Aviva Pools Terre Haute.md</li>
-</ul>
+<p style="font-size:13px;color:var(--text-light);margin:4px 0;">Effective serving-state logic is applied where the check requires live exposure: campaign ENABLED + ad group ENABLED + entity ENABLED.</p>
+<p style="font-size:13px;color:var(--text-light);margin:4px 0;">Asset checks are based on enabled customer, campaign, and ad group asset associations.</p>
+<p style="font-size:13px;color:var(--text-light);margin:4px 0;">Dealer context source: /Users/eli.bunyi/Documents/ExploreHQ/Dealers/Elite - Aviva Pools Terre Haute.md</p>
+</div>
 </div>
 </body>
 </html>
