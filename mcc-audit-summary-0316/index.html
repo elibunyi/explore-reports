@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overnight Audit Summary — 2026-03-16 — 32 Dealers</title>
+<style>
+  :root { --red: #dc2626; --orange: #ea580c; --yellow: #ca8a04; --green: #16a34a; --blue: #2563eb; --gray: #6b7280; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.5; padding: 24px; max-width: 1200px; margin: 0 auto; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  .subtitle { color: var(--gray); font-size: 14px; margin-bottom: 24px; }
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .kpi { background: white; border-radius: 8px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); text-align: center; }
+  .kpi .value { font-size: 28px; font-weight: 700; }
+  .kpi .label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: .5px; }
+  .kpi.critical .value { color: var(--red); }
+  .kpi.warn .value { color: var(--orange); }
+  .kpi.ok .value { color: var(--green); }
+  .section { background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .section h2 { font-size: 18px; margin-bottom: 12px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+  .section h3 { font-size: 15px; margin: 12px 0 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f1f5f9; text-align: left; padding: 8px 10px; font-weight: 600; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; }
+  td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; }
+  tr:hover td { background: #f8fafc; }
+  .health { display: inline-block; min-width: 42px; text-align: center; padding: 2px 8px; border-radius: 4px; font-weight: 700; font-size: 12px; }
+  .health.critical { background: #fee2e2; color: var(--red); }
+  .health.poor { background: #ffedd5; color: var(--orange); }
+  .health.fair { background: #fef9c3; color: var(--yellow); }
+  .health.good { background: #dcfce7; color: var(--green); }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; margin-right: 3px; }
+  .tag.p1 { background: #fee2e2; color: var(--red); }
+  .tag.p2 { background: #ffedd5; color: var(--orange); }
+  .tag.p3 { background: #e0f2fe; color: var(--blue); }
+  .tag.brand-lp { background: #dbeafe; color: #1d4ed8; }
+  .tag.brand-av { background: #f3e8ff; color: #7c3aed; }
+  .tag.brand-ip { background: #fef3c7; color: #b45309; }
+  .tag.brand-ev { background: #d1fae5; color: #059669; }
+  .issue-list { list-style: none; padding: 0; }
+  .issue-list li { padding: 4px 0; font-size: 13px; }
+  .issue-list li::before { content: "⚠ "; color: var(--red); font-weight: bold; }
+  .priority-banner { background: linear-gradient(135deg, #dc2626, #991b1b); color: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; }
+  .priority-banner h2 { color: white; border: none; padding: 0; margin-bottom: 8px; }
+  .priority-banner ol { margin-left: 20px; }
+  .priority-banner li { margin-bottom: 4px; font-size: 14px; }
+  .systemic { background: #fff7ed; border-left: 4px solid var(--orange); padding: 12px 16px; margin-bottom: 16px; border-radius: 0 8px 8px 0; }
+  .systemic h3 { color: var(--orange); margin-bottom: 6px; }
+  .fleet-stat { font-weight: 600; }
+  @media print { body { padding: 12px; } .section { break-inside: avoid; } }
+  .toc { columns: 2; column-gap: 24px; }
+  .toc a { text-decoration: none; color: var(--blue); font-size: 13px; display: block; padding: 2px 0; }
+  .toc a:hover { text-decoration: underline; }
+  .zero-conv { background: #fef2f2; }
+  .repeat-flag { color: var(--red); font-size: 11px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<h1>Overnight Audit Summary — March 16, 2026</h1>
+<p class="subtitle">32 dealer accounts audited | All brands | Explore Industries Google Ads MCC</p>
+
+<!-- KPI ROW -->
+<div class="kpi-row">
+  <div class="kpi critical"><div class="value">35</div><div class="label">Avg Health Score</div></div>
+  <div class="kpi critical"><div class="value">156</div><div class="label">Total P1 Issues</div></div>
+  <div class="kpi warn"><div class="value">$53,889</div><div class="label">Total Spend (30d)</div></div>
+  <div class="kpi warn"><div class="value">312</div><div class="label">Total Conversions</div></div>
+  <div class="kpi warn"><div class="value">$173</div><div class="label">Avg Cost/Conv</div></div>
+  <div class="kpi critical"><div class="value">~$3,400</div><div class="label">Identified Waste</div></div>
+</div>
+
+<!-- PRIORITY BANNER -->
+<div class="priority-banner">
+  <h2>Top 10 Priority Actions</h2>
+  <ol>
+    <li><strong>Precision Fiberglass Pools</strong> (Health 15) — Campaign REMOVED, all broad match, zero negatives. Full ground-up rebuild needed.</li>
+    <li><strong>Elite - Aviva Nashville South</strong> (Health 18) — Campaign REMOVED, all broad match, 0 conversions on $485. Dead account.</li>
+    <li><strong>Poolux Builders</strong> (Health 18) — Zero conversions on $558 — conversion tracking broken (2 actions removed). Fix tracking first.</li>
+    <li><strong>Aqua Pools Corpus Christi</strong> (Health 42) — Zero conversions on $865 — conversion tracking suspected broken. Fix tracking first.</li>
+    <li><strong>Cajun Pools and Spas</strong> (Health 28) — $1,047/conv, location wrong, zero negatives, Search Partners ON. 3 repeat issues from 3/12.</li>
+    <li><strong>Elite - Leisure Pools Sarasota</strong> (Health 25) — Wrong-geo ad copy (Mississippi references in FL account). Template copy-paste error.</li>
+    <li><strong>Leisure Pools DFW</strong> (Health 42) — Wrong-geo ad copy (Jacksonville/Florida references in TX account). Same template issue.</li>
+    <li><strong>Leisure Pools San Antonio</strong> (Health 45) — Wrong-geo ad copy ("Florida Fiberglass Experts" + "Waco's premier" in SA). Same template issue.</li>
+    <li><strong>Leisure Pools Europe</strong> (Health 41) — OWL campaign has 50+ negatives entered as positives. Conversion tracking likely broken (€829/conv).</li>
+    <li><strong>Elite - Aviva Terre Haute</strong> (Health 35) — $723/conv, 41.7% of spend wasted on zero negatives, LP conversion failure.</li>
+  </ol>
+</div>
+
+<!-- SYSTEMIC ISSUES -->
+<div class="section">
+  <h2>Systemic Issues Across Fleet</h2>
+
+  <div class="systemic">
+    <h3>1. Zero/Near-Zero Negative Keywords — 26 of 32 dealers</h3>
+    <p>81% of accounts have fewer than 5 negatives. Combined identified waste: ~$2,800/month. Every account needs 40-65 negatives minimum covering: above-ground, DIY/kits, maintenance/repair, competitors, wrong product types, jobs/careers.</p>
+  </div>
+
+  <div class="systemic">
+    <h3>2. Missing Extensions — 22 of 32 dealers</h3>
+    <p>69% of accounts have zero or inadequate sitelinks, callouts, structured snippets, and call extensions. This directly hurts impression share (avg 55% IS lost to rank across fleet). Every account needs: 8 sitelinks w/ descriptions, 12 callouts, structured snippets (Types, Models), call extension.</p>
+  </div>
+
+  <div class="systemic">
+    <h3>3. PRESENCE_OR_INTEREST Location Targeting — 20+ dealers</h3>
+    <p>62%+ of accounts target "people interested in" rather than "people in" the service area. This means ads serve to people in other states who searched for the dealer's city name. Must be switched to PRESENCE only.</p>
+  </div>
+
+  <div class="systemic">
+    <h3>4. Wrong-Geo Ad Copy (Template Error) — 6 dealers</h3>
+    <p>DFW, San Antonio, Waco, Sarasota, Front Range, and Europe all have geo-specific copy from the wrong market. Root cause: template copy-paste when building accounts. "Florida Fiberglass Experts" in TX accounts, "Mississippi" in FL, "Waco's premier" in San Antonio. Immediate fix needed.</p>
+  </div>
+
+  <div class="systemic">
+    <h3>5. Conversion Tracking Broken — 4 dealers</h3>
+    <p>Poolux Builders (0 conv / $558), Aqua Pools CC (0 conv / $865), Aviva Nashville South (0 conv / $485), and Leisure Pools Europe (3 conv / €2,487) all show signs of broken or removed conversion actions. These accounts are flying blind.</p>
+  </div>
+
+  <div class="systemic">
+    <h3>6. "Ger Your Free Estimate" Typo — 5+ dealers</h3>
+    <p>DFW, San Antonio, Waco, Jacksonville, Front Range all have "Ger" instead of "Get" in RSA headlines. Likely from the same template. Quick find-and-replace fix.</p>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="section">
+  <h2>All 32 Dealers — Sorted by Health Score (Worst First)</h2>
+  <div class="toc">
+    <a href="#precision">Precision Fiberglass Pools — 15</a>
+    <a href="#poolux">Poolux Builders — 18</a>
+    <a href="#nashville">Elite - Aviva Nashville South — 18</a>
+    <a href="#sarasota">Elite - Leisure Pools Sarasota — 25</a>
+    <a href="#cajun">Cajun Pools and Spas — 28</a>
+    <a href="#beaufort">Elite - Leisure Pools Beaufort — 30</a>
+    <a href="#lakecity">Elite - Leisure Pools Lake City — 30</a>
+    <a href="#tricounty">Tri County Pools — 30</a>
+    <a href="#allamerican">All American Pools & Spas — 32</a>
+    <a href="#athens">Elite - Leisure Pools Athens — 32</a>
+    <a href="#bostonnorth">Leisure Pools Boston North — 32</a>
+    <a href="#columbus">Elite - Leisure Pools Columbus OH — 32</a>
+    <a href="#integrity">Integrity Built Pools — 32</a>
+    <a href="#bluefin">Bluefin Contracting & Design — 35</a>
+    <a href="#frontrange">Leisure Pools Front Range — 35</a>
+    <a href="#pronto">Pronto Pools — 35</a>
+    <a href="#terreh">Elite - Aviva Terre Haute — 35</a>
+    <a href="#jax">Elite - Leisure Pools Jacksonville — 35</a>
+    <a href="#nwohio">Elite - Leisure Pools Northwest Ohio — 36</a>
+    <a href="#backyard">Backyard Pool and Patio — 38</a>
+    <a href="#europe">Leisure Pools Europe — 41</a>
+    <a href="#blueorca">Blue Orca Pools — 42</a>
+    <a href="#aquacc">Aqua Pools Corpus Christi — 42</a>
+    <a href="#dfw">Leisure Pools DFW — 42</a>
+    <a href="#ok">Leisure Pools OK — 44</a>
+    <a href="#coastalms">Elite - Leisure Pools Coastal MS — 45</a>
+    <a href="#sanantonio">Leisure Pools San Antonio — 45</a>
+    <a href="#savannah">Elite - Leisure Pools Savannah — 45</a>
+    <a href="#austin">Leisure Pools Austin — 48</a>
+    <a href="#waco">Leisure Pools Waco — 48</a>
+    <a href="#passion">Elite - Passion Pools — 52</a>
+    <a href="#houston">Leisure Pools Houston — 55</a>
+  </div>
+</div>
+
+<!-- FULL DEALER TABLE -->
+<div class="section" style="overflow-x:auto;">
+  <h2>Fleet Dashboard</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Dealer</th>
+        <th>Brand</th>
+        <th>Health</th>
+        <th>P1</th>
+        <th>P2</th>
+        <th>P3</th>
+        <th>Spend</th>
+        <th>Conv</th>
+        <th>Cost/Conv</th>
+        <th>CTR</th>
+        <th>Top Issue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="zero-conv" id="precision"><td>Precision Fiberglass Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">15</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">2</span></td><td>$811</td><td>3</td><td>$270</td><td>6.8%</td><td>Campaign REMOVED + all broad match</td></tr>
+      <tr class="zero-conv" id="poolux"><td>Poolux Builders</td><td><span class="tag brand-av">AV</span></td><td><span class="health critical">18</span></td><td><span class="tag p1">7</span></td><td><span class="tag p2">8</span></td><td><span class="tag p3">4</span></td><td>$558</td><td>0</td><td>—</td><td>19.5%</td><td>ZERO conv — tracking broken</td></tr>
+      <tr class="zero-conv" id="nashville"><td>Elite - Aviva Nashville South</td><td><span class="tag brand-av">AV</span></td><td><span class="health critical">18</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">9</span></td><td><span class="tag p3">4</span></td><td>$485</td><td>0</td><td>—</td><td>5.3%</td><td>Campaign REMOVED + all broad</td></tr>
+      <tr id="sarasota"><td>Elite - LP Sarasota</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">25</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$565</td><td>9</td><td>$63</td><td>9.2%</td><td>Wrong-geo copy (Mississippi in FL)</td></tr>
+      <tr id="cajun"><td>Cajun Pools and Spas</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">28</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">7</span></td><td><span class="tag p3">4</span></td><td>$1,047</td><td>1</td><td>$1,047</td><td>24.8%</td><td>$1,047/conv — 3 repeat issues</td></tr>
+      <tr id="beaufort"><td>Elite - LP Beaufort</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">30</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">4</span></td><td>$1,364</td><td>3</td><td>$455</td><td>9.0%</td><td>"above ground" as positive KW</td></tr>
+      <tr id="lakecity"><td>Elite - LP Lake City</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">30</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$534</td><td>3</td><td>$178</td><td>10.4%</td><td>Max Conv on 3-conv account</td></tr>
+      <tr id="tricounty"><td>Tri County Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health critical">30</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">3</span></td><td>$774</td><td>15</td><td>$52</td><td>9.7%</td><td>Max Conv on 15-conv acct + zero negatives</td></tr>
+      <tr id="allamerican"><td>All American Pools & Spas</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">32</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">3</span></td><td>$936</td><td>5</td><td>$187</td><td>8.4%</td><td>PRESENCE_OR_INTEREST + zero negatives</td></tr>
+      <tr id="athens"><td>Elite - LP Athens</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">32</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">3</span></td><td>$424</td><td>11</td><td>$39</td><td>8.5%</td><td>Zero negatives + zero extensions</td></tr>
+      <tr id="bostonnorth"><td>Leisure Pools Boston North</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">32</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">2</span></td><td>$765</td><td>9</td><td>$85</td><td>8.8%</td><td>34.6% spend wasted — zero negatives</td></tr>
+      <tr id="columbus"><td>Elite - LP Columbus OH</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">32</span></td><td><span class="tag p1">2</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">1</span></td><td>$2,574</td><td>14</td><td>$184</td><td>8.2%</td><td>$213/mo waste on competitors</td></tr>
+      <tr id="integrity"><td>Integrity Built Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">32</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">7</span></td><td><span class="tag p3">4</span></td><td>$2,452</td><td>8</td><td>$306</td><td>9.6%</td><td>REPEAT issues from 3/12 unfixed</td></tr>
+      <tr id="bluefin"><td>Bluefin Contracting & Design</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">35</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">4</span></td><td>$843</td><td>9</td><td>$94</td><td>11.0%</td><td>Zero negatives (repeat from 3/12)</td></tr>
+      <tr id="frontrange"><td>Leisure Pools Front Range</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">35</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$2,593</td><td>21</td><td>$123</td><td>8.2%</td><td>Zero negatives — $253 waste</td></tr>
+      <tr id="pronto"><td>Pronto Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">35</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$915</td><td>5</td><td>$183</td><td>13.2%</td><td>PRESENCE_OR_INTEREST + zero negatives</td></tr>
+      <tr id="terreh"><td>Elite - Aviva Terre Haute</td><td><span class="tag brand-av">AV</span></td><td><span class="health poor">35</span></td><td><span class="tag p1">4</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">4</span></td><td>$723</td><td>1</td><td>$723</td><td>8.3%</td><td>41.7% spend wasted — zero negatives</td></tr>
+      <tr id="jax"><td>Elite - LP Jacksonville</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">35</span></td><td><span class="tag p1">4</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">2</span></td><td>$1,752</td><td>37</td><td>$47</td><td>10.2%</td><td>Broad match KW + 67-72% IS lost</td></tr>
+      <tr id="nwohio"><td>Elite - LP Northwest Ohio</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">36</span></td><td><span class="tag p1">6</span></td><td><span class="tag p2">7</span></td><td><span class="tag p3">3</span></td><td>$540</td><td>2</td><td>$270</td><td>14.9%</td><td>Max Conv on 2-conv account</td></tr>
+      <tr id="backyard"><td>Backyard Pool and Patio</td><td><span class="tag brand-lp">LP</span></td><td><span class="health poor">38</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">4</span></td><td>$1,736</td><td>6</td><td>$289</td><td>8.8%</td><td>No CPC cap + zero negatives</td></tr>
+      <tr id="europe"><td>Leisure Pools Europe</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">41</span></td><td><span class="tag p1">3</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">3</span></td><td>€2,487</td><td>3</td><td>€829</td><td>5.8%</td><td>OWL: 50+ negatives entered as positives</td></tr>
+      <tr id="blueorca"><td>Blue Orca Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">42</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">6</span></td><td><span class="tag p3">4</span></td><td>$1,379</td><td>22</td><td>$63</td><td>11.3%</td><td>Only 2 negatives — $105 waste</td></tr>
+      <tr class="zero-conv" id="aquacc"><td>Aqua Pools Corpus Christi</td><td><span class="tag brand-av">AV</span></td><td><span class="health fair">42</span></td><td><span class="tag p1">2</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">2</span></td><td>$865</td><td>0</td><td>—</td><td>10.2%</td><td>ZERO conv — tracking broken</td></tr>
+      <tr id="dfw"><td>Leisure Pools DFW</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">42</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">3</span></td><td>$4,163</td><td>27</td><td>$154</td><td>10.5%</td><td>Wrong-geo copy (Jacksonville in TX)</td></tr>
+      <tr id="ok"><td>Leisure Pools OK</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">44</span></td><td><span class="tag p1">4</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$3,699</td><td>26</td><td>$142</td><td>13.5%</td><td>Zero extensions + zero assets</td></tr>
+      <tr id="coastalms"><td>Elite - LP Coastal MS</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">45</span></td><td><span class="tag p1">4</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">4</span></td><td>$559</td><td>21</td><td>$27</td><td>11.8%</td><td>Zero negatives — $65 waste</td></tr>
+      <tr id="sanantonio"><td>Leisure Pools San Antonio</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">45</span></td><td><span class="tag p1">7</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">2</span></td><td>$1,960</td><td>9</td><td>$218</td><td>10.3%</td><td>Wrong-geo copy + PRESENCE_OR_INTEREST</td></tr>
+      <tr id="savannah"><td>Elite - LP Savannah</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">45</span></td><td><span class="tag p1">3</span></td><td><span class="tag p2">4</span></td><td><span class="tag p3">2</span></td><td>$284</td><td>4</td><td>$71</td><td>11.4%</td><td>PRESENCE_OR_INTEREST + zero extensions</td></tr>
+      <tr id="austin"><td>Leisure Pools Austin</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">48</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">5</span></td><td><span class="tag p3">3</span></td><td>$2,378</td><td>12</td><td>$198</td><td>9.7%</td><td>NO geo targeting found — may serve entire US</td></tr>
+      <tr id="waco"><td>Leisure Pools Waco</td><td><span class="tag brand-lp">LP</span></td><td><span class="health fair">48</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">7</span></td><td><span class="tag p3">4</span></td><td>$1,566</td><td>12</td><td>$131</td><td>10.3%</td><td>Wrong-geo "Florida Fiberglass Experts"</td></tr>
+      <tr id="passion"><td>Elite - Passion Pools</td><td><span class="tag brand-lp">LP</span></td><td><span class="health good">52</span></td><td><span class="tag p1">4</span></td><td><span class="tag p2">3</span></td><td><span class="tag p3">2</span></td><td>$8,558</td><td>43</td><td>$199</td><td>8.6%</td><td>$3,925 Dayton unprotected — zero negatives</td></tr>
+      <tr id="houston"><td>Leisure Pools Houston</td><td><span class="tag brand-lp">LP</span></td><td><span class="health good">55</span></td><td><span class="tag p1">5</span></td><td><span class="tag p2">7</span></td><td><span class="tag p3">4</span></td><td>$9,789</td><td>39</td><td>$251</td><td>10.4%</td><td>4 broad match KWs + Cost/Pricing LP failure</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BRAND BREAKDOWN -->
+<div class="section">
+  <h2>By Brand</h2>
+  <table>
+    <thead><tr><th>Brand</th><th>Dealers</th><th>Total Spend</th><th>Total Conv</th><th>Avg Health</th><th>Avg Cost/Conv</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag brand-lp">Leisure Pools</span></td><td>28</td><td>$48,620 + €2,487</td><td>~298</td><td>37</td><td>$163</td></tr>
+      <tr><td><span class="tag brand-av">Aviva Pools</span></td><td>4</td><td>$2,631</td><td>1</td><td>28</td><td>$2,631</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:var(--gray);margin-top:8px;">Note: Aviva accounts (Poolux, Aqua CC, Nashville South, Terre Haute) are in critical condition — 3 of 4 have zero or 1 conversion. Conversion tracking and account structure need urgent attention.</p>
+</div>
+
+<!-- REPEAT ISSUES -->
+<div class="section">
+  <h2>Repeat Issues from Prior Audit (3/12)</h2>
+  <p style="margin-bottom:12px;">These P1 issues were flagged on 3/12 and remain unfixed as of 3/16:</p>
+  <table>
+    <thead><tr><th>Dealer</th><th>Repeat Issue</th><th>Impact</th></tr></thead>
+    <tbody>
+      <tr><td>Cajun Pools</td><td>PRESENCE_OR_INTEREST, zero negatives, Search Partners ON</td><td>$1,047/conv</td></tr>
+      <tr><td>Backyard Pool</td><td>PRESENCE_OR_INTEREST, zero negatives</td><td>$289/conv</td></tr>
+      <tr><td>Bluefin</td><td>Zero negatives, sitelinks missing descriptions</td><td>$94/conv + $97 waste</td></tr>
+      <tr><td>Integrity Built</td><td>PRESENCE_OR_INTEREST, near-zero negatives, sitelinks missing descs</td><td>$306/conv</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- QUICK WINS -->
+<div class="section">
+  <h2>Quick Wins — Highest Impact, Lowest Effort</h2>
+  <table>
+    <thead><tr><th>Action</th><th>Dealers Affected</th><th>Est. Monthly Savings</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr><td>Add negative keyword lists (40-65 per account)</td><td>26 dealers</td><td>~$2,800</td><td>2-3 hours via Ads Editor</td></tr>
+      <tr><td>Fix location targeting → Presence only</td><td>20+ dealers</td><td>Unmeasured but significant</td><td>30 min</td></tr>
+      <tr><td>Fix "Ger" → "Get" typo in RSAs</td><td>5 dealers</td><td>—</td><td>15 min</td></tr>
+      <tr><td>Fix wrong-geo ad copy</td><td>6 dealers</td><td>—</td><td>1 hour</td></tr>
+      <tr><td>Add sitelinks + callouts</td><td>22 dealers</td><td>Improved IS + CTR</td><td>3-4 hours via Ads Editor</td></tr>
+      <tr><td>Switch Max Conv → Max Clicks on low-conv accounts</td><td>6 dealers</td><td>Better bid control</td><td>30 min</td></tr>
+      <tr><td>Fix conversion tracking</td><td>4 dealers</td><td>$1,908 currently flying blind</td><td>1-2 hours</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- BRIGHT SPOTS -->
+<div class="section">
+  <h2>Bright Spots</h2>
+  <ul style="padding-left:20px;font-size:14px;">
+    <li><strong>Elite - LP Coastal MS</strong> — $27/conv, 11.8% CTR. Best cost/conv in fleet. Needs negatives + extensions to improve further.</li>
+    <li><strong>Elite - LP Athens</strong> — $39/conv on $424 spend. Solid efficiency, just needs extensions and negatives.</li>
+    <li><strong>Elite - LP Jacksonville</strong> — $47/conv, 37 conversions. Highest volume for spend tier. Fix broad match KW and extensions to unlock more IS.</li>
+    <li><strong>Tri County Pools</strong> — $52/conv, 15 conversions on just $774. Switch bid strategy and add negatives to go further.</li>
+    <li><strong>Blue Orca Pools</strong> — $63/conv, 22 conversions, 11.3% CTR. Canadian market performing well. Add negatives to cut $105 waste.</li>
+    <li><strong>Leisure Pools Houston</strong> — 39 conversions, good structure (8 ad groups, cross-campaign negatives). Highest health score (55). Fix broad match and pricing LP to improve.</li>
+  </ul>
+</div>
+
+<!-- FOOTER -->
+<div style="margin-top:24px;padding:16px;background:#f1f5f9;border-radius:8px;font-size:12px;color:var(--gray);text-align:center;">
+  <p>Generated by Claude Code — Morning Summary Session — 2026-03-16</p>
+  <p>Individual audit reports with full rebuild specs available in ~/Desktop/Dealer-Accounts/[Dealer Name]/ and Google Drive</p>
+  <p>All data is READ-ONLY from Google Ads API. No changes were made to any account.</p>
+</div>
+
+</body>
+</html>
