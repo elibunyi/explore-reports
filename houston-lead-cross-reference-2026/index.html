@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Houston — Lead Cross-Reference 2026</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --accent-dim: #0c4a6e;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --green: #22c55e;
+    --green-dim: #14532d;
+    --yellow: #eab308;
+    --yellow-dim: #713f12;
+    --gray: #64748b;
+    --gray-dim: #334155;
+    --blue: #3b82f6;
+    --blue-dim: #1e3a5f;
+    --orange: #f97316;
+    --orange-dim: #7c2d12;
+    --red: #ef4444;
+    --sold-glow: rgba(34,197,94,0.3);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.6; }
+  .container { max-width:1200px; margin:0 auto; padding:24px; }
+
+  /* Header */
+  .header { text-align:center; padding:48px 24px 32px; border-bottom:1px solid rgba(56,189,248,0.2); margin-bottom:32px; }
+  .header h1 { font-size:2.2rem; font-weight:700; color:#fff; margin-bottom:8px; }
+  .header .subtitle { color:var(--accent); font-size:1.1rem; font-weight:500; }
+  .header .date-range { color:var(--text-muted); font-size:0.9rem; margin-top:4px; }
+
+  /* Nav */
+  .nav { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:40px; position:sticky; top:0; background:var(--bg); padding:12px 0; z-index:100; border-bottom:1px solid rgba(56,189,248,0.1); }
+  .nav a { color:var(--accent); text-decoration:none; padding:6px 16px; border:1px solid var(--accent-dim); border-radius:20px; font-size:0.85rem; transition:all 0.2s; }
+  .nav a:hover { background:var(--accent-dim); color:#fff; }
+
+  /* Section headers */
+  .section-header { display:flex; align-items:center; gap:12px; margin:48px 0 24px; }
+  .section-number { background:var(--accent); color:var(--bg); width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.95rem; flex-shrink:0; }
+  .section-header h2 { font-size:1.5rem; color:#fff; }
+
+  /* Cards */
+  .card { background:var(--card); border-radius:12px; padding:24px; margin-bottom:16px; border:1px solid rgba(255,255,255,0.05); }
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+
+  /* Stat cards */
+  .stat-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:24px; }
+  .stat-card { background:var(--card); border-radius:12px; padding:20px; text-align:center; border:1px solid rgba(255,255,255,0.05); }
+  .stat-card .stat-value { font-size:2.4rem; font-weight:700; color:#fff; }
+  .stat-card .stat-label { font-size:0.85rem; color:var(--text-muted); margin-top:4px; }
+  .stat-card.accent .stat-value { color:var(--accent); }
+  .stat-card.green .stat-value { color:var(--green); }
+  .stat-card.yellow .stat-value { color:var(--yellow); }
+
+  /* Lead cards */
+  .lead-card { background:var(--card); border-radius:10px; padding:16px 20px; border-left:4px solid var(--gray); transition:transform 0.15s, box-shadow 0.15s; cursor:pointer; }
+  .lead-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+  .lead-card.sold { border-left-color:var(--green); background:linear-gradient(135deg,var(--card),var(--green-dim)); }
+  .lead-card.appointment { border-left-color:var(--yellow); }
+  .lead-card.contacted { border-left-color:var(--blue); }
+  .lead-card.no-response { border-left-color:var(--gray); }
+  .lead-card.nfc { border-left-color:var(--gray); border-left-style:dashed; }
+  .lead-card.attempted { border-left-color:var(--orange); }
+
+  .lead-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; }
+  .lead-name { font-size:1.05rem; font-weight:600; color:#fff; }
+  .lead-date { font-size:0.8rem; color:var(--text-muted); background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:10px; }
+  .lead-status { display:inline-block; font-size:0.75rem; font-weight:600; padding:2px 10px; border-radius:10px; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px; }
+  .lead-status.sold { background:var(--green-dim); color:var(--green); }
+  .lead-status.appointment { background:var(--yellow-dim); color:var(--yellow); }
+  .lead-status.contacted { background:var(--blue-dim); color:var(--blue); }
+  .lead-status.no-response { background:var(--gray-dim); color:var(--gray); }
+  .lead-status.nfc { background:var(--gray-dim); color:var(--gray); }
+  .lead-status.attempted { background:var(--orange-dim); color:var(--orange); }
+
+  .lead-meta { font-size:0.85rem; color:var(--text-muted); margin-bottom:6px; }
+  .lead-meta strong { color:var(--text); }
+  .lead-note { font-size:0.82rem; color:var(--text-muted); font-style:italic; margin-bottom:8px; }
+  .lead-ads { font-size:0.82rem; color:var(--accent); background:rgba(56,189,248,0.08); padding:8px 12px; border-radius:8px; margin-top:8px; border:1px solid rgba(56,189,248,0.15); }
+  .lead-ads strong { color:var(--accent); }
+  .lead-ads .no-match { color:var(--text-muted); font-style:italic; }
+
+  .lead-detail { display:none; margin-top:8px; }
+  .lead-card.open .lead-detail { display:block; }
+
+  /* Month divider */
+  .month-divider { font-size:1.2rem; font-weight:700; color:var(--accent); margin:32px 0 16px; padding-bottom:8px; border-bottom:2px solid var(--accent-dim); }
+
+  /* Sold deep dive */
+  .sold-card { background:linear-gradient(135deg,var(--card),var(--green-dim)); border:1px solid rgba(34,197,94,0.3); border-radius:12px; padding:28px; margin-bottom:20px; box-shadow:0 0 30px var(--sold-glow); }
+  .sold-card h3 { color:var(--green); font-size:1.3rem; margin-bottom:12px; }
+  .sold-card .detail-row { display:flex; gap:8px; margin-bottom:6px; font-size:0.9rem; }
+  .sold-card .detail-label { color:var(--text-muted); min-width:120px; }
+  .sold-card .detail-value { color:#fff; }
+  .sold-insight { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.2); border-radius:8px; padding:16px; margin-top:16px; }
+  .sold-insight p { font-size:0.9rem; color:var(--text); }
+
+  /* Search terms */
+  .term-group { margin-bottom:24px; }
+  .term-group h3 { color:var(--accent); font-size:1.05rem; margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid var(--accent-dim); }
+  .term-row { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; border-radius:6px; margin-bottom:4px; font-size:0.88rem; }
+  .term-row:nth-child(even) { background:rgba(255,255,255,0.02); }
+  .term-row .term-name { color:var(--text); font-family:'Courier New',monospace; }
+  .term-row .term-count { color:var(--accent); font-weight:700; background:var(--accent-dim); padding:2px 10px; border-radius:10px; font-size:0.8rem; }
+
+  /* Comparison table */
+  .compare-table { width:100%; border-collapse:collapse; margin:16px 0; }
+  .compare-table th { background:rgba(56,189,248,0.1); color:var(--accent); padding:12px 16px; text-align:left; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.5px; }
+  .compare-table td { padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.9rem; }
+  .compare-table tr:hover td { background:rgba(255,255,255,0.02); }
+  .compare-table .highlight { color:var(--green); font-weight:700; }
+  .compare-table .dim { color:var(--text-muted); }
+
+  /* Findings */
+  .finding { display:flex; gap:16px; margin-bottom:16px; padding:16px; background:rgba(255,255,255,0.02); border-radius:8px; border-left:3px solid var(--accent); }
+  .finding-num { color:var(--accent); font-weight:700; font-size:1.1rem; flex-shrink:0; width:28px; }
+  .finding-text { font-size:0.92rem; color:var(--text); }
+
+  /* Note card */
+  .note-card { background:rgba(249,115,22,0.08); border:1px solid rgba(249,115,22,0.2); border-radius:12px; padding:24px; }
+  .note-card h3 { color:var(--orange); margin-bottom:12px; }
+  .note-card p { font-size:0.9rem; color:var(--text); margin-bottom:8px; }
+
+  /* Footer */
+  .footer { text-align:center; padding:40px 24px; margin-top:48px; border-top:1px solid rgba(56,189,248,0.1); color:var(--text-muted); font-size:0.8rem; }
+
+  /* Before/After highlight */
+  .ba-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:16px 0; }
+  .ba-card { padding:20px; border-radius:10px; text-align:center; }
+  .ba-card.before { background:rgba(100,116,139,0.15); border:1px solid rgba(100,116,139,0.3); }
+  .ba-card.after { background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); }
+  .ba-card h4 { margin-bottom:12px; font-size:1rem; }
+  .ba-card.before h4 { color:var(--gray); }
+  .ba-card.after h4 { color:var(--green); }
+  .ba-metric { font-size:2rem; font-weight:700; color:#fff; }
+  .ba-label { font-size:0.8rem; color:var(--text-muted); margin-top:4px; }
+
+  /* Legend */
+  .legend { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; padding:12px 16px; background:var(--card); border-radius:8px; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:0.8rem; color:var(--text-muted); }
+  .legend-dot { width:12px; height:12px; border-radius:3px; }
+  .legend-dot.sold { background:var(--green); }
+  .legend-dot.appointment { background:var(--yellow); }
+  .legend-dot.contacted { background:var(--blue); }
+  .legend-dot.no-response { background:var(--gray); }
+  .legend-dot.nfc { background:var(--gray); border:1px dashed var(--text-muted); }
+  .legend-dot.attempted { background:var(--orange); }
+
+  /* Responsive */
+  @media (max-width:768px) {
+    .card-grid { grid-template-columns:1fr; }
+    .ba-grid { grid-template-columns:1fr; }
+    .stat-row { grid-template-columns:repeat(2,1fr); }
+    .header h1 { font-size:1.6rem; }
+  }
+
+  /* Smooth scroll */
+  html { scroll-behavior:smooth; }
+
+  /* Collapsible toggle indicator */
+  .lead-card .toggle-hint { font-size:0.7rem; color:var(--text-muted); float:right; }
+  .lead-card.open .toggle-hint { transform:rotate(180deg); }
+
+  /* Sold badge */
+  .sold-badge { display:inline-block; background:var(--green); color:#000; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:4px; margin-left:8px; letter-spacing:1px; }
+
+  /* Progress bar mini */
+  .progress-mini { height:4px; background:var(--gray-dim); border-radius:2px; margin-top:8px; overflow:hidden; }
+  .progress-mini .fill { height:100%; border-radius:2px; transition:width 0.3s; }
+  .progress-mini .fill.green { background:var(--green); }
+  .progress-mini .fill.yellow { background:var(--yellow); }
+  .progress-mini .fill.blue { background:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Leisure Pools Houston</h1>
+    <div class="subtitle">Lead Cross-Reference Report — Google Ads vs Dealer Spreadsheet</div>
+    <div class="date-range">January 1 — March 21, 2026 | 63 Leisure Website Leads</div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav">
+    <a href="#executive-summary">Executive Summary</a>
+    <a href="#all-leads">All 63 Leads</a>
+    <a href="#sold-deep-dive">Sold Leads Deep Dive</a>
+    <a href="#search-terms">Search Term Analysis</a>
+    <a href="#before-after">Before vs After 3/12</a>
+    <a href="#findings">Key Findings</a>
+    <a href="#demographics">Demographics Note</a>
+  </div>
+
+  <!-- SECTION 1: EXECUTIVE SUMMARY -->
+  <div id="executive-summary">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>Executive Summary</h2>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card accent">
+        <div class="stat-value">63</div>
+        <div class="stat-label">Total Leisure Website Leads</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Sold</div>
+      </div>
+      <div class="stat-card yellow">
+        <div class="stat-value">~85</div>
+        <div class="stat-label">Google Ads Conversions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">4.8%</div>
+        <div class="stat-label">Lead-to-Sale Rate</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="color:#fff;margin-bottom:16px;">3/12 Changes — Impact at a Glance</h3>
+      <div class="ba-grid">
+        <div class="ba-card before">
+          <h4>Pre-3/12 (Jan 1 — Mar 11)</h4>
+          <div class="ba-metric">56</div>
+          <div class="ba-label">Leisure Website Leads</div>
+          <div style="margin-top:12px;">
+            <div class="ba-metric" style="font-size:1.4rem;">2 Sales</div>
+            <div class="ba-label">Jo Golbow (2/7) &middot; Michael Auzenne (2/11)</div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="ba-metric" style="font-size:1.2rem;color:var(--text-muted);">0.8 leads/day</div>
+            <div class="ba-label">0.029 sales/day</div>
+          </div>
+        </div>
+        <div class="ba-card after">
+          <h4>Post-3/12 (Mar 12 — Mar 21)</h4>
+          <div class="ba-metric">7</div>
+          <div class="ba-label">Leisure Website Leads</div>
+          <div style="margin-top:12px;">
+            <div class="ba-metric" style="font-size:1.4rem;">1 Sale</div>
+            <div class="ba-label">Terrence Alexander (3/14)</div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="ba-metric" style="font-size:1.2rem;color:var(--green);">0.7 leads/day</div>
+            <div class="ba-label" style="color:var(--green);">0.1 sales/day — 3.5x better sale rate</div>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:0.85rem;color:var(--text-muted);margin-top:12px;">
+        <strong style="color:var(--accent);">March breakdown:</strong> Pre-3/12 March had 2 Leisure Website leads (3/1, 3/2). Post-3/12 March had 7 leads (3/12–3/18) including 1 sale. Total Google Ads conversions tracked across the full period: ~85 (includes brochure downloads, free estimates, and contact forms).
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: ALL LEADS -->
+  <div id="all-leads">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>All 63 Leads — Google Ads Cross-Reference</h2>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot sold"></div> Sold</div>
+      <div class="legend-item"><div class="legend-dot appointment"></div> Appointment</div>
+      <div class="legend-item"><div class="legend-dot contacted"></div> Contacted</div>
+      <div class="legend-item"><div class="legend-dot attempted"></div> Attempted</div>
+      <div class="legend-item"><div class="legend-dot no-response"></div> No Response</div>
+      <div class="legend-item"><div class="legend-dot nfc"></div> NFC / Spam</div>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:20px;">Click any card to expand Google Ads match details.</p>
+
+    <!-- JANUARY -->
+    <div class="month-divider">January 2026 — 26 Leads</div>
+    <div class="card-grid" id="jan-leads">
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Adil Saeed</span>
+          <span class="lead-date">1/1</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Quoted Harmony 26' w/ Amalfi spa"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Fiberglass Pools Primary, mobile, searched "fiberglass pools houston", Pearland TX</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Desiree Brumfield</span>
+          <span class="lead-date">1/1</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Likely organic or secondary visit — no direct Google Ads match</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Michael Everding</span>
+          <span class="lead-date">1/1</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">832 (Houston) &middot; Also from Explore Dealer Support</div>
+        <div class="lead-note">"Easement prevents pool"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Multiple sources — also from Explore Dealer Support</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Huong Nguyen</span>
+          <span class="lead-date">1/1</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Sent quote"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Same day as Adil — may be organic</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Nathan Harris</span>
+          <span class="lead-date">1/4</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Location-Based campaign, mobile, Houston</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Doug Dalton</span>
+          <span class="lead-date">1/8</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Getting quotes for mom &amp; sisters"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Contact Form + 3 Brochure Downloads that day. Contact form from Fiberglass Primary, tablet</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Alayna Harrell</span>
+          <span class="lead-date">1/8</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">443 (Maryland)</div>
+        <div class="lead-note">"Spam" — Out of area, junk lead</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Out of area — junk lead</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Lisa Cobb</span>
+          <span class="lead-date">1/9</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston) &middot; Also from Mailer</div>
+        <div class="lead-note">"Can't afford pool"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate + 1 Brochure Download, searched "fiberglass pools near me", Houston + Spring TX</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Michael Gonzales</span>
+          <span class="lead-date">1/9</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">732 (NJ area code)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Possible out-of-area lead</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Douglas Gibson</span>
+          <span class="lead-date">1/9</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">702 (Las Vegas) &middot; Also Explore Dealer Support</div>
+        <div class="lead-note">"Needs quote under $50k"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Also from Explore Dealer Support</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Krystal Fluellen</span>
+          <span class="lead-date">1/11</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">646 (NYC)</div>
+        <div class="lead-note">"Estimate sent"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 0.5 conversions (cross-device), searched "fiberglass pools houston", Rosenberg TX</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Sandy Bloodworth</span>
+          <span class="lead-date">1/12</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Being shopped?"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates, League City + Navasota, tablet + mobile</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Neil Leininger</span>
+          <span class="lead-date">1/12</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Mary Rodriguez-Reyna</span>
+          <span class="lead-date">1/12</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Easement prevents pool"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Fredrik Ackander</span>
+          <span class="lead-date">1/13</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">706 (Georgia)</div>
+        <div class="lead-note">"Not looking to buy"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Rodney Bass</span>
+          <span class="lead-date">1/16</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston) &middot; Also Explore Dealer Support</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates (1 Fiberglass Primary + 1 Pool Builder), Houston + Katy</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Bob Branderhorst</span>
+          <span class="lead-date">1/17</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">979 (Bryan/College Station)</div>
+        <div class="lead-note">"Appointment complete"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 3 Free Estimates from Fiberglass Primary, mobile, searched "mini pools"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Lucy Castillo</span>
+          <span class="lead-date">1/18</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston) &middot; Also Explore Dealer Support</div>
+        <div class="lead-note">"Lives in flood zone"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates from Pool Builder, mobile, Houston, searched "how much does it cost to build a pool in your backyard"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Ryan Anderson</span>
+          <span class="lead-date">1/21</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">862 (NJ)</div>
+        <div class="lead-note">"Invalid number"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate, mobile, Houston, searched "small yard pools"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Dallas Witcher</span>
+          <span class="lead-date">1/23</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">346 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate, tablet, searched "how to build inground pool cheap", Atascocita</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Sonia Lopez</span>
+          <span class="lead-date">1/25</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">210 (San Antonio)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Pool Builder, mobile, Houston</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Grant Nichols</span>
+          <span class="lead-date">1/27</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion recorded on 1/27</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Robert Kish</span>
+          <span class="lead-date">1/29</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">409 (Beaumont/Galveston)</div>
+        <div class="lead-note">"10x15 steps on one side, call back in 1 month"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 3 Free Estimates + 1 Brochure Download, Houston + Santa Fe + Tiki Island</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">John Huizenga</span>
+          <span class="lead-date">1/29</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">309 (Illinois) &middot; Also from Mailer</div>
+        <div class="lead-note">"Invalid email"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Also from Mailer — no direct ads match</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Elizabeth Hermann</span>
+          <span class="lead-date">1/29</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Andrea Busch</span>
+          <span class="lead-date">1/31</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">713 (Houston) &middot; Also Explore Dealer Support</div>
+        <div class="lead-note">"Requested not to be called"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 3 Free Estimates, Liverpool + The Woodlands, tablet</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+    </div>
+
+    <!-- FEBRUARY -->
+    <div class="month-divider">February 2026 — 28 Leads</div>
+    <div class="card-grid" id="feb-leads">
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Tanya Broholm</span>
+          <span class="lead-date">2/3</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">346 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> No conversion recorded 2/3 — may be 2/2: 2 Free Estimates, Rosenberg, mobile</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Mike Giordano</span>
+          <span class="lead-date">2/4</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Cancelled"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Pool Builder, tablet, searched "premier pools and spa", Tiki Island</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Magdalena Rodriguez</span>
+          <span class="lead-date">2/4</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">409 (Beaumont)</div>
+        <div class="lead-note">"Wants gunite"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Tracie Andreason</span>
+          <span class="lead-date">2/5</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion recorded on 2/5</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Elizabeth Jones</span>
+          <span class="lead-date">2/6</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">409 (Beaumont)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Pool Builder, tablet, searched "fiberglass pools houston tx"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Robert Mitchell</span>
+          <span class="lead-date">2/6</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">337 (Louisiana)</div>
+        <div class="lead-note">"Appointment complete"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card sold" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Jo Golbow <span class="sold-badge">SOLD</span></span>
+          <span class="lead-date">2/7</span>
+        </div>
+        <span class="lead-status sold">Sold</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates from Fiberglass Primary, El Campo + The Woodlands, tablet + mobile, searched "leisure pools" — branded search buyer</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Heather Pirtle</span>
+          <span class="lead-date">2/8</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">682 (DFW)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate, mobile, Houston, searched "small inexpensive inground pools"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Danica Vaughan</span>
+          <span class="lead-date">2/9</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">775 (Nevada)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate + 1 Brochure Download, Cleveland + Texas City, tablet + mobile</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card nfc" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Hodari Turner</span>
+          <span class="lead-date">2/9</span>
+        </div>
+        <span class="lead-status nfc">NFC</span>
+        <div class="lead-meta">336 (North Carolina)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card sold" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Michael Auzenne <span class="sold-badge">SOLD</span></span>
+          <span class="lead-date">2/11</span>
+        </div>
+        <span class="lead-status sold">Sold</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates + 1 Brochure from Fiberglass Primary, mobile + tablet. Searched "leisure pools" (4 conv from that term on 2/12, but lead dated 2/11)</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Nicole Cornett</span>
+          <span class="lead-date">2/11</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Usman Jilani</span>
+          <span class="lead-date">2/11</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">347 (NYC)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Hanlin Gao</span>
+          <span class="lead-date">2/12</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">408 (San Jose, CA)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 6 conversions on 2/12! 5 Free Estimates + 1 Brochure Download, Houston + Pattison, mostly tablet</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Michael Heinz</span>
+          <span class="lead-date">2/12</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Didn't want appointment"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">See Hanlin Gao — 6 conversions on 2/12, one may belong here</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Luis Williams</span>
+          <span class="lead-date">2/13</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Reach via email"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates from Pool Builder, mobile, Houston</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Aaron Bork</span>
+          <span class="lead-date">2/13</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">970 (Colorado)</div>
+        <div class="lead-note">"Summit 30"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Allen Dodson</span>
+          <span class="lead-date">2/15</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">979 (College Station)</div>
+        <div class="lead-note">"Just wants quote for Allure 30'"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion 2/15 — may have clicked earlier</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Valerie Windsor</span>
+          <span class="lead-date">2/16</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Cancelled apt, not responding"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 3 conversions (2 Free Est + 1 Brochure), Brenham + Pecan Grove + Shenandoah, tablet + mobile, searched "backyard plunge pool" and "fiberglass pools"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Jessica Lee</span>
+          <span class="lead-date">2/16</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">601 (Mississippi)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Katelyn Hatten</span>
+          <span class="lead-date">2/16</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Maria Bonilla</span>
+          <span class="lead-date">2/18</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Spam"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Brochure Download, tablet, searched "fiberglass pool"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Tatiana Sweeney</span>
+          <span class="lead-date">2/19</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">561 (Florida)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Contact Form + 2 Free Estimates, Houston + Humble, mobile, searched "leisure pools houston" and "what is a small pool size"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Renee Halfin</span>
+          <span class="lead-date">2/23</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 3 conversions, Conroe + Willis + The Woodlands, tablet + mobile, searched "fiberglass spa pool" and "in ground hot tub"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Payton Britt</span>
+          <span class="lead-date">2/23</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">903 (East TX)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Mohammed Nasser</span>
+          <span class="lead-date">2/23</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Easement prevents pool"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No specific Google Ads match identified</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Yiny Perera</span>
+          <span class="lead-date">2/24</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"Spanish"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Free Estimates, Houston, tablet + mobile, searched "fiberglass pool houston" and "piscinas de fiberglass"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card appointment" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Esther Eke</span>
+          <span class="lead-date">2/25</span>
+        </div>
+        <span class="lead-status appointment">Appointment</span>
+        <div class="lead-meta">832 (Houston) &middot; Also Mailer</div>
+        <div class="lead-note">"Wants pool with turndown for $50k"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 2 Contact Forms, tablet, Houston, searched "fiberglass pool"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+    </div>
+
+    <!-- MARCH -->
+    <div class="month-divider">March 2026 — 9 Leads</div>
+    <div class="card-grid" id="mar-leads">
+
+      <div class="lead-card no-response" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Janaye Kidder</span>
+          <span class="lead-date">3/1</span>
+        </div>
+        <span class="lead-status no-response">No Response</span>
+        <div class="lead-meta">No phone</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate, mobile, Fulshear, searched "cheaper pool"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">James Wheeler</span>
+          <span class="lead-date">3/2</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-note">"No response to follow-ups"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion recorded on 3/2</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div style="grid-column:1/-1;padding:12px 16px;background:rgba(56,189,248,0.08);border-radius:8px;border:1px dashed var(--accent);text-align:center;font-size:0.9rem;color:var(--accent);font-weight:600;margin:8px 0;">
+        &#9650; PRE-3/12 CHANGES &nbsp;&nbsp;|&nbsp;&nbsp; POST-3/12 CHANGES &#9660;
+      </div>
+
+      <div class="lead-card attempted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Allen Carpenter</span>
+          <span class="lead-date">3/12</span>
+        </div>
+        <span class="lead-status attempted">Attempted</span>
+        <div class="lead-meta">No phone</div>
+        <div class="lead-note">"No phone, sent email"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion 3/12 — may be organic</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card contacted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Katie Bobo</span>
+          <span class="lead-date">3/13</span>
+        </div>
+        <span class="lead-status contacted">Contacted</span>
+        <div class="lead-meta">713 (Houston)</div>
+        <div class="lead-note">"Following up"</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">No conversion 3/13 directly — could be delayed attribution</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card attempted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Allie Hardin</span>
+          <span class="lead-date">3/14</span>
+        </div>
+        <span class="lead-status attempted">Attempted</span>
+        <div class="lead-meta">No phone</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Brochure Download from Pool Builder, mobile. Likely the brochure download (no phone = form didn't require it)</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card sold" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Terrence Alexander <span class="sold-badge">SOLD</span></span>
+          <span class="lead-date">3/14</span>
+        </div>
+        <span class="lead-status sold">Sold</span>
+        <div class="lead-meta">312 (Chicago) — relocated buyer</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Fiberglass Primary, mobile, Houston, searched "fiberglass pools houston". 312 area code suggests relocated from Chicago — very high intent.</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card attempted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Maudrisha Smith</span>
+          <span class="lead-date">3/15</span>
+        </div>
+        <span class="lead-status attempted">Attempted</span>
+        <div class="lead-meta">281 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Brochure Download + 1 Free Estimate, Friendswood + Stagecoach, tablet + mobile, searched "leisure pools houston" and "pool construction cost"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card attempted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Shaun Strahan</span>
+          <span class="lead-date">3/18</span>
+        </div>
+        <span class="lead-status attempted">Attempted</span>
+        <div class="lead-meta">832 (Houston)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><strong>Google Ads Match:</strong> 1 Free Estimate from Fiberglass Primary, tablet, Houston, searched "8 foot deep fiberglass pool"</div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+      <div class="lead-card attempted" onclick="this.classList.toggle('open')">
+        <div class="lead-header">
+          <span class="lead-name">Marc McCray</span>
+          <span class="lead-date">3/18</span>
+        </div>
+        <span class="lead-status attempted">Attempted</span>
+        <div class="lead-meta">254 (Central TX)</div>
+        <div class="lead-detail">
+          <div class="lead-ads"><span class="no-match">Likely organic or secondary click — only 1 Google Ads conversion tracked on 3/18</span></div>
+        </div>
+        <span class="toggle-hint">&#9660;</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 3: SOLD DEEP DIVE -->
+  <div id="sold-deep-dive">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>Sold Leads — Deep Dive</h2>
+    </div>
+
+    <div class="sold-card">
+      <h3>Jo Golbow — Sold 2/7</h3>
+      <div class="detail-row"><span class="detail-label">Phone:</span><span class="detail-value">281 (Houston)</span></div>
+      <div class="detail-row"><span class="detail-label">Email:</span><span class="detail-value">jogolbow@aol.com</span></div>
+      <div class="detail-row"><span class="detail-label">Campaign:</span><span class="detail-value">Fiberglass Pools (Primary)</span></div>
+      <div class="detail-row"><span class="detail-label">Google Ads:</span><span class="detail-value">2 Free Estimates, El Campo + The Woodlands, tablet + mobile</span></div>
+      <div class="detail-row"><span class="detail-label">Search Term:</span><span class="detail-value">"leisure pools" — branded search</span></div>
+      <div class="detail-row"><span class="detail-label">Period:</span><span class="detail-value">Pre-3/12 changes</span></div>
+      <div class="sold-insight">
+        <p><strong>Key insight:</strong> Branded search buyer. Searched specifically for "leisure pools" — already knew the brand before clicking. Fiberglass Primary campaign, not Pool Builder.</p>
+      </div>
+    </div>
+
+    <div class="sold-card">
+      <h3>Michael Auzenne — Sold 2/11</h3>
+      <div class="detail-row"><span class="detail-label">Phone:</span><span class="detail-value">281 (Houston)</span></div>
+      <div class="detail-row"><span class="detail-label">Email:</span><span class="detail-value">auzennem@yahoo.com</span></div>
+      <div class="detail-row"><span class="detail-label">Campaign:</span><span class="detail-value">Fiberglass Pools (Primary)</span></div>
+      <div class="detail-row"><span class="detail-label">Google Ads:</span><span class="detail-value">2 Free Estimates + 1 Brochure Download, mobile + tablet</span></div>
+      <div class="detail-row"><span class="detail-label">Search Term:</span><span class="detail-value">"leisure pools" — branded/high-intent (4 conversions from this term on 2/12, lead dated 2/11)</span></div>
+      <div class="detail-row"><span class="detail-label">Period:</span><span class="detail-value">Pre-3/12 changes</span></div>
+      <div class="sold-insight">
+        <p><strong>Key insight:</strong> Another branded search buyer who knew the Leisure Pools name. Multiple touchpoints (estimates + brochure) suggest thorough research before buying. Fiberglass Primary campaign.</p>
+      </div>
+    </div>
+
+    <div class="sold-card">
+      <h3>Terrence Alexander — Sold 3/14</h3>
+      <div class="detail-row"><span class="detail-label">Phone:</span><span class="detail-value">312 (Chicago) — relocated to Houston</span></div>
+      <div class="detail-row"><span class="detail-label">Email:</span><span class="detail-value">terrencetalexander@gmail.com</span></div>
+      <div class="detail-row"><span class="detail-label">Campaign:</span><span class="detail-value">Fiberglass Pools (Primary)</span></div>
+      <div class="detail-row"><span class="detail-label">Google Ads:</span><span class="detail-value">1 Free Estimate, mobile, Houston</span></div>
+      <div class="detail-row"><span class="detail-label">Search Term:</span><span class="detail-value">"fiberglass pools houston" — high-intent geo-specific</span></div>
+      <div class="detail-row"><span class="detail-label">Period:</span><span class="detail-value">Post-3/12 changes</span></div>
+      <div class="sold-insight">
+        <p><strong>Key insight:</strong> Relocated buyer (312 = Chicago area code, but searching in Houston). Demonstrates that out-of-area phone numbers don't automatically mean junk leads. First sale after 3/12 campaign changes. Fiberglass Primary campaign — all 3 sales came from this campaign.</p>
+      </div>
+    </div>
+
+    <div class="card" style="border:1px solid var(--accent-dim);">
+      <h3 style="color:var(--accent);margin-bottom:12px;">Pattern Across All 3 Sales</h3>
+      <div class="finding" style="border-left-color:var(--green);">
+        <div class="finding-num">1</div>
+        <div class="finding-text">All 3 sales came from the <strong>Fiberglass Pools (Primary)</strong> campaign. The Pool Builder / Contractor campaign has produced zero sales.</div>
+      </div>
+      <div class="finding" style="border-left-color:var(--green);">
+        <div class="finding-num">2</div>
+        <div class="finding-text">All 3 buyers searched branded or specific fiberglass terms: "leisure pools" (2x) and "fiberglass pools houston" (1x). None searched generic pool builder/contractor queries.</div>
+      </div>
+      <div class="finding" style="border-left-color:var(--green);">
+        <div class="finding-num">3</div>
+        <div class="finding-text">All 3 buyers have 281 or Houston-area presence (Terrence has a 312 code but was searching from Houston). Local intent matters.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: SEARCH TERMS -->
+  <div id="search-terms">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>Search Term Analysis</h2>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>High Intent / Branded (Best Performers)</h3>
+        <div class="term-row"><span class="term-name">"fiberglass pools"</span><span class="term-count">7 conv</span></div>
+        <div class="term-row"><span class="term-name">"leisure pools"</span><span class="term-count">6 conv</span></div>
+        <div class="term-row"><span class="term-name">"fiberglass pools houston"</span><span class="term-count">5 conv</span></div>
+        <div class="term-row"><span class="term-name">"fiberglass pool"</span><span class="term-count">4 conv</span></div>
+        <div class="term-row"><span class="term-name">"leisure pools houston"</span><span class="term-count">4 conv</span></div>
+        <div class="term-row"><span class="term-name">"fiberglass pool houston"</span><span class="term-count">2 conv</span></div>
+        <div class="term-row"><span class="term-name">"fiberglass pools near me"</span><span class="term-count">2 conv</span></div>
+        <div class="progress-mini"><div class="fill green" style="width:100%;"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>Size / Type Specific</h3>
+        <div class="term-row"><span class="term-name">"plunge pool"</span><span class="term-count">4 conv</span></div>
+        <div class="term-row"><span class="term-name">"mini pools"</span><span class="term-count">3 conv</span></div>
+        <div class="term-row"><span class="term-name">"8 foot deep fiberglass pool"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"small yard pools"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"small inexpensive inground pools"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"plunge pool houston"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"backyard plunge pool"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"in ground hot tub"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"fiberglass spa pool"</span><span class="term-count">1 conv</span></div>
+        <div class="progress-mini"><div class="fill blue" style="width:75%;"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>Pricing / Cost Queries</h3>
+        <div class="term-row"><span class="term-name">"how much does it cost to build a pool in your backyard"</span><span class="term-count">2 conv</span></div>
+        <div class="term-row"><span class="term-name">"how much to put a pool in backyard"</span><span class="term-count">2 conv</span></div>
+        <div class="term-row"><span class="term-name">"how to build inground pool cheap"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"swimming pool cost"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"underground pool cost in texas"</span><span class="term-count">1 conv</span></div>
+        <div class="progress-mini"><div class="fill yellow" style="width:50%;"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>Spanish Language</h3>
+        <div class="term-row"><span class="term-name">"piscinas de fibra de vidrio en houston tx"</span><span class="term-count">2 conv</span></div>
+        <div class="term-row"><span class="term-name">"piscinas de fiberglass"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"piscina de fibra de vidrio"</span><span class="term-count">1 conv</span></div>
+        <div class="progress-mini"><div class="fill blue" style="width:40%;"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>Competitor / Other Brand</h3>
+        <div class="term-row"><span class="term-name">"aqua pools houston"</span><span class="term-count">2 conv</span></div>
+        <div class="term-row"><span class="term-name">"premier pools and spa"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"jr pool plastering &amp; texas gunite"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"ecopool"</span><span class="term-count">1 conv</span></div>
+        <div class="progress-mini"><div class="fill yellow" style="width:35%;"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="term-group">
+        <h3>Low Intent / Waste</h3>
+        <div class="term-row"><span class="term-name">"cheaper pool"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"pool hot tub for sale"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"big pool for backyard"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"vinyl pool with spa"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"small in ground pools"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"small pools"</span><span class="term-count">1 conv</span></div>
+        <div class="term-row"><span class="term-name">"pool builders katy"</span><span class="term-count">1 conv</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: BEFORE vs AFTER -->
+  <div id="before-after">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>Before vs After 3/12 Changes</h2>
+    </div>
+
+    <div class="card">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Pre-3/12 (Jan 1 — Mar 11)</th>
+            <th>Post-3/12 (Mar 12 — Mar 21)</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Time Period</td>
+            <td>70 days</td>
+            <td>10 days</td>
+            <td class="dim">—</td>
+          </tr>
+          <tr>
+            <td>Leisure Website Leads</td>
+            <td>56</td>
+            <td>7</td>
+            <td class="dim">—</td>
+          </tr>
+          <tr>
+            <td>Sales</td>
+            <td>2 (Jo Golbow, Michael Auzenne)</td>
+            <td>1 (Terrence Alexander)</td>
+            <td class="dim">—</td>
+          </tr>
+          <tr>
+            <td>Leads per Day</td>
+            <td>0.80</td>
+            <td>0.70</td>
+            <td class="dim">-12.5%</td>
+          </tr>
+          <tr>
+            <td>Sales per Day</td>
+            <td>0.029</td>
+            <td class="highlight">0.100</td>
+            <td class="highlight">+245% (3.5x)</td>
+          </tr>
+          <tr>
+            <td>Lead-to-Sale Rate</td>
+            <td>3.6%</td>
+            <td class="highlight">14.3%</td>
+            <td class="highlight">+297% (4x)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:20px;padding:16px;background:rgba(34,197,94,0.08);border-radius:8px;border:1px solid rgba(34,197,94,0.2);">
+        <p style="font-size:0.9rem;color:var(--text);">
+          <strong style="color:var(--green);">Interpretation:</strong> While the post-3/12 sample is small (10 days), the sale rate is 3.5x higher than pre-changes. Lead volume is slightly down (-12.5% per day) but lead quality appears significantly better — the one sale in 10 days vs two sales in 70 days suggests the changes are filtering for higher-intent prospects. More time is needed to confirm the trend, but early signals are positive.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: KEY FINDINGS -->
+  <div id="findings">
+    <div class="section-header">
+      <div class="section-number">6</div>
+      <h2>Key Findings &amp; Recommendations</h2>
+    </div>
+
+    <div class="card">
+      <div class="finding">
+        <div class="finding-num">1</div>
+        <div class="finding-text"><strong>Fiberglass Primary is the sales engine.</strong> All 3 sales came from the Fiberglass Pools (Primary) campaign. Pool Builder / Contractor has generated leads but zero sales. Consider reallocating budget toward Fiberglass Primary.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">2</div>
+        <div class="finding-text"><strong>Branded and specific fiberglass searches convert to sales.</strong> Generic "pool builder" and "pool contractor" queries convert to leads but not sales. The people who buy already know they want fiberglass or already know the Leisure Pools brand.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">3</div>
+        <div class="finding-text"><strong>Plunge pool / spa / small pool queries drive conversions.</strong> People searching for smaller, more affordable pool options are converting at a decent rate. This is a viable audience segment to expand targeting for.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">4</div>
+        <div class="finding-text"><strong>Spanish-language queries are converting.</strong> 4 conversions from Spanish search terms. Do not exclude these — consider creating Spanish ad copy and landing pages to capture this audience more effectively.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">5</div>
+        <div class="finding-text"><strong>Out-of-area phone numbers are not always junk.</strong> Terrence Alexander (312 / Chicago) was a real buyer who relocated to Houston. While many out-of-area leads are lower quality, auto-dismissing them risks losing real sales.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">6</div>
+        <div class="finding-text"><strong>Dealer follow-up is the weakest link.</strong> Many leads are sitting at "Attempted" or "No Response" with no further action. The ads are generating leads — the bottleneck is converting contacted leads to appointments and sales.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-num">7</div>
+        <div class="finding-text"><strong>Demographics data needs manual review.</strong> Age, gender, and household income breakdowns are available in Google Ads UI but couldn't be pulled programmatically. Recommend checking directly for the Fiberglass Primary campaign's converting demographics.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: DEMOGRAPHICS NOTE -->
+  <div id="demographics">
+    <div class="section-header">
+      <div class="section-number">7</div>
+      <h2>Note on Demographics Data</h2>
+    </div>
+
+    <div class="note-card">
+      <h3>API Limitation — Demographics Unavailable Programmatically</h3>
+      <p>Age, gender, and household income data <strong>exists</strong> in Google Ads for the Leisure Pools Houston campaigns, but the API tool encountered a serialization error preventing extraction during this analysis.</p>
+      <p><strong>To access this data manually:</strong></p>
+      <p style="padding-left:16px;color:var(--text-muted);">
+        1. Open Google Ads &rarr; Leisure Pools Houston account<br>
+        2. Navigate to <strong>Campaigns &gt; Audiences, demographics</strong><br>
+        3. Check the <strong>Age</strong>, <strong>Gender</strong>, and <strong>Household Income</strong> tabs<br>
+        4. Filter to the <strong>Fiberglass Pools (Primary)</strong> campaign specifically<br>
+        5. Set date range to Jan 1 — Mar 21, 2026
+      </p>
+      <p>This data would show which age groups, genders, and income brackets are driving the most conversions — valuable for bid adjustments and audience targeting.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Leisure Pools Houston — Lead Cross-Reference Report</p>
+    <p>Generated March 21, 2026 | Explore Industries</p>
+    <p style="margin-top:8px;font-size:0.75rem;">Data sources: Dealer lead spreadsheet + Google Ads API (Account under MCC 836-765-6694)</p>
+  </div>
+
+</div>
+
+<script>
+// Expand all cards in a month when double-clicking the month header
+document.querySelectorAll('.month-divider').forEach(div => {
+  div.style.cursor = 'pointer';
+  div.title = 'Double-click to expand/collapse all cards in this month';
+  div.addEventListener('dblclick', () => {
+    const grid = div.nextElementSibling;
+    if (!grid) return;
+    const cards = grid.querySelectorAll('.lead-card');
+    const anyOpen = Array.from(cards).some(c => c.classList.contains('open'));
+    cards.forEach(c => {
+      if (anyOpen) c.classList.remove('open');
+      else c.classList.add('open');
+    });
+  });
+});
+
+// Smooth scroll offset for sticky nav
+document.querySelectorAll('.nav a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const offset = 70;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
