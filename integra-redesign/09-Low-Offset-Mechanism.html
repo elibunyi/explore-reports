@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#c5d3e5",
+              "tertiary": "#364453",
+              "inverse-primary": "#acc7ff",
+              "surface": "#f7fafa",
+              "on-surface-variant": "#424752",
+              "tertiary-container": "#4e5b6b",
+              "on-tertiary-fixed": "#0f1d2a",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "tertiary-fixed-dim": "#bac8da",
+              "surface-container-high": "#e5e9e9",
+              "surface-container": "#ebeeee",
+              "error": "#ba1a1a",
+              "surface-container-highest": "#e0e3e3",
+              "error-container": "#ffdad6",
+              "on-primary-fixed-variant": "#004492",
+              "on-tertiary-fixed-variant": "#3b4857",
+              "outline-variant": "#c2c6d4",
+              "surface-tint": "#0e5bbb",
+              "on-secondary-fixed": "#191c1e",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#dee0e2",
+              "on-secondary-container": "#606365",
+              "inverse-surface": "#2d3131",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e3",
+              "surface-container-low": "#f1f4f4",
+              "surface-bright": "#f7fafa",
+              "primary-fixed-dim": "#acc7ff",
+              "primary-fixed": "#d7e2ff",
+              "on-surface": "#181c1d",
+              "secondary": "#5c5f61",
+              "surface-dim": "#d7dbda",
+              "outline": "#727784",
+              "on-primary-fixed": "#001a40",
+              "on-primary-container": "#bed2ff",
+              "on-background": "#181c1d",
+              "primary-container": "#0057b7",
+              "on-secondary": "#ffffff",
+              "background": "#f7fafa",
+              "inverse-on-surface": "#eef1f1",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c5c7c9",
+              "secondary-fixed": "#e1e2e5",
+              "on-secondary-fixed-variant": "#444749",
+              "primary": "#00408b",
+              "tertiary-fixed": "#d6e4f7"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+        color: #181c1d;
+        background-color: #f7fafa;
+      }
+      h1, h2, h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-bold text-blue-900 dark:text-white tracking-tighter font-['Plus_Jakarta_Sans']">
+                Integra Shield
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-700 pb-1 font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Mechanism</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Specs</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Use Cases</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Comparison</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Installation</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-xl font-bold transition-all hover:bg-primary-container active:scale-90 duration-200">
+                Request Quote
+            </button>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Section 1: Product Hero -->
+<section class="bg-surface-container-lowest py-20 px-8">
+<div class="max-w-7xl mx-auto">
+<nav class="mb-12 flex items-center gap-2 text-label-md text-on-surface-variant opacity-70">
+<span>Home</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Products</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Low Offset Mechanism</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-7">
+<div class="bg-secondary-container rounded-xl w-full aspect-[4/3] flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-surface-dim opacity-10 group-hover:opacity-20 transition-opacity"></div>
+<span class="text-on-secondary-container font-label text-sm uppercase tracking-widest">[ Low Offset Mechanism — 800x600px ]</span>
+<img class="hidden" data-alt="Close up of a stainless steel pool cover mechanism" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVVzFp8xah1pQsQwyON14Vic3FWs2nkEAk45T_-uk_IKUr62A1J_fXX0M8v9rVzpyV4zTfq3jK-v2kWq2IXznRbutAkzRi13hKPAYJZow_FsF9VycjfCF4bQh0shk1zmtjrgUkDOvbeN4YRVwFjkGQF5rBryI2k8jtBuiHQ4XWQjv9qgNVzTThjyXR-diIWI510B1TdWX3jXqjjxC3gJU3dTKaV9y5qRoxPrFdZjhCbhOhsuYaQLfm0k4EXKf5JlY3LgklgOes5wc"/>
+</div>
+</div>
+<div class="lg:col-span-5">
+<h1 class="text-5xl lg:text-6xl font-headline font-bold text-primary mb-8 leading-tight">
+                            Low Offset Mechanism — 16-Inch Offset for Pools Up to 20x50
+                        </h1>
+<p class="text-lg text-on-surface-variant font-body leading-relaxed mb-10">
+                            Standard mechanisms require 24-36 inches of deck clearance. Many pools can't accommodate that. The Low Offset changes the math — 16 inches total offset, half the deck space, same stainless steel engineering, same 20-year warranty.
+                        </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-primary-container transition-all">Download Brochure</button>
+<button class="bg-surface-container-high/40 text-primary border border-primary/10 px-8 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-all">Technical Drawings</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Specs Table -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-5xl mx-auto">
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-12 text-center underline decoration-primary/20 underline-offset-8">Low Offset Mechanism Specifications</h2>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<tbody class="divide-y divide-surface-container">
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30 w-1/3">Total offset</td>
+<td class="py-5 px-8">16 inches</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Max pool size</td>
+<td class="py-5 px-8">20 x 50 ft</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Frame Material</td>
+<td class="py-5 px-8">Marine-grade All Stainless Steel</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Warranty</td>
+<td class="py-5 px-8">20-year Limited Warranty</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Pulley System</td>
+<td class="py-5 px-8">2-inch High-Load Pulleys</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Safety Features</td>
+<td class="py-5 px-8">Adjustable Torque Limiter</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Control Options</td>
+<td class="py-5 px-8">Rocker Switch / Keypad Entry</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Compliance</td>
+<td class="py-5 px-8">ASTM F1346 Certified</td>
+</tr>
+<tr>
+<td class="py-5 px-8 font-semibold text-primary bg-surface-container-low/30">Origin</td>
+<td class="py-5 px-8">Proudly Made in USA</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 3: When to Specify -->
+<section class="bg-surface-container-lowest py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-16 text-center">When to Specify the Low Offset Mechanism</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+<!-- Use Case 1 -->
+<div class="flex flex-col items-center text-center p-8 rounded-xl bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">space_dashboard</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Compact Deck Plans</h3>
+<p class="text-sm text-on-surface-variant">Ideal for urban lots where every inch of patio space matters.</p>
+</div>
+<!-- Use Case 2 -->
+<div class="flex flex-col items-center text-center p-8 rounded-xl bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">domain</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Proximity to Structures</h3>
+<p class="text-sm text-on-surface-variant">When the pool is built close to the house or a retaining wall.</p>
+</div>
+<!-- Use Case 3 -->
+<div class="flex flex-col items-center text-center p-8 rounded-xl bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">history</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Renovation &amp; Retrofit</h3>
+<p class="text-sm text-on-surface-variant">Installing modern safety on existing pools with limited clearance.</p>
+</div>
+<!-- Use Case 4 -->
+<div class="flex flex-col items-center text-center p-8 rounded-xl bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">hot_tub</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Dedicated Spas</h3>
+<p class="text-sm text-on-surface-variant">Lower profile and smaller footprint perfectly sized for luxury spas.</p>
+</div>
+<!-- Use Case 5 -->
+<div class="flex flex-col items-center text-center p-8 rounded-xl bg-surface-container-low hover:bg-surface-variant transition-colors group">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">straighten</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Restricted Zones</h3>
+<p class="text-sm text-on-surface-variant">When standard offsets violate set-back codes or easement limits.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Key Differences -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-12 text-center">Low Offset vs. Standard Mechanism</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm bg-surface-container-lowest">
+<!-- Header -->
+<div class="hidden md:block bg-surface-container p-6 font-bold text-primary">Feature</div>
+<div class="bg-surface-container p-6 font-bold text-primary">Standard Mechanism</div>
+<div class="bg-primary/5 p-6 font-bold text-primary border-l-2 border-primary/20">Low Offset Mechanism</div>
+<!-- Row 1 -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/20 font-semibold">Total Offset</div>
+<div class="p-6 border-t border-surface-container">24" – 36"</div>
+<div class="p-6 border-t border-surface-container font-bold text-primary border-l-2 border-primary/20">16" Fixed</div>
+<!-- Row 2 -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/20 font-semibold">Max Pool Dimensions</div>
+<div class="p-6 border-t border-surface-container">Up to 25' x 75'</div>
+<div class="p-6 border-t border-surface-container border-l-2 border-primary/20">Up to 20' x 50'</div>
+<!-- Row 3 -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/20 font-semibold">Warranty Period</div>
+<div class="p-6 border-t border-surface-container">20 Years</div>
+<div class="p-6 border-t border-surface-container border-l-2 border-primary/20">20 Years</div>
+<!-- Row 4 -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/20 font-semibold">Pulley Diameter</div>
+<div class="p-6 border-t border-surface-container">2.5" Standard</div>
+<div class="p-6 border-t border-surface-container border-l-2 border-primary/20">2.0" Low Profile</div>
+<!-- Row 5 -->
+<div class="p-6 border-t border-surface-container bg-surface-container-low/20 font-semibold">Main Frame Material</div>
+<div class="p-6 border-t border-surface-container">Stainless Steel</div>
+<div class="p-6 border-t border-surface-container border-l-2 border-primary/20">Stainless Steel</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Installation -->
+<section class="bg-surface-container-lowest py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+<div>
+<h2 class="text-3xl font-headline font-bold text-on-surface mb-8">Installation &amp; Engineering Integrity</h2>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                            Our Low Offset mechanisms are designed for precision fit. Unlike generic "small footprint" systems, Integra maintains the structural integrity required to meet ASTM safety standards.
+                        </p>
+<ul class="space-y-4 mb-8">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span><strong>Timeline:</strong> Typical installation takes 1-3 business days depending on site prep.</span>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span><strong>Requirements:</strong> Solid concrete pad or reinforced bond beam (18" min depth).</span>
+</li>
+<li class="flex gap-4 text-error font-semibold">
+<span class="material-symbols-outlined">warning</span>
+<span>Authorized Dealer Only: This product must be installed by a factory-certified technician.</span>
+</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="aspect-square bg-surface-container-high rounded-xl flex items-center justify-center p-4">
+<span class="text-xs text-center font-label opacity-50 uppercase">[ Installation Detail — Box ]</span>
+</div>
+<div class="aspect-square bg-secondary-container rounded-xl flex items-center justify-center p-4">
+<span class="text-xs text-center font-label opacity-50 uppercase">[ Installation Detail — Deck ]</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: Related Products -->
+<section class="bg-tertiary-fixed py-24 px-8">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-3xl font-headline font-bold text-primary mb-12">Related Products</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform">
+<div class="aspect-video bg-secondary-container rounded-lg mb-6 flex items-center justify-center">
+<span class="text-[10px] font-label">[ Standard Mechanism ]</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Standard Mechanism</h3>
+<p class="text-sm text-on-surface-variant mb-4">The industry benchmark for large residential and commercial pools.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 group" href="#">
+                            Explore <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform">
+<div class="aspect-video bg-secondary-container rounded-lg mb-6 flex items-center justify-center">
+<span class="text-[10px] font-label">[ Aegis Fabrics ]</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Aegis Fabrics</h3>
+<p class="text-sm text-on-surface-variant mb-4">UV-stable, chemical resistant fabrics in 12 premium architectural tones.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 group" href="#">
+                            Explore <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:translate-y-[-4px] transition-transform">
+<div class="aspect-video bg-secondary-container rounded-lg mb-6 flex items-center justify-center">
+<span class="text-[10px] font-label">[ Colors &amp; Options ]</span>
+</div>
+<h3 class="text-xl font-bold text-on-surface mb-2">Colors &amp; Options</h3>
+<p class="text-sm text-on-surface-variant mb-4">Custom powder-coated lids and matching hardware for any deck.</p>
+<a class="text-primary font-bold inline-flex items-center gap-2 group" href="#">
+                            Explore <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 7: Footer CTA -->
+<section class="bg-primary py-24 px-8 text-center">
+<div class="max-w-4xl mx-auto">
+<h2 class="text-4xl lg:text-5xl font-headline font-bold text-on-primary mb-12">
+                    Ready to Upgrade Your Pool with the Low Offset Mechanism?
+                </h2>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-white text-primary px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-container hover:text-white transition-all">
+                        Request a Professional Quote
+                    </button>
+<button class="border-2 border-white/30 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                        Find an Authorized Dealer
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 gap-4 max-w-7xl mx-auto">
+<div class="text-lg font-bold text-blue-900 dark:text-white font-['Manrope']">Integra Pool Covers</div>
+<div class="flex gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm font-['Manrope']" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm font-['Manrope']" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm font-['Manrope']" href="#">Technical Support</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm font-['Manrope']" href="#">Contact Us</a>
+</div>
+<div class="text-slate-500 dark:text-slate-400 text-sm font-['Manrope'] opacity-80">
+                © 2024 Integra Pool Covers. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
