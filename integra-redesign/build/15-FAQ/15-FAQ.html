@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE 15 — FAQ — Visual Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .build-note { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+        .section-label { background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 12px; display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .avada-note { background: #E3F2FD; border-left: 4px solid #1976D2; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #1565C0; }
+        .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 6px 10px; font-size: 11px; }
+        details summary { cursor: pointer; color: #1976D2; font-size: 13px; font-weight: 600; }
+        .faq-item { border-bottom: 1px solid #E0E0E0; }
+        .faq-item summary { padding: 16px 20px; font-size: 17px; font-weight: 600; color: #2D2D2D; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: #003366; font-weight: 700; }
+        .faq-item[open] summary::after { content: '\2212'; }
+        .faq-item[open] summary { background: #EBF4FF; }
+        .faq-item .faq-answer { padding: 20px; font-size: 16px; color: #444444; line-height: 1.8; background: #EBF4FF; }
+        .faq-item:hover summary { background: #F0F4F8; }
+        .faq-item[open]:hover summary { background: #EBF4FF; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- ========== SEO SETTINGS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-4 p-5 bg-white rounded-lg shadow border-l-4 border-blue-600">
+    <h2 class="text-lg font-bold text-blue-900 mb-3">SEO Settings — Rank Math</h2>
+    <table class="w-full text-sm">
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700 w-40">URL</td><td class="py-2 text-gray-900">/resources/faq/</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Focus Keyword</td><td class="py-2">automatic pool cover FAQ</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Title Tag</td><td class="py-2">Automatic Pool Cover FAQ | 30+ Questions Answered — Integra Pool Covers</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Meta Description</td><td class="py-2">Everything you need to know about automatic pool covers — safety certification, installation, maintenance, cost, and warranties. 30+ questions answered by Integra.</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Schema Type</td><td class="py-2">FAQPage</td></tr>
+        <tr><td class="py-2 font-semibold text-gray-700">Canonical</td><td class="py-2">https://integrapoolcovers.com/resources/faq/</td></tr>
+    </table>
+    <div class="build-note mt-3">CRITICAL: All 33 Q&amp;A pairs MUST be entered individually into Rank Math FAQPage schema for rich snippet eligibility. Open Rank Math &gt; Schema tab &gt; FAQPage &gt; Add each question/answer.</div>
+</div>
+
+<div class="max-w-5xl mx-auto text-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">PAGE 15 — FAQ</h1>
+    <p class="text-sm text-gray-500">Visual Build Guide — Integra Pool Covers Redesign</p>
+</div>
+
+<!-- ========== SECTION 1: HERO ========== -->
+<div class="max-w-5xl mx-auto mb-2">
+    <span class="section-label">Section 1 — Hero</span>
+</div>
+<div style="background:#003366; min-height:50vh; display:flex; align-items:center; justify-content:center; padding:100px 20px;">
+    <div style="max-width:800px; text-align:center;">
+        <h1 style="color:#FFFFFF; font-size:48px; font-weight:700; margin-bottom:20px;">Automatic Pool Cover FAQ — Your Questions Answered</h1>
+        <p style="color:rgba(255,255,255,0.9); font-size:20px;">30+ answers to the questions homeowners and pool builders ask most — covering safety, installation, maintenance, cost, and warranties.</p>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 1: Hero</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #003366 solid, min-height 50vh (40vh mobile), padding 100px top/bottom (60px mobile), center.</p>
+            <p><strong>Column:</strong> 10/12 centered. H1: White 48px/32px mobile, 700, center. Subhead: rgba(255,255,255,0.9), 20px/16px mobile, center, max-width 800px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 2: JUMP LINKS BAR ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 2 — Jump Links Navigation Bar</span>
+</div>
+<div style="background:#FFFFFF; padding:20px; border-bottom:1px solid #E8E8E8;">
+    <div style="max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+        <a href="#safety-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Safety &amp; Certification</a>
+        <a href="#specs-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Product Specs</a>
+        <a href="#installation-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Installation</a>
+        <a href="#maintenance-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Maintenance</a>
+        <a href="#cost-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Cost &amp; Warranty</a>
+        <a href="#dealer-questions" style="display:inline-block; padding:10px 20px; background:#EBF4FF; color:#003366; border-radius:25px; font-size:14px; font-weight:600; text-decoration:none; border:1px solid #C8DDF5;">Dealer Questions</a>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 2: Jump Links</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 20px top/bottom, border-bottom 1px solid #E8E8E8. Optional: sticky, top 0, z-index 50.</p>
+            <p><strong>Column:</strong> 10/12 centered. Text Block with pill-link HTML. Each pill: #EBF4FF bg, #003366 text, border-radius 25px, 14px weight 600, 1px solid #C8DDF5 border.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== LIFESTYLE REFERENCE IMAGE ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Reference — Lifestyle Image (og:image / Social Only)</span>
+</div>
+<div style="max-width:600px; margin:0 auto; padding:10px 20px;">
+    <div style="position:relative; border-radius:8px; overflow:hidden;">
+        <img src="images/faq-lifestyle.webp" alt="Integra automatic pool cover on residential pool — frequently asked questions" style="width:100%; display:block;">
+        <div class="image-info">faq-lifestyle.webp — 1200x800 — 205KB — FOR og:image / SOCIAL SHARING ONLY (not embedded in page layout)</div>
+    </div>
+    <div class="build-note">Set this image as the og:image in Rank Math Social tab. Not used in the page layout — this is a text-focused FAQ page.</div>
+</div>
+
+<!-- ========== FAQ SECTION A: SAFETY & CERTIFICATION ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3A — Safety &amp; Certification (6 Questions)</span>
+</div>
+<div id="safety-questions" style="background:#FFFFFF; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Safety &amp; Certification</h2>
+        <div style="background:#F9F9F9; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>Are Integra covers ASTM certified?</summary>
+                <div class="faq-answer">Yes. Every Integra automatic pool cover is independently tested and certified to meet or exceed ASTM F1346-91 — the national safety standard for pool covers. This certification confirms the cover can support required weight loads, prevent child entry through perimeter gaps, and drain standing water.</div>
+            </details>
+            <details class="faq-item">
+                <summary>What does ASTM F1346 actually require?</summary>
+                <div class="faq-answer">ASTM F1346 mandates three critical tests: (1) a static load test requiring the cover to support 485 lbs without allowing access to the water, (2) perimeter gap requirements preventing a child from slipping between the cover edge and pool coping, and (3) drainage requirements preventing dangerous standing water accumulation on the cover surface.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Can an automatic pool cover replace a pool fence?</summary>
+                <div class="faq-answer">In many jurisdictions, yes. An ASTM F1346-certified automatic pool cover qualifies as an approved safety barrier under most building codes. However, requirements vary by state, county, and municipality. We recommend checking our pool cover vs. fence guide or consulting your local building department.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How much weight can the cover hold?</summary>
+                <div class="faq-answer">Integra covers are engineered and tested to support 485 lbs in a static load test — enough for two adults and one child to be supported in an emergency scenario. This is the load requirement specified by ASTM F1346.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Is the cover safe for pets?</summary>
+                <div class="faq-answer">Yes. The cover is designed to prevent accidental entry for both children and pets. The fabric tension, perimeter gap engineering, and reinforced edges ensure that even large dogs cannot slip through or fall into the pool when the cover is closed.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>What happens if someone walks on the cover?</summary>
+                <div class="faq-answer">A properly installed Integra cover will support the weight of an adult walking across it. However, pool covers are safety devices — not walking surfaces. The cover is designed to prevent drowning in accidental entry scenarios, not for intentional foot traffic.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3A: Safety FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="safety-questions"&gt;&lt;/div&gt; before the H2.</p>
+            <p><strong>H2:</strong> #003366 30px, margin-bottom 24px.</p>
+            <p><strong>Fusion Accordion:</strong> 6 items. Background #F9F9F9, active #EBF4FF, border-bottom 1px #E0E0E0. Toggle icon +/-, #003366. Title 17px weight 600 #2D2D2D. Content 16px #444444 line-height 1.8, padding 20px. Hover #F0F4F8.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== FAQ SECTION B: PRODUCT SPECS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3B — Product Specs (6 Questions)</span>
+</div>
+<div id="specs-questions" style="background:#F5F5F5; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Product Specs</h2>
+        <div style="background:#FFFFFF; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>What material is the cover fabric?</summary>
+                <div class="faq-answer">Integra uses Aegis fabric — an 18-oz woven vinyl with an acrylic topcoat. The fabric is UV-stabilized, chemical-resistant, and engineered for the harsh pool environment including chlorine, bromine, salt, and ozone exposure.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How is the webbing attached?</summary>
+                <div class="faq-answer">All Integra covers use heat-sealed webbing — not stitching. Our Weldmaster process fuses the webbing directly to the fabric at a molecular level, eliminating needle holes and creating a bond stronger than the base material. This prevents the most common failure point in competitor covers.</div>
+            </details>
+            <details class="faq-item">
+                <summary>What are the mechanisms made of?</summary>
+                <div class="faq-answer">100% stainless steel. Every guide rail, pulley, structural bracket, and load-bearing component is stainless steel. No aluminum, no galvanized steel, no mixed metals. This eliminates corrosion in chlorine and salt environments.</div>
+            </details>
+            <details class="faq-item">
+                <summary>What colors are available?</summary>
+                <div class="faq-answer">Seven: Charcoal, Light Gray, Tan, Mocha, Royal Blue, Navy Blue, and Black. All colors use identical base fabric with the same UV stabilizers and chemical resistance.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Does color affect performance?</summary>
+                <div class="faq-answer">Slightly. Darker colors absorb more solar energy and can warm pool water by 2-5 degrees F more than lighter colors. Lighter colors stay cooler to the touch. All seven colors carry the same 7-year fabric warranty.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>What mechanism types are available?</summary>
+                <div class="faq-answer">Integra offers two mechanism types: the Standard mechanism (top-track, ideal for new construction and retrofits) and the Low-Offset mechanism (recessed, for a flush deck appearance). Both use all-stainless steel construction and carry a 20-year warranty.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3B: Product Specs FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="specs-questions"&gt;&lt;/div&gt;. H2 #003366 30px. Fusion Accordion: 6 items, same styling as Section A.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== FAQ SECTION C: INSTALLATION ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3C — Installation (6 Questions)</span>
+</div>
+<div id="installation-questions" style="background:#FFFFFF; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Installation</h2>
+        <div style="background:#F9F9F9; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>Can an automatic cover be installed on an existing pool?</summary>
+                <div class="faq-answer">Yes. Integra's Standard (top-track) mechanism is specifically designed for retrofit installation on existing pools. The tracks mount on top of the pool coping, so there's no need to tear up your deck or modify the pool shell.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How long does installation take?</summary>
+                <div class="faq-answer">A typical residential installation takes 1-2 days. Retrofit installations (top-track) are usually completed in a single day. Recessed (low-offset) installations on new construction take 1-2 days depending on the housing and track configuration.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Do I need a specific pool shape?</summary>
+                <div class="faq-answer">Automatic covers work best on rectangular and geometric pools. Integra covers can accommodate most standard pool shapes. Free-form pools may require a modified approach — consult with your local Integra dealer for a site evaluation.</div>
+            </details>
+            <details class="faq-item">
+                <summary>What size pools can be covered?</summary>
+                <div class="faq-answer">Integra covers are custom-manufactured to fit your pool's exact dimensions. We cover pools from small residential plunge pools up to large format pools. Maximum span widths depend on the mechanism type — your dealer will confirm sizing during the quote process.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Who installs the cover?</summary>
+                <div class="faq-answer">All Integra covers are installed by authorized, trained dealers. Every dealer goes through our installation certification program to ensure proper setup, safe operation, and full warranty coverage.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>Will the installation damage my deck?</summary>
+                <div class="faq-answer">Top-track (retrofit) installations require minimal deck modification — the tracks mount to the existing coping with stainless steel hardware. Low-offset installations are typically planned during pool construction, so the housing is integrated into the deck design from the start.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3C: Installation FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="installation-questions"&gt;&lt;/div&gt;. H2 + Fusion Accordion: 6 items.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== FAQ SECTION D: MAINTENANCE ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3D — Maintenance (5 Questions)</span>
+</div>
+<div id="maintenance-questions" style="background:#F5F5F5; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Maintenance</h2>
+        <div style="background:#FFFFFF; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>How do I clean the cover?</summary>
+                <div class="faq-answer">Rinse the fabric with a garden hose monthly to remove chlorine residue and debris. For a deeper clean, use mild soap and water twice a year. Never use a pressure washer, bleach, or abrasive cleaners — they damage the acrylic topcoat.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How often should I rinse the cover?</summary>
+                <div class="faq-answer">Monthly rinsing is recommended. In high-use seasons or salt pools, rinse every 2-3 weeks to prevent residue buildup.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Can the cover stay on during winter?</summary>
+                <div class="faq-answer">Yes. Integra covers are designed for year-round use. Maintain your water level and clear heavy snow loads promptly to prevent excess weight on the fabric.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Do the tracks need maintenance?</summary>
+                <div class="faq-answer">Flush the tracks with a garden hose quarterly to remove debris. Inspect for leaves, dirt, and small stones that could impede cover travel. Your dealer can perform an annual inspection as part of routine service.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>How do I know when the fabric needs replacing?</summary>
+                <div class="faq-answer">Signs include visible fraying, persistent sagging even when tensioned, or cracking in the acrylic topcoat. Under normal conditions, Aegis fabric lasts well beyond the 7-year warranty. Contact your dealer for an assessment if you notice any of these signs.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3D: Maintenance FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="maintenance-questions"&gt;&lt;/div&gt;. H2 + Fusion Accordion: 5 items.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== FAQ SECTION E: COST & WARRANTY ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3E — Cost &amp; Warranty (6 Questions)</span>
+</div>
+<div id="cost-questions" style="background:#FFFFFF; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Cost &amp; Warranty</h2>
+        <div style="background:#F9F9F9; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>How much does an automatic pool cover cost?</summary>
+                <div class="faq-answer">Pricing varies based on pool size, mechanism type (top-track vs. recessed), and customization. A typical residential installation ranges from $10,000 to $18,000. Contact your local Integra dealer for a specific quote based on your pool dimensions.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How much will I save on heating?</summary>
+                <div class="faq-answer">By virtually eliminating evaporation — the primary source of heat loss — homeowners typically save 50-70% on pool heating costs. The cover traps solar heat during the day and prevents heat loss overnight.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How much will I save on chemicals?</summary>
+                <div class="faq-answer">Pool covers block UV rays (which degrade chlorine) and prevent debris contamination. Most homeowners save 35-60% on chemical costs annually.</div>
+            </details>
+            <details class="faq-item">
+                <summary>What's the payback period?</summary>
+                <div class="faq-answer">Most homeowners see a full return on investment in 5-8 years through cumulative savings on water, energy, chemicals, and reduced cleaning time.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Does the cover extend my swim season?</summary>
+                <div class="faq-answer">Yes. By retaining daytime solar heat and preventing nighttime cooling, you can begin swimming 2-4 weeks earlier in spring and continue 2-4 weeks later in fall.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>What does the warranty cover?</summary>
+                <div class="faq-answer">Integra offers a 20-year warranty on mechanisms (stainless steel components, motor, and structural elements) and a 7-year warranty on Aegis fabric. Warranty coverage requires installation by an authorized Integra dealer.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3E: Cost FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="cost-questions"&gt;&lt;/div&gt;. H2 + Fusion Accordion: 6 items.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== FAQ SECTION F: DEALER QUESTIONS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3F — Dealer Questions (4 Questions)</span>
+</div>
+<div id="dealer-questions" style="background:#F5F5F5; padding:60px 20px 40px;">
+    <div style="max-width:850px; margin:0 auto;">
+        <h2 style="color:#003366; font-size:30px; margin-bottom:24px;">Dealer Questions</h2>
+        <div style="background:#FFFFFF; border-radius:8px; overflow:hidden;">
+            <details class="faq-item">
+                <summary>How do I find an Integra dealer near me?</summary>
+                <div class="faq-answer">Use our <a href="/find-a-dealer/" style="color:#FF6B00; font-weight:600;">Find a Dealer</a> page to locate an authorized Integra dealer in your area. Enter your zip code to see the closest dealers with contact information and service areas.</div>
+            </details>
+            <details class="faq-item">
+                <summary>Can I buy an Integra cover directly?</summary>
+                <div class="faq-answer">No. All Integra covers are sold and installed exclusively through our authorized dealer network. This ensures proper installation, safe operation, and full warranty coverage. Contact your nearest dealer for a quote.</div>
+            </details>
+            <details class="faq-item">
+                <summary>How do I become an Integra dealer?</summary>
+                <div class="faq-answer">Visit our <a href="/for-dealers/" style="color:#FF6B00; font-weight:600;">dealer program page</a> to learn about territory availability, training requirements, and program benefits. You can apply directly through the site or contact us for more information.</div>
+            </details>
+            <details class="faq-item" style="border-bottom:none;">
+                <summary>Does Integra offer dealer training?</summary>
+                <div class="faq-answer">Yes. Every authorized dealer receives comprehensive installation training — both on-site and virtual. We also provide ongoing technical support, troubleshooting resources, and marketing materials.</div>
+            </details>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3F: Dealer FAQ</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 60px top, 40px bottom.</p>
+            <p><strong>Anchor:</strong> &lt;div id="dealer-questions"&gt;&lt;/div&gt;. H2 + Fusion Accordion: 4 items.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 4: STILL HAVE QUESTIONS? CTA ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 4 — Still Have Questions? CTA</span>
+</div>
+<div style="background:#F5F5F5; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+        <h2 style="color:#003366; margin-bottom:16px; font-size:36px;">Still Have Questions?</h2>
+        <p style="color:#2D2D2D; font-size:18px; margin-bottom:30px;">Our team and nationwide dealer network are here to help. Whether you need technical details, pricing, or help choosing the right cover for your pool — reach out anytime.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="/contact/" style="display:inline-block; background:#FF6B00; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Contact Us</a>
+            <a href="/find-a-dealer/" style="display:inline-block; background:#003366; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Find a Dealer</a>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 4: CTA</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 80px top/bottom. Column 8/12 centered.</p>
+            <p><strong>H2:</strong> #003366 36px center. Text: #2D2D2D 18px center, margin-bottom 30px.</p>
+            <p><strong>Buttons:</strong> "Contact Us" → /contact/ (bg #FF6B00, white). "Find a Dealer" → /find-a-dealer/ (bg #003366, white). Both: 700, 16px 36px padding, border-radius 8px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== RANK MATH SCHEMA REFERENCE ========== -->
+<div class="max-w-5xl mx-auto my-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Rank Math FAQPage Schema — All 33 Questions</h2>
+    <div class="build-note mb-4">Every question below MUST be entered into Rank Math individually: Schema tab &gt; FAQPage &gt; Add Question. This enables FAQ rich snippets in Google Search.</div>
+    <table class="w-full text-xs border-collapse">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="text-left p-2 border-b w-8">#</th>
+                <th class="text-left p-2 border-b w-40">Section</th>
+                <th class="text-left p-2 border-b">Question</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b"><td class="p-2">1</td><td class="p-2">Safety</td><td class="p-2">Are Integra covers ASTM certified?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">2</td><td class="p-2">Safety</td><td class="p-2">What does ASTM F1346 actually require?</td></tr>
+            <tr class="border-b"><td class="p-2">3</td><td class="p-2">Safety</td><td class="p-2">Can an automatic pool cover replace a pool fence?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">4</td><td class="p-2">Safety</td><td class="p-2">How much weight can the cover hold?</td></tr>
+            <tr class="border-b"><td class="p-2">5</td><td class="p-2">Safety</td><td class="p-2">Is the cover safe for pets?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">6</td><td class="p-2">Safety</td><td class="p-2">What happens if someone walks on the cover?</td></tr>
+            <tr class="border-b"><td class="p-2">7</td><td class="p-2">Product</td><td class="p-2">What material is the cover fabric?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">8</td><td class="p-2">Product</td><td class="p-2">How is the webbing attached?</td></tr>
+            <tr class="border-b"><td class="p-2">9</td><td class="p-2">Product</td><td class="p-2">What are the mechanisms made of?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">10</td><td class="p-2">Product</td><td class="p-2">What colors are available?</td></tr>
+            <tr class="border-b"><td class="p-2">11</td><td class="p-2">Product</td><td class="p-2">Does color affect performance?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">12</td><td class="p-2">Product</td><td class="p-2">What mechanism types are available?</td></tr>
+            <tr class="border-b"><td class="p-2">13</td><td class="p-2">Installation</td><td class="p-2">Can an automatic cover be installed on an existing pool?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">14</td><td class="p-2">Installation</td><td class="p-2">How long does installation take?</td></tr>
+            <tr class="border-b"><td class="p-2">15</td><td class="p-2">Installation</td><td class="p-2">Do I need a specific pool shape?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">16</td><td class="p-2">Installation</td><td class="p-2">What size pools can be covered?</td></tr>
+            <tr class="border-b"><td class="p-2">17</td><td class="p-2">Installation</td><td class="p-2">Who installs the cover?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">18</td><td class="p-2">Installation</td><td class="p-2">Will the installation damage my deck?</td></tr>
+            <tr class="border-b"><td class="p-2">19</td><td class="p-2">Maintenance</td><td class="p-2">How do I clean the cover?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">20</td><td class="p-2">Maintenance</td><td class="p-2">How often should I rinse the cover?</td></tr>
+            <tr class="border-b"><td class="p-2">21</td><td class="p-2">Maintenance</td><td class="p-2">Can the cover stay on during winter?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">22</td><td class="p-2">Maintenance</td><td class="p-2">Do the tracks need maintenance?</td></tr>
+            <tr class="border-b"><td class="p-2">23</td><td class="p-2">Maintenance</td><td class="p-2">How do I know when the fabric needs replacing?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">24</td><td class="p-2">Cost</td><td class="p-2">How much does an automatic pool cover cost?</td></tr>
+            <tr class="border-b"><td class="p-2">25</td><td class="p-2">Cost</td><td class="p-2">How much will I save on heating?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">26</td><td class="p-2">Cost</td><td class="p-2">How much will I save on chemicals?</td></tr>
+            <tr class="border-b"><td class="p-2">27</td><td class="p-2">Cost</td><td class="p-2">What's the payback period?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">28</td><td class="p-2">Cost</td><td class="p-2">Does the cover extend my swim season?</td></tr>
+            <tr class="border-b"><td class="p-2">29</td><td class="p-2">Cost</td><td class="p-2">What does the warranty cover?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">30</td><td class="p-2">Dealer</td><td class="p-2">How do I find an Integra dealer near me?</td></tr>
+            <tr class="border-b"><td class="p-2">31</td><td class="p-2">Dealer</td><td class="p-2">Can I buy an Integra cover directly?</td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-2">32</td><td class="p-2">Dealer</td><td class="p-2">How do I become an Integra dealer?</td></tr>
+            <tr><td class="p-2">33</td><td class="p-2">Dealer</td><td class="p-2">Does Integra offer dealer training?</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ========== IMAGE UPLOAD CHECKLIST ========== -->
+<div class="max-w-5xl mx-auto my-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Image Upload Checklist</h2>
+    <table class="w-full text-sm border-collapse">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="text-left p-3 border-b">File</th>
+                <th class="text-left p-3 border-b">Alt Text</th>
+                <th class="text-left p-3 border-b">Usage</th>
+                <th class="text-center p-3 border-b w-16">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="p-3 font-mono text-xs">faq-lifestyle.webp</td><td class="p-3 text-xs">Integra automatic pool cover on residential pool — frequently asked questions</td><td class="p-3 text-xs">og:image / Social sharing only</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
