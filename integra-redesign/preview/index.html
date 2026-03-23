@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integra Pool Covers — Website Redesign Visual Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', 'Segoe UI', system-ui, sans-serif; background: #0a0a0a; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        .page-content { max-width: 1400px; margin: 0 auto; background: #fff; }
+        img { max-width: 100%; height: auto; display: block; }
+        .img-placeholder { background: linear-gradient(135deg, #e0e8f0 0%, #c8d8e8 100%); display: flex; align-items: center; justify-content: center; color: #6688aa; font-size: 14px; min-height: 200px; }
+
+        /* Sticky Nav */
+        .sticky-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(0, 51, 102, 0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 0 16px; height: 52px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .sticky-nav a {
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 12px; font-weight: 600;
+            padding: 6px 10px; border-radius: 4px; transition: all 0.2s; white-space: nowrap;
+            font-family: 'Montserrat', sans-serif; letter-spacing: 0.5px;
+        }
+        .sticky-nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .sticky-nav a.active { color: #FF6B00; background: rgba(255,107,0,0.15); }
+        .nav-scroll { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+        .nav-scroll::-webkit-scrollbar { display: none; }
+
+        /* Page Divider */
+        .page-divider {
+            background: #111827; color: #fff; padding: 28px 40px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-top: 4px solid #FF6B00;
+        }
+        .page-divider .page-num {
+            color: #FF6B00; font-size: 13px; font-family: 'Montserrat', monospace;
+            font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .page-divider h2 { font-size: 26px; font-weight: 700; margin-top: 4px; }
+        .page-divider .page-url {
+            color: #6B7280; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+        }
+
+        /* Section spacing */
+        section { overflow: hidden; }
+        .two-col { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+        .two-col > div { flex: 1; min-width: 300px; }
+        .content-pad { padding: 80px 40px; }
+        .content-narrow { max-width: 800px; margin: 0 auto; }
+        .content-wide { max-width: 1100px; margin: 0 auto; }
+
+        /* FAQ Styling */
+        .faq-item { border-bottom: 1px solid #E0E0E0; }
+        .faq-item summary {
+            padding: 18px 24px; font-size: 17px; font-weight: 600; color: #2D2D2D;
+            list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 22px; color: #003366; font-weight: 700; }
+        .faq-item[open] summary::after { content: '\2212'; }
+        .faq-item[open] summary { background: #EBF4FF; }
+        .faq-item .faq-answer { padding: 20px 24px; font-size: 16px; color: #444; line-height: 1.8; background: #EBF4FF; }
+
+        /* Top spacer for fixed nav */
+        .top-spacer { height: 52px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-col { flex-direction: column; }
+            .content-pad { padding: 50px 20px; }
+            .page-divider { flex-direction: column; gap: 8px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- STICKY NAVIGATION -->
+<nav class="sticky-nav">
+    <div class="nav-scroll">
+        <a href="#page-01" data-page="page-01">01</a>
+        <a href="#page-02" data-page="page-02">02</a>
+        <a href="#page-03" data-page="page-03">03</a>
+        <a href="#page-04" data-page="page-04">04</a>
+        <a href="#page-05" data-page="page-05">05</a>
+        <a href="#page-06" data-page="page-06">06</a>
+        <a href="#page-07" data-page="page-07">07</a>
+        <a href="#page-08" data-page="page-08">08</a>
+        <a href="#page-09" data-page="page-09">09</a>
+        <a href="#page-10" data-page="page-10">10</a>
+        <a href="#page-11" data-page="page-11">11</a>
+        <a href="#page-12" data-page="page-12">12</a>
+        <a href="#page-13" data-page="page-13">13</a>
+        <a href="#page-14" data-page="page-14">14</a>
+        <a href="#page-15" data-page="page-15">15</a>
+    </div>
+</nav>
+<div class="top-spacer"></div>
+
+<div class="page-content">
+
+<!-- ===================================================================================== -->
+<!-- PAGE 01 — HOMEPAGE -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-01">
+    <div>
+        <span class="page-num">PAGE 01</span>
+        <h2>Homepage</h2>
+    </div>
+    <span class="page-url">/</span>
+</div>
+
+<!-- Hero -->
+<section style="position:relative; min-height:85vh; display:flex; align-items:center; justify-content:center;">
+    <img src="../build/01-Homepage/images/hero-pool-cover-aerial.webp" alt="Hero" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:1;"></div>
+    <div style="position:relative;z-index:2;text-align:center;padding:60px 20px;max-width:900px;">
+        <h1 style="color:#fff;font-size:52px;font-weight:700;margin-bottom:20px;">Automatic Pool Covers Built to Outlast Everything Else</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:20px;margin-bottom:30px;">All-stainless steel mechanisms. ASTM F1346 certified. Backed by a 20-year warranty. Integra pool covers protect what matters most.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="#" style="display:inline-block;background:#FF6B00;color:#fff;padding:16px 36px;border-radius:6px;font-weight:700;text-decoration:none;font-size:16px;">Find a Dealer</a>
+            <a href="#" style="display:inline-block;background:transparent;color:#fff;padding:16px 36px;border-radius:6px;font-weight:700;text-decoration:none;font-size:16px;border:2px solid #fff;">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Bar -->
+<section style="background:#003366;padding:24px 40px;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:20px;text-align:center;">
+        <span style="color:#fff;font-size:15px;font-weight:600;">&#10003; ASTM F1346 Certified</span>
+        <span style="color:#fff;font-size:15px;font-weight:600;">&#10003; 100% Stainless Steel</span>
+        <span style="color:#fff;font-size:15px;font-weight:600;">&#10003; 20-Year Mechanism Warranty</span>
+        <span style="color:#fff;font-size:15px;font-weight:600;">&#10003; Made in USA</span>
+    </div>
+</section>
+
+<!-- Intro -->
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#003366;font-size:38px;margin-bottom:20px;">The Pool Cover That Earns Its Keep</h2>
+        <p style="color:#2D2D2D;font-size:18px;line-height:1.7;">Integra automatic pool covers are engineered around four pillars — stainless steel construction, ASTM F1346 certification, Aegis premium fabrics, and effortless daily operation. Each one exists for a reason: to give pool owners a cover that performs from the day it's installed through every season that follows.</p>
+    </div>
+</section>
+
+<!-- 4 Feature Cards -->
+<section style="background:#F5F5F5;padding:80px 40px;">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+        <div style="background:#fff;border-radius:8px;padding:30px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:40px;color:#003366;margin-bottom:12px;">&#9881;</div>
+            <h3 style="color:#003366;font-size:18px;margin-bottom:8px;">All-Stainless Steel</h3>
+            <p style="color:#666;font-size:14px;line-height:1.6;">Every mechanism component is 100% stainless steel. No aluminum. No mixed metals.</p>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:30px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:40px;color:#003366;margin-bottom:12px;">&#128737;</div>
+            <h3 style="color:#003366;font-size:18px;margin-bottom:8px;">ASTM F1346 Certified</h3>
+            <p style="color:#666;font-size:14px;line-height:1.6;">Every cover tested and certified to the national pool safety standard.</p>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:30px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:40px;color:#003366;margin-bottom:12px;">&#127912;</div>
+            <h3 style="color:#003366;font-size:18px;margin-bottom:8px;">Aegis Premium Fabrics</h3>
+            <p style="color:#666;font-size:14px;line-height:1.6;">Heat-sealed 18-oz vinyl. 7 colors. 7-year fabric warranty.</p>
+        </div>
+        <div style="background:#fff;border-radius:8px;padding:30px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+            <div style="font-size:40px;color:#003366;margin-bottom:12px;">&#128268;</div>
+            <h3 style="color:#003366;font-size:18px;margin-bottom:8px;">One-Switch Operation</h3>
+            <p style="color:#666;font-size:14px;line-height:1.6;">PIN-secured keypad or rocker switch. Open and close in under 60 seconds.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ASTM Callout -->
+<section style="background:#003366;padding:80px 40px;">
+    <div class="two-col content-wide">
+        <div>
+            <img src="../build/01-Homepage/images/mechanism-closeup.webp" alt="Mechanism closeup" style="border-radius:8px;">
+        </div>
+        <div>
+            <h2 style="color:#fff;font-size:36px;margin-bottom:16px;">ASTM F1346 Certified — Every Unit, Every Time</h2>
+            <p style="color:rgba(255,255,255,0.85);font-size:17px;line-height:1.7;">Every Integra cover supports 485+ pounds, eliminates perimeter gaps, and drains surface water safely. Not a marketing claim — an independently verified standard.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 3 Product Cards -->
+<section style="background:#fff;padding:80px 40px;">
+    <h2 style="color:#003366;text-align:center;font-size:36px;margin-bottom:40px;">Our Products</h2>
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;">
+            <img src="../build/01-Homepage/images/product-standard-mechanism.webp" alt="Standard Mechanism" style="width:100%;">
+            <div style="padding:24px;">
+                <h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Standard Mechanism</h3>
+                <p style="color:#666;font-size:15px;margin-bottom:16px;">All-stainless steel P2 system for pools up to 24x60 feet. 20-year warranty.</p>
+                <a href="#" style="color:#003366;font-weight:600;text-decoration:none;">Learn More &rarr;</a>
+            </div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;">
+            <img src="../build/01-Homepage/images/product-low-offset.webp" alt="Low Offset Mechanism" style="width:100%;">
+            <div style="padding:24px;">
+                <h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Low Offset Mechanism</h3>
+                <p style="color:#666;font-size:15px;margin-bottom:16px;">Only 16 inches of offset. Same stainless steel engineering, smaller footprint.</p>
+                <a href="#" style="color:#003366;font-weight:600;text-decoration:none;">Learn More &rarr;</a>
+            </div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;">
+            <img src="../build/01-Homepage/images/product-aegis-fabrics.webp" alt="Aegis Fabrics" style="width:100%;">
+            <div style="padding:24px;">
+                <h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Aegis Fabrics</h3>
+                <p style="color:#666;font-size:15px;margin-bottom:16px;">Heat-sealed 18-oz vinyl. 7 colors. UV-stabilized with 7-year warranty.</p>
+                <a href="#" style="color:#003366;font-weight:600;text-decoration:none;">Learn More &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Dealer CTA Band -->
+<section style="position:relative;min-height:400px;display:flex;align-items:center;justify-content:center;">
+    <img src="../build/01-Homepage/images/dealer-cta-background.webp" alt="Dealer CTA" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,51,102,0.7);z-index:1;"></div>
+    <div style="position:relative;z-index:2;text-align:center;padding:60px 20px;max-width:700px;">
+        <h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Find an Authorized Integra Dealer</h2>
+        <p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:24px;">Connect with a certified installer in your area for a free consultation and quote.</p>
+        <a href="#" style="display:inline-block;background:#FF6B00;color:#fff;padding:16px 36px;border-radius:6px;font-weight:700;text-decoration:none;">Find a Dealer</a>
+    </div>
+</section>
+
+<!-- Safety + Dog -->
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div>
+            <img src="../build/01-Homepage/images/safety-dog-on-cover.webp" alt="Dog on pool cover" style="border-radius:8px;">
+        </div>
+        <div>
+            <h2 style="color:#003366;font-size:32px;margin-bottom:16px;">Safety You Can See Every Day</h2>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Strong enough for a dog to walk across. Sealed tightly enough that curious hands can't reach beneath the edge. When the cover is closed, the pool is off-limits.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Factory Floor -->
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#003366;font-size:32px;margin-bottom:16px;">Made in Knoxville, Tennessee</h2>
+        <p style="color:#2D2D2D;font-size:17px;line-height:1.7;margin-bottom:30px;">Every Integra cover is designed, manufactured, and assembled under one roof. Nothing is outsourced.</p>
+    </div>
+    <img src="../build/01-Homepage/images/factory-floor-wide.webp" alt="Factory floor" style="border-radius:8px;max-width:1100px;margin:0 auto;">
+</section>
+
+<!-- Final CTA -->
+<section style="background:#003366;padding:80px 40px;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to Protect Your Pool?</h2>
+        <p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Connect with an authorized Integra dealer in your area for a free consultation.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;">Find a Dealer</a>
+            <a href="#" style="display:inline-block;background:transparent;color:#fff;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 02 — WHY INTEGRA HUB -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-02">
+    <div><span class="page-num">PAGE 02</span><h2>Why Integra Hub</h2></div>
+    <span class="page-url">/why-integra/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 40px;">
+    <div style="max-width:800px;text-align:center;">
+        <h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">Why Integra: Engineering That Earns Its Keep</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:20px;">Every decision we make — from the steel we source to the way we seal our fabrics — is engineered to outlast, outperform, and out-protect every other automatic pool cover on the market.</p>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#003366;font-size:36px;margin-bottom:20px;">Four Pillars. One Standard: Yours.</h2>
+        <p style="color:#2D2D2D;font-size:18px;line-height:1.7;">Integra automatic pool covers are built around four engineering pillars — stainless steel construction, ASTM F1346 certification, Aegis premium fabrics, and effortless daily operation.</p>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><img src="../build/02-Why-Integra-Hub/images/stainless-steel-mechanism.webp" alt="Stainless steel mechanism" style="border-radius:8px;"></div>
+        <div>
+            <h3 style="color:#003366;font-size:28px;margin-bottom:16px;">All-Stainless Steel Mechanisms</h3>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;">While competitors cut costs with aluminum or mixed-metal components, every Integra mechanism is built entirely from stainless steel. That's why we back every mechanism with a 20-year limited warranty.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div>
+            <h3 style="color:#003366;font-size:28px;margin-bottom:16px;">Built to ASTM F1346 — The Safety Standard That Matters</h3>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;">ASTM F1346 requires the cover to support 485+ pounds of static load, eliminate gaps large enough for a child to access the water, and drain surface water safely. Every Integra cover passes every test, every time.</p>
+        </div>
+        <div><img src="../build/02-Why-Integra-Hub/images/astm-certification.webp" alt="ASTM certification" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><img src="../build/02-Why-Integra-Hub/images/aegis-fabric-premium.webp" alt="Aegis fabric" style="border-radius:8px;"></div>
+        <div>
+            <h3 style="color:#003366;font-size:28px;margin-bottom:16px;">Aegis Premium Fabrics</h3>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Aegis is our proprietary line of 18-oz vinyl pool cover fabrics, acrylic-coated and UV-stabilized. Unlike stitched webbing, Aegis fabrics use heat-sealed webbing for a stronger, watertight bond. Seven colors. Seven-year fabric warranty.</p>
+        </div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow">
+        <h3 style="color:#003366;font-size:28px;margin-bottom:16px;">One Switch. Complete Control.</h3>
+        <p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Integra covers operate with a single keypad or rocker switch — PIN-secured, weatherproof, and designed for daily use. Open the pool for a swim, close it when you're done.</p>
+    </div>
+</section>
+
+<section style="background:#F5F5F5;padding:80px 40px;">
+    <h2 style="color:#003366;text-align:center;font-size:32px;margin-bottom:40px;">Explore What Makes Integra Different</h2>
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+        <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <img src="../build/02-Why-Integra-Hub/images/card-safety.webp" alt="Safety" style="width:100%;">
+            <div style="padding:25px;">
+                <h3 style="color:#003366;font-size:22px;margin-bottom:12px;">Safety & ASTM Certification</h3>
+                <p style="color:#2D2D2D;font-size:15px;margin-bottom:16px;">How Integra covers meet the strictest safety standard in the industry.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <img src="../build/02-Why-Integra-Hub/images/card-energy.webp" alt="Energy" style="width:100%;">
+            <div style="padding:25px;">
+                <h3 style="color:#003366;font-size:22px;margin-bottom:12px;">Energy Efficiency</h3>
+                <p style="color:#2D2D2D;font-size:15px;margin-bottom:16px;">The real numbers on evaporation, heating costs, and chemical savings.</p>
+            </div>
+        </div>
+        <div style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <img src="../build/02-Why-Integra-Hub/images/card-how-it-works.webp" alt="How It Works" style="width:100%;">
+            <div style="padding:25px;">
+                <h3 style="color:#003366;font-size:22px;margin-bottom:12px;">How It Works</h3>
+                <p style="color:#2D2D2D;font-size:15px;margin-bottom:16px;">A complete walkthrough of the Integra automatic pool cover system.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background:#003366;padding:80px 40px;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to See Integra in Action?</h2>
+        <p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Connect with an authorized Integra dealer in your area.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;">Find a Dealer</a>
+            <a href="#" style="display:inline-block;background:transparent;color:#fff;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 03 — SAFETY & ASTM -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-03">
+    <div><span class="page-num">PAGE 03</span><h2>Safety & ASTM Certification</h2></div>
+    <span class="page-url">/why-integra/safety/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 40px;">
+    <div style="max-width:800px;text-align:center;">
+        <h1 style="color:#fff;font-size:44px;font-weight:700;margin-bottom:20px;">Certified to ASTM F1346 — The Pool Safety Standard That Matters</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:20px;">Not all automatic pool covers carry ASTM certification. Here's what the standard actually tests — and why every Integra cover passes.</p>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div style="flex:3;min-width:300px;">
+            <h2 style="color:#003366;font-size:32px;margin-bottom:16px;">What Is ASTM F1346?</h2>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;margin-bottom:16px;">ASTM F1346 is the American Society for Testing and Materials standard specifically for automatic pool covers used as safety barriers. It evaluates structural strength, perimeter security, and surface water management.</p>
+            <p style="color:#2D2D2D;font-size:16px;line-height:1.7;font-weight:600;">Every Integra automatic pool cover is designed, built, and tested to meet all three requirements.</p>
+        </div>
+        <div style="flex:2;min-width:250px;"><img src="../build/03-Safety-ASTM/images/astm-standards-badge.webp" alt="ASTM badge" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section style="background:#003366;padding:50px 40px;">
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:30px;max-width:900px;margin:0 auto;">
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">485+</span><br><span style="font-size:16px;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1px;">Pounds Static Load</span></div>
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">2"</span><br><span style="font-size:16px;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1px;">Maximum Gap Width</span></div>
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">Zero</span><br><span style="font-size:16px;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1px;">Standing Water Allowed</span></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><img src="../build/03-Safety-ASTM/images/strength-test.webp" alt="Strength test" style="border-radius:8px;"></div>
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Strength: 485+ Pounds of Static Load</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Integra covers are engineered to support well over 485 pounds — enough to prevent a child, pet, or adult from breaking through to the water below.</p></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Perimeter Security: No Gap Access to Water</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Integra's track system maintains consistent contact between the cover edge and the pool coping, creating a continuous perimeter seal.</p></div>
+        <div><img src="../build/03-Safety-ASTM/images/perimeter-seal.webp" alt="Perimeter seal" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><img src="../build/03-Safety-ASTM/images/surface-drainage.webp" alt="Surface drainage" style="border-radius:8px;"></div>
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Surface Drainage: No Hazardous Water Ponding</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Integra covers are designed with controlled drainage characteristics that allow rainwater to shed safely without pooling.</p></div>
+    </div>
+</section>
+
+<section style="position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;">
+    <img src="../build/03-Safety-ASTM/images/safety-hero-dog.webp" alt="Dog on cover" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,51,102,0.5);z-index:1;"></div>
+    <div style="position:relative;z-index:2;max-width:750px;text-align:center;padding:40px;">
+        <h2 style="color:#fff;font-size:36px;margin-bottom:20px;">Safety You Can See Every Day</h2>
+        <p style="color:rgba(255,255,255,0.9);font-size:18px;line-height:1.7;">When the cover is closed, the pool is off-limits.</p>
+    </div>
+</section>
+
+<section style="background:#003366;padding:80px 40px;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Questions About Pool Cover Safety?</h2>
+        <p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Your local Integra dealer can walk you through how ASTM F1346 certification protects your family.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+            <a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;">Find a Dealer</a>
+            <a href="#" style="display:inline-block;background:transparent;color:#fff;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 04 — ENERGY EFFICIENCY -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-04">
+    <div><span class="page-num">PAGE 04</span><h2>Energy Efficiency</h2></div>
+    <span class="page-url">/why-integra/energy-efficiency/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 40px;">
+    <div style="max-width:800px;text-align:center;">
+        <h1 style="color:#fff;font-size:44px;font-weight:700;margin-bottom:20px;">Automatic Pool Cover Energy Savings: The Real Numbers</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:20px;">Evaporation is the single largest source of pool energy loss. An Integra cover eliminates it.</p>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow">
+        <h2 style="color:#003366;font-size:32px;margin-bottom:20px;">Why Pool Covers Save More Than You Think</h2>
+        <p style="color:#2D2D2D;font-size:18px;line-height:1.7;">The U.S. Department of Energy reports that evaporation accounts for 70% of total pool energy loss. An automatic pool cover is the single most effective way to reduce that loss.</p>
+    </div>
+</section>
+
+<section style="background:#003366;padding:50px 40px;">
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:30px;max-width:1100px;margin:0 auto;">
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">90%</span><br><span style="font-size:14px;color:rgba(255,255,255,0.85);text-transform:uppercase;">Evaporation Reduction</span></div>
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">50-70%</span><br><span style="font-size:14px;color:rgba(255,255,255,0.85);text-transform:uppercase;">Heating Cost Savings</span></div>
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">35-60%</span><br><span style="font-size:14px;color:rgba(255,255,255,0.85);text-transform:uppercase;">Chemical Reduction</span></div>
+        <div style="text-align:center;"><span style="font-size:48px;font-weight:700;color:#fff;">$1,000+</span><br><span style="font-size:14px;color:rgba(255,255,255,0.85);text-transform:uppercase;">Annual Savings</span></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><img src="../build/04-Energy-Efficiency/images/pool-covered-lifestyle.webp" alt="Pool covered" style="border-radius:8px;"></div>
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Evaporation: The Biggest Energy Thief</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">An uncovered pool can lose up to an inch of water per week to evaporation. An Integra cover eliminates 90% of evaporative loss.</p></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Heating: 50-70% Cost Reduction</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Pool owners who heat their pools typically see a 50-70% reduction in heating costs after installing an Integra cover.</p></div>
+        <div><img src="../build/04-Energy-Efficiency/images/energy-hero.webp" alt="Energy savings" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><img src="../build/04-Energy-Efficiency/images/maintenance-savings.webp" alt="Maintenance savings" style="border-radius:8px;"></div>
+        <div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Chemicals & Maintenance: Less of Everything</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">An Integra cover reduces chemical consumption by 35-60%. Most pool owners report spending half the time on maintenance.</p></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="content-narrow">
+        <h2 style="color:#003366;font-size:32px;text-align:center;margin-bottom:30px;">Total Cost of Ownership: The 10-Year View</h2>
+        <table style="width:100%;border-collapse:collapse;font-size:16px;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+            <thead><tr style="border-bottom:2px solid #003366;"><th style="text-align:left;padding:14px 16px;color:#003366;">Savings Category</th><th style="text-align:center;padding:14px 16px;color:#003366;">Annual</th><th style="text-align:center;padding:14px 16px;color:#003366;">10-Year</th></tr></thead>
+            <tbody>
+                <tr style="border-bottom:1px solid #E8E8E8;"><td style="padding:12px 16px;">Heating cost reduction</td><td style="text-align:center;padding:12px 16px;">$500-$1,200</td><td style="text-align:center;padding:12px 16px;">$5,000-$12,000</td></tr>
+                <tr style="border-bottom:1px solid #E8E8E8;"><td style="padding:12px 16px;">Water savings</td><td style="text-align:center;padding:12px 16px;">$100-$300</td><td style="text-align:center;padding:12px 16px;">$1,000-$3,000</td></tr>
+                <tr style="border-bottom:1px solid #E8E8E8;"><td style="padding:12px 16px;">Chemical reduction</td><td style="text-align:center;padding:12px 16px;">$200-$500</td><td style="text-align:center;padding:12px 16px;">$2,000-$5,000</td></tr>
+                <tr style="border-bottom:1px solid #E8E8E8;"><td style="padding:12px 16px;">Maintenance time value</td><td style="text-align:center;padding:12px 16px;">$200-$400</td><td style="text-align:center;padding:12px 16px;">$2,000-$4,000</td></tr>
+                <tr style="background:#D6E4F7;"><td style="padding:14px 16px;color:#003366;font-weight:700;">Total Estimated Savings</td><td style="text-align:center;padding:14px 16px;color:#003366;font-weight:700;">$1,000-$2,400/yr</td><td style="text-align:center;padding:14px 16px;color:#003366;font-weight:700;">$10,000-$24,000</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section style="background:#003366;padding:80px 40px;text-align:center;">
+    <div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to Start Saving?</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Your local Integra dealer can estimate the energy savings for your specific pool.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;">Find a Dealer</a><a href="#" style="display:inline-block;background:transparent;color:#fff;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Contact Us</a></div></div>
+</section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 05 — HOW IT WORKS -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-05">
+    <div><span class="page-num">PAGE 05</span><h2>How It Works</h2></div>
+    <span class="page-url">/why-integra/how-it-works/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 40px;">
+    <div style="max-width:800px;text-align:center;">
+        <h1 style="color:#fff;font-size:44px;font-weight:700;margin-bottom:20px;">How an Automatic Pool Cover Works — From Mechanism to Motor</h1>
+        <p style="color:rgba(255,255,255,0.9);font-size:20px;">Five components, one seamless system. Here's how every part works together.</p>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;text-align:center;">
+    <div class="content-narrow"><h2 style="color:#003366;font-size:32px;margin-bottom:20px;">The Complete System at a Glance</h2><p style="color:#2D2D2D;font-size:18px;line-height:1.7;margin-bottom:40px;">An Integra automatic pool cover is a precision-engineered system where every component serves a purpose.</p></div>
+    <div style="max-width:1000px;margin:0 auto;border:1px solid #E8E8E8;border-radius:8px;padding:20px;"><img src="../build/05-How-It-Works/images/p2-full-system.webp" alt="P2 Full System" style="width:100%;"></div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><img src="../build/05-How-It-Works/images/mechanism-drive.webp" alt="Motor drive" style="border-radius:8px;"></div>
+        <div><div style="font-size:64px;font-weight:800;color:#D6E4F7;">01</div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Motor Drive Unit</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">A sealed, heavy-duty electric motor housed inside the stainless steel mechanism box, designed for thousands of open/close cycles.</p></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><div style="font-size:64px;font-weight:800;color:#D6E4F7;">02</div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Rope Reel & Pulley System</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">2-inch diameter pulleys reduce friction and extend rope life. An adjustable torque limiter protects against over-tension.</p></div>
+        <div><img src="../build/05-How-It-Works/images/rope-pulley-system.webp" alt="Rope system" style="border-radius:8px;margin-bottom:20px;"><img src="../build/05-How-It-Works/images/torque-limiter.webp" alt="Torque limiter" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;text-align:center;">
+    <div class="content-narrow"><div style="font-size:64px;font-weight:800;color:#D6E4F7;">03</div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Track System</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">Aluminum tracks along both sides of the pool keep the fabric taut and centered, maintaining the tight perimeter seal required by ASTM F1346.</p></div>
+</section>
+
+<section class="content-pad" style="background:#fff;">
+    <div class="two-col content-wide">
+        <div><img src="../build/05-How-It-Works/images/aegis-fabric-closeup.webp" alt="Aegis fabric" style="border-radius:8px;"></div>
+        <div><div style="font-size:64px;font-weight:800;color:#D6E4F7;">04</div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Aegis Fabric</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">18-oz vinyl, acrylic-coated, UV-stabilized, heat-sealed to the webbing. Seven colors. 7-year fabric warranty.</p></div>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><div style="font-size:64px;font-weight:800;color:#D6E4F7;">05</div><h3 style="color:#003366;font-size:26px;margin-bottom:16px;">Controls</h3><p style="color:#2D2D2D;font-size:16px;line-height:1.7;">PIN-secured keypad or rocker switch. Both weatherproof and UL-listed. The cover extends or retracts in about 60 seconds.</p></div>
+        <div><img src="../build/05-How-It-Works/images/control-keypad.webp" alt="Keypad" style="border-radius:8px;margin-bottom:20px;"><img src="../build/05-How-It-Works/images/control-rocker.webp" alt="Rocker switch" style="border-radius:8px;"></div>
+    </div>
+</section>
+
+<section style="background:#25282A;padding:80px 40px;text-align:center;">
+    <h2 style="color:#fff;font-size:32px;margin-bottom:30px;">See It in Action</h2>
+    <div style="max-width:900px;margin:0 auto;border-radius:8px;overflow:hidden;background:#000;">
+        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/817665812?h=0&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay;fullscreen;picture-in-picture" allowfullscreen></iframe></div>
+    </div>
+</section>
+
+<section style="background:#003366;padding:80px 40px;text-align:center;">
+    <div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to See It for Yourself?</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Your local Integra dealer can demonstrate the system in person.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;">Find a Dealer</a><a href="#" style="display:inline-block;background:transparent;color:#fff;padding:14px 28px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Contact Us</a></div></div>
+</section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 06 — ASTM F1346 EXPLAINED -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-06">
+    <div><span class="page-num">PAGE 06</span><h2>ASTM F1346 Explained</h2></div>
+    <span class="page-url">/resources/astm-f1346-explained/</span>
+</div>
+
+<section style="background:#003366;padding:70px 20px;"><div style="max-width:800px;margin:0 auto;text-align:center;"><h1 style="font-size:40px;font-weight:700;color:#fff;margin-bottom:15px;">ASTM F1346: The Pool Safety Cover Standard, Explained in Plain Language</h1><p style="font-size:18px;color:rgba(255,255,255,0.85);">What the standard actually requires, how covers get certified, and what it means for your family's safety.</p></div></section>
+
+<section style="background:#fff;padding:50px 20px 0;"><div style="max-width:900px;margin:0 auto;background:#EBF4FF;border-left:4px solid #003366;border-radius:6px;padding:30px 35px;"><h2 style="font-size:22px;font-weight:700;color:#003366;margin-top:0;">What Is ASTM F1346?</h2><p style="font-size:16px;color:#25282A;line-height:1.7;">ASTM F1346 defines the minimum safety requirements for pool covers: <strong>static load strength</strong> (485+ lbs), <strong>perimeter gap limits</strong>, <strong>surface drainage</strong>, and <strong>permanent labeling</strong>.</p></div></section>
+
+<section class="content-pad" style="background:#fff;"><div class="content-wide"><img src="../build/06-ASTM-F1346-Explained/images/safety-hero-bear.webp" alt="Bear on cover" style="width:100%;border-radius:8px;margin-bottom:40px;"><h2 style="font-size:32px;font-weight:700;color:#003366;margin-bottom:20px;">Understanding the Standard Behind Every Safety Cover</h2><p style="font-size:16px;color:#333;line-height:1.7;">ASTM International develops standards through committees of industry experts. F1346 applies to all types of pool covers — mesh, solid, and automatic.</p></div></section>
+
+<section class="content-pad" style="background:#fff;border-bottom:1px solid #E5E5E5;"><div class="content-wide"><div class="two-col"><div style="flex:5;min-width:280px;"><img src="../build/06-ASTM-F1346-Explained/images/astm-strength-test.webp" alt="Strength test" style="width:100%;border-radius:6px;"></div><div style="flex:7;min-width:300px;"><h3 style="font-size:24px;font-weight:600;color:#003366;margin-bottom:15px;">Test 1: Static Load — 485 Pounds Minimum</h3><p style="font-size:16px;color:#333;line-height:1.7;">The cover must support a concentrated static load of at least 485 pounds without allowing the weight to contact the water surface.</p><div style="background:#F0F7FF;border-left:3px solid #003366;padding:15px 20px;border-radius:4px;margin-top:20px;"><p style="font-size:15px;color:#333;"><strong>Why it matters:</strong> A cover that can't hold weight isn't a safety barrier — it's a hazard.</p></div></div></div></div></section>
+
+<section class="content-pad" style="background:#F5F5F5;"><div class="content-wide"><div class="two-col"><div style="flex:7;min-width:300px;"><h3 style="font-size:24px;font-weight:600;color:#003366;margin-bottom:15px;">Test 2: Perimeter Gap — No Child-Sized Opening</h3><p style="font-size:16px;color:#333;line-height:1.7;">No gap along the entire perimeter can be large enough for a small child to slip through. Integra's track-guided system creates a continuous seal with no gaps.</p></div><div style="flex:5;min-width:280px;"><img src="../build/06-ASTM-F1346-Explained/images/perimeter-gap-test.webp" alt="Perimeter test" style="width:100%;border-radius:6px;"></div></div></div></section>
+
+<section class="content-pad" style="background:#fff;border-bottom:1px solid #E5E5E5;"><div class="content-wide"><div class="two-col"><div style="flex:5;min-width:280px;"><img src="../build/06-ASTM-F1346-Explained/images/surface-drainage-test.webp" alt="Drainage test" style="width:100%;border-radius:6px;"></div><div style="flex:7;min-width:300px;"><h3 style="font-size:24px;font-weight:600;color:#003366;margin-bottom:15px;">Test 3: Surface Drainage — No Dangerous Ponding</h3><p style="font-size:16px;color:#333;line-height:1.7;">Rainwater must drain off the cover surface and not accumulate in dangerous pools.</p></div></div></div></section>
+
+<section class="content-pad" style="background:#F5F5F5;"><div class="content-wide"><div class="two-col"><div style="flex:7;min-width:300px;"><h3 style="font-size:24px;font-weight:600;color:#003366;margin-bottom:15px;">Test 4: Permanent Labeling — Verifiable Compliance</h3><p style="font-size:16px;color:#333;line-height:1.7;">Every compliant cover must carry a permanent, non-removable label with the manufacturer's name, model, year, and ASTM F1346 statement.</p></div><div style="flex:5;min-width:280px;"><img src="../build/06-ASTM-F1346-Explained/images/astm-label.webp" alt="ASTM label" style="width:100%;border-radius:6px;"></div></div></div></section>
+
+<section class="content-pad" style="background:#fff;"><div class="content-wide" style="display:flex;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:180px;background:#F0F7FF;border-radius:8px;padding:25px;text-align:center;"><p style="font-size:36px;font-weight:700;color:#003366;">485+ lbs</p><p style="font-size:14px;color:#666;">Static load capacity</p></div>
+    <div style="flex:1;min-width:180px;background:#F0F7FF;border-radius:8px;padding:25px;text-align:center;"><p style="font-size:36px;font-weight:700;color:#003366;">0"</p><p style="font-size:14px;color:#666;">Perimeter gap</p></div>
+    <div style="flex:1;min-width:180px;background:#F0F7FF;border-radius:8px;padding:25px;text-align:center;"><p style="font-size:36px;font-weight:700;color:#003366;">20 years</p><p style="font-size:14px;color:#666;">Mechanism warranty</p></div>
+</div></section>
+
+<section style="background:#003366;padding:60px 20px;"><div style="max-width:700px;margin:0 auto;text-align:center;"><h2 style="font-size:30px;font-weight:700;color:#fff;margin-bottom:15px;">Have Questions About Pool Cover Safety?</h2><p style="font-size:17px;color:rgba(255,255,255,0.85);margin-bottom:25px;">Talk to an Integra specialist about ASTM F1346 compliance.</p><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 40px;border-radius:4px;font-weight:600;text-decoration:none;">Contact Us</a></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 07 — PRODUCTS HUB -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-07">
+    <div><span class="page-num">PAGE 07</span><h2>Products Hub</h2></div>
+    <span class="page-url">/products/</span>
+</div>
+
+<section style="background:#003366;padding:70px 20px;"><div style="max-width:800px;margin:0 auto;text-align:center;"><h1 style="font-size:42px;font-weight:700;color:#fff;">Integra Automatic Pool Cover Products</h1><p style="font-size:18px;color:rgba(255,255,255,0.85);margin-top:15px;">All stainless steel. All ASTM F1346 certified. All backed by industry-leading warranties.</p></div></section>
+
+<section style="background:#fff;padding:50px 20px 30px;"><div style="max-width:800px;margin:0 auto;text-align:center;"><p style="font-size:17px;color:#333;line-height:1.7;">Integra designs and manufactures three core product lines — two mechanism systems and one premium fabric system.</p></div></section>
+
+<section style="background:#fff;padding:20px 20px 60px;"><div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:25px;">
+    <div style="background:#fff;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><img src="../build/07-Products-Hub/images/product-standard-mechanism.webp" alt="Standard" style="width:100%;"><div style="padding:25px;"><h3 style="font-size:20px;font-weight:600;color:#003366;margin-bottom:10px;">Standard Mechanism</h3><p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:20px;">All stainless steel P2 system. Pools up to 24x60 feet. 20-year warranty.</p><a href="#" style="display:block;background:#003366;color:#fff;font-size:14px;font-weight:600;padding:10px 24px;border-radius:4px;text-align:center;text-decoration:none;">Learn More</a></div></div>
+    <div style="background:#fff;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><img src="../build/07-Products-Hub/images/product-low-offset.webp" alt="Low Offset" style="width:100%;"><div style="padding:25px;"><h3 style="font-size:20px;font-weight:600;color:#003366;margin-bottom:10px;">Low Offset Mechanism</h3><p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:20px;">Only 16 inches of offset. Pools up to 20x50 feet. Same engineering.</p><a href="#" style="display:block;background:#003366;color:#fff;font-size:14px;font-weight:600;padding:10px 24px;border-radius:4px;text-align:center;text-decoration:none;">Learn More</a></div></div>
+    <div style="background:#fff;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><img src="../build/07-Products-Hub/images/product-aegis-fabric.webp" alt="Aegis" style="width:100%;"><div style="padding:25px;"><h3 style="font-size:20px;font-weight:600;color:#003366;margin-bottom:10px;">Aegis Fabric</h3><p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:20px;">Heat-sealed webbing, reinforced leading edge, 7 color options. 7-year warranty.</p><a href="#" style="display:block;background:#003366;color:#fff;font-size:14px;font-weight:600;padding:10px 24px;border-radius:4px;text-align:center;text-decoration:none;">Learn More</a></div></div>
+    <div style="background:#fff;border:1px solid #E5E5E5;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><img src="../build/07-Products-Hub/images/product-colors.webp" alt="Colors" style="width:100%;"><div style="padding:25px;"><h3 style="font-size:20px;font-weight:600;color:#003366;margin-bottom:10px;">Color Options</h3><p style="font-size:14px;color:#555;line-height:1.6;margin-bottom:20px;">Seven Aegis fabric colors to complement any pool design.</p><a href="#" style="display:block;background:#003366;color:#fff;font-size:14px;font-weight:600;padding:10px 24px;border-radius:4px;text-align:center;text-decoration:none;">View Colors</a></div></div>
+</div></section>
+
+<section style="background:#003366;padding:60px 20px;"><div style="max-width:700px;margin:0 auto;text-align:center;"><h2 style="font-size:30px;font-weight:700;color:#fff;margin-bottom:15px;">Ready to Specify Integra?</h2><p style="font-size:17px;color:rgba(255,255,255,0.85);margin-bottom:25px;">Contact us for product specifications or to connect with an authorized dealer.</p><div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 35px;border-radius:4px;font-weight:600;text-decoration:none;">Contact Us</a><a href="#" style="display:inline-block;background:transparent;color:#fff;padding:12px 35px;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid #fff;">Find a Dealer</a></div></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 08 — STANDARD MECHANISM -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-08">
+    <div><span class="page-num">PAGE 08</span><h2>Standard Mechanism</h2></div>
+    <span class="page-url">/products/standard-mechanism/</span>
+</div>
+
+<section style="background:#003366;padding:70px 20px 40px;"><div style="max-width:800px;margin:0 auto;text-align:center;"><h1 style="font-size:38px;font-weight:700;color:#fff;">Integra Standard Mechanism — All Stainless Steel, 20-Year Warranty</h1><p style="font-size:18px;color:rgba(255,255,255,0.85);margin-top:15px;">The P2 full-system mechanism for pools up to 24 x 60 feet.</p></div></section>
+
+<section style="background:#fff;padding:0;"><img src="../build/08-Standard-Mechanism/images/mechanism-hero.webp" alt="Mechanism hero" style="width:100%;max-width:1200px;margin:0 auto;display:block;"></section>
+
+<section class="content-pad" style="background:#fff;"><div style="max-width:900px;margin:0 auto;"><h2 style="font-size:30px;font-weight:700;color:#003366;margin-bottom:25px;">Standard Mechanism Specifications</h2>
+<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:#003366;"><th style="padding:14px 20px;text-align:left;color:#fff;font-size:15px;font-weight:600;">Specification</th><th style="padding:14px 20px;text-align:left;color:#fff;font-size:15px;font-weight:600;">Detail</th></tr></thead><tbody>
+<tr style="background:#F9F9F9;"><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Model</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">P2 Full System</td></tr>
+<tr><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Construction</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">100% stainless steel</td></tr>
+<tr style="background:#F9F9F9;"><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Maximum Pool Size</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">24 ft x 60 ft</td></tr>
+<tr><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Motor</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">BISON E2000</td></tr>
+<tr style="background:#F9F9F9;"><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Pulley Size</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">2-inch diameter</td></tr>
+<tr><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">Safety Certification</td><td style="padding:12px 20px;border-bottom:1px solid #E5E5E5;">ASTM F1346</td></tr>
+<tr style="background:#F9F9F9;"><td style="padding:12px 20px;">Mechanism Warranty</td><td style="padding:12px 20px;">20 years</td></tr>
+</tbody></table></div></section>
+
+<section style="background:#fff;padding:60px 20px;"><div style="max-width:1200px;margin:0 auto;text-align:center;"><h2 style="font-size:30px;font-weight:700;color:#003366;margin-bottom:10px;">P2 Full System Layout</h2><p style="font-size:16px;color:#666;margin-bottom:30px;">Every component is stainless steel.</p><img src="../build/08-Standard-Mechanism/images/p2-full-system-diagram.webp" alt="P2 diagram" style="width:100%;border-radius:6px;"></div></section>
+
+<section style="background:#003366;padding:60px 20px;"><div style="max-width:700px;margin:0 auto;text-align:center;"><h2 style="font-size:28px;font-weight:700;color:#fff;margin-bottom:15px;">Specify the Standard Mechanism for Your Next Build</h2><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 40px;border-radius:4px;font-weight:600;text-decoration:none;">Contact Us</a></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 09 — LOW OFFSET MECHANISM -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-09">
+    <div><span class="page-num">PAGE 09</span><h2>Low Offset Mechanism</h2></div>
+    <span class="page-url">/products/low-offset-mechanism/</span>
+</div>
+
+<section style="background:#003366;padding:70px 20px 40px;"><div style="max-width:800px;margin:0 auto;text-align:center;"><h1 style="font-size:38px;font-weight:700;color:#fff;">Low Offset Mechanism — 16-Inch Offset for Pools Up to 20x50</h1><p style="font-size:18px;color:rgba(255,255,255,0.85);margin-top:15px;">When deck space is limited, the Low Offset system delivers the same stainless steel engineering in a compact footprint.</p></div></section>
+
+<section style="background:#fff;padding:0;"><img src="../build/09-Low-Offset-Mechanism/images/lo-hero.webp" alt="LO Hero" style="width:100%;max-width:1200px;margin:0 auto;display:block;"></section>
+
+<section class="content-pad" style="background:#fff;"><div class="content-narrow"><h2 style="font-size:30px;font-weight:700;color:#003366;margin-bottom:20px;">Designed for Pools Where Space Is the Constraint</h2><p style="font-size:16px;color:#333;line-height:1.7;">The Low Offset Mechanism requires only 16 inches of offset from the pool edge. It handles pools up to 20 feet wide and 50 feet long with the same stainless steel construction, ASTM F1346 certification, and 20-year warranty.</p></div></section>
+
+<section class="content-pad" style="background:#F5F5F5;">
+    <div class="two-col content-wide">
+        <div><h2 style="font-size:28px;font-weight:700;color:#003366;margin-bottom:20px;">Same Engineering, Smaller Footprint</h2><p style="font-size:16px;color:#333;line-height:1.7;">The Low Offset uses the same stainless steel components, rope reel design, adjustable torque limiter, and aluminum track system as the Standard. The choice is purely a matter of available space and pool dimensions.</p></div>
+        <div><img src="../build/09-Low-Offset-Mechanism/images/lo-installed-cover.webp" alt="LO installed" style="width:100%;border-radius:6px;"></div>
+    </div>
+</section>
+
+<section style="background:#003366;padding:60px 20px;"><div style="max-width:700px;margin:0 auto;text-align:center;"><h2 style="font-size:28px;font-weight:700;color:#fff;margin-bottom:15px;">Need the Low Offset for Your Project?</h2><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 40px;border-radius:4px;font-weight:600;text-decoration:none;">Contact Us</a></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 10 — AEGIS FABRICS & COLORS -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-10">
+    <div><span class="page-num">PAGE 10</span><h2>Aegis Fabrics & Colors</h2></div>
+    <span class="page-url">/products/aegis-fabrics/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 20px;"><div style="max-width:800px;text-align:center;"><h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">Aegis&#8482; Pool Cover Fabrics — Engineered for the Pool Environment</h1><p style="color:rgba(255,255,255,0.9);font-size:20px;">18-oz heat-sealed vinyl. 7 colors. 7-year warranty.</p></div></section>
+
+<section style="background:#fff;padding:0;"><img src="../build/10-Aegis-Fabrics-Colors/images/fabric-hero-royal-blue.webp" alt="Royal blue fabric" style="width:100%;max-width:1200px;margin:0 auto;display:block;"></section>
+
+<section style="background:#003366;padding:60px 20px;"><div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center;">
+    <div><span style="font-size:48px;font-weight:800;color:#FF6B00;">7</span><br><span style="font-size:16px;color:rgba(255,255,255,0.9);text-transform:uppercase;letter-spacing:2px;">Colors</span></div>
+    <div><span style="font-size:48px;font-weight:800;color:#FF6B00;">7-Year</span><br><span style="font-size:16px;color:rgba(255,255,255,0.9);text-transform:uppercase;letter-spacing:2px;">Warranty</span></div>
+    <div><span style="font-size:48px;font-weight:800;color:#FF6B00;">Heat-Sealed</span><br><span style="font-size:16px;color:rgba(255,255,255,0.9);text-transform:uppercase;letter-spacing:2px;">Webbing</span></div>
+    <div><span style="font-size:48px;font-weight:800;color:#FF6B00;">ASTM</span><br><span style="font-size:16px;color:rgba(255,255,255,0.9);text-transform:uppercase;letter-spacing:2px;">F1346 Compliant</span></div>
+</div></section>
+
+<section class="content-pad" style="background:#fff;"><div class="content-wide" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+    <div><h2 style="color:#003366;font-size:36px;margin-bottom:16px;">What Makes Aegis Different</h2><h3 style="color:#003366;font-size:24px;margin-bottom:16px;">Heat-Sealed Webbing — Not Stitched</h3><p style="color:#2D2D2D;font-size:17px;line-height:1.8;">Integra uses a Weldmaster heat-seal process that fuses webbing directly to the fabric at a molecular level. No needle holes. No thread to rot. No weak points.</p></div>
+    <div><img src="../build/10-Aegis-Fabrics-Colors/images/heat-seal-closeup.webp" alt="Heat seal" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1);"></div>
+</div></section>
+
+<section style="background:#F5F5F5;padding:80px 20px;"><div style="max-width:800px;margin:0 auto 40px;text-align:center;"><h2 style="color:#003366;font-size:36px;">Available in 7 Colors</h2></div>
+<div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-charcoal.webp" alt="Charcoal" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Charcoal</h4></div>
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-light-gray.webp" alt="Light Gray" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Light Gray</h4></div>
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-tan.webp" alt="Tan" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Tan</h4></div>
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-mocha.webp" alt="Mocha" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Mocha</h4></div>
+</div>
+<div style="max-width:825px;margin:24px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-royal-blue.webp" alt="Royal Blue" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Royal Blue</h4></div>
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-navy-blue.webp" alt="Navy Blue" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Navy Blue</h4></div>
+    <div style="text-align:center;"><img src="../build/10-Aegis-Fabrics-Colors/images/swatch-black.webp" alt="Black" style="width:100%;border-radius:8px;"><h4 style="color:#003366;font-size:18px;margin-top:12px;">Black</h4></div>
+</div></section>
+
+<section style="background:#003366;padding:80px 20px;text-align:center;"><div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Questions About Aegis Fabrics?</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Your Integra dealer can show you fabric samples and help choose the right color.</p><a href="#" style="display:inline-block;background:#fff;color:#003366;padding:14px 40px;border-radius:4px;font-weight:600;text-decoration:none;">Contact Us</a></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 11 — FOR DEALERS HUB -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-11">
+    <div><span class="page-num">PAGE 11</span><h2>For Dealers Hub</h2></div>
+    <span class="page-url">/for-dealers/</span>
+</div>
+
+<section style="position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+    <img src="../build/11-For-Dealers-Hub/images/dealer-hero.webp" alt="Dealer hero" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,51,102,0.6);z-index:2;"></div>
+    <div style="position:relative;z-index:3;text-align:center;padding:120px 20px;max-width:800px;">
+        <h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">The Integra Dealer Program — Automatic Pool Covers That Sell Themselves</h1>
+        <p style="color:rgba(255,255,255,0.95);font-size:20px;margin-bottom:24px;">ASTM-certified safety. All-stainless steel construction. A 20-year mechanism warranty.</p>
+        <a href="#" style="display:inline-block;background:#FF6B00;color:#fff;font-weight:700;padding:16px 40px;border-radius:8px;text-decoration:none;">Apply to Become a Dealer</a>
+    </div>
+</section>
+
+<section class="content-pad" style="background:#fff;text-align:center;"><div class="content-narrow"><h2 style="color:#003366;margin-bottom:20px;font-size:36px;">Why Pool Builders Choose Integra</h2><p style="color:#2D2D2D;font-size:18px;line-height:1.8;">Automatic pool covers are the highest-margin add-on in the pool industry — and Integra makes it easy to offer one with every build.</p></div></section>
+
+<section style="background:#F5F5F5;padding:60px 20px;"><div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center;">
+    <div><span style="font-size:44px;font-weight:800;color:#FF6B00;">$12K+</span><br><span style="font-size:15px;color:#2D2D2D;text-transform:uppercase;">Avg Revenue Per Install</span></div>
+    <div><span style="font-size:44px;font-weight:800;color:#FF6B00;">20-Year</span><br><span style="font-size:15px;color:#2D2D2D;text-transform:uppercase;">Mechanism Warranty</span></div>
+    <div><span style="font-size:44px;font-weight:800;color:#FF6B00;">Training</span><br><span style="font-size:15px;color:#2D2D2D;text-transform:uppercase;">Included</span></div>
+    <div><span style="font-size:44px;font-weight:800;color:#FF6B00;">National</span><br><span style="font-size:15px;color:#2D2D2D;text-transform:uppercase;">Dealer Network</span></div>
+</div></section>
+
+<section class="content-pad" style="background:#fff;"><h2 style="color:#003366;text-align:center;font-size:36px;margin-bottom:40px;">Explore the Dealer Program</h2>
+<div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;">
+    <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;"><img src="../build/11-For-Dealers-Hub/images/dealer-card-why-partner.webp" alt="Why partner" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Why Partner with Integra</h3><p style="color:#666;font-size:15px;line-height:1.6;">All-stainless steel construction, ASTM certification, and a product your customers will love.</p></div></div>
+    <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;"><img src="../build/11-For-Dealers-Hub/images/dealer-card-program.webp" alt="Program" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Dealer Program Details</h3><p style="color:#666;font-size:15px;line-height:1.6;">Territory protection, co-op marketing, pricing structure, and dealer portal access.</p></div></div>
+    <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);background:#fff;"><img src="../build/11-For-Dealers-Hub/images/dealer-card-training.webp" alt="Training" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><h3 style="color:#003366;font-size:20px;margin-bottom:8px;">Installation Training</h3><p style="color:#666;font-size:15px;line-height:1.6;">On-site and virtual training, certification process, and ongoing technical support.</p></div></div>
+</div></section>
+
+<section style="background:#003366;padding:80px 20px;text-align:center;"><div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to Add Integra to Your Product Line?</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Join the growing network of authorized Integra dealers.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#FF6B00;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Apply Now</a><a href="#" style="display:inline-block;background:transparent;border:2px solid #fff;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Contact Us</a></div></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 12 — ABOUT / OUR STORY -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-12">
+    <div><span class="page-num">PAGE 12</span><h2>About / Our Story</h2></div>
+    <span class="page-url">/about/our-story/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 20px;"><div style="max-width:800px;text-align:center;"><h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">Made in America. Built to Last Decades.</h1><p style="color:rgba(255,255,255,0.9);font-size:20px;">Every Integra pool cover is designed, manufactured, and assembled in Knoxville, Tennessee.</p></div></section>
+
+<section style="background:#fff;padding:0;"><img src="../build/12-About-Our-Story/images/factory-hero.webp" alt="Factory hero" style="width:100%;max-width:1400px;margin:0 auto;display:block;"></section>
+
+<section class="content-pad" style="background:#fff;"><div class="content-wide" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+    <div><img src="../build/12-About-Our-Story/images/factory-workers-machine.webp" alt="Factory workers" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1);"></div>
+    <div><h2 style="color:#003366;font-size:32px;margin-bottom:16px;">Built Different From Day One</h2><p style="color:#2D2D2D;font-size:17px;line-height:1.8;">Integra was founded on a simple premise: automatic pool covers should be built to last — not built to a price point.</p></div>
+</div></section>
+
+<section class="content-pad" style="background:#F5F5F5;"><div class="content-wide" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+    <div><h2 style="color:#003366;font-size:32px;margin-bottom:16px;">Quality Over Quantity</h2><p style="color:#2D2D2D;font-size:17px;line-height:1.8;">We don't outsource manufacturing. We don't use aluminum where stainless steel belongs. We don't stitch webbing when heat-sealing is stronger.</p></div>
+    <div><img src="../build/12-About-Our-Story/images/factory-worker-assembly.webp" alt="Worker assembly" style="width:100%;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1);"></div>
+</div></section>
+
+<section class="content-pad" style="background:#F5F5F5;"><div style="max-width:800px;margin:0 auto;text-align:center;"><h2 style="color:#003366;font-size:36px;margin-bottom:16px;">The Knoxville Facility</h2><p style="color:#2D2D2D;font-size:18px;line-height:1.8;margin-bottom:30px;">Everything — fabric cutting, heat-seal welding, mechanism assembly, quality testing, and final packaging. Nothing is outsourced.</p></div><img src="../build/12-About-Our-Story/images/factory-floor-wide.webp" alt="Factory floor" style="width:100%;max-width:1200px;margin:0 auto;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.1);display:block;"></section>
+
+<section style="background:#003366;padding:80px 20px;text-align:center;"><div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">See What Integra Can Do for Your Pool</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Whether you're a homeowner or a dealer — we'd love to hear from you.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#FF6B00;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Find a Dealer</a><a href="#" style="display:inline-block;background:transparent;border:2px solid #fff;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Contact Us</a></div></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 13 — CONTACT -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-13">
+    <div><span class="page-num">PAGE 13</span><h2>Contact</h2></div>
+    <span class="page-url">/contact/</span>
+</div>
+
+<section style="background:#003366;min-height:40vh;display:flex;align-items:center;justify-content:center;padding:80px 20px;"><div style="max-width:700px;text-align:center;"><h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:16px;">Contact Integra Pool Covers</h1><p style="color:rgba(255,255,255,0.9);font-size:20px;">Questions about our products, dealer program, or need technical support? We're here to help.</p></div></section>
+
+<section class="content-pad" style="background:#fff;"><div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:7fr 5fr;gap:40px;align-items:start;">
+    <div>
+        <h2 style="color:#003366;font-size:28px;margin-bottom:24px;">Send Us a Message</h2>
+        <form style="display:flex;flex-direction:column;gap:20px;" onsubmit="return false;">
+            <div><label style="display:block;color:#003366;font-size:14px;font-weight:600;margin-bottom:6px;">Full Name *</label><input type="text" style="width:100%;padding:12px 16px;border:1px solid #D0D0D0;border-radius:6px;font-size:16px;" placeholder="Your full name"></div>
+            <div><label style="display:block;color:#003366;font-size:14px;font-weight:600;margin-bottom:6px;">Email Address *</label><input type="email" style="width:100%;padding:12px 16px;border:1px solid #D0D0D0;border-radius:6px;font-size:16px;" placeholder="you@email.com"></div>
+            <div><label style="display:block;color:#003366;font-size:14px;font-weight:600;margin-bottom:6px;">Phone Number</label><input type="tel" style="width:100%;padding:12px 16px;border:1px solid #D0D0D0;border-radius:6px;font-size:16px;" placeholder="(555) 555-5555"></div>
+            <div><label style="display:block;color:#003366;font-size:14px;font-weight:600;margin-bottom:6px;">I am a... *</label><select style="width:100%;padding:12px 16px;border:1px solid #D0D0D0;border-radius:6px;font-size:16px;background:#fff;"><option>Select one...</option><option>Homeowner</option><option>Pool Builder / Contractor</option><option>Current Integra Dealer</option><option>Architect / Designer</option><option>Other</option></select></div>
+            <div><label style="display:block;color:#003366;font-size:14px;font-weight:600;margin-bottom:6px;">Message *</label><textarea style="width:100%;padding:12px 16px;border:1px solid #D0D0D0;border-radius:6px;font-size:16px;min-height:150px;" placeholder="How can we help?"></textarea></div>
+            <button type="submit" style="width:100%;background:#FF6B00;color:#fff;font-weight:700;padding:14px 36px;border:none;border-radius:8px;font-size:16px;cursor:pointer;">Send Message</button>
+        </form>
+    </div>
+    <div style="background:#F5F5F5;padding:36px;border-radius:12px;">
+        <h3 style="color:#003366;font-size:22px;margin-bottom:24px;">Get in Touch</h3>
+        <div style="margin-bottom:20px;"><p style="color:#003366;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Address</p><p style="color:#2D2D2D;font-size:16px;">Integra Pool Covers<br>Knoxville, Tennessee</p></div>
+        <div style="margin-bottom:20px;"><p style="color:#003366;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Phone</p><p style="color:#2D2D2D;font-size:16px;">(800) 555-1234</p></div>
+        <div style="margin-bottom:20px;"><p style="color:#003366;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Email</p><p style="color:#2D2D2D;font-size:16px;">info@integrapoolcovers.com</p></div>
+        <div><p style="color:#003366;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Business Hours</p><p style="color:#2D2D2D;font-size:16px;">Monday - Friday: 8:00 AM - 5:00 PM ET<br>Saturday - Sunday: Closed</p></div>
+    </div>
+</div></section>
+
+<section style="background:#EBF4FF;padding:50px 20px;"><div style="max-width:900px;margin:0 auto;display:flex;gap:30px;align-items:center;flex-wrap:wrap;"><div style="flex:2;"><h3 style="color:#003366;font-size:24px;margin-bottom:8px;">Are You a Pool Builder or Contractor?</h3><p style="color:#2D2D2D;font-size:16px;">Learn about the Integra dealer program.</p></div><div style="flex:1;text-align:right;"><a href="#" style="display:inline-block;background:#003366;color:#fff;font-weight:700;padding:14px 28px;border-radius:8px;text-decoration:none;">Explore the Dealer Program</a></div></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 14 — RESOURCES HUB -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-14">
+    <div><span class="page-num">PAGE 14</span><h2>Resources Hub</h2></div>
+    <span class="page-url">/resources/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 20px;"><div style="max-width:800px;text-align:center;"><h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">Integra Pool Cover Resources</h1><p style="color:rgba(255,255,255,0.9);font-size:20px;">Buying guides, safety standards, cost breakdowns, and answers to your most common questions.</p></div></section>
+
+<section style="background:#F5F5F5;padding:80px 20px;"><div style="max-width:1100px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-bottom:30px;">
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#fff;"><img src="../build/14-Resources-Hub/images/resource-astm-guide.webp" alt="ASTM guide" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><span style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#FF6B00;font-weight:700;">Safety Guide</span><h3 style="color:#003366;font-size:20px;margin:8px 0 10px;">ASTM F1346 Explained</h3><p style="color:#666;font-size:15px;line-height:1.6;">What the safety standard actually requires and why certification matters.</p></div></div>
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#fff;"><img src="../build/14-Resources-Hub/images/resource-cost-guide.webp" alt="Cost guide" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><span style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#FF6B00;font-weight:700;">Cost Guide</span><h3 style="color:#003366;font-size:20px;margin:8px 0 10px;">Automatic Pool Cover Cost Guide</h3><p style="color:#666;font-size:15px;line-height:1.6;">What an automatic pool cover costs and how to calculate ROI.</p></div></div>
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#fff;"><img src="../build/14-Resources-Hub/images/resource-fence-guide.webp" alt="Fence guide" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><span style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#FF6B00;font-weight:700;">Safety Comparison</span><h3 style="color:#003366;font-size:20px;margin:8px 0 10px;">Pool Cover vs Pool Fence</h3><p style="color:#666;font-size:15px;line-height:1.6;">State-by-state regulations and safety comparisons.</p></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:30px;max-width:733px;margin:0 auto;">
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#fff;"><img src="../build/14-Resources-Hub/images/resource-faq.webp" alt="FAQ" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><span style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#FF6B00;font-weight:700;">FAQ</span><h3 style="color:#003366;font-size:20px;margin:8px 0 10px;">Automatic Pool Cover FAQ</h3><p style="color:#666;font-size:15px;line-height:1.6;">30+ answers covering safety, installation, maintenance, cost, and warranties.</p></div></div>
+        <div style="border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);background:#fff;"><img src="../build/14-Resources-Hub/images/resource-gallery.webp" alt="Gallery" style="width:100%;"><div style="padding:24px;border:1px solid #E8E8E8;border-top:none;"><span style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#FF6B00;font-weight:700;">Gallery</span><h3 style="color:#003366;font-size:20px;margin:8px 0 10px;">Installation Gallery</h3><p style="color:#666;font-size:15px;line-height:1.6;">Real Integra installations from across the country.</p></div></div>
+    </div>
+</div></section>
+
+<section style="background:#003366;padding:80px 20px;text-align:center;"><div class="content-narrow"><h2 style="color:#fff;font-size:36px;margin-bottom:16px;">Ready to Learn More?</h2><p style="color:rgba(255,255,255,0.85);font-size:18px;margin-bottom:30px;">Connect with an authorized Integra dealer.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#FF6B00;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Find a Dealer</a><a href="#" style="display:inline-block;background:transparent;border:2px solid #fff;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Contact Us</a></div></div></section>
+
+
+<!-- ===================================================================================== -->
+<!-- PAGE 15 — FAQ -->
+<!-- ===================================================================================== -->
+<div class="page-divider" id="page-15">
+    <div><span class="page-num">PAGE 15</span><h2>FAQ</h2></div>
+    <span class="page-url">/resources/faq/</span>
+</div>
+
+<section style="background:#003366;min-height:50vh;display:flex;align-items:center;justify-content:center;padding:100px 20px;"><div style="max-width:800px;text-align:center;"><h1 style="color:#fff;font-size:48px;font-weight:700;margin-bottom:20px;">Automatic Pool Cover FAQ — Your Questions Answered</h1><p style="color:rgba(255,255,255,0.9);font-size:20px;">30+ answers to the questions homeowners and pool builders ask most.</p></div></section>
+
+<section style="background:#fff;padding:20px;border-bottom:1px solid #E8E8E8;"><div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Safety & Certification</span>
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Product Specs</span>
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Installation</span>
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Maintenance</span>
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Cost & Warranty</span>
+    <span style="display:inline-block;padding:10px 20px;background:#EBF4FF;color:#003366;border-radius:25px;font-size:14px;font-weight:600;border:1px solid #C8DDF5;">Dealer Questions</span>
+</div></section>
+
+<!-- Safety FAQ -->
+<section style="background:#fff;padding:60px 20px 40px;"><div style="max-width:850px;margin:0 auto;"><h2 style="color:#003366;font-size:30px;margin-bottom:24px;">Safety & Certification</h2><div style="background:#F9F9F9;border-radius:8px;overflow:hidden;">
+    <details class="faq-item"><summary>Are Integra covers ASTM certified?</summary><div class="faq-answer">Yes. Every Integra automatic pool cover is independently tested and certified to meet or exceed ASTM F1346-91.</div></details>
+    <details class="faq-item"><summary>What does ASTM F1346 actually require?</summary><div class="faq-answer">Three critical tests: static load (485 lbs), perimeter gap requirements, and drainage requirements preventing standing water.</div></details>
+    <details class="faq-item"><summary>Can an automatic pool cover replace a pool fence?</summary><div class="faq-answer">In many jurisdictions, yes. An ASTM F1346-certified cover qualifies as an approved safety barrier under most building codes.</div></details>
+    <details class="faq-item"><summary>How much weight can the cover hold?</summary><div class="faq-answer">Integra covers support 485 lbs in a static load test — enough for two adults and one child.</div></details>
+    <details class="faq-item"><summary>Is the cover safe for pets?</summary><div class="faq-answer">Yes. The cover prevents accidental entry for both children and pets.</div></details>
+    <details class="faq-item" style="border-bottom:none;"><summary>What happens if someone walks on the cover?</summary><div class="faq-answer">A properly installed cover will support an adult's weight, but covers are safety devices — not walking surfaces.</div></details>
+</div></div></section>
+
+<!-- Product Specs FAQ -->
+<section style="background:#F5F5F5;padding:60px 20px 40px;"><div style="max-width:850px;margin:0 auto;"><h2 style="color:#003366;font-size:30px;margin-bottom:24px;">Product Specs</h2><div style="background:#fff;border-radius:8px;overflow:hidden;">
+    <details class="faq-item"><summary>What material is the cover fabric?</summary><div class="faq-answer">Aegis fabric — 18-oz woven vinyl with an acrylic topcoat, UV-stabilized and chemical-resistant.</div></details>
+    <details class="faq-item"><summary>What are the mechanisms made of?</summary><div class="faq-answer">100% stainless steel. Every guide rail, pulley, and structural component.</div></details>
+    <details class="faq-item"><summary>What colors are available?</summary><div class="faq-answer">Seven: Charcoal, Light Gray, Tan, Mocha, Royal Blue, Navy Blue, and Black.</div></details>
+    <details class="faq-item" style="border-bottom:none;"><summary>What mechanism types are available?</summary><div class="faq-answer">Standard mechanism (top-track) and Low-Offset mechanism (recessed). Both all-stainless steel with 20-year warranty.</div></details>
+</div></div></section>
+
+<!-- Installation FAQ -->
+<section style="background:#fff;padding:60px 20px 40px;"><div style="max-width:850px;margin:0 auto;"><h2 style="color:#003366;font-size:30px;margin-bottom:24px;">Installation</h2><div style="background:#F9F9F9;border-radius:8px;overflow:hidden;">
+    <details class="faq-item"><summary>Can an automatic cover be installed on an existing pool?</summary><div class="faq-answer">Yes. The Standard mechanism is designed for retrofit installation.</div></details>
+    <details class="faq-item"><summary>How long does installation take?</summary><div class="faq-answer">A typical residential installation takes 1-2 days.</div></details>
+    <details class="faq-item" style="border-bottom:none;"><summary>Who installs the cover?</summary><div class="faq-answer">All Integra covers are installed by authorized, trained dealers.</div></details>
+</div></div></section>
+
+<!-- Cost & Warranty FAQ -->
+<section style="background:#F5F5F5;padding:60px 20px 40px;"><div style="max-width:850px;margin:0 auto;"><h2 style="color:#003366;font-size:30px;margin-bottom:24px;">Cost & Warranty</h2><div style="background:#fff;border-radius:8px;overflow:hidden;">
+    <details class="faq-item"><summary>How much does an automatic pool cover cost?</summary><div class="faq-answer">A typical residential installation ranges from $10,000 to $18,000.</div></details>
+    <details class="faq-item"><summary>How much will I save on heating?</summary><div class="faq-answer">Homeowners typically save 50-70% on pool heating costs.</div></details>
+    <details class="faq-item"><summary>What's the payback period?</summary><div class="faq-answer">Most homeowners see a full return on investment in 5-8 years.</div></details>
+    <details class="faq-item" style="border-bottom:none;"><summary>What does the warranty cover?</summary><div class="faq-answer">20-year warranty on mechanisms, 7-year warranty on Aegis fabric.</div></details>
+</div></div></section>
+
+<section style="background:#F5F5F5;padding:80px 20px;text-align:center;"><div class="content-narrow"><h2 style="color:#003366;font-size:36px;margin-bottom:16px;">Still Have Questions?</h2><p style="color:#2D2D2D;font-size:18px;margin-bottom:30px;">Our team and nationwide dealer network are here to help.</p><div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;"><a href="#" style="display:inline-block;background:#FF6B00;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Contact Us</a><a href="#" style="display:inline-block;background:#003366;color:#fff;font-weight:700;padding:16px 36px;border-radius:8px;text-decoration:none;">Find a Dealer</a></div></div></section>
+
+
+</div><!-- end page-content -->
+
+<!-- Intersection Observer for active nav highlighting -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.sticky-nav a');
+    const dividers = document.querySelectorAll('.page-divider');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-page') === id);
+                });
+                // Scroll nav to show active link
+                const activeLink = document.querySelector('.sticky-nav a.active');
+                if (activeLink) {
+                    activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
+        });
+    }, {
+        rootMargin: '-52px 0px -80% 0px',
+        threshold: 0
+    });
+
+    dividers.forEach(d => observer.observe(d));
+
+    // Smooth scroll for nav clicks
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.getElementById(this.getAttribute('data-page'));
+            if (target) {
+                const yOffset = -52;
+                const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+</body>
+</html>
