@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Integra Hub — Integra Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F0F0F0; }
+        .build-note { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+        .section-label { background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 12px; display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .avada-note { background: #E3F2FD; border-left: 4px solid #1976D2; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #1565C0; }
+        .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); color: white; padding: 6px 10px; font-size: 11px; }
+        details summary { cursor: pointer; color: #1976D2; font-size: 13px; font-weight: 600; }
+        details summary:hover { color: #0D47A1; }
+        .guide-container { max-width: 1200px; margin: 0 auto; }
+        .preview-section { border: 2px dashed #ccc; margin-bottom: 24px; }
+    </style>
+</head>
+<body class="p-6">
+
+<div class="guide-container">
+
+    <!-- PAGE HEADER -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <div class="flex items-center justify-between mb-4">
+            <div>
+                <h1 class="text-2xl font-bold" style="color: #003366;">PAGE 02 — Why Integra Hub</h1>
+                <p class="text-gray-500 text-sm mt-1">Visual Build Guide for Avada Builder</p>
+            </div>
+            <div class="text-right text-sm text-gray-500">
+                <div>Template: Avada Full Width</div>
+                <div>Staging: integrapoo1stg.wpenginepowered.com</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+                <span class="font-semibold text-gray-600">URL:</span> <code class="bg-gray-100 px-2 py-1 rounded">/why-integra/</code>
+            </div>
+            <div>
+                <span class="font-semibold text-gray-600">H1:</span> Why Integra: Engineering That Earns Its Keep
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO SETTINGS -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-3" style="color: #003366;">Rank Math SEO Settings</h2>
+        <table class="w-full text-sm">
+            <tr class="border-b"><td class="py-2 font-semibold text-gray-600 w-40">Focus Keyword</td><td class="py-2">why Integra pool covers</td></tr>
+            <tr class="border-b"><td class="py-2 font-semibold text-gray-600">Title Tag</td><td class="py-2"><code>Why Choose Integra Pool Covers | Safety, Quality & Performance</code></td></tr>
+            <tr class="border-b"><td class="py-2 font-semibold text-gray-600">Meta Description</td><td class="py-2">Integra automatic pool covers are built with all-stainless steel mechanisms, ASTM F1346 certified, and backed by a 20-year warranty. Discover what sets Integra apart.</td></tr>
+            <tr class="border-b"><td class="py-2 font-semibold text-gray-600">Schema Type</td><td class="py-2">WebPage</td></tr>
+            <tr><td class="py-2 font-semibold text-gray-600">Canonical URL</td><td class="py-2"><code>https://integrapoolcovers.com/why-integra/</code></td></tr>
+        </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 1: HERO -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 1: Hero</span>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #003366; min-height: 50vh; display: flex; align-items: center; justify-content: center; padding: 100px 40px;">
+                <div style="max-width: 800px; text-align: center;">
+                    <h1 style="color: #FFFFFF; font-size: 48px; font-weight: 700; margin-bottom: 20px;">Why Integra: Engineering That Earns Its Keep</h1>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 20px;">Every decision we make — from the steel we source to the way we seal our fabrics — is engineered to outlast, outperform, and out-protect every other automatic pool cover on the market.</p>
+                </div>
+            </div>
+        </div>
+        <div class="build-note">No background image — solid <code>#003366</code> navy. The reference image <code>hero-why-integra.webp</code> is included in the folder but NOT used as the hero background per design spec.</div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Add Container — Background: <code>#003366</code> (solid), Min height: 50vh desktop / 40vh mobile, Padding: 100px top/bottom (60px mobile), Content alignment: Center</li>
+                    <li>Column — 10/12 width, centered (1/12 offset each side)</li>
+                    <li>Text Block: <code>&lt;h1&gt;</code> — Font color #FFFFFF, 48px desktop / 32px mobile, weight 700, center, margin-bottom 20px, Animation: Fade In from Bottom 0.3s</li>
+                    <li>Text Block: <code>&lt;p&gt;</code> — Font color rgba(255,255,255,0.9), 20px / 16px mobile, center, max-width 800px centered, Animation: Fade In from Bottom 0.5s</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- REFERENCE IMAGE -->
+    <div class="mb-8">
+        <div class="build-note">Reference image (not used in hero, available for optional use):</div>
+        <div class="relative inline-block rounded-lg overflow-hidden shadow" style="max-width: 600px;">
+            <img src="images/hero-why-integra.webp" alt="Why choose Integra automatic pool covers — stainless steel mechanisms with ASTM F1346 certification" class="block w-full">
+            <div class="image-info">hero-why-integra.webp | 1200x800 | 193KB | Reference only</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 2: INTRO COPY -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 2: Intro Copy</span>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #FFFFFF; padding: 80px 40px; text-align: center;">
+                <div style="max-width: 750px; margin: 0 auto;">
+                    <h2 style="color: #003366; font-size: 36px; margin-bottom: 20px;">Four Pillars. One Standard: Yours.</h2>
+                    <p style="color: #2D2D2D; font-size: 18px; line-height: 1.7;">Integra automatic pool covers are built around four engineering pillars — stainless steel construction, ASTM F1346 certification, Aegis premium fabrics, and effortless daily operation. Each one exists for a reason: to give pool owners a cover that performs from the day it's installed through every season that follows.</p>
+                    <div style="width: 60px; height: 1px; background: #E8E8E8; margin: 30px auto 0;"></div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #FFFFFF, Padding: 80px top/bottom</li>
+                    <li>Column — 8/12 width, centered</li>
+                    <li>Text Block: <code>&lt;h2&gt;</code> — Color #003366, 36px / 28px mobile, center, margin-bottom 20px</li>
+                    <li>Text Block: <code>&lt;p&gt;</code> — Color #2D2D2D, 18px, center, max-width 750px</li>
+                    <li>Separator — Single solid, color #E8E8E8, width 60px, center, margin-top 30px</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3A: ALL-STAINLESS STEEL MECHANISMS -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 3A: All-Stainless Steel Mechanisms</span>
+        <div class="build-note">Layout: Image LEFT, Text RIGHT | Background: #F5F5F5</div>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #F5F5F5; padding: 80px 40px;">
+                <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="relative inline-block rounded-lg overflow-hidden shadow w-full">
+                            <img src="images/stainless-steel-mechanism.webp" alt="Integra all-stainless steel pool cover mechanism close-up — 20-year warranty" class="block w-full rounded-lg">
+                            <div class="image-info">stainless-steel-mechanism.webp | 800x600 | 17KB | Pillar: Stainless Steel</div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: #003366; font-size: 28px; margin-bottom: 16px;">All-Stainless Steel Mechanisms</h3>
+                        <p style="color: #2D2D2D; font-size: 16px; line-height: 1.7; margin-bottom: 20px;">While competitors cut costs with aluminum or mixed-metal components, every Integra mechanism is built entirely from stainless steel. Stainless resists the corrosive chlorinated environment around pools better than any alternative — and it's why we back every mechanism with a 20-year limited warranty, the longest in the industry.</p>
+                        <a href="/products/standard-mechanism/" style="color: #003366; font-weight: 600; text-decoration: none;">Learn More About Our Mechanism &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #F5F5F5, Padding: 80px top/bottom</li>
+                    <li>2-column row — 50/50 split</li>
+                    <li>Left: Image element — <code>stainless-steel-mechanism.webp</code>, border-radius 8px, Animation: Fade In from Left 0.3s</li>
+                    <li>Right: Text Block <code>&lt;h3&gt;</code> — Color #003366, 28px, margin-bottom 16px</li>
+                    <li>Right: Text Block <code>&lt;p&gt;</code> — Color #2D2D2D, 16px, line-height 1.7, margin-bottom 20px</li>
+                    <li>Right: Button — Text link style, "Learn More About Our Mechanism →", link: /products/standard-mechanism/, color #003366, weight 600</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3B: ASTM F1346 CERTIFICATION -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 3B: ASTM F1346 Certification</span>
+        <div class="build-note">Layout: Text LEFT, Image RIGHT | Background: #FFFFFF</div>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #FFFFFF; padding: 80px 40px;">
+                <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: #003366; font-size: 28px; margin-bottom: 16px;">Built to ASTM F1346 — The Safety Standard That Matters</h3>
+                        <p style="color: #2D2D2D; font-size: 16px; line-height: 1.7; margin-bottom: 20px;">ASTM F1346 isn't a marketing badge — it's a rigorous, independently verified testing protocol. It requires the cover to support 485+ pounds of static load, eliminate gaps large enough for a child to access the water, and drain surface water safely. Every Integra cover ships with its ASTM certification label because it passes every test, every time.</p>
+                        <a href="/why-integra/safety/" style="color: #003366; font-weight: 600; text-decoration: none;">ASTM F1346 Explained &rarr;</a>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="relative inline-block rounded-lg overflow-hidden shadow w-full">
+                            <img src="images/astm-certification.webp" alt="ASTM F1346 certified automatic pool cover — independently tested safety standard" class="block w-full rounded-lg">
+                            <div class="image-info">astm-certification.webp | 800x600 | 63KB | Pillar: ASTM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #FFFFFF, Padding: 80px top/bottom</li>
+                    <li>2-column row — 50/50 split</li>
+                    <li>Left: Text Block <code>&lt;h3&gt;</code> — Color #003366, 28px, margin-bottom 16px</li>
+                    <li>Left: Text Block <code>&lt;p&gt;</code> — Color #2D2D2D, 16px, line-height 1.7, margin-bottom 20px</li>
+                    <li>Left: Button — Text link, "ASTM F1346 Explained →", link: /why-integra/safety/, color #003366, weight 600</li>
+                    <li>Right: Image element — <code>astm-certification.webp</code>, border-radius 8px, Animation: Fade In from Right 0.3s</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3C: AEGIS PREMIUM FABRICS -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 3C: Aegis Premium Fabrics</span>
+        <div class="build-note">Layout: Image LEFT, Text RIGHT | Background: #F5F5F5</div>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #F5F5F5; padding: 80px 40px;">
+                <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px;">
+                        <div class="relative inline-block rounded-lg overflow-hidden shadow w-full">
+                            <img src="images/aegis-fabric-premium.webp" alt="Integra Aegis premium pool cover fabrics — heat-sealed webbing with 7-year warranty" class="block w-full rounded-lg">
+                            <div class="image-info">aegis-fabric-premium.webp | 800x600 | 111KB | Pillar: Aegis Fabric</div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px;">
+                        <h3 style="color: #003366; font-size: 28px; margin-bottom: 16px;">Aegis Premium Fabrics</h3>
+                        <p style="color: #2D2D2D; font-size: 16px; line-height: 1.7; margin-bottom: 20px;">Aegis is our proprietary line of 18-oz vinyl pool cover fabrics, acrylic-coated and UV-stabilized for maximum lifespan. Unlike stitched webbing — which creates needle holes that weaken fabric over time — Aegis fabrics use heat-sealed webbing for a stronger, watertight bond. Seven colors. Seven-year fabric warranty.</p>
+                        <a href="/products/aegis-fabrics/" style="color: #003366; font-weight: 600; text-decoration: none;">Explore Aegis Fabrics &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #F5F5F5, Padding: 80px top/bottom</li>
+                    <li>2-column row — 50/50 split</li>
+                    <li>Left: Image element — <code>aegis-fabric-premium.webp</code>, border-radius 8px, Animation: Fade In from Left 0.3s</li>
+                    <li>Right: Text Block <code>&lt;h3&gt;</code> — Color #003366, 28px, margin-bottom 16px</li>
+                    <li>Right: Text Block <code>&lt;p&gt;</code> — Color #2D2D2D, 16px, line-height 1.7, margin-bottom 20px</li>
+                    <li>Right: Button — Text link, "Explore Aegis Fabrics →", link: /products/aegis-fabrics/, color #003366, weight 600</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 3D: EFFORTLESS DAILY OPERATION -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 3D: Effortless Daily Operation</span>
+        <div class="build-note">Layout: Centered text, no image — icon-based | Background: #FFFFFF</div>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #FFFFFF; padding: 80px 40px; text-align: center;">
+                <div style="max-width: 750px; margin: 0 auto;">
+                    <div style="font-size: 48px; color: #003366; margin-bottom: 20px;">&#x1F50B;</div>
+                    <h3 style="color: #003366; font-size: 28px; margin-bottom: 16px;">One Switch. Complete Control.</h3>
+                    <p style="color: #2D2D2D; font-size: 16px; line-height: 1.7;">Integra covers operate with a single keypad or rocker switch — PIN-secured, weatherproof, and designed for daily use. The motor drives a stainless steel mechanism that extends or retracts the cover smoothly across the pool surface. No complicated setup. No learning curve. Open the pool for a swim, close it when you're done.</p>
+                    <div style="margin-top: 20px;">
+                        <a href="/why-integra/how-it-works/" style="color: #003366; font-weight: 600; text-decoration: none;">See How It Works &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #FFFFFF, Padding: 80px top/bottom</li>
+                    <li>Column — 8/12 width, centered</li>
+                    <li>Icon element — <code>fa-toggle-on</code> (Font Awesome), color #003366, size 48px, center, margin-bottom 20px</li>
+                    <li>Text Block <code>&lt;h3&gt;</code> — Color #003366, 28px, center, margin-bottom 16px</li>
+                    <li>Text Block <code>&lt;p&gt;</code> — Color #2D2D2D, 16px, line-height 1.7, center, max-width 750px</li>
+                    <li>Button — Text link, "See How It Works →", link: /why-integra/how-it-works/, color #003366, weight 600, center</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 4: NAVIGATION CARDS GRID -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 4: Navigation Cards Grid</span>
+        <div class="build-note">Three image-topped cards linking to sub-pages. Mobile: stack to 1 column.</div>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #F5F5F5; padding: 80px 40px;">
+                <h2 style="color: #003366; text-align: center; font-size: 32px; margin-bottom: 40px;">Explore What Makes Integra Different</h2>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <!-- Card 1: Safety -->
+                    <div style="flex: 1; min-width: 280px; background: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div class="relative">
+                            <img src="images/card-safety.webp" alt="Pool safety certification — ASTM F1346 weight test" class="block w-full">
+                            <div class="image-info">card-safety.webp | 600x400 | 61KB | Nav Card: Safety</div>
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 style="color: #003366; font-size: 22px; margin-bottom: 12px;">Safety & ASTM Certification</h3>
+                            <p style="color: #2D2D2D; font-size: 15px; margin-bottom: 16px;">How Integra covers meet the strictest safety standard in the industry — ASTM F1346 — and what that means for your family.</p>
+                            <a href="/why-integra/safety/" style="color: #003366; font-weight: 600; text-decoration: none;">Learn About Safety &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Card 2: Energy -->
+                    <div style="flex: 1; min-width: 280px; background: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div class="relative">
+                            <img src="images/card-energy.webp" alt="Energy efficient automatic pool cover — reduce heating costs 50-70%" class="block w-full">
+                            <div class="image-info">card-energy.webp | 600x400 | 34KB | Nav Card: Energy</div>
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 style="color: #003366; font-size: 22px; margin-bottom: 12px;">Energy Efficiency</h3>
+                            <p style="color: #2D2D2D; font-size: 15px; margin-bottom: 16px;">The real numbers on evaporation, heating costs, and chemical savings — and how an Integra cover pays for itself.</p>
+                            <a href="/why-integra/energy-efficiency/" style="color: #003366; font-weight: 600; text-decoration: none;">See the Savings &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Card 3: How It Works -->
+                    <div style="flex: 1; min-width: 280px; background: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div class="relative">
+                            <img src="images/card-how-it-works.webp" alt="Automatic pool cover control switch — keypad operation" class="block w-full">
+                            <div class="image-info">card-how-it-works.webp | 600x400 | 21KB | Nav Card: How It Works</div>
+                        </div>
+                        <div style="padding: 25px;">
+                            <h3 style="color: #003366; font-size: 22px; margin-bottom: 12px;">How It Works</h3>
+                            <p style="color: #2D2D2D; font-size: 15px; margin-bottom: 16px;">From motor drive to rope pulleys to Aegis fabric — a complete walkthrough of the Integra automatic pool cover system.</p>
+                            <a href="/why-integra/how-it-works/" style="color: #003366; font-weight: 600; text-decoration: none;">See the Mechanism &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #F5F5F5, Padding: 80px top/bottom</li>
+                    <li>Headline row (1 col, centered): <code>&lt;h2&gt;</code> "Explore What Makes Integra Different" — color #003366, margin-bottom 40px</li>
+                    <li>3-column row — equal widths, 20px gap</li>
+                    <li>Each card column: Container styling — Background #FFFFFF, border-radius 8px, overflow hidden, box-shadow 0 2px 8px rgba(0,0,0,0.08), hover shadow 0 4px 16px rgba(0,0,0,0.12)</li>
+                    <li>Image — full width of card, no padding, no border-radius on image (card handles rounding)</li>
+                    <li>Text Block (padding 25px): <code>&lt;h3&gt;</code> color #003366, 22px. Copy color #2D2D2D, 15px</li>
+                    <li>Button — Text link, color #003366, weight 600</li>
+                    <li>Mobile: Stack to 1 column with 20px gap between cards</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- SECTION 5: CLOSING CTA -->
+    <!-- ============================================================ -->
+    <div class="mb-8">
+        <span class="section-label">Section 5: Closing CTA</span>
+        <div class="preview-section rounded-lg overflow-hidden">
+            <div style="background: #003366; padding: 80px 40px; text-align: center;">
+                <div style="max-width: 750px; margin: 0 auto;">
+                    <h2 style="color: #FFFFFF; font-size: 36px; margin-bottom: 16px;">Ready to See Integra in Action?</h2>
+                    <p style="color: rgba(255,255,255,0.85); font-size: 18px; margin-bottom: 30px;">Connect with an authorized Integra dealer in your area. They'll measure your pool, walk you through the options, and give you a quote — no obligation.</p>
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="/for-dealers/find-a-dealer/" style="display: inline-block; background: #FFFFFF; color: #003366; padding: 14px 28px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 16px;">Find a Dealer</a>
+                        <a href="/contact/" style="display: inline-block; background: transparent; color: #FFFFFF; padding: 14px 28px; border-radius: 4px; font-weight: 600; text-decoration: none; font-size: 16px; border: 2px solid #FFFFFF;">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <details class="mt-2">
+            <summary>Avada Builder Instructions</summary>
+            <div class="avada-note">
+                <ol class="list-decimal ml-4 space-y-1">
+                    <li>Container — Background: #003366, Padding: 80px top/bottom</li>
+                    <li>Column — 8/12 width, centered</li>
+                    <li>Text Block <code>&lt;h2&gt;</code> — Color #FFFFFF, 36px / 28px mobile, center</li>
+                    <li>Text Block <code>&lt;p&gt;</code> — Color rgba(255,255,255,0.85), 18px, center, margin-bottom 30px</li>
+                    <li>Button 1: "Find a Dealer" — Link: /for-dealers/find-a-dealer/, Background: #FFFFFF, text color: #003366, Large, border-radius 4px, padding 14px 28px, margin-right 16px</li>
+                    <li>Button 2: "Contact Us" — Link: /contact/, Background: transparent, border: 2px solid #FFFFFF, text color: #FFFFFF, Large, border-radius 4px</li>
+                </ol>
+            </div>
+        </details>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- IMAGE UPLOAD CHECKLIST -->
+    <!-- ============================================================ -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-4" style="color: #003366;">Image Upload Checklist</h2>
+        <table class="w-full text-sm border-collapse">
+            <thead>
+                <tr style="border-bottom: 2px solid #003366;">
+                    <th class="text-left py-2 px-3" style="color: #003366;">File to Upload</th>
+                    <th class="text-left py-2 px-3" style="color: #003366;">Dimensions</th>
+                    <th class="text-left py-2 px-3" style="color: #003366;">Size</th>
+                    <th class="text-left py-2 px-3" style="color: #003366;">Section</th>
+                    <th class="text-left py-2 px-3" style="color: #003366;">Alt Text to Enter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b"><td class="py-2 px-3"><code>hero-why-integra.webp</code></td><td class="py-2 px-3">1200x800</td><td class="py-2 px-3">193KB</td><td class="py-2 px-3">Hero reference</td><td class="py-2 px-3">Why choose Integra automatic pool covers — stainless steel mechanisms with ASTM F1346 certification</td></tr>
+                <tr class="border-b"><td class="py-2 px-3"><code>stainless-steel-mechanism.webp</code></td><td class="py-2 px-3">800x600</td><td class="py-2 px-3">17KB</td><td class="py-2 px-3">Pillar: Stainless Steel</td><td class="py-2 px-3">Integra all-stainless steel pool cover mechanism close-up — 20-year warranty</td></tr>
+                <tr class="border-b"><td class="py-2 px-3"><code>astm-certification.webp</code></td><td class="py-2 px-3">800x600</td><td class="py-2 px-3">63KB</td><td class="py-2 px-3">Pillar: ASTM</td><td class="py-2 px-3">ASTM F1346 certified automatic pool cover — independently tested safety standard</td></tr>
+                <tr class="border-b"><td class="py-2 px-3"><code>aegis-fabric-premium.webp</code></td><td class="py-2 px-3">800x600</td><td class="py-2 px-3">111KB</td><td class="py-2 px-3">Pillar: Aegis Fabric</td><td class="py-2 px-3">Integra Aegis premium pool cover fabrics — heat-sealed webbing with 7-year warranty</td></tr>
+                <tr class="border-b"><td class="py-2 px-3"><code>card-safety.webp</code></td><td class="py-2 px-3">600x400</td><td class="py-2 px-3">61KB</td><td class="py-2 px-3">Nav Card: Safety</td><td class="py-2 px-3">Pool safety certification — ASTM F1346 weight test</td></tr>
+                <tr class="border-b"><td class="py-2 px-3"><code>card-energy.webp</code></td><td class="py-2 px-3">600x400</td><td class="py-2 px-3">34KB</td><td class="py-2 px-3">Nav Card: Energy</td><td class="py-2 px-3">Energy efficient automatic pool cover — reduce heating costs 50-70%</td></tr>
+                <tr><td class="py-2 px-3"><code>card-how-it-works.webp</code></td><td class="py-2 px-3">600x400</td><td class="py-2 px-3">21KB</td><td class="py-2 px-3">Nav Card: How It Works</td><td class="py-2 px-3">Automatic pool cover control switch — keypad operation</td></tr>
+            </tbody>
+        </table>
+        <p class="text-xs text-gray-500 mt-3">Total page image payload: ~500KB. All images WebP format, web-optimized — upload as-is.</p>
+    </div>
+
+    <!-- DEV NOTES -->
+    <div class="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-3" style="color: #003366;">Notes for Dev</h2>
+        <ul class="text-sm text-gray-700 space-y-2 list-disc ml-5">
+            <li>Hero section uses solid #003366 background — no image upload needed for the hero background</li>
+            <li>The <code>hero-why-integra.webp</code> image is included as a reference/optional use but is NOT used as the hero background per design spec</li>
+            <li>Navigation cards use overflow hidden on the card container so the image fills to the edges while the card itself has rounded corners</li>
+            <li>This is a hub page — its primary job is to route visitors to the three sub-pages (Safety, Energy, How It Works) while establishing the four-pillar value proposition</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>

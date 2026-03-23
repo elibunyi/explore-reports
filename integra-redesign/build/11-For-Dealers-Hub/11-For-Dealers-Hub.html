@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE 11 — For Dealers Hub — Visual Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .build-note { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+        .section-label { background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 12px; display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .avada-note { background: #E3F2FD; border-left: 4px solid #1976D2; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #1565C0; }
+        .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 6px 10px; font-size: 11px; }
+        details summary { cursor: pointer; color: #1976D2; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- ========== SEO SETTINGS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-4 p-5 bg-white rounded-lg shadow border-l-4 border-blue-600">
+    <h2 class="text-lg font-bold text-blue-900 mb-3">SEO Settings — Rank Math</h2>
+    <table class="w-full text-sm">
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700 w-40">URL</td><td class="py-2 text-gray-900">/for-dealers/</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Focus Keyword</td><td class="py-2">automatic pool cover dealer</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Title Tag</td><td class="py-2">Automatic Pool Cover Dealer Program — Integra Pool Covers</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Meta Description</td><td class="py-2">Join the Integra authorized dealer network. ASTM F1346 certified covers, stainless steel mechanisms, 20-year warranty. Built to make your installations stand out.</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Schema Type</td><td class="py-2">WebPage</td></tr>
+        <tr><td class="py-2 font-semibold text-gray-700">Canonical</td><td class="py-2">https://integrapoolcovers.com/for-dealers/</td></tr>
+    </table>
+</div>
+
+<div class="max-w-5xl mx-auto text-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">PAGE 11 — For Dealers Hub</h1>
+    <p class="text-sm text-gray-500">Visual Build Guide — Integra Pool Covers Redesign</p>
+</div>
+
+<!-- ========== SECTION 1: DEALER HERO (BACKGROUND IMAGE) ========== -->
+<div class="max-w-5xl mx-auto mb-2">
+    <span class="section-label">Section 1 — Dealer Hero (Background Image)</span>
+    <div class="build-note">DIFFERENT from other pages: uses background IMAGE with #003366 overlay at 60% opacity — NOT solid navy.</div>
+</div>
+<div style="position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <img src="images/dealer-hero.webp" alt="Luxury residential pool installation with retracted Integra cover — dealer program opportunity" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:1;">
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,51,102,0.6); z-index:2;"></div>
+    <div style="position:relative; z-index:3; text-align:center; padding:120px 20px; max-width:800px;">
+        <h1 style="color:#FFFFFF; font-size:48px; font-weight:700; margin-bottom:20px; text-shadow:0 2px 8px rgba(0,0,0,0.3);">The Integra Dealer Program — Automatic Pool Covers That Sell Themselves</h1>
+        <p style="color:rgba(255,255,255,0.95); font-size:20px; margin-bottom:24px;">ASTM-certified safety. All-stainless steel construction. A 20-year mechanism warranty. Give your customers the cover that sets your business apart.</p>
+        <a href="/for-dealers/apply/" style="display:inline-block; background:#FF6B00; color:#FFFFFF; font-weight:700; padding:16px 40px; border-radius:8px; text-decoration:none;">Apply to Become a Dealer</a>
+    </div>
+    <div class="image-info" style="z-index:4;">dealer-hero.webp — 2400x1200 — 605KB — BACKGROUND IMAGE with #003366 overlay at 60%</div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 1: Dealer Hero</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background Image: dealer-hero.webp. Position: Center Center. Size: Cover. No Repeat. Background Overlay: #003366 at 60% opacity. Min-height: 60vh (45vh mobile). Padding: 120px top/bottom (80px mobile). Center aligned.</p>
+            <p><strong>Column:</strong> 10/12 width, centered.</p>
+            <p><strong>H1:</strong> White, 48px / 32px mobile, weight 700, center, text-shadow: 0 2px 8px rgba(0,0,0,0.3). Animation: Fade In from Bottom, 0.3s.</p>
+            <p><strong>Subhead:</strong> rgba(255,255,255,0.95), 20px / 16px mobile, center, max-width 800px. Animation: Fade In from Bottom, 0.5s.</p>
+            <p><strong>Button:</strong> "Apply to Become a Dealer" → /for-dealers/apply/. Bg #FF6B00, white, 700, padding 16px 40px, border-radius 8px, center. Animation: Fade In, 0.7s.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 2: INTRO COPY ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 2 — Intro Copy</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:750px; margin:0 auto; text-align:center;">
+        <h2 style="color:#003366; margin-bottom:20px; font-size:36px;">Why Pool Builders Choose Integra</h2>
+        <p style="color:#2D2D2D; font-size:18px; line-height:1.8;">Automatic pool covers are the highest-margin add-on in the pool industry — and Integra makes it easy to offer one with every build. Our covers install faster, last longer, and give your customers something they'll actually use every day. You get a product that sells itself and a manufacturer that backs you up.</p>
+        <div style="width:60px; height:2px; background:#E8E8E8; margin:30px auto 0;"></div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 2</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom. Column 8/12 centered.</p>
+            <p><strong>H2:</strong> #003366, 36px / 28px mobile, center. Text: 18px, center, line-height 1.8, max-width 750px.</p>
+            <p><strong>Separator:</strong> #E8E8E8, 60px wide, centered, margin-top 30px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 3: BUSINESS CASE STATS ROW ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3 — Business Case Stats Row</span>
+</div>
+<div style="background:#F5F5F5; padding:60px 20px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center;">
+        <div>
+            <span style="font-size:44px; font-weight:800; color:#FF6B00;">$12K+</span><br>
+            <span style="font-size:15px; color:#2D2D2D; text-transform:uppercase; letter-spacing:2px;">Avg Revenue Per Install</span>
+        </div>
+        <div>
+            <span style="font-size:44px; font-weight:800; color:#FF6B00;">20-Year</span><br>
+            <span style="font-size:15px; color:#2D2D2D; text-transform:uppercase; letter-spacing:2px;">Mechanism Warranty</span>
+        </div>
+        <div>
+            <span style="font-size:44px; font-weight:800; color:#FF6B00;">Training</span><br>
+            <span style="font-size:15px; color:#2D2D2D; text-transform:uppercase; letter-spacing:2px;">Included for Your Team</span>
+        </div>
+        <div>
+            <span style="font-size:44px; font-weight:800; color:#FF6B00;">National</span><br>
+            <span style="font-size:15px; color:#2D2D2D; text-transform:uppercase; letter-spacing:2px;">Authorized Dealer Network</span>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3: Stats Row</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 60px top/bottom (40px mobile).</p>
+            <p><strong>4-column row:</strong> Equal width (3/12 each). Mobile: 2x2 grid. Each: stat in #FF6B00 44px weight 800, label in #2D2D2D 15px uppercase.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 4: THREE DEALER NAV CARDS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 4 — Three Dealer Nav Cards</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto 40px; text-align:center;">
+        <h2 style="color:#003366; font-size:36px;">Explore the Dealer Program</h2>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:30px;">
+        <!-- Card 1 -->
+        <div style="border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.08); background:#FFFFFF;">
+            <div style="position:relative;">
+                <img src="images/dealer-card-why-partner.webp" alt="Integra manufacturing team — why pool builders partner with Integra" style="width:100%; display:block;">
+                <div class="image-info">dealer-card-why-partner.webp — 600x400 — 24KB</div>
+            </div>
+            <div style="padding:24px; border:1px solid #E8E8E8; border-top:none;">
+                <h3 style="color:#003366; font-size:20px; margin-bottom:8px;">Why Partner with Integra</h3>
+                <p style="color:#666; font-size:15px; line-height:1.6;">All-stainless steel construction, ASTM certification, and a product your customers will love. See what sets Integra apart from every other cover manufacturer.</p>
+                <a href="/for-dealers/why-partner/" style="color:#FF6B00; font-weight:600; font-size:15px; display:inline-block; margin-top:12px; text-decoration:none;">Learn More &rarr;</a>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div style="border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.08); background:#FFFFFF;">
+            <div style="position:relative;">
+                <img src="images/dealer-card-program.webp" alt="Integra manufacturing facility with signage — dealer program details" style="width:100%; display:block;">
+                <div class="image-info">dealer-card-program.webp — 600x400 — 33KB</div>
+            </div>
+            <div style="padding:24px; border:1px solid #E8E8E8; border-top:none;">
+                <h3 style="color:#003366; font-size:20px; margin-bottom:8px;">Dealer Program Details</h3>
+                <p style="color:#666; font-size:15px; line-height:1.6;">Territory protection, co-op marketing, pricing structure, and dealer portal access. Everything you need to know about partnering with Integra.</p>
+                <a href="/for-dealers/program-details/" style="color:#FF6B00; font-weight:600; font-size:15px; display:inline-block; margin-top:12px; text-decoration:none;">View Program &rarr;</a>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div style="border-radius:8px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.08); background:#FFFFFF;">
+            <div style="position:relative;">
+                <img src="images/dealer-card-training.webp" alt="Integra installer attaching hardware to pool cover — dealer installation training" style="width:100%; display:block;">
+                <div class="image-info">dealer-card-training.webp — 600x400 — 26KB</div>
+            </div>
+            <div style="padding:24px; border:1px solid #E8E8E8; border-top:none;">
+                <h3 style="color:#003366; font-size:20px; margin-bottom:8px;">Installation Training</h3>
+                <p style="color:#666; font-size:15px; line-height:1.6;">On-site and virtual training for your installation team. Certification process, ongoing technical support, and troubleshooting resources.</p>
+                <a href="/for-dealers/training/" style="color:#FF6B00; font-weight:600; font-size:15px; display:inline-block; margin-top:12px; text-decoration:none;">See Training &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 4: Nav Cards</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom.</p>
+            <p><strong>Header:</strong> 8/12 column centered. H2 #003366 36px center, margin-bottom 40px.</p>
+            <p><strong>3-column row:</strong> 4/12 each, gap 30px.</p>
+            <p><strong>Each card:</strong> Image at top (100%, border-radius 8px 8px 0 0). Content area below: white bg, 1px solid #E8E8E8 border, 0 0 8px 8px radius, 24px padding, box-shadow 0 2px 12px rgba(0,0,0,0.08). H3 #003366 20px. P #666 15px. Link text #FF6B00 weight 600.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 5: ALREADY A DEALER? ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 5 — Already a Dealer?</span>
+</div>
+<div style="background:#EBF4FF; padding:60px 20px;">
+    <div style="max-width:750px; margin:0 auto; text-align:center;">
+        <h2 style="color:#003366; margin-bottom:12px; font-size:32px;">Already an Integra Dealer?</h2>
+        <p style="color:#2D2D2D; font-size:18px; margin-bottom:24px;">Access your dealer portal for order forms, marketing materials, installation guides, and technical documentation.</p>
+        <a href="/dealer-portal/" style="display:inline-block; background:#003366; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Go to Dealer Portal</a>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 5</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #EBF4FF, padding 60px top/bottom. Column 8/12 centered.</p>
+            <p><strong>H2:</strong> #003366, 32px, center. Text: #2D2D2D, 18px, center, margin-bottom 24px.</p>
+            <p><strong>Button:</strong> "Go to Dealer Portal" → /dealer-portal/. Bg #003366, white, 700, padding 16px 36px, border-radius 8px, center.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 6: CLOSING CTA ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 6 — Closing CTA</span>
+</div>
+<div style="background:#003366; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+        <h2 style="color:#FFFFFF; margin-bottom:16px; font-size:36px;">Ready to Add Integra to Your Product Line?</h2>
+        <p style="color:rgba(255,255,255,0.85); font-size:18px; margin-bottom:30px;">Join the growing network of authorized Integra dealers. We'll set you up with everything you need to start selling and installing.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="/for-dealers/apply/" style="display:inline-block; background:#FF6B00; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Apply Now</a>
+            <a href="/contact/" style="display:inline-block; background:transparent; border:2px solid #FFFFFF; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Contact Us</a>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 6: CTA</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #003366, padding 80px top/bottom. Column 8/12 centered.</p>
+            <p><strong>Buttons:</strong> "Apply Now" → /for-dealers/apply/ (bg #FF6B00). "Contact Us" → /contact/ (transparent, 2px white border).</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== IMAGE UPLOAD CHECKLIST ========== -->
+<div class="max-w-5xl mx-auto my-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Image Upload Checklist</h2>
+    <table class="w-full text-sm border-collapse">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="text-left p-3 border-b">File</th>
+                <th class="text-left p-3 border-b">Alt Text</th>
+                <th class="text-center p-3 border-b w-16">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b"><td class="p-3 font-mono text-xs">dealer-hero.webp</td><td class="p-3 text-xs">Luxury residential pool installation with retracted Integra cover — dealer program opportunity</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-3 font-mono text-xs">dealer-card-why-partner.webp</td><td class="p-3 text-xs">Integra manufacturing team — why pool builders partner with Integra</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b"><td class="p-3 font-mono text-xs">dealer-card-program.webp</td><td class="p-3 text-xs">Integra manufacturing facility with signage — dealer program details</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr><td class="p-3 font-mono text-xs">dealer-card-training.webp</td><td class="p-3 text-xs">Integra installer attaching hardware to pool cover — dealer installation training</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

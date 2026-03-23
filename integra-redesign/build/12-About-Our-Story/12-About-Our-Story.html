@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE 12 — About / Our Story — Visual Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .build-note { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+        .section-label { background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 12px; display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .avada-note { background: #E3F2FD; border-left: 4px solid #1976D2; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #1565C0; }
+        .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 6px 10px; font-size: 11px; }
+        details summary { cursor: pointer; color: #1976D2; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- ========== SEO SETTINGS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-4 p-5 bg-white rounded-lg shadow border-l-4 border-blue-600">
+    <h2 class="text-lg font-bold text-blue-900 mb-3">SEO Settings — Rank Math</h2>
+    <table class="w-full text-sm">
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700 w-40">URL</td><td class="py-2 text-gray-900">/about/our-story/</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Focus Keyword</td><td class="py-2">Integra Pool Covers manufacturing</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Title Tag</td><td class="py-2">Our Story | Integra Pool Covers — Made in Knoxville, Tennessee</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Meta Description</td><td class="py-2">Integra Pool Covers has been manufacturing automatic pool covers in Knoxville, Tennessee. Learn about our manufacturing process and commitment to quality.</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Schema Type</td><td class="py-2">Organization</td></tr>
+        <tr><td class="py-2 font-semibold text-gray-700">Canonical</td><td class="py-2">https://integrapoolcovers.com/about/our-story/</td></tr>
+    </table>
+</div>
+
+<div class="max-w-5xl mx-auto text-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">PAGE 12 — About / Our Story</h1>
+    <p class="text-sm text-gray-500">Visual Build Guide — Integra Pool Covers Redesign</p>
+</div>
+
+<!-- ========== SECTION 1: HERO ========== -->
+<div class="max-w-5xl mx-auto mb-2">
+    <span class="section-label">Section 1 — Hero</span>
+</div>
+<div style="background:#003366; min-height:50vh; display:flex; align-items:center; justify-content:center; padding:100px 20px;">
+    <div style="max-width:800px; text-align:center;">
+        <h1 style="color:#FFFFFF; font-size:48px; font-weight:700; margin-bottom:20px;">Made in America. Built to Last Decades.</h1>
+        <p style="color:rgba(255,255,255,0.9); font-size:20px;">Every Integra pool cover is designed, manufactured, and assembled in Knoxville, Tennessee — by a team that believes the way something is built matters as much as what it does.</p>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 1: Hero</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #003366 solid, min-height 50vh (40vh mobile), padding 100px top/bottom (60px mobile), center aligned.</p>
+            <p><strong>Column:</strong> 10/12 width, centered. H1: White, 48px / 32px mobile, 700, center. Subhead: rgba(255,255,255,0.9), 20px / 16px mobile, max-width 800px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 2: FACTORY HERO IMAGE ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 2 — Factory Hero Image</span>
+</div>
+<div style="background:#FFFFFF; padding:0;">
+    <div style="max-width:1400px; margin:0 auto; position:relative;">
+        <img src="images/factory-hero.webp" alt="Integra Pool Covers manufacturing facility in Knoxville Tennessee — charcoal Aegis fabric at full production length" style="width:100%; display:block;">
+        <div class="image-info">factory-hero.webp — 1400x800 — 104KB</div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 2: Factory Hero Image</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 0, overflow hidden. Column: full width (1/1).</p>
+            <p><strong>Image:</strong> factory-hero.webp, full width, max-width 1400px centered, border-radius 0.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 3A: THE BEGINNING ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3A — Story: The Beginning</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+        <div style="position:relative;">
+            <img src="images/factory-workers-machine.webp" alt="Integra manufacturing team operating production equipment — Knoxville Tennessee factory" style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+            <div class="image-info" style="border-radius:0 0 8px 8px;">factory-workers-machine.webp — 800x600 — 39KB</div>
+        </div>
+        <div>
+            <h2 style="color:#003366; font-size:32px; margin-bottom:16px;">Built Different From Day One</h2>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8;">Integra was founded on a simple premise: automatic pool covers should be built to last — not built to a price point. From the beginning, every engineering decision has prioritized longevity, safety, and real-world performance over cost-cutting.</p>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8; margin-top:16px;">That philosophy led to decisions that other manufacturers wouldn't make — all-stainless steel mechanisms, heat-sealed fabrics, and independent ASTM testing on every cover model. These aren't marketing features. They're engineering commitments.</p>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3A</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom. 2-column row 50/50.</p>
+            <p><strong>Left:</strong> factory-workers-machine.webp, border-radius 8px, box-shadow.</p>
+            <p><strong>Right:</strong> H2 #003366 32px. Body text #2D2D2D 17px line-height 1.8.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 3B: THE PHILOSOPHY ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3B — Story: The Philosophy</span>
+</div>
+<div style="background:#F5F5F5; padding:80px 20px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+        <div>
+            <h2 style="color:#003366; font-size:32px; margin-bottom:16px;">Quality Over Quantity</h2>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8;">We don't outsource manufacturing. We don't use aluminum where stainless steel belongs. We don't stitch webbing when heat-sealing is stronger. Every component is chosen for what it does in the field — not what it costs on a spreadsheet.</p>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8; margin-top:16px;">This approach means our covers cost more to build. It also means they perform better, last longer, and generate fewer warranty claims than anything else on the market. For our dealers and their customers, that's the only math that matters.</p>
+        </div>
+        <div style="position:relative;">
+            <img src="images/factory-worker-assembly.webp" alt="Integra worker hand-assembling pool cover hardware — quality craftsmanship at Knoxville facility" style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+            <div class="image-info" style="border-radius:0 0 8px 8px;">factory-worker-assembly.webp — 800x600 — 46KB</div>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3B</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 80px top/bottom. 2-column row 50/50.</p>
+            <p><strong>Left:</strong> Text. <strong>Right:</strong> factory-worker-assembly.webp, border-radius 8px, box-shadow.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 4: STAINLESS STEEL ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 4 — The Decision That Defined Us (Stainless Steel)</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto 40px; text-align:center;">
+        <h2 style="color:#003366; font-size:36px; margin-bottom:16px;">The Decision That Defined Us</h2>
+        <div style="width:60px; height:2px; background:#E8E8E8; margin:0 auto;"></div>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;">
+        <div>
+            <h3 style="color:#003366; font-size:24px; margin-bottom:12px;">All-Stainless Steel — No Exceptions</h3>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8;">Most pool cover manufacturers use a mix of aluminum, galvanized steel, and stainless steel in their mechanisms. Integra uses 100% stainless steel — every guide, rail, pulley, and structural component.</p>
+            <p style="color:#2D2D2D; font-size:17px; line-height:1.8; margin-top:16px;">Stainless steel doesn't corrode in chlorine or salt environments. It doesn't weaken over freeze-thaw cycles. It doesn't need to be replaced. That's why we back our mechanisms with a 20-year warranty — because the material earns it.</p>
+        </div>
+        <div style="background:#F5F5F5; border-radius:8px; padding:40px; text-align:center;">
+            <div class="build-note">Use existing stainless-steel-mechanisms.webp from WordPress Media Library (already uploaded from previous pages). Alt: "Integra all-stainless steel pool cover mechanism — 20-year warranty"</div>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 4: Stainless Steel</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom.</p>
+            <p><strong>Header:</strong> 8/12 centered. H2 #003366 36px center. Separator: #E8E8E8, 60px, centered, margin-bottom 40px.</p>
+            <p><strong>2-column row:</strong> 50/50. Left: text. Right: use existing stainless-steel-mechanisms.webp from Media Library, border-radius 8px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 5: KNOXVILLE FACILITY ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 5 — The Knoxville Facility</span>
+</div>
+<div style="background:#F5F5F5; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+        <h2 style="color:#003366; font-size:36px; margin-bottom:16px;">The Knoxville Facility</h2>
+        <p style="color:#2D2D2D; font-size:18px; line-height:1.8; max-width:750px; margin:0 auto 30px;">Every Integra cover is manufactured under one roof in Knoxville, Tennessee. Our facility handles everything — fabric cutting, heat-seal welding, mechanism assembly, quality testing, and final packaging. Nothing is outsourced.</p>
+    </div>
+    <div style="max-width:1200px; margin:0 auto; position:relative;">
+        <img src="images/factory-floor-wide.webp" alt="Integra manufacturing floor — wide view of production facility showing scale of operations" style="width:100%; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.1);">
+        <div class="image-info" style="border-radius:0 0 8px 8px;">factory-floor-wide.webp — 1200x800 — 107KB</div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 5: Knoxville Facility</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 80px top/bottom.</p>
+            <p><strong>Header column:</strong> 8/12 centered. H2 #003366 36px center. Body text 18px center, max-width 750px, margin-bottom 30px.</p>
+            <p><strong>Image column:</strong> Full width. factory-floor-wide.webp, 100% width, max-width 1200px centered, border-radius 8px, box-shadow.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 6: MANUFACTURING GALLERY ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 6 — Inside the Factory (Photo Gallery)</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto 40px; text-align:center;">
+        <h2 style="color:#003366; font-size:36px;">Inside the Factory</h2>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:15px;">
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/heat-seal-manufacturing.webp" alt="Worker operating heat-seal welding machine at Integra factory — Knoxville Tennessee" style="width:100%; display:block;">
+            <div class="image-info">heat-seal-manufacturing.webp — 800x600 — 40KB</div>
+        </div>
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/fabric-rolls-storage.webp" alt="Integra Aegis fabric roll storage — dozens of rolls in multiple colors at manufacturing facility" style="width:100%; display:block;">
+            <div class="image-info">fabric-rolls-storage.webp — 800x600 — 96KB</div>
+        </div>
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/worker-rolling-fabric.webp" alt="Integra worker rolling Tan Aegis fabric on production floor — hands-on manufacturing" style="width:100%; display:block;">
+            <div class="image-info">worker-rolling-fabric.webp — 800x600 — 28KB</div>
+        </div>
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/factory-workers-machine.webp" alt="Integra manufacturing team operating production equipment — Knoxville Tennessee factory" style="width:100%; display:block;">
+            <div class="image-info">factory-workers-machine.webp — 800x600 — 39KB</div>
+        </div>
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/factory-worker-assembly.webp" alt="Integra worker hand-assembling pool cover hardware — quality craftsmanship at Knoxville facility" style="width:100%; display:block;">
+            <div class="image-info">factory-worker-assembly.webp — 800x600 — 46KB</div>
+        </div>
+        <div style="position:relative; border-radius:8px; overflow:hidden;">
+            <img src="images/factory-floor-wide.webp" alt="Integra manufacturing floor — wide view of production facility showing scale of operations" style="width:100%; display:block;">
+            <div class="image-info">factory-floor-wide.webp — 1200x800 — 107KB</div>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 6: Gallery</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom. Column 10/12 centered.</p>
+            <p><strong>H2:</strong> #003366 36px center, margin-bottom 40px.</p>
+            <p><strong>Fusion Gallery:</strong> Grid layout, 3 columns desktop / 2 tablet / 1 mobile. Column spacing 15px. Hover: Zoom In.</p>
+            <p><strong>Upload all 6 images</strong> to Media Library first, then add to gallery with alt text.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 7: WHAT WE BELIEVE ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 7 — What We Believe (3-Col Cards)</span>
+</div>
+<div style="background:#F5F5F5; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto 40px; text-align:center;">
+        <h2 style="color:#003366; font-size:36px;">What We Believe</h2>
+    </div>
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:30px;">
+        <div style="background:#FFFFFF; padding:30px; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <div style="font-size:40px; margin-bottom:16px; color:#FF6B00;">&#128295;</div>
+            <h3 style="color:#003366; font-size:22px; margin-bottom:10px;">Quality Without Compromise</h3>
+            <p style="color:#2D2D2D; font-size:15px; line-height:1.7;">Every material choice, every process, every inspection exists because it makes the product better. We don't cut corners — and we never will.</p>
+        </div>
+        <div style="background:#FFFFFF; padding:30px; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <div style="font-size:40px; margin-bottom:16px; color:#FF6B00;">&#128737;</div>
+            <h3 style="color:#003366; font-size:22px; margin-bottom:10px;">Safety as a Standard</h3>
+            <p style="color:#2D2D2D; font-size:15px; line-height:1.7;">ASTM F1346 isn't a box we check. It's the engineering baseline we build everything on. Every Integra cover is a safety device first.</p>
+        </div>
+        <div style="background:#FFFFFF; padding:30px; border-radius:8px; box-shadow:0 2px 12px rgba(0,0,0,0.08);">
+            <div style="font-size:40px; margin-bottom:16px; color:#FF6B00;">&#129309;</div>
+            <h3 style="color:#003366; font-size:22px; margin-bottom:10px;">Dealers Are Partners</h3>
+            <p style="color:#2D2D2D; font-size:15px; line-height:1.7;">We succeed when our dealers succeed. Training, technical support, marketing materials, and warranty backing — we're in it together.</p>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 7: What We Believe</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #F5F5F5, padding 80px top/bottom. Column 10/12 centered.</p>
+            <p><strong>H2:</strong> #003366 36px center, margin-bottom 40px.</p>
+            <p><strong>3-column row:</strong> Equal width, gap 30px. Each card: white bg, padding 30px, border-radius 8px, box-shadow 0 2px 12px rgba(0,0,0,0.08).</p>
+            <p><strong>Icons:</strong> Use FontAwesome icons via Avada icon element (wrench, shield, handshake). Color #FF6B00, size 40px. Or paste emoji/icon HTML.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 8: CLOSING CTA ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 8 — Closing CTA</span>
+</div>
+<div style="background:#003366; padding:80px 20px;">
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+        <h2 style="color:#FFFFFF; margin-bottom:16px; font-size:36px;">See What Integra Can Do for Your Pool</h2>
+        <p style="color:rgba(255,255,255,0.85); font-size:18px; margin-bottom:30px;">Whether you're a homeowner looking for the best cover or a dealer looking for the best manufacturer — we'd love to hear from you.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="/find-a-dealer/" style="display:inline-block; background:#FF6B00; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Find a Dealer</a>
+            <a href="/contact/" style="display:inline-block; background:transparent; border:2px solid #FFFFFF; color:#FFFFFF; font-weight:700; padding:16px 36px; border-radius:8px; text-decoration:none;">Contact Us</a>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 8: CTA</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #003366, padding 80px top/bottom. Column 8/12 centered.</p>
+            <p><strong>Buttons:</strong> "Find a Dealer" → /find-a-dealer/ (bg #FF6B00). "Contact Us" → /contact/ (transparent, 2px white border).</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== IMAGE UPLOAD CHECKLIST ========== -->
+<div class="max-w-5xl mx-auto my-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Image Upload Checklist</h2>
+    <table class="w-full text-sm border-collapse">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="text-left p-3 border-b">File</th>
+                <th class="text-left p-3 border-b">Alt Text</th>
+                <th class="text-center p-3 border-b w-16">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b"><td class="p-3 font-mono text-xs">factory-hero.webp</td><td class="p-3 text-xs">Integra Pool Covers manufacturing facility in Knoxville Tennessee — charcoal Aegis fabric at full production length</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-3 font-mono text-xs">factory-workers-machine.webp</td><td class="p-3 text-xs">Integra manufacturing team operating production equipment — Knoxville Tennessee factory</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b"><td class="p-3 font-mono text-xs">factory-worker-assembly.webp</td><td class="p-3 text-xs">Integra worker hand-assembling pool cover hardware — quality craftsmanship at Knoxville facility</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-3 font-mono text-xs">factory-floor-wide.webp</td><td class="p-3 text-xs">Integra manufacturing floor — wide view of production facility showing scale of operations</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b"><td class="p-3 font-mono text-xs">heat-seal-manufacturing.webp</td><td class="p-3 text-xs">Worker operating heat-seal welding machine at Integra factory — Knoxville Tennessee</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr class="border-b bg-gray-50"><td class="p-3 font-mono text-xs">fabric-rolls-storage.webp</td><td class="p-3 text-xs">Integra Aegis fabric roll storage — dozens of rolls in multiple colors at manufacturing facility</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+            <tr><td class="p-3 font-mono text-xs">worker-rolling-fabric.webp</td><td class="p-3 text-xs">Integra worker rolling Tan Aegis fabric on production floor — hands-on manufacturing</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

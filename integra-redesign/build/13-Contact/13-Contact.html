@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE 13 — Contact — Visual Build Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .build-note { background: #FFF3CD; border-left: 4px solid #FFC107; padding: 12px 16px; margin: 8px 0; font-size: 13px; }
+        .section-label { background: #E8F5E9; color: #2E7D32; font-weight: 700; padding: 4px 12px; display: inline-block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .avada-note { background: #E3F2FD; border-left: 4px solid #1976D2; padding: 10px 14px; margin: 8px 0; font-size: 12px; color: #1565C0; }
+        .image-info { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 6px 10px; font-size: 11px; }
+        details summary { cursor: pointer; color: #1976D2; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+<!-- ========== SEO SETTINGS ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-4 p-5 bg-white rounded-lg shadow border-l-4 border-blue-600">
+    <h2 class="text-lg font-bold text-blue-900 mb-3">SEO Settings — Rank Math</h2>
+    <table class="w-full text-sm">
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700 w-40">URL</td><td class="py-2 text-gray-900">/contact/</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Focus Keyword</td><td class="py-2">contact Integra Pool Covers</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Title Tag</td><td class="py-2">Contact Integra Pool Covers | Get in Touch</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Meta Description</td><td class="py-2">Contact Integra Pool Covers with questions about products, dealer programs, or to request a quote. Based in Knoxville, Tennessee.</td></tr>
+        <tr class="border-b"><td class="py-2 font-semibold text-gray-700">Schema Type</td><td class="py-2">LocalBusiness</td></tr>
+        <tr><td class="py-2 font-semibold text-gray-700">Canonical</td><td class="py-2">https://integrapoolcovers.com/contact/</td></tr>
+    </table>
+</div>
+
+<div class="max-w-5xl mx-auto text-center mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">PAGE 13 — Contact</h1>
+    <p class="text-sm text-gray-500">Visual Build Guide — Integra Pool Covers Redesign</p>
+</div>
+
+<!-- ========== SECTION 1: HERO ========== -->
+<div class="max-w-5xl mx-auto mb-2">
+    <span class="section-label">Section 1 — Hero (Compact)</span>
+</div>
+<div style="background:#003366; min-height:40vh; display:flex; align-items:center; justify-content:center; padding:80px 20px;">
+    <div style="max-width:700px; text-align:center;">
+        <h1 style="color:#FFFFFF; font-size:48px; font-weight:700; margin-bottom:16px;">Contact Integra Pool Covers</h1>
+        <p style="color:rgba(255,255,255,0.9); font-size:20px;">Questions about our products, dealer program, or need technical support? We're here to help.</p>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 1: Hero</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #003366 solid, min-height 40vh (35vh mobile), padding 80px top/bottom (50px mobile), center aligned.</p>
+            <p><strong>Column:</strong> 10/12 width, centered. H1: White, 48px / 32px mobile, 700, center, margin-bottom 16px.</p>
+            <p><strong>Subhead:</strong> rgba(255,255,255,0.9), 20px / 16px mobile, center, max-width 700px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 2: CONTACT FORM + INFO ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 2 — Contact Form + Info (2-Column)</span>
+</div>
+<div style="background:#FFFFFF; padding:80px 20px;">
+    <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:7fr 5fr; gap:40px; align-items:start;">
+        <!-- LEFT: Contact Form Mockup (60%) -->
+        <div>
+            <h2 style="color:#003366; font-size:28px; margin-bottom:24px;">Send Us a Message</h2>
+            <div class="build-note">This is a WPForms mockup. Create form "Contact — Integra" in WPForms with fields below, then embed via Avada WPForms element.</div>
+            <form style="display:flex; flex-direction:column; gap:20px;" onsubmit="return false;">
+                <div>
+                    <label style="display:block; color:#003366; font-size:14px; font-weight:600; margin-bottom:6px;">Full Name <span style="color:red;">*</span></label>
+                    <input type="text" style="width:100%; padding:12px 16px; border:1px solid #D0D0D0; border-radius:6px; font-size:16px;" placeholder="Your full name">
+                </div>
+                <div>
+                    <label style="display:block; color:#003366; font-size:14px; font-weight:600; margin-bottom:6px;">Email Address <span style="color:red;">*</span></label>
+                    <input type="email" style="width:100%; padding:12px 16px; border:1px solid #D0D0D0; border-radius:6px; font-size:16px;" placeholder="you@email.com">
+                </div>
+                <div>
+                    <label style="display:block; color:#003366; font-size:14px; font-weight:600; margin-bottom:6px;">Phone Number</label>
+                    <input type="tel" style="width:100%; padding:12px 16px; border:1px solid #D0D0D0; border-radius:6px; font-size:16px;" placeholder="(555) 555-5555">
+                </div>
+                <div>
+                    <label style="display:block; color:#003366; font-size:14px; font-weight:600; margin-bottom:6px;">I am a... <span style="color:red;">*</span></label>
+                    <select style="width:100%; padding:12px 16px; border:1px solid #D0D0D0; border-radius:6px; font-size:16px; background:#fff;">
+                        <option value="">Select one...</option>
+                        <option>Homeowner</option>
+                        <option>Pool Builder / Contractor</option>
+                        <option>Current Integra Dealer</option>
+                        <option>Architect / Designer</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display:block; color:#003366; font-size:14px; font-weight:600; margin-bottom:6px;">Message <span style="color:red;">*</span></label>
+                    <textarea style="width:100%; padding:12px 16px; border:1px solid #D0D0D0; border-radius:6px; font-size:16px; min-height:150px;" placeholder="How can we help?"></textarea>
+                </div>
+                <button type="submit" style="width:100%; background:#FF6B00; color:#FFFFFF; font-weight:700; padding:14px 36px; border:none; border-radius:8px; font-size:16px; cursor:pointer;">Send Message</button>
+            </form>
+            <details class="mt-3">
+                <summary>WPForms Setup Details</summary>
+                <div class="avada-note">
+                    <p><strong>Form name:</strong> "Contact — Integra"</p>
+                    <p><strong>Fields:</strong> Full Name (required, single line), Email (required), Phone (optional), "I am a..." (required, dropdown: Homeowner / Pool Builder-Contractor / Current Integra Dealer / Architect-Designer / Other), Message (required, paragraph, min-height 150px).</p>
+                    <p><strong>Submit button:</strong> "Send Message" — bg #FF6B00, white, 700, full width, border-radius 8px.</p>
+                    <p><strong>Confirmation:</strong> "Thank you for contacting Integra. We'll respond within 1 business day."</p>
+                    <p><strong>CSS overrides:</strong> Field border: 1px solid #D0D0D0, border-radius 6px, padding 12px 16px, font-size 16px. Focus: 2px solid #003366. Label: #003366, 14px, 600. Spacing: 20px.</p>
+                    <p><strong>Anti-spam:</strong> Enable honeypot + reCAPTCHA.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- RIGHT: Contact Info Card (40%) -->
+        <div style="background:#F5F5F5; padding:36px; border-radius:12px;">
+            <h3 style="color:#003366; font-size:22px; margin-bottom:24px;">Get in Touch</h3>
+
+            <div style="margin-bottom:20px;">
+                <p style="color:#003366; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Address</p>
+                <p style="color:#2D2D2D; font-size:16px; line-height:1.6;">Integra Pool Covers<br>Knoxville, Tennessee</p>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <p style="color:#003366; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Phone</p>
+                <p style="color:#2D2D2D; font-size:16px;"><a href="tel:+18005551234" style="color:#003366; text-decoration:none;">(800) 555-1234</a></p>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <p style="color:#003366; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Email</p>
+                <p style="color:#2D2D2D; font-size:16px;"><a href="mailto:info@integrapoolcovers.com" style="color:#003366; text-decoration:none;">info@integrapoolcovers.com</a></p>
+            </div>
+
+            <div style="margin-bottom:20px;">
+                <p style="color:#003366; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">Business Hours</p>
+                <p style="color:#2D2D2D; font-size:16px; line-height:1.6;">Monday &ndash; Friday: 8:00 AM &ndash; 5:00 PM ET<br>Saturday &ndash; Sunday: Closed</p>
+            </div>
+
+            <div class="build-note" style="margin-top:20px;">Replace phone number and email with actual Integra contact details before publishing.</div>
+
+            <div style="border-top:1px solid #E0E0E0; margin:20px 0; padding-top:20px;">
+                <div class="build-note">Optional: Add Google Map element here (Avada Fusion). Address: Knoxville, Tennessee. Roadmap, zoom 12, height 250px, border-radius 8px. Or use static map image with Google Maps link.</div>
+                <div style="background:#E0E0E0; height:200px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#666; font-size:14px;">Google Map Embed Placeholder</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 2: Contact Form + Info</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> White bg, padding 80px top/bottom (50px mobile).</p>
+            <p><strong>2-column row:</strong> 7/12 left, 5/12 right. Mobile: stack (form first). Gap 40px.</p>
+            <p><strong>Left column:</strong> H2 #003366 28px, then WPForms element embed.</p>
+            <p><strong>Right column:</strong> Nested container with bg #F5F5F5, padding 36px, border-radius 12px. Contact info text blocks. Optional Google Map at bottom.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== SECTION 3: DEALER CTA ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Section 3 — Dealer-Specific CTA</span>
+</div>
+<div style="background:#EBF4FF; padding:50px 20px;">
+    <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:2fr 1fr; gap:30px; align-items:center;">
+        <div>
+            <h3 style="color:#003366; font-size:24px; margin-bottom:8px;">Are You a Pool Builder or Contractor?</h3>
+            <p style="color:#2D2D2D; font-size:16px;">Learn about the Integra dealer program — territory protection, training, marketing support, and a product your customers will love.</p>
+        </div>
+        <div style="text-align:right;">
+            <a href="/for-dealers/" style="display:inline-block; background:#003366; color:#FFFFFF; font-weight:700; padding:14px 28px; border-radius:8px; text-decoration:none;">Explore the Dealer Program</a>
+        </div>
+    </div>
+</div>
+<div class="max-w-5xl mx-auto">
+    <details class="my-2">
+        <summary>Avada Build Instructions — Section 3: Dealer CTA</summary>
+        <div class="avada-note">
+            <p><strong>Container:</strong> Background #EBF4FF, padding 50px top/bottom. Column 8/12 centered.</p>
+            <p><strong>2-column row:</strong> 8/12 text, 4/12 button (flex, vertically centered).</p>
+            <p><strong>Left:</strong> H3 #003366 24px. Text #2D2D2D 16px.</p>
+            <p><strong>Right:</strong> Button "Explore the Dealer Program" → /for-dealers/. Bg #003366, white, 700, 14px 28px padding, border-radius 8px.</p>
+        </div>
+    </details>
+</div>
+
+<!-- ========== REFERENCE IMAGE ========== -->
+<div class="max-w-5xl mx-auto mt-6 mb-2">
+    <span class="section-label">Reference — Contact Hero Image (Not Used in Layout)</span>
+</div>
+<div style="max-width:800px; margin:0 auto; padding:20px;">
+    <div style="position:relative; border-radius:8px; overflow:hidden;">
+        <img src="images/contact-hero.webp" alt="Contact Integra Pool Covers — Knoxville Tennessee" style="width:100%; display:block;">
+        <div class="image-info">contact-hero.webp — 1200x800 — 271KB — REFERENCE ONLY (not used in hero bg per build guide)</div>
+    </div>
+    <div class="build-note">This image is provided as a reference/fallback. The hero uses solid #003366 background. Can be used for og:image or elsewhere on the page.</div>
+</div>
+
+<!-- ========== IMAGE UPLOAD CHECKLIST ========== -->
+<div class="max-w-5xl mx-auto my-8 p-5 bg-white rounded-lg shadow">
+    <h2 class="text-lg font-bold text-gray-800 mb-4">Image Upload Checklist</h2>
+    <table class="w-full text-sm border-collapse">
+        <thead>
+            <tr class="bg-gray-100">
+                <th class="text-left p-3 border-b">File</th>
+                <th class="text-left p-3 border-b">Alt Text</th>
+                <th class="text-left p-3 border-b">Usage</th>
+                <th class="text-center p-3 border-b w-16">Done</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="p-3 font-mono text-xs">contact-hero.webp</td><td class="p-3 text-xs">Contact Integra Pool Covers — Knoxville Tennessee</td><td class="p-3 text-xs">Reference / og:image only</td><td class="p-3 text-center"><input type="checkbox"></td></tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
